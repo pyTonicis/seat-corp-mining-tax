@@ -22,6 +22,6 @@
 
 return [
     'main_level' => 'Corp Mining Tax',
-    'sub-home-level' => 'Overview',
+    'sub-home-level' => 'Tax Overview',
 ];
 

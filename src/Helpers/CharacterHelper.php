@@ -20,23 +20,22 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-Route::group([
-    'namespace' => 'H4zz4rdDev\Seat\SeatCorpMiningTax\Http\Controllers',
-    'middleware' => ['web', 'auth', 'locale'],
-], function () {
-    Route::prefix('/corpminingtax')
-        ->group(function () {
+namespace H4zz4rdDev\Seat\SeatCorpMiningTax\Helpers;
 
-            Route::get('/')
-                ->name('corpminingtax.home')
-                ->uses('CorpMiningTaxController@getHome');
+use Illuminate\Support\Facades\DB;
 
-            Route::post('/getMiningData')
-                ->name('corpminingtax.data')
-                ->uses('CorpMiningTaxController@getData');
+/*
+ * Class CharacterHelper
+ *
+ * @package H4zz4rdDev\Seat\SeatCorpMiningTax\Helpers
+ */
+class CharacterHelper {
 
-            Route::get('/getCorporations')
-                ->name('getCorporations')
-                ->uses('CorpMiningTaxController@getCorporations');
-        });
-});
+    public static function getMainCharacterCharacter (int $character_id) : object {
+
+        return DB::table('refresh_tokens as rt')
+            ->join('users as u', 'rt.user_id', '=', 'u.id')
+            ->where('rt.character_id', '=', $character_id)
+            ->first();
+    }
+}
