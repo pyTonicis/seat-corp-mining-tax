@@ -23,6 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 namespace H4zz4rdDev\Seat\SeatCorpMiningTax\Http\Controllers;
 
 use Seat\Web\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class CorpMiningTaxController extends Controller
 {
