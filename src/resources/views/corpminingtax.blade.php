@@ -12,6 +12,12 @@
         <h3>Settings</h3>
     </div>
     <div class="card-body">
+        <div id="overlay" style="border-radius: 5px">
+            <div class="w-100 d-flex justify-content-center align-items-center">
+                <div class="spinner">
+                </div>
+            </div>
+        </div>
         <form action="{{ route('corpminingtax.data') }}" method="post" id="miningDate" name="miningDate">
             {{ csrf_field() }}
             <div class="form-row">
@@ -50,14 +56,14 @@
                     <select class="groupSearch form-control input-xs" name="corpId" id="corpId"></select>
                 </div>
             </div>
-            <button class="btn btn-primary" type="submit">Send</button>
+            <button class="btn btn-primary" onclick="on()" type="submit">Send</button>
         </form>
     </div>
 </div>
 @isset($miningData)
 <div class="card">
     <div class="card-header">
-        <h3>Tax Summary - {{ ($miningData["month"] < 10) ? "0" . $miningData["month"] : $miningData["month"] }}/{{ $miningData["year"] }}</h3>
+        <h3>Tax Summary - {{ ($miningData->month < 10) ? "0" . $miningData->month : $miningData->month }}/{{ $miningData->year }}</h3>
     </div>
     <div class="card-body">
         <table class="table" id="mining">
@@ -70,11 +76,11 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($miningData["miningData"] as $miningData)
+            @foreach($miningData->characterData as $character)
                 <tr>
-                    <td>{{ $miningData['name'] }}</td>
-                    <td>{{ $miningData['ore_summary']}}</td>
-                    <td>1000 ISK</td>
+                    <td>{{ $character->characterName }}</td>
+                    <td>{{ $character->priceSummary }}</td>
+                    <td>{{ $character->tax }}</td>
                     <td>10%</td>
                 </tr>
             @endforeach
@@ -86,6 +92,13 @@
 @stop
 
 @push('javascript')
+    @push('javascript')
+        <script>
+            function on() {
+                document.getElementById("overlay").style.display = "flex";
+            }
+        </script>
+    @endpush
     <script>
         table = $('#mining').DataTable({
         });

@@ -22,7 +22,10 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 namespace H4zz4rdDev\Seat\SeatCorpMiningTax;
 
+use H4zz4rdDev\Seat\SeatCorpMiningTax\Services\MiningTaxService;
 use Seat\Services\AbstractSeatPlugin;
+
+
 
 /**
  * Class SeatCorpMiningTaxServiceProvider
@@ -42,6 +45,8 @@ class SeatCorpMiningTaxServiceProvider extends AbstractSeatPlugin
         $this->add_translations();
 
         $this->add_migrations();
+
+        $this->register_dependency_injection_classes();
     }
 
     public function register()
@@ -54,6 +59,14 @@ class SeatCorpMiningTaxServiceProvider extends AbstractSeatPlugin
 
         // Register generic permissions
         $this->registerPermissions(__DIR__ . '/Config/Permissions/corpminingtax.php', 'corpminingtax');
+    }
+
+    private function register_dependency_injection_classes()
+    {
+        //Mining Tax Service
+        $this->app->singleton(MiningTaxService::class, function () {
+            return new MiningTaxService();
+        });
     }
 
     /**

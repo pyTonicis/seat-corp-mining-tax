@@ -1,5 +1,5 @@
 {
-    "name": "h4zz4rddev/seat-corp-mining-tax",
+    "name": "h4zz4rdDev/seat-corp-mining-tax",
     "description": "Tracking of corporation mining tax",
     "license": "GPL-3.0",
     "authors": [
@@ -10,7 +10,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "H4zz4rDev\\Seat\\SeatCorpMiningTax\\": "src/"
+            "H4zz4rdDev\\Seat\\SeatCorpMiningTax\\": "src/"
         }
     },
     "minimum-stability": "dev",

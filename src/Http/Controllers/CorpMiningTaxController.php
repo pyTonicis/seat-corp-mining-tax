@@ -23,6 +23,8 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 namespace H4zz4rdDev\Seat\SeatCorpMiningTax\Http\Controllers;
 
 use H4zz4rdDev\Seat\SeatCorpMiningTax\Helpers\CharacterHelper;
+use H4zz4rdDev\Seat\SeatCorpMiningTax\Helpers\EvePraisalHelper;
+use H4zz4rdDev\Seat\SeatCorpMiningTax\Services\MiningTaxService;
 use Seat\Web\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -33,12 +35,23 @@ use Illuminate\Support\Facades\DB;
  */
 class CorpMiningTaxController extends Controller
 {
+    private $miningTaxService;
+
     private $miningData;
+
+    /**
+     * @param MiningTaxService $miningTaxService
+     */
+    public function __construct(MiningTaxService $miningTaxService)
+    {
+        $this->miningTaxService = $miningTaxService;
+    }
 
     /**
      * @return mixed
      */
-    public function getHome() {
+    public function getHome()
+    {
         return view('corpminingtax::corpminingtax');
     }
 
@@ -46,62 +59,25 @@ class CorpMiningTaxController extends Controller
      * @param Request $request
      * @return void
      */
-    public function getData(Request $request) {
-
-        if(!$request->has('corpId')) {
+    public function getData(Request $request)
+    {
+        if (!$request->has('corpId')) {
             return redirect()->route('corpminingtax.home');
         }
 
-        $this->miningData = [];
+        $this->miningData = $this->miningTaxService->createMiningTaxResult($request->get('corpId'),
+            (int)$request->get('mining_month'), (int)$request->get('mining_year'));
 
-        $m_data = DB::table('character_minings as cm')
-            ->select(
-                'cm.character_id',
-                'cm.quantity',
-                'cm.type_id',
-                'it.typeName'
-                )
-            ->join('corporation_members as cmem', 'cm.character_id', '=', 'cmem.character_id')
-            ->join('market_prices as mp', 'cm.type_id', 'mp.type_id')
-            ->join('invTypes as it', 'cm.type_id', '=', 'it.typeID')
-            ->where('cmem.corporation_id', '=', (int)$request->get('corpId'))
-            ->where('cm.month', '=', (int)$request->get('mining_month'))
-            ->where('cm.year', '=' , (int)$request->get('mining_year'))
-            ->get();
-
-        $this->miningData['month'] = (int)$request->get('mining_month');
-        $this->miningData['year'] = (int)$request->get('mining_year');
-
-        foreach ($m_data as $data) {
-            $main_character_data = CharacterHelper::getMainCharacterCharacter($data->character_id);
-            $this->miningData['miningData'][$main_character_data->main_character_id]['name'] = $main_character_data->name;
-            $this->miningData['miningData'][$main_character_data->main_character_id]['ore_types'][$data->type_id]["quantity"] = $data->quantity;
-
-            if(array_key_exists("ore_types" , $this->miningData['miningData'][$main_character_data->main_character_id])) {
-                $this->miningData['miningData'][$main_character_data->main_character_id]['ore_types'][$data->type_id]["quantity"] =
-                    $this->miningData['miningData'][$main_character_data->main_character_id]['ore_types'][$data->type_id]["quantity"] +
-                    $data->quantity;
-            } else {
-                $this->miningData['miningData'][$main_character_data->main_character_id]['ore_types'][$data->type_id]["quantity"] = $data->quantity;
-            }
-
-            if(array_key_exists("ore_summary", $this->miningData['miningData'][$main_character_data->main_character_id])) {
-                $this->miningData['miningData'][$main_character_data->main_character_id]['ore_summary'] = $this->miningData['miningData'][$main_character_data->main_character_id]['ore_summary']
-                    + $data->quantity;
-            } else {
-                $this->miningData['miningData'][$main_character_data->main_character_id]['ore_summary'] = $data->quantity;
-            }
-
-            $this->miningData['miningData'][$main_character_data->main_character_id]['ore_types'][$data->type_id]["name"] = $data->typeName;
-        }
+        //dd($this->miningData);
 
         return view('corpminingtax::corpminingtax', [
             'miningData' => $this->miningData
         ]);
     }
 
-    public function getCorporations(Request $request) {
-        if($request->has('q')) {
+    public function getCorporations(Request $request)
+    {
+        if ($request->has('q')) {
             $data = DB::table('corporation_infos')
                 ->select(
                     'corporation_id AS id',
