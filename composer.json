@@ -1,16 +1,16 @@
 {
-    "name": "h4zz4rdDev/seat-corp-mining-tax",
+    "name": "pytonicis/seat-corp-mining-tax",
     "description": "Tracking of corporation mining tax",
     "license": "GPL-3.0",
     "authors": [
         {
-            "name": "H4zz4rd",
-            "email": "h4zz4rd@c64gamer.com"
+            "name": "pytonicis",
+            "email": "dev@daselektron.de"
         }
     ],
     "autoload": {
         "psr-4": {
-            "H4zz4rdDev\\Seat\\SeatCorpMiningTax\\": "src/"
+            "pyTonicis\\Seat\\SeatCorpMiningTax\\": "src/"
         }
     },
     "minimum-stability": "dev",
@@ -29,7 +29,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "H4zz4rdDev\\Seat\\SeatCorpMiningTax\\SeatCorpMiningTaxServiceProvider"
+                "pyTonicis\\Seat\\SeatCorpMiningTax\\SeatCorpMiningTaxServiceProvider"
             ]
         }
     }

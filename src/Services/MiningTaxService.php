@@ -1,13 +1,13 @@
 <?php
 
-namespace H4zz4rdDev\Seat\SeatCorpMiningTax\Services;
+namespace pyTonicis\Seat\SeatCorpMiningTax\Services;
 
-use H4zz4rdDev\Seat\SeatCorpMiningTax\Helpers\CharacterHelper;
-use H4zz4rdDev\Seat\SeatCorpMiningTax\Helpers\EvePraisalHelper;
-use H4zz4rdDev\Seat\SeatCorpMiningTax\Models\TaxData\CharacterData;
-use H4zz4rdDev\Seat\SeatCorpMiningTax\Models\TaxData\CharacterMiningRecord;
-use H4zz4rdDev\Seat\SeatCorpMiningTax\Models\TaxData\MiningTaxResult;
-use H4zz4rdDev\Seat\SeatCorpMiningTax\Models\TaxData\OreType;
+use pyTonicis\Seat\SeatCorpMiningTax\Helpers\CharacterHelper;
+use pyTonicis\Seat\SeatCorpMiningTax\Helpers\EvePraisalHelper;
+use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\CharacterData;
+use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\CharacterMiningRecord;
+use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\MiningTaxResult;
+use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\OreType;
 use Illuminate\Support\Facades\DB;
 
 /**

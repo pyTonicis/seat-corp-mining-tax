@@ -20,11 +20,11 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-namespace H4zz4rdDev\Seat\SeatCorpMiningTax\Http\Controllers;
+namespace pyTonicis\Seat\SeatCorpMiningTax\Http\Controllers;
 
-use H4zz4rdDev\Seat\SeatCorpMiningTax\Helpers\CharacterHelper;
-use H4zz4rdDev\Seat\SeatCorpMiningTax\Helpers\EvePraisalHelper;
-use H4zz4rdDev\Seat\SeatCorpMiningTax\Services\MiningTaxService;
+use pyTonicis\Seat\SeatCorpMiningTax\Helpers\CharacterHelper;
+use pyTonicis\Seat\SeatCorpMiningTax\Helpers\EvePraisalHelper;
+use pyTonicis\Seat\SeatCorpMiningTax\Services\MiningTaxService;
 use Seat\Web\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;

@@ -20,9 +20,9 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-namespace H4zz4rdDev\Seat\SeatCorpMiningTax;
+namespace pyTonicis\Seat\SeatCorpMiningTax;
 
-use H4zz4rdDev\Seat\SeatCorpMiningTax\Services\MiningTaxService;
+use pyTonicis\Seat\SeatCorpMiningTax\Services\MiningTaxService;
 use Seat\Services\AbstractSeatPlugin;
 
 
@@ -134,7 +134,7 @@ class SeatCorpMiningTaxServiceProvider extends AbstractSeatPlugin
      */
     public function getPackageRepositoryUrl(): string
     {
-        return 'https://github.com/H4zz4rdDev/seat-corp-mining-tax';
+        return 'https://github.com/pyTonicis/seat-corp-mining-tax';
     }
 
     /**
@@ -158,7 +158,7 @@ class SeatCorpMiningTaxServiceProvider extends AbstractSeatPlugin
      */
     public function getPackagistVendorName(): string
     {
-        return 'H4zz4rdDev';
+        return 'pyTonicis';
     }
 
     /**
