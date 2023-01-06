@@ -82,7 +82,7 @@
                     <td>{{ $character->characterName }}</td>
                     <td>{{ $character->priceSummary }}</td>
                     <td>{{ $character->tax }}</td>
-                    <td>{{ $character->oreTypes }}</td>
+                    <td>?</td>
                     <td>10%</td>
                 </tr>
             @endforeach
