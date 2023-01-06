@@ -72,6 +72,7 @@
                 <th>CharacterName</th>
                 <th>Mined Amount</th>
                 <th>ISK to Pay</th>
+                <th>Ores</th>
                 <th>Percentage</th>
             </tr>
             </thead>
@@ -81,6 +82,7 @@
                     <td>{{ $character->characterName }}</td>
                     <td>{{ $character->priceSummary }}</td>
                     <td>{{ $character->tax }}</td>
+                    <td>{{ $character->oreTypes }}</td>
                     <td>10%</td>
                 </tr>
             @endforeach
