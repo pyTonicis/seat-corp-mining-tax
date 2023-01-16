@@ -75,6 +75,10 @@ class CorpMiningTaxController extends Controller
         ]);
     }
 
+    public function getDashboard(Request $request)
+    {
+        return view('corpminingtaxhome::corpminingtaxhome');
+    }
     public function getCorporations(Request $request)
     {
         if ($request->has('q')) {

@@ -29,12 +29,19 @@ return [
         'route_segment' => 'corpminingtax',
         'permission' => 'corpminingtax.view',
         'entries' => [
-            [
+            'home' => [
                 'name' => 'corpminingtax-home-sub-menu',
                 'label' => 'corpminingtax::menu.sub-home-level',
                 'icon' => 'fas fa-pen',
                 'route' => 'corpminingtax.home',
                 'permission' => 'corpminingtax.view'
+            ],
+            'test' => [
+                'name' => 'corpminingtax-test-sub-menu',
+                'label' => 'corpmingtax::menu.sub-test-level',
+                'icon' => 'fas fa-cog',
+                'route' => 'corpminingtax.test',
+                'permission' => 'corpminingtaxhome.view'
             ]
         ],
     ],
