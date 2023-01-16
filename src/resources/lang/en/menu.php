@@ -24,5 +24,6 @@ return [
     'main_level' => 'Corp Mining Tax',
     'sub-home-level' => 'Mining Overview',
     'sub-settings' => 'Settings',
+    'sub-alerts' => 'Thieves',
 ];
 

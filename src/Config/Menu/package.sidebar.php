@@ -37,6 +37,13 @@ return [
                 'permission' => 'corpminingtax.view'
             ],
             [
+                'name' => 'corpminingtax-sub-thieves',
+                'label' => 'corpminingtax::menu.sub-thieves',
+                'icon' => 'fas fa_cogs',
+                'route' => 'corpminingtax.thieves',
+                'permission' => 'corpminingtax.view'
+            ],
+            [
                 'name' => 'corpminingtax-sub-settings-menu',
                 'label' => 'corpminingtax::menu.sub-settings',
                 'icon' => 'fas fa-cogs',
