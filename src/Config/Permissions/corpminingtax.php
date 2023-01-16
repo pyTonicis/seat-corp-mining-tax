@@ -24,5 +24,10 @@ return [
     'view' => [
         'label' => 'Grants access to the Member Tracking Panel',
         'description' => 'This permission is needed if you wanna see the member tracking panel',
-    ]
+    ],
+
+    'settings' => [
+        'label' => 'Garants access to Settings Panel',
+        'description' => 'Allows Admins to edit settings'
+    ],
 ];

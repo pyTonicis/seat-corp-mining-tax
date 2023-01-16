@@ -35,7 +35,14 @@ return [
                 'icon' => 'fas fa-pen',
                 'route' => 'corpminingtax.home',
                 'permission' => 'corpminingtax.view'
-            ]
+            ],
+            [
+                'name' => 'corpminingtax-sub-settings-menu',
+                'label' => 'corpminingtax::menu.sub-settings',
+                'icon' => 'fas fa-cogs',
+                'route' => 'corpminingtax.settings',
+                'permission' => 'corpminingtax.settings'
+            ],
         ],
     ],
 ];

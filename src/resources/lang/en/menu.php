@@ -22,6 +22,7 @@
 
 return [
     'main_level' => 'Corp Mining Tax',
-    'sub-home-level' => 'Tax Overview',
+    'sub-home-level' => 'Mining Overview',
+    'sub-settings' => 'Settings',
 ];
 
