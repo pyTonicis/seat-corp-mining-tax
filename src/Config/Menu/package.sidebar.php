@@ -42,7 +42,7 @@ return [
                 'label' => 'corpmingtax::menu.sub-dashboard-level',
                 'icon' => 'fas fa-cog',
                 'route' => 'corpminingtax.dashboard',
-                'permission' => 'corpminingtaxhome.view'
+                'permission' => 'corpminingtax.view'
             ]
         ],
     ],
