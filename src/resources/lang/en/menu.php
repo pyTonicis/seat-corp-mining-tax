@@ -23,6 +23,6 @@
 return [
     'main_level' => 'Corp Mining Tax',
     'sub-home-level' => 'Tax Overview',
-    'sub-test-level' => 'Dashbaord'
+    'sub-dashboard-level' => 'Dashbaord'
 ];
 

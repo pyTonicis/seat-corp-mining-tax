@@ -39,8 +39,13 @@ Route::group([
                 ->name('getCorporations')
                 ->uses('CorpMiningTaxController@getCorporations');
 
-            Route::get('/getDashboard')
-                ->name('getDashboard')
-                ->uses('CorpMiningTaxController@getDashboard');
+        });
+    Route::prefix('dashbaord')
+        ->group(function () {
+
+            Route::get('/')
+                ->name('corpminingtax.dashbaord')
+                ->uses('CorpMiningTaxController@getDashbaord');
+
         });
 });
