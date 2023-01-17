@@ -37,24 +37,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @if($result->isEmpty())
                         <tr>
                             <td>1234</td>
                             <td>Hans Peter</td>
                             <td>9813357</td>
                             <td>35543992</td>
                         </tr>
-                    @else
-                        @foreach($result as $res)
-                            <tr>
-                                <td>{{ $res->character_id }}</td>
-                                <td>{{ $res->character_name }}</td>
-                                <td>{{ $res->corporation_id }}</td>
-                                <td>{{ $res->observer_id }}</td>
-                            </tr>
-                        @endforeach
                     </tbody>
-                    @endif
                 </table>
             </div>
         </div>
