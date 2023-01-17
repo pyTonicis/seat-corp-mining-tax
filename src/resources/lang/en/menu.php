@@ -24,6 +24,9 @@ return [
     'main_level' => 'Corp Mining Tax',
     'sub-home-level' => 'Mining Overview',
     'sub-settings' => 'Settings',
-    'sub-alerts' => 'Thieves',
+    'sub-mining-tax' => 'Mining Tax',
+    'sub-corp-moon-mining' => 'Corp Moon Minings',
+    'sub-tax-contracts' => 'Tax Contracts',
+    'sub-thieves' => 'Thieves',
 ];
 

@@ -6,6 +6,7 @@ use Seat\Web\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
+use pyTonicis\Seat\SeatCorpMiningTax\Models\Mining\ThievesResult;
 
 class CorpMiningThievesController extends Controller
 {
@@ -27,8 +28,11 @@ class CorpMiningThievesController extends Controller
             ->where('observer_id', '=', 'cobs.observer_id')
             ->where('recorded_corporation_id', '!=', '98496411')
             ->get();
+        $result = new ThievesResult();
+
         return view('corpmoonmining::corpmoonmining', [
             'data' => $data
         ]);
+
     }
 }

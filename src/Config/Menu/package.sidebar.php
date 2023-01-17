@@ -32,22 +32,43 @@ return [
             [
                 'name' => 'corpminingtax-home-sub-menu',
                 'label' => 'corpminingtax::menu.sub-home-level',
-                'icon' => 'fas fa-pen',
+                'icon' => 'fas fa-money-bill',
                 'route' => 'corpminingtax.home',
                 'permission' => 'corpminingtax.view'
             ],
             [
-                'name' => 'corpminingtax-sub-thieves',
-                'label' => 'corpminingtax::menu.sub-thieves',
-                'icon' => 'fas fa_cogs',
-                'route' => 'corpminingtax.thieves',
+                'name' => 'corpminingtax-sub-mining-tax',
+                'label' => 'corpminingtax::menu.sub-mining-tax',
+                'icon' => 'fas fa-th-list',
+                'route' => 'corpminingtax.tax',
                 'permission' => 'corpminingtax.view'
+            ],
+            [
+                'name' => 'corpminingtax-sub-corp-moon-mining',
+                'label' => 'corpminingtax::menu.sub-corp-moon-mining',
+                'icon' => 'fas fa-moon',
+                'route' => 'corpminingtax.corpmoonmining',
+                'permission' => 'corpminingtax.view'
+            ],
+            [
+                'name' => 'corpminingtax-sub-tax-contracts',
+                'label' => 'corpminingtax::menu.sub-tax-contracts',
+                'icon' => 'fas fa-th-list',
+                'route' => 'corpminingtax.contracts',
+                'permission' => 'corpminingtax.settings'
             ],
             [
                 'name' => 'corpminingtax-sub-settings-menu',
                 'label' => 'corpminingtax::menu.sub-settings',
                 'icon' => 'fas fa-cogs',
                 'route' => 'corpminingtax.settings',
+                'permission' => 'corpminingtax.settings'
+            ],
+            [
+                'name' => 'corpminingtax-sub-thieves',
+                'label' => 'corpminingtax::menu.sub-thieves',
+                'icon' => 'fas fa-user',
+                'route' => 'corpminingtax.thieves',
                 'permission' => 'corpminingtax.settings'
             ],
         ],
