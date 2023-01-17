@@ -38,4 +38,13 @@ class CharacterHelper {
             ->where('rt.character_id', '=', $character_id)
             ->first();
     }
+
+    public static function getCharacterName(int $character_id) {
+
+        $data = DB::table('character_infos')
+            ->select('name')
+            ->where('character_id', '=', $character_id)
+            ->get();
+        return $data->name;
+    }
 }

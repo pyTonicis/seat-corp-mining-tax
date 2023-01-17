@@ -2,6 +2,7 @@
 
 namespace pyTonicis\Seat\SeatCorpMiningTax\Http\Controllers;
 
+use pyTonicis\Seat\SeatCorpMiningTax\Services\ThievesService;
 use Seat\Web\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -10,9 +11,17 @@ use pyTonicis\Seat\SeatCorpMiningTax\Models\Mining\ThievesResult;
 
 class CorpMiningThievesController extends Controller
 {
-    private $illegalCharacterMining;
+    private $characterList;
 
-    public function getData()
+    private $ThievesService;
+
+
+    public function __construct(ThievesService $thievesService)
+    {
+        $this->ThievesService = $thievesService;
+    }
+
+    public function getDataOLD()
     {
         $data = DB::table('corporation_industry_mining_observer_data')
             ->select(
@@ -33,6 +42,14 @@ class CorpMiningThievesController extends Controller
         return view('corpmoonmining::corpmoonmining', [
             'data' => $data
         ]);
+    }
 
+    public function getData()
+    {
+        $corpID = '98496411';
+        $this->characterList = $this->ThievesService->createIllegalMiningResult($corpID);
+        return view('corpminingtax::corpminingthieves', [
+           'result' => $this->characterList
+        ]);
     }
 }

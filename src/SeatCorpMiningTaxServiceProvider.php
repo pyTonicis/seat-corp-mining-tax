@@ -23,6 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 namespace pyTonicis\Seat\SeatCorpMiningTax;
 
 use pyTonicis\Seat\SeatCorpMiningTax\Services\MiningTaxService;
+use pyTonicis\Seat\SeatCorpMiningTax\Services\ThievesService;
 use Seat\Services\AbstractSeatPlugin;
 
 
@@ -66,6 +67,10 @@ class SeatCorpMiningTaxServiceProvider extends AbstractSeatPlugin
         //Mining Tax Service
         $this->app->singleton(MiningTaxService::class, function () {
             return new MiningTaxService();
+        });
+
+        $this->app->singleton(ThievesService::class, function () {
+            return new ThievesService();
         });
     }
 

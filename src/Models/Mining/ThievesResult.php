@@ -14,4 +14,6 @@ class ThievesResult
 
     public $corporation_name;
 
+    public $observer_id;
+
 }
