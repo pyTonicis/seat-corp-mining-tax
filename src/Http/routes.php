@@ -46,5 +46,17 @@ Route::group([
             Route::get('/thieves')
                 ->name('corpminingtax.thieves')
                 ->uses('CorpMiningThievesController@getData');
+
+            Route::get('/miningtax')
+                ->name('corpminingtax.tax')
+                ->uses('CorpMiningTaxController@getHome');
+
+            Route::get('/contracts')
+                ->name('corpminingtax.contracts')
+                ->uses('CorpMiningTaxController@getHome');
+
+            Route::get('/corpmoonmining')
+                ->name('corpminingtax.corpmoonmining')
+                ->uses('CorpMiningTaxController@getHome');
         });
 });
