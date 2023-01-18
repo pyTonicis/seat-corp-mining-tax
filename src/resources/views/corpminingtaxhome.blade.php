@@ -7,63 +7,41 @@
 @endpush
 
 @section('left')
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Mining last 12 Month's</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="chart-container">
-                            <div class="chart has-fixed-height" id="bars_basic"></div>
-                        </div>
-                    </div>
-                </div>
+    <div class="card">
+        <div class="card-header">
+            <h3>Corporation Mining Thieves</h3>
+        </div>
+        <div class="card-body">
+            <canvas id="myChart" height="150"></canvas>
+        </div>
+    </div>
 @stop
 @push('javascript')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script type="text/javascript">
-        var bars_basic_element = document.getElementById('bars_basic');
-        if (bars_basic_element) {
-            var bars_basic = echarts.init(bars_basic_element);
-            bars_basic.setOption({
-                color: ['#3398DB'],
-                tooltip: {
-                    trigger: 'axis',
-                    axisPointer: {
-                        type: 'shadow'
-                    }
-                },
-                grid: {
-                    left: '3%',
-                    right: '4%',
-                    bottom: '3%',
-                    containLabel: true
-                },
-                xAxis: [
-                    {
-                        type: 'category',
-                        data: ['Fruit', 'Vegitable','Grains'],
-                        axisTick: {
-                            alignWithLabel: true
-                        }
-                    }
-                ],
-                yAxis: [
-                    {
-                        type: 'value'
-                    }
-                ],
-                series: [
-                    {
-                        name: 'Total Products',
-                        type: 'bar',
-                        barWidth: '20%',
-                        data: [
-                            {{$a}},
-                            {{$b}},
-                            {{$c}}
-                        ]
-                    }
-                ]
-            });
-        }
+        var datum =  {{ Js::from($datum) }};
+        var quantity =  {{ Js::from($quantity) }};
+
+        const data = {
+            labels: datum,
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: quantity,
+            }]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {}
+        };
+
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
     </script>
 @endpush

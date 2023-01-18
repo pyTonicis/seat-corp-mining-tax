@@ -77,11 +77,10 @@ class CorpMiningTaxController extends Controller
 
     public function getData2(Request $request)
     {
-        $a = 1;
-        $b = 15;
-        $c = 24;
+        $datum = array("01-2022", "02-2022", "03-2022");
+        $quantity = array(5000, 10000, 989);
 
-        return view('corpminingtax::corpminingtaxhome', compact('a', 'b', 'c'));
+        return view('corpminingtax::corpminingtaxhome', compact('datum', 'quantity'));
     }
 
     public function getDashboard(Request $request)
