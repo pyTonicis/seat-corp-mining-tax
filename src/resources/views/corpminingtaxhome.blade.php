@@ -69,9 +69,9 @@
                         type: 'bar',
                         barWidth: '20%',
                         data: [
-                            {{$fruit_count}},
-                            {{$veg_count}},
-                            {{$grains_count}}
+                            {{$a}},
+                            {{$b}},
+                            {{$c}}
                         ]
                     }
                 ]
