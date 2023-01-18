@@ -3,19 +3,10 @@
 @section('title', trans('corpminingtax::global.browser_title'))
 
 @push('head')
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('web/css/corpminingtax.css') }}"/>
-    <link href="{{asset('assets/css/components.min.css')}}" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="{{asset('assets/js/jquery.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('assets/js/echarts.min.js')}}"></script>
 @endpush
 
 @section('left')
-    <div class="col-md-12">
-        <h1 class="text-center">Bla bla </h1>
-        <div class="col-md-8 col-md-offset-2">
-            <div class="col-xl-6">
                 <div class="card">
                     <div class="card-header">
                         <h3>Mining last 12 Month's</h3>
@@ -26,9 +17,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
 @stop
 @push('javascript')
     <script type="text/javascript">
