@@ -75,6 +75,15 @@ class CorpMiningTaxController extends Controller
         ]);
     }
 
+    public function getData2(Request $request)
+    {
+        $a = 1;
+        $b = 15;
+        $c = 24;
+
+        return view('corpminingtax::corpminingtaxhome', compact('a', 'b', 'c'));
+    }
+
     public function getDashboard(Request $request)
     {
         return view('corpminingtaxhome::corpminingtaxhome');

@@ -29,15 +29,15 @@ Route::group([
 
             Route::get('/')
                 ->name('corpminingtax.home')
-                ->uses('CorpMiningTaxController@getHome');
+                ->uses('CorpMiningTaxController@getData2'); //getHome
 
-            Route::post('/getMiningData')
+            /*Route::post('/getMiningData')
                 ->name('corpminingtax.data')
                 ->uses('CorpMiningTaxController@getData');
 
             Route::get('/getCorporations')
                 ->name('getCorporations')
-                ->uses('CorpMiningTaxController@getCorporations');
+                ->uses('CorpMiningTaxController@getCorporations');*/
 
             Route::get('/settings')
                 ->name('corpminingtax.settings')

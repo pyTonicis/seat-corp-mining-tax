@@ -6,7 +6,7 @@
     @isset($data)
         <div class="card">
             <div class="card-header">
-                <h3>Böse Jungs</h3>
+                <h3>Corporation Moon Mining</h3>
             </div>
             <div class="card-body">
                 <table class="table" id="mining">
