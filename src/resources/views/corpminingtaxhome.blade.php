@@ -22,8 +22,8 @@
     <script type="text/javascript">
         $(document).ready(function(){
 
-        var datum =  {{ Js::from($datum) }};
-        var quantity =  {{ Js::from($quantity) }};
+        var datum =  '01-2022';
+        var quantity = 132;
 
         const data = {
             labels: datum,
