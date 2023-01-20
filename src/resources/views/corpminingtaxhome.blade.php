@@ -9,7 +9,7 @@
 @section('left')
     <div class="card">
         <div class="card-body">
-            <canvas id="myChart"></canvas>
+            <canvas id="x-chart"></canvas>
         </div>
     </div>
 @stop
@@ -56,8 +56,8 @@
                 },
             };
 
-        const myChart = new Chart(
-            document.getElementById('myChart'),
+        new Chart(
+            document.getElementById('x-chart'),
             config
         )});
     </script>
