@@ -57,7 +57,7 @@
             };
 
         new Chart(
-            document.getElementById('x-chart'),
+            document.getElementById('canvas#x-chart'),
             config
         )});
     </script>
