@@ -22,21 +22,29 @@
 
         var datum =  '01-2022';
         var quantity = 132;
+        const labels = Utils.months({count: 12});
 
         const data = {
-            labels: datum,
-            datasets: [{
-                label: 'My First dataset',
+            labels: labels,
+            datasets: [
+                {
+                label: '',
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: quantity,
-            }]
+                data: ['15000', '27000', '1000', '50000', '11943', '15000', '89322', '1111', '19191', '10001', '1000', '41001'] ,
+                }
+            ]
         };
 
         const config = {
-            type: 'line',
+            type: 'bar',
             data: data,
-            options: {}
+            options: {
+                title: {
+                    display: true,
+                    text: 'Mining volume last 12 month´s'
+                }
+            }
         };
 
         const myChart = new Chart(
