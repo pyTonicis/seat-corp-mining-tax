@@ -20,32 +20,44 @@
     <script type="text/javascript">
         $(document).ready(function(){
 
-        var datum =  '01-2022';
-        var quantity = 132;
-        const labels = Utils.months({count: 12});
+            const DATA_COUNT = 7;
+            const NUMBER_CFG = {count: DATA_COUNT, min: -100, max: 100};
 
-        const data = {
-            labels: labels,
-            datasets: [
-                {
-                label: '',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: ['15000', '27000', '1000', '50000', '11943', '15000', '89322', '1111', '19191', '10001', '1000', '41001'] ,
-                }
-            ]
-        };
+            const labels = Utils.months({count: 7});
+            const data = {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Dataset 1',
+                        data: Utils.numbers(NUMBER_CFG),
+                        borderColor: Utils.CHART_COLORS.red,
+                        backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
+                    },
+                    {
+                        label: 'Dataset 2',
+                        data: Utils.numbers(NUMBER_CFG),
+                        borderColor: Utils.CHART_COLORS.blue,
+                        backgroundColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
+                    }
+                ]
+            };
 
-        const config = {
-            type: 'bar',
-            data: data,
-            options: {
-                title: {
-                    display: true,
-                    text: 'Mining volume last 12 month´s'
-                }
-            }
-        };
+            const config = {
+                type: 'bar',
+                data: data,
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Chart.js Bar Chart'
+                        }
+                    }
+                },
+            };
 
         const myChart = new Chart(
             document.getElementById('myChart'),
