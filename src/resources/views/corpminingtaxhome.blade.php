@@ -7,10 +7,14 @@
 @endpush
 
 @section('left')
+    <div class="col-xs-12 col-sm-6">
     <div class="card">
         <div class="card-body">
-            <canvas id="x-chart"></canvas>
+            <div class="position-relative mb-4">
+                <canvas id="x-chart" height="300" width="800"></canvas>
+            </div>
         </div>
+    </div>
     </div>
 @stop
 @push('javascript')
@@ -56,9 +60,7 @@
                 },
             };
 
-        new Chart(
-            document.getElementById('canvas#x-chart'),
-            config
-        )});
+            new Chart(document.getElementById('x-chart'), config)
+        });
     </script>
 @endpush
