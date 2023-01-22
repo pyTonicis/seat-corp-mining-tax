@@ -41,7 +41,7 @@ Route::group([
 
             Route::get('/settings')
                 ->name('corpminingtax.settings')
-                ->uses('CorpMiningTaxController@getHome');
+                ->uses('CorpMiningTaxSettingController@getSettings');
 
             Route::get('/thieves')
                 ->name('corpminingtax.thieves')

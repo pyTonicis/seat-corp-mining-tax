@@ -9,17 +9,27 @@
 @section('left')
     <div class="card">
         <div class="card-header">
-            <h3>Settings</h3>
+            <h3 class="card-title">Mining Tax Settings</h3>
         </div>
-        <div class="card-body">
-            <div id="overlay" style="border-radius: 5px">
-                <div class="w-100 d-flex justify-content-center align-items-center">
-                    <div class="spinner">
+        <form action="" method="post" id="settings-update" name="settings-update">
+            <div class="card-body">
+                <div class="box-body">
+                    <legend>Global Settings</legend>
+                </div>
+                <div class="form-group-row">
+                    <label class="col-md4 col-form-label" for="ore-price-modify">Ore Price Modifier</label>
+                    <div class="col-md-6">
+                        <input id="ore-price-modify" name="ore-price-modify" type="number" class="form-control input-md" value="">
+                    </div>
+                </div>
+                <div class="form-group-row">
+                    <label class="col-md4 col-form-label" for="ore-refining-modify">Ore Refining Modifier</label>
+                    <div class="col-md-6">
+                        <input id="ore-refining-modify" name="ore-refining-modify" type="number" class="form-control input-md" value="">
                     </div>
                 </div>
             </div>
-            <label>Abyssal ORE Tax</label>
-            <input type="text" id="a_ore_tax" name="a_ore_tax">
-        </div>
+        </form>
     </div>
+
 @stop

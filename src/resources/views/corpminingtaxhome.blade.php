@@ -6,15 +6,15 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('web/css/corpminingtax.css') }}"/>
 @endpush
 
-@section('left')
-    <div class="col-xs-12 col-sm-6">
-    <div class="card">
-        <div class="card-body">
-            <div class="position-relative mb-4">
-                <canvas id="x-chart" height="300" width="800"></canvas>
+@section('full')
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                        <canvas id="x-chart" height="300"></canvas>
+                </div>
             </div>
         </div>
-    </div>
     </div>
 @stop
 @push('javascript')
