@@ -21,7 +21,8 @@
                         <div class="form-group-row">
                             <label class="col-md4 col-form-label" for="ore-price-modify">Ore Refining Rate</label>
                             <div class="col-md-6">
-                                <input id="ore-refining-rate" name="ore-refining-rate" type="number" class="form-control input-md" value="">
+                                <input id="ore-refining-rate" name="ore-refining-rate" type="number" class="form-control input-md" value="91" min="0" max="100">
+                                <div class="pl-2">%</div>
                             </div>
                         </div>
                         <div class="form-group-row">
@@ -45,8 +46,27 @@
                         <div class="form-group-row">
                             <label class="col-md4 col-form-label" for="price-modifier">Price Modifier</label>
                             <div class="col-md-6">
-                                <input id="price-modifier" name="price-modifier" type="number" class="form-control input-md" value="">
+                                <input id="price-modifier" name="price-modifier" type="number" class="form-control input-md" value="98" min="0" max="100">
+                                <div class="pl-2">%</div>
                             </div>
+                        </div>
+                        <div class="box-body">
+                            <legend>Contract Settings</legend>
+                        </div>
+                        <div class="form-group-row">
+                            <label class="col-md4 col-form-label" for="contract-holder">Price Modifier</label>
+                            <div class="col-md-6">
+                                <input id="contract-holder" name="contract-holder" type="text" class="form-control input-md" value="DollarBoy">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <select class="custom-select mr-sm-2" name="contract-exprie" id="contract-exprie">
+                                <option value="1">1 Day</option>
+                                <option value="2">2 Days</option>
+                                <option value="3">3 Days</option>
+                                <option value="4">1 Week</option>
+                                <option value="5">4 Weeks</option>
+                            </select>
                         </div>
                     </div>
                 </form>
@@ -64,4 +84,27 @@
             </div>
         </div>
     </div>
-@stop
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Tax Rates</h3>
+                </div>
+                <form action="" method="post" id="tax-settings-update" name="tax-settings-update">
+                    <div class="card-body">
+                        <div class="box-body">
+                            <legend>Tax Rates</legend>
+                        </div>
+                        <div class="form-group-row">
+                            <label class="col-md4 col-form-label" for="ore-price-modify">R64</label>
+                            <div class="col-md-6">
+                                <input id="r64-rate" name="r64-rate" type="number" class="form-control input-md" value="10" min="0" max="100">
+                                <div class="pl-2">%</div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@stop<
