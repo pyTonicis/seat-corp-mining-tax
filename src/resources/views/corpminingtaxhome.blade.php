@@ -14,27 +14,27 @@
                     <h4 class="card-title">Total Quantity</h4>
                 </div>
                 <div class="card-body">
-                    <p>51.000.000 units</p>
+                    <h3 class="text-center">51.000.000</h3>
                 </div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Total Volume</h4>
+                    <h4 class="card-title">Total Volume m³</h4>
                 </div>
                 <div class="card-body">
-                    <p>510.000.000 m³</p>
+                    <h3 class="text-center">510.000.000</h3>
                 </div>
             </div>
         </div>
         <div class="col-md-3">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Total Price</h4>
+                    <h4 class="card-title">Total Price ISK</h4>
                 </div>
                 <div class="card-body">
-                    <p>82.169.500.000 ISK</p>
+                    <h3 class="text-center">82.169.500.000</h3>
                 </div>
             </div>
         </div>
@@ -92,7 +92,7 @@
             labels: labels,
             datasets: [{
                 label: 'Volume in x1000 m³',
-                data: [650, 590, 800, 810, 560, 550, 40, 1200, 33000, 540, 1300, 650],
+                data: [650, 590, 800, 810, 560, 550, 89, 1200, 3300, 540, 1300, 650],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.8)',
                     'rgba(255, 99, 132, 0.8)',

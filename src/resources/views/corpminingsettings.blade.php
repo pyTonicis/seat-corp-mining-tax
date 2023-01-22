@@ -48,6 +48,7 @@
                                 <input id="price-modifier" name="price-modifier" type="number" class="form-control input-md" value="98" min="0" max="100">
                             </div>
                         </div>
+                        <p></p>
                         <div class="box-body">
                             <legend>Contract Settings</legend>
                         </div>
@@ -71,19 +72,6 @@
                 </form>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Information</h3>
-                </div>
-            <div class="card-body">
-                <p>Hier könnte Ihre Werbung stehen!</p>
-                <p>Wenn Sie keine Werbung wünschen, zahlen Sie bitte 10B ISK an mich :)</p>
-            </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
