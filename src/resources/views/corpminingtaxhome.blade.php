@@ -1,4 +1,4 @@
-@extends('web::layouts.grids.8-4')
+@extends('web::layouts.grids.12')
 
 @section('title', trans('corpminingtax::global.browser_title'))
 
@@ -6,12 +6,12 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('web/css/corpminingtax.css') }}"/>
 @endpush
 
-@section('left')
+@section('full')
     <div class="row">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                        <canvas id="x-chart" height="300"></canvas>
+                    <canvas id="mining_chart" height="300"></canvas>
                 </div>
             </div>
         </div>
@@ -51,7 +51,7 @@
                 },
             };
 
-            new Chart(document.getElementById('x-chart'), config)
+            new Chart(document.getElementById('mining_chart'), config)
         });
     </script>
 @endpush
