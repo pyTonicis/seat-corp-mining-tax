@@ -14,7 +14,7 @@
                     <h3 class="card-title">Mining volume last 12 month`s</h3>
                 </div>
                 <div class="card-body">
-                    <canvas id="mining_chart" height="150px"></canvas>
+                    <canvas id="mining_chart" height="200"></canvas>
                 </div>
             </div>
         </div>
@@ -22,13 +22,18 @@
 @stop
 @push('javascript')
     <script type="text/javascript">
-        const labels = ["01-22", "02-22", "03-22", "04-22", "05-22", "06-22", "07-22"]
+        const labels = ["01-22","02-22","03-22","04-22","05-22","06-22","07-22","08-22","09-22","10-22","11-22","12-22"]
         const data = {
             labels: labels,
             datasets: [{
                 label: 'Volume in m³',
-                data: [65, 59, 80, 81, 56, 55, 40],
+                data: [650000, 590000, 800000, 810000, 560000, 550000, 400000, 12000, 330000, 540000, 130000, 650000],
                 backgroundColor: [
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(255, 99, 132, 0.5)',
+                    'rgba(255, 99, 132, 0.5)',
                     'rgba(255, 99, 132, 0.5)',
                     'rgba(255, 99, 132, 0.5)',
                     'rgba(255, 99, 132, 0.5)',
@@ -38,6 +43,11 @@
                     'rgba(255, 99, 132, 0.5)'
                 ],
                 borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 99, 132)',
                     'rgb(255, 99, 132)',
                     'rgb(255, 99, 132)',
                     'rgb(255, 99, 132)',
