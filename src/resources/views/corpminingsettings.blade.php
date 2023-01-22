@@ -19,15 +19,33 @@
                             <legend>Global Settings</legend>
                         </div>
                         <div class="form-group-row">
-                            <label class="col-md4 col-form-label" for="ore-price-modify">Ore Price Modifier</label>
+                            <label class="col-md4 col-form-label" for="ore-price-modify">Ore Refining Rate</label>
                             <div class="col-md-6">
-                                <input id="ore-price-modify" name="ore-price-modify" type="number" class="form-control input-md" value="">
+                                <input id="ore-refining-rate" name="ore-refining-rate" type="number" class="form-control input-md" value="">
                             </div>
                         </div>
                         <div class="form-group-row">
-                            <label class="col-md4 col-form-label" for="ore-refining-modify">Ore Refining Modifier</label>
+                            <label class="col-md4 col-form-label" for="ore-valuation-price">Ore Valuation Price</label>
                             <div class="col-md-6">
-                                <input id="ore-refining-modify" name="ore-refining-modify" type="number" class="form-control input-md" value="">
+                                <select class="custom-select mr-sm-2" name="ore-valuation-price" id="ore-valuation-price">
+                                    <option value="1">Ore Price</option>
+                                    <option value="2">Mineral Price</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group-row">
+                            <label class="col-md4 col-form-label" for="ore-price-provider">Price Provider</label>
+                            <div class="col-md-6">
+                                <select class="custom-select mr-sm-2" name="ore-price-provider" id="ore-price-provider">
+                                    <option value="1">Eve Market</option>
+                                    <option value="2">Eve Praisal</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group-row">
+                            <label class="col-md4 col-form-label" for="price-modifier">Price Modifier</label>
+                            <div class="col-md-6">
+                                <input id="price-modifier" name="price-modifier" type="number" class="form-control input-md" value="">
                             </div>
                         </div>
                     </div>

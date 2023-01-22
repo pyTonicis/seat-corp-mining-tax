@@ -8,10 +8,20 @@
 
 @section('full')
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-9">
             <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Mining volume last 12 month`s</h3>
+                </div>
                 <div class="card-body">
                     <canvas id="mining_chart" height="150px"></canvas>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Mining Types</h3>
+                    </div>
                 </div>
             </div>
         </div>
