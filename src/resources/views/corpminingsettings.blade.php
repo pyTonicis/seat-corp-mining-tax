@@ -95,9 +95,33 @@
                             <legend>Moon Tax</legend>
                         </div>
                         <div class="form-group-row">
-                            <label class="col-md4 col-form-label" for="ore-price-modify">R64</label>
+                            <label class="col-md4 col-form-label" for="r64-rate">R64</label>
                             <div class="col-md-6">
                                 <input id="r64-rate" name="r64-rate" type="number" class="form-control input-md" value="10" min="0" max="100">
+                            </div>
+                        </div>
+                        <div class="form-group-row">
+                            <label class="col-md4 col-form-label" for="r32-rate">R32</label>
+                            <div class="col-md-6">
+                                <input id="r32-rate" name="r32-rate" type="number" class="form-control input-md" value="10" min="0" max="100">
+                            </div>
+                        </div>
+                        <div class="form-group-row">
+                            <label class="col-md4 col-form-label" for="r16-rate">R16</label>
+                            <div class="col-md-6">
+                                <input id="r16-rate" name="r16-rate" type="number" class="form-control input-md" value="10" min="0" max="100">
+                            </div>
+                        </div>
+                        <div class="form-group-row">
+                            <label class="col-md4 col-form-label" for="r8-rate">R8</label>
+                            <div class="col-md-6">
+                                <input id="r8-rate" name="r8-rate" type="number" class="form-control input-md" value="10" min="0" max="100">
+                            </div>
+                        </div>
+                        <div class="form-group-row">
+                            <label class="col-md4 col-form-label" for="r4-rate">R4</label>
+                            <div class="col-md-6">
+                                <input id="r4-rate" name="r4-rate" type="number" class="form-control input-md" value="10" min="0" max="100">
                             </div>
                         </div>
                     </div>
