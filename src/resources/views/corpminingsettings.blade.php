@@ -22,7 +22,6 @@
                             <label class="col-md4 col-form-label" for="ore-price-modify">Ore Refining Rate</label>
                             <div class="col-md-6">
                                 <input id="ore-refining-rate" name="ore-refining-rate" type="number" class="form-control input-md" value="91" min="0" max="100">
-                                <div class="pl-2">%</div>
                             </div>
                         </div>
                         <div class="form-group-row">
@@ -47,7 +46,6 @@
                             <label class="col-md4 col-form-label" for="price-modifier">Price Modifier</label>
                             <div class="col-md-6">
                                 <input id="price-modifier" name="price-modifier" type="number" class="form-control input-md" value="98" min="0" max="100">
-                                <div class="pl-2">%</div>
                             </div>
                         </div>
                         <div class="box-body">
@@ -60,6 +58,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
+                            <label class="col-md4 col-form-label" for="contract-exprie">Expries in</label>
                             <select class="custom-select mr-sm-2" name="contract-exprie" id="contract-exprie">
                                 <option value="1">1 Day</option>
                                 <option value="2">2 Days</option>
@@ -93,13 +92,12 @@
                 <form action="" method="post" id="tax-settings-update" name="tax-settings-update">
                     <div class="card-body">
                         <div class="box-body">
-                            <legend>Tax Rates</legend>
+                            <legend>Moon Tax</legend>
                         </div>
                         <div class="form-group-row">
                             <label class="col-md4 col-form-label" for="ore-price-modify">R64</label>
                             <div class="col-md-6">
                                 <input id="r64-rate" name="r64-rate" type="number" class="form-control input-md" value="10" min="0" max="100">
-                                <div class="pl-2">%</div>
                             </div>
                         </div>
                     </div>
