@@ -19,7 +19,6 @@
 @stop
 @push('javascript')
     <script type="text/javascript">
-        $(document).ready(function(){
 
             const DATA_COUNT = 5;
             const NUMBER_CFG = {count: DATA_COUNT, min: 0, max: 100};
@@ -51,7 +50,6 @@
                 },
             };
 
-            new Chart(document.getElementById('mining_chart').getContext('2d'), config)
-        });
+            new Chart(document.getElementById('mining_chart').getContext('2d'), config);
     </script>
 @endpush

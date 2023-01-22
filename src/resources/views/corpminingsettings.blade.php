@@ -39,10 +39,10 @@
                 <div class="card-header">
                     <h3 class="card-title">Information</h3>
                 </div>
-            </div>
             <div class="card-body">
                 <p>Hier könnte Ihre Werbung stehen!</p>
                 <p>Wenn Sie keine Werbung wünschen, zahlen Sie bitte 10B ISK an mich :)</p>
+            </div>
             </div>
         </div>
     </div>
