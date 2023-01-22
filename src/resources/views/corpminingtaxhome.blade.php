@@ -14,7 +14,9 @@
                     <h3 class="card-title">Mining volume last 12 month`s</h3>
                 </div>
                 <div class="card-body">
+                    <div style="height: 200px">
                     <canvas id="mining_chart" height="200"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
@@ -63,6 +65,8 @@
             type: 'bar',
             data: data,
             options: {
+                responsive: true,
+                maintainAspectRatio: false,
                 scales: {
                     y: {
                         beginAtZero: true
