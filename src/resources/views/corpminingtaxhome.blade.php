@@ -11,7 +11,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <canvas id="mining_chart" height="300"></canvas>
+                    <canvas id="mining_chart" height="150px"></canvas>
                 </div>
             </div>
         </div>
@@ -28,8 +28,8 @@
                 datasets: [
                     {
                         label: 'Dataset 1',
-                        data: Utils.numbers(NUMBER_CFG),
-                        backgroundColor: Object.values(Utils.CHART_COLORS),
+                        data: ['15', '200', '401', '44', '195'],
+                        backgroundColor: 'rgb(255,99,132)',
                     }
                 ]
             };
