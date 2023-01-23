@@ -43,8 +43,8 @@
                     <h3 class="card-title">Mining performance last 12 month`s</h3>
                 </div>
                 <div class="card-body">
-                    <div style="height: 250px">
-                    <canvas id="mining_chart" height="250"></canvas>
+                    <div style="height: 200px">
+                    <canvas id="mining_chart" height="300"></canvas>
                     </div>
                 </div>
             </div>
