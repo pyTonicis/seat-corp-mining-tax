@@ -78,8 +78,14 @@ class CorpMiningTaxController extends Controller
 
     public function getData2(Request $request)
     {
-
-        return view('corpminingtax::corpminingtaxhome');
+        $tmq = 5001;
+        $tmv = 500100;
+        $tmisk = 535345345325;
+        return view('corpminingtax::corpminingtaxhome', [
+            'total_mined_quantity' => $tmq,
+            'total_mined_volume' => $tmv,
+            'total_mined_isk' => $tmisk,
+        ]);
     }
 
     public function getDashboard(Request $request)
