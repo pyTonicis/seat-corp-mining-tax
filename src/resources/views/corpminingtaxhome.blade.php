@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('web/css/corpminingtax.css') }}"/>
 @endpush
 
-@section('left')
+@section('full')
     <div class="row">
         <div class="col-md-3">
             <div class="info-box">
@@ -37,7 +37,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Mining performance last 12 month`s</h3>
