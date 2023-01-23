@@ -50,14 +50,17 @@ class CharacterHelper {
 
     public static function getCharacterCharacters(int $character_id)
     {
-       $uid = DB::table('refresh_tokens')
-           ->select('user_id')
+       $result = DB::table('refresh_tokens')
+           ->select('character_id', 'user_id')
            ->where('character_id', $character_id)
-           ->get();
-       $characters = DB::table('refresh_tokens')
+           ->first();
+       if($result->user_id) {
+           $user_id = $result->user_id;
+       }
+       $data = DB::table('refresh_tokens')
            ->select('character_id')
-           ->where('user_id', $uid->user_id)
+           ->where('user_id', $user_id)
            ->get();
-       return $characters;
+       return $data->asArray();
     }
 }
