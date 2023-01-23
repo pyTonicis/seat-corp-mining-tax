@@ -112,9 +112,21 @@
                                 <input id="r4-rate" name="r4-rate" type="number" class="form-control input-md" value="10" min="0" max="100">
                             </div>
                         </div>
+                        <div class="form-group-row">
+                            <label class="col-md4 col-form-label" for="ice-rate">ICE</label>
+                            <div class="col-md-6">
+                                <input id="ice-rate" name="ice-rate" type="number" class="form-control input-md" value="10" min="0" max="100">
+                            </div>
+                        </div>
+                        <div class="form-group-row">
+                            <label class="col-md4 col-form-label" for="ore-rate">R8</label>
+                            <div class="col-md-6">
+                                <input id="ore-rate" name="ore-rate" type="number" class="form-control input-md" value="10" min="0" max="100">
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-@stop<
+@stop

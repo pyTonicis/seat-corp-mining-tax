@@ -22,7 +22,7 @@
         <div class="col-md-4 col-sm-6">
             <div class="info-box">
                 <span class="info-box-icon bg_red elevation-1"><i class="fa fa-gem"></i></span>
-                <div class="info-box-content"
+                <div class="info-box-content">
                     <span class="info-box-text">Total Mined Volume</span>
                     <span class="info-box-number">
                         5.850.600.000
@@ -36,7 +36,7 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Total Mined ISK</span>
                     <span class="info-box-number">
-                        34.495.170.000
+                        {{ $characters }}
                     </span>
                 </div>
             </div>
