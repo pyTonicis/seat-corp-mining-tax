@@ -8,31 +8,37 @@
 
 @section('full')
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4 col-sm-6">
             <div class="info-box">
                 <span class="info-box-icon bg_yellow elevation-1"><i class="fa fa-dice-d20"></i></span>
+                <div class="info-box-content">
                     <span class="info-box-text">Total Mined Quantity</span>
                     <span class="info-box-number">
                         5.850.600
                     </span>
+                </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4 col-sm-6">
             <div class="info-box">
                 <span class="info-box-icon bg_red elevation-1"><i class="fa fa-gem"></i></span>
-                <span class="info-box-text">Total Mined Volume</span>
-                <span class="info-box-number">
+                <div class="info-box-content"
+                    <span class="info-box-text">Total Mined Volume</span>
+                    <span class="info-box-number">
                         5.850.600.000
                     </span>
+                </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4 col-sm-6">
             <div class="info-box">
                 <span class="info-box-icon bg_green elevation-1"><i class="fa fa-coins"></i></span>
-                <span class="info-box-text">Total Mined ISK</span>
-                <span class="info-box-number">
+                <div class="info-box-content">
+                    <span class="info-box-text">Total Mined ISK</span>
+                    <span class="info-box-number">
                         34.495.170.000
                     </span>
+                </div>
             </div>
         </div>
     </div>
@@ -43,8 +49,8 @@
                     <h3 class="card-title">Mining performance last 12 month`s</h3>
                 </div>
                 <div class="card-body">
-                    <div style="height: 200px">
-                    <canvas id="mining_chart" height="300"></canvas>
+                    <div style="height: 250px">
+                    <canvas id="mining_chart" height="250"></canvas>
                     </div>
                 </div>
             </div>
@@ -57,7 +63,7 @@
                     <h3 class="card-title">Mining Log</h3>
                 </div>
                 <div class="card-body">
-                    <table id="mining-log" class="table">
+                    <table id="mining-log" class="table datatable compact table-condensed table-hover table-striped">
                         <thead>
                         <th class="text-center"><i class="fas fa-arrow-down"></i><i class="fas fa-arrow-up"></i>Date</th>
                         <th class="text-center"><i class="fas fa-arrow-down"></i><i class="fas fa-arrow-up"></i>System</th>
@@ -75,6 +81,14 @@
                                 <td class="text-center">6.100.000</td>
                                 <td class="text-center">2.351.108.000</td>
                             </tr>
+                            <tr>
+                                <td class="text-center">18-01-2023</td>
+                                <td class="text-center">OPU2-R</td>
+                                <td class="text-center">Vandanite</td>
+                                <td class="text-center">11.000</td>
+                                <td class="text-center">1.100.000</td>
+                                <td class="text-center">179.230.000</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -84,7 +98,7 @@
 @stop
 @push('javascript')
     <script type="text/javascript">
-        const labels = ["01-22","02-22","03-22","04-22","05-22","06-22","07-22","08-22","09-22","10-22","11-22","12-22"]
+        const labels = ["01-2022","02-2022","03-2022","04-2022","05-2022","06-2022","07-2022","08-2022","09-2022","10-2022","11-2022","12-2022"]
         const data = {
             labels: labels,
             datasets: [{
