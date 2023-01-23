@@ -14,7 +14,7 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Total Mined Quantity</span>
                     <span class="info-box-number">
-                        5.850.600
+                        {{ $total_mined_quantity }}
                     </span>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Total Mined Volume</span>
                     <span class="info-box-number">
-                        5.850.600.000
+                        {{ $total_mined_volume }}
                     </span>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Total Mined ISK</span>
                     <span class="info-box-number">
-                        {{ $characters }}
+                        {{ $total_mined_isk }}
                     </span>
                 </div>
             </div>

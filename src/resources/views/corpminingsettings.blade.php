@@ -14,9 +14,16 @@
                     <h3 class="card-title">General Settings</h3>
                 </div>
                 <form action="" method="post" id="settings-update" name="settings-update">
+                    {{ csrf_field() }}
                     <div class="card-body">
                         <div class="box-body">
                             <legend>Global Settings</legend>
+                        </div>
+                        <div class="form-group-row">
+                            <label class="col-md4 col-form-label" for="corpId">Corporation</label>
+                            <div class="col-md-6">
+                                <select class="groupSearch form-control input-xs" name="corpId" id="corpId"></select>
+                            </div>
                         </div>
                         <div class="form-group-row">
                             <label class="col-md4 col-form-label" for="ore-price-modify">Ore Refining Rate</label>
@@ -130,3 +137,28 @@
         </div>
     </div>
 @stop
+@push('javascript')
+    <script>
+        table = $('#mining').DataTable({
+        });
+        $('#corpId').select2({
+            placeholder: 'Corporation Name',
+            ajax: {
+                url: '/corpminingtax/getCorporations',
+                dataType: 'json',
+                delay: 250,
+                processResults: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                text: item.name,
+                                id: item.id
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+    </script>
+@endpush

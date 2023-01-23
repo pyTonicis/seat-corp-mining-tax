@@ -78,10 +78,8 @@ class CorpMiningTaxController extends Controller
 
     public function getData2(Request $request)
     {
-        $datum = array("01-2022", "02-2022", "03-2022");
-        $quantity = array(5000, 10000, 989);
 
-        return view('corpminingtax::corpminingtaxhome', [ 'characters' => CharacterHelper::getCharacterCharacters('94180884')]);
+        return view('corpminingtax::corpminingtaxhome');
     }
 
     public function getDashboard(Request $request)

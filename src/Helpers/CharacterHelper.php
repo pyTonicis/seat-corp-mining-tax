@@ -48,7 +48,7 @@ class CharacterHelper {
         return $data->name;
     }
 
-    public static function getCharacterCharacters(int $character_id)
+    public static function getLinkedCharacters(int $character_id)
     {
        $result = DB::table('refresh_tokens')
            ->select('character_id', 'user_id')
@@ -56,11 +56,11 @@ class CharacterHelper {
            ->first();
        if($result->user_id) {
            $user_id = $result->user_id;
+           $data = DB::table('refresh_tokens')
+               ->select('character_id')
+               ->where('user_id', $user_id)
+               ->get();
        }
-       $data = DB::table('refresh_tokens')
-           ->select('character_id')
-           ->where('user_id', $user_id)
-           ->get();
-       return $data->asArray();
+       return $data;
     }
 }
