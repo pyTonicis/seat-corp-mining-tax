@@ -6,48 +6,45 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('web/css/corpminingtax.css') }}"/>
 @endpush
 
-@section('full')
+@section('left')
     <div class="row">
         <div class="col-md-3">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Total Quantity</h4>
-                </div>
-                <div class="card-body">
-                    <h3 class="text-center">51.000.000</h3>
-                </div>
+            <div class="info-box">
+                <span class="info-box-icon bg_yellow elevation-1"><i class="fa fa-dice-d20"></i></span>
+                    <span class="info-box-text">Total Mined Quantity</span>
+                    <span class="info-box-number">
+                        5.850.600
+                    </span>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Total Volume m³</h4>
-                </div>
-                <div class="card-body">
-                    <h3 class="text-center">510.000.000</h3>
-                </div>
+            <div class="info-box">
+                <span class="info-box-icon bg_red elevation-1"><i class="fa fa-gem"></i></span>
+                <span class="info-box-text">Total Mined Volume</span>
+                <span class="info-box-number">
+                        5.850.600.000
+                    </span>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Total Price ISK</h4>
-                </div>
-                <div class="card-body">
-                    <h3 class="text-center">82.169.500.000</h3>
-                </div>
+            <div class="info-box">
+                <span class="info-box-icon bg_green elevation-1"><i class="fa fa-coins"></i></span>
+                <span class="info-box-text">Total Mined ISK</span>
+                <span class="info-box-number">
+                        34.495.170.000
+                    </span>
             </div>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-9">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Mining performance last 12 month`s</h3>
                 </div>
                 <div class="card-body">
-                    <div style="height: 200px">
-                    <canvas id="mining_chart" height="300"></canvas>
+                    <div style="height: 250px">
+                    <canvas id="mining_chart" height="250"></canvas>
                     </div>
                 </div>
             </div>
