@@ -58,6 +58,6 @@ class CharacterHelper {
            ->select('character_id')
            ->where('user_id', $uid->user_id)
            ->get();
-       return $characters->toArray();
+       return $characters;
     }
 }
