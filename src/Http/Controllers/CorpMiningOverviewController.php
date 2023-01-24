@@ -28,19 +28,27 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Js;
+use Datatables;
 
 class CorpMiningOverviewController extends Controller
 {
     public function getHome()
     {
-        return view('corpminingtax::corpminingoverview');
+        return view('corpminingtax::corpminingtaxhome');
     }
 
-    public function getCharacterMiningData(Character $character)
+    public function getCharacterMiningData(Request $request)
     {
-        DB::table('character_minings')
-            ->SUM('quantity')
-            ->groupby('month')
-            ->get();
+        if ($request->ajax()) {
+            $data = Student::latest()->get();
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
     }
 }

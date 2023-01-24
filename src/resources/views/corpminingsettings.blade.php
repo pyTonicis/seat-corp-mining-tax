@@ -8,7 +8,7 @@
 
 @section('full')
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">General Settings</h3>
@@ -79,7 +79,7 @@
                 </form>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Tax Rates</h3>
@@ -126,9 +126,15 @@
                             </div>
                         </div>
                         <div class="form-group-row">
-                            <label class="col-md4 col-form-label" for="ore-rate">R8</label>
+                            <label class="col-md4 col-form-label" for="ore-rate">ORE</label>
                             <div class="col-md-6">
                                 <input id="ore-rate" name="ore-rate" type="number" class="form-control input-md" value="10" min="0" max="100">
+                            </div>
+                        </div>
+                        <div class="form-group-row">
+                            <label class="col-md4 col-form-label" for="gas-rate">GAS</label>
+                            <div class="col-md-6">
+                                <input id="gas-rate" name="gas-rate" type="number" class="form-control input-md" value="10" min="0" max="100">
                             </div>
                         </div>
                     </div>

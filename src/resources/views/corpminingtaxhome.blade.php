@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-4 col-sm-6">
             <div class="info-box">
-                <span class="info-box-icon bg_yellow elevation-1"><i class="fa fa-dice-d20"></i></span>
+                <span class="info-box-icon bg-yellow elevation-1"><i class="fa fa-dice-d20"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Total Mined Quantity</span>
                     <span class="info-box-number">
@@ -21,7 +21,7 @@
         </div>
         <div class="col-md-4 col-sm-6">
             <div class="info-box">
-                <span class="info-box-icon bg_red elevation-1"><i class="fa fa-gem"></i></span>
+                <span class="info-box-icon bg-red elevation-1"><i class="fa fa-gem"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Total Mined Volume</span>
                     <span class="info-box-number">
@@ -32,7 +32,7 @@
         </div>
         <div class="col-md-4 col-sm-6">
             <div class="info-box">
-                <span class="info-box-icon bg_green elevation-1"><i class="fa fa-coins"></i></span>
+                <span class="info-box-icon bg-green elevation-1"><i class="fa fa-coins"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Total Mined ISK</span>
                     <span class="info-box-number">
@@ -65,12 +65,12 @@
                 <div class="card-body">
                     <table id="mining-log" class="table datatable compact table-condensed table-hover table-striped">
                         <thead>
-                        <th class="text-center"><i class="fas fa-arrow-down"></i><i class="fas fa-arrow-up"></i>Date</th>
-                        <th class="text-center"><i class="fas fa-arrow-down"></i><i class="fas fa-arrow-up"></i>System</th>
-                        <th class="text-center"><i class="fas fa-arrow-down"></i><i class="fas fa-arrow-up"></i>ORE</th>
-                        <th class="text-center"><i class="fas fa-arrow-down"></i><i class="fas fa-arrow-up"></i>Quantity</th>
-                        <th class="text-center"><i class="fas fa-arrow-down"></i><i class="fas fa-arrow-up"></i>Volume</th>
-                        <th class="text-center"><i class="fas fa-arrow-down"></i><i class="fas fa-arrow-up"></i>Est. Value</th>
+                        <th class="text-center">Date</th>
+                        <th class="text-center">System</th>
+                        <th class="text-center">ORE</th>
+                        <th class="text-center">Quantity</th>
+                        <th class="text-center">>Volume</th>
+                        <th class="text-center">Est. Value</th>
                         </thead>
                         <tbody>
                             <tr>

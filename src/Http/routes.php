@@ -29,7 +29,7 @@ Route::group([
 
             Route::get('/')
                 ->name('corpminingtax.home')
-                ->uses('CorpMiningTaxController@getData2'); //getHome
+                ->uses('CorpMiningOverviewController@getHome'); //getHome
 
             Route::post('/getMiningData')
                 ->name('corpminingtax.data')
