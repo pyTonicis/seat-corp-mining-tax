@@ -60,14 +60,14 @@
                             <legend>Contract Settings</legend>
                         </div>
                         <div class="form-group-row">
-                            <label class="col-md4 col-form-label" for="contract-holder">Price Modifier</label>
+                            <label class="col-md4 col-form-label" for="contract-holder">Contract Character Name</label>
                             <div class="col-md-12">
                                 <input id="contract-holder" name="contract-holder" type="text" class="form-control input-md" value="DollarBoy">
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <label class="col-md4 col-form-label" for="contract-exprie">Expries in</label>
-                            <select class="custom-select mr-sm-2" name="contract-exprie" id="contract-exprie">
+                            <label class="col-md4 col-form-label" for="contract-exprie">Expire in</label>
+                            <select class="custom-select mr-sm-2" name="contract-expire" id="contract-expire">
                                 <option value="1">1 Day</option>
                                 <option value="2">2 Days</option>
                                 <option value="3">3 Days</option>
@@ -177,6 +177,41 @@
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Settings Info</h3>
+                </div>
+                <h5>Ore Refining Rate</h5>
+                <p>
+                    This value is the max refining amount in your area/space (Max Skills, Max Implants, T2 Rigged Tatara). Normally this is 91%
+                </p>
+                <h5>Ore Valuation Price</h5>
+                <p>
+                    Use ORE Price or Refined Minerals Price for calculating Mining Tax. Standard is Mineral Price
+                </p>
+                <h5>Price Provider</h5>
+                <p>
+                    Chooses a Price Provider to get market prices. Eve Market (Eve prices) or Eve Praisal
+                </p>
+                <h5>Price Modifier</h5>
+                <p>
+                    Adjust the Price from Price Provider. Normally this is 100%
+                </p>
+                <h5>Contracts Settings</h5>
+                <p>
+                    Set the Contracts Holder Name and expire time for Tax Contracts
+                </p>
+                <h5>Tax Selector</h5>
+                <p>
+                    Selection of tax groups to be taken into tax calculation
+                </p>
+                <h5>Tax Rates</h5>
+                <p>
+                    Setup the tax rates of different ore types
+                </p>
             </div>
         </div>
     </div>

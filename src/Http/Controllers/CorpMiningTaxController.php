@@ -56,6 +56,11 @@ class CorpMiningTaxController extends Controller
         return view('corpminingtax::corpminingtax');
     }
 
+    public function getTest()
+    {
+        return view('corpminingtax::corpminingtaxcontracts');
+    }
+
     /**
      * @param Request $request
      * @return void

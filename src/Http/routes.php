@@ -53,7 +53,7 @@ Route::group([
 
             Route::get('/contracts')
                 ->name('corpminingtax.contracts')
-                ->uses('CorpMiningTaxController@getHome');
+                ->uses('CorpMiningTaxController@getTest');
 
             Route::get('/corpmoonmining')
                 ->name('corpminingtax.corpmoonmining')
