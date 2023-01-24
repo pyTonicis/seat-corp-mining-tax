@@ -81,8 +81,14 @@
                         </div>
                         <div class="form-group-row">
                             <div class="form-check">
-                                <label class="col-md4 form-check-label" for="taxes-moon">Tax Moon (only Corpmoons)</label>
+                                <label class="col-md4 form-check-label" for="taxes-moon">Tax only Corp Moons</label>
                                 <input id="taxes-moon" name="taxes-moon" type="checkbox" class="form-check-input">
+                            </div>
+                        </div>
+                        <div class="form-group-row">
+                            <div class="form-check">
+                                <label class="col-md4 form-check-label" for="taxes-free">Tax free</label>
+                                <input id="taxes-free" name="taxes-free" type="checkbox" class="form-check-input">
                             </div>
                         </div>
                     </div>
