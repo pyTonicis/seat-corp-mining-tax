@@ -96,6 +96,18 @@
                                 <input id="taxes-ore" name="taxes-ore" type="checkbox" class="form-control">
                             </div>
                         </div>
+                        <div class="form-group-row">
+                            <label class="col-md4 col-form-label" for="taxes-ice">Tax ICE</label>
+                            <div class="col-md-4">
+                                <input id="taxes-ice" name="taxes-ice" type="checkbox" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group-row">
+                            <label class="col-md4 col-form-label" for="taxes-gas">Tax ORE</label>
+                            <div class="col-md-4">
+                                <input id="taxes-gas" name="taxes-gas" type="checkbox" class="form-control">
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
