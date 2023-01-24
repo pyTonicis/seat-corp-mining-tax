@@ -75,37 +75,14 @@
                                 <option value="5">4 Weeks</option>
                             </select>
                         </div>
+                        <p></p>
                         <div class="box-body">
                             <legend>Tax Selector</legend>
                         </div>
                         <div class="form-group-row">
-                            <label class="col-md4 col-form-label" for="taxes-moon">Tax Moon ORE</label>
-                            <div class="col-md-4">
-                                <input id="taxes-moon" name="taxes-moon" type="checkbox" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group-row">
-                            <label class="col-md4 col-form-label" for="taxes-corp-moon">Tax Corporation Moon ORE</label>
-                            <div class="col-md-4">
-                                <input id="taxes-corp-moon" name="taxes-corp-moon" type="checkbox" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group-row">
-                            <label class="col-md4 col-form-label" for="taxes-ore">Tax ORE</label>
-                            <div class="col-md-4">
-                                <input id="taxes-ore" name="taxes-ore" type="checkbox" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group-row">
-                            <label class="col-md4 col-form-label" for="taxes-ice">Tax ICE</label>
-                            <div class="col-md-4">
-                                <input id="taxes-ice" name="taxes-ice" type="checkbox" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group-row">
-                            <label class="col-md4 col-form-label" for="taxes-gas">Tax ORE</label>
-                            <div class="col-md-4">
-                                <input id="taxes-gas" name="taxes-gas" type="checkbox" class="form-control">
+                            <div class="form-check">
+                                <label class="col-md4 form-check-label" for="taxes-moon">Tax Moon (only Corpmoons)</label>
+                                <input id="taxes-moon" name="taxes-moon" type="checkbox" class="form-check-input">
                             </div>
                         </div>
                     </div>

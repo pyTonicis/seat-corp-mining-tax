@@ -8,40 +8,29 @@
 
 
 @section('left')
-    <div class="card">
-        <div class="card-header">
-            <h3>Corporation Mining Thieves</h3>
-        </div>
-        <div class="card-body">
-            <div id="overlay" style="border-radius: 5px">
-                <div class="w-100 d-flex justify-content-center align-items-center">
-                    <div class="spinner">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     @isset($result)
         <div class="card">
             <div class="card-header">
-                <h3>Bla bla</h3>
+                <h3>Böse Buben</h3>
             </div>
             <div class="card-body">
-                <table class="table" id="mining">
+                <table class="table datatable compact table-condensed table-hover table-striped" id="mining">
                     <thead>
                     <tr>
                         <th>CharacterID</th>
                         <th>CharacterName</th>
                         <th>Corporation</th>
-                        <th>ObserverID</th>
+                        <th>System</th>
+                        <th>Moon</th>
                     </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>1234</td>
+                            <td>98143327</td>
                             <td>Hans Peter</td>
-                            <td>9813357</td>
-                            <td>35543992</td>
+                            <td>Renecance</td>
+                            <td>J-OAH2</td>
+                            <td>P7M1 private</td>
                         </tr>
                     </tbody>
                 </table>
