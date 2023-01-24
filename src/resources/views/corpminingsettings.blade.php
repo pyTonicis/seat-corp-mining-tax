@@ -82,7 +82,9 @@
                         <div class="form-group-row">
                             <div class="form-check">
                                 <label class="col-md4 form-check-label" for="taxes-moon">Tax only Corp Moons</label>
+                                <div class="col-md-4">
                                 <input id="taxes-moon" name="taxes-moon" type="checkbox" class="form-check-input">
+                                </div>
                             </div>
                         </div>
                         <div class="form-group-row">
