@@ -79,16 +79,38 @@
                         <div class="box-body">
                             <legend>Tax Selector</legend>
                         </div>
-                        <div class="form-group-row">
-                            <div class="form-check">
-                                <input id="taxes-moon" name="taxes-moon" type="checkbox" class="form-check-input">
-                                <label class="form-check-label" for="taxes-moon">Tax only Corp Moons</label>
+                        <div class="col-md-6">
+                            <div class="form-group-row">
+                                <div class="form-check checkbox-lg">
+                                    <input id="taxes-moon" name="taxes-moon" type="checkbox" class="form-check-input">
+                                    <label class="form-check-label" for="taxes-moon">Moon Ore</label>
+                                </div>
+                            </div>
+                            <div class="form-group-row">
+                                <div class="form-check checkbox-lg">
+                                    <input id="taxes-corp-moon" name="taxes-corp-moon" type="checkbox" class="form-check-input">
+                                    <label class="form-check-label" for="taxes-corp-moon">Corp Moon Ore</label>
+                                </div>
+                            </div>
+                            <div class="form-group-row">
+                                <div class="form-check checkbox-lg">
+                                    <input id="taxes-ore" name="taxes-ore" type="checkbox" class="form-check-input">
+                                    <label class="form-check-label" for="taxes-ore">Ore</label>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group-row">
-                            <div class="form-check">
-                                <input id="taxes-free" name="taxes-free" type="checkbox" class="form-check-input">
-                                <label class="form-check-label" for="taxes-free">Tax free</label>
+                        <div class="col-md-6">
+                            <div class="form-group-row">
+                                <div class="form-check checkbox-lg">
+                                    <input id="taxes-ice" name="taxes-ice" type="checkbox" class="form-check-input">
+                                    <label class="form-check-label" for="taxes-ice">Ice</label>
+                                </div>
+                            </div>
+                            <div class="form-group-row">
+                                <div class="form-check checkbox-lg">
+                                    <input id="taxes-gas" name="taxes-gas" type="checkbox" class="form-check-input">
+                                    <label class="form-check-label" for="taxes-gas">Gas</label>
+                                </div>
                             </div>
                         </div>
                     </div>
