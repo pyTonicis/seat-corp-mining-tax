@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('web/css/corpminingtax.css') }}"/>
 @endpush
 
-@section('left')
+@section('full')
     <div class="card">
         <div class="card-header">
             <h3>Detected thefts</h3>
