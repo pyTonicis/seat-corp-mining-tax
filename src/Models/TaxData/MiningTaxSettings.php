@@ -4,7 +4,7 @@ namespace pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData;
 
 class MiningTaxSettings
 {
-    public $corp_name;
+    public $corp_id;
 
     public $ore_refining_rate;
 
@@ -16,7 +16,7 @@ class MiningTaxSettings
 
     public $contract_holder;
 
-    public $contract_exprie;
+    public $contract_expire;
 
     public $tax_r64;
 

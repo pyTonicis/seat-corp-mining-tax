@@ -9,7 +9,7 @@
 @section('full')
     <div class="card">
         <div class="card-header">
-            <h3>Detected thefts</h3>
+            <h3>Corporation Tax Contracts</h3>
         </div>
         <div class="card-body">
             <table class="table datatable compact table-condensed table-hover table-striped" id="contracts">

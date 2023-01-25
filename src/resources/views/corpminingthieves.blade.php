@@ -1,4 +1,4 @@
-@extends('web::layouts.grids.8-4')
+@extends('web::layouts.grids.12')
 
 @section('title', trans('corpminingtax::global.browser_title'))
 
@@ -7,11 +7,11 @@
 @endpush
 
 
-@section('left')
+@section('full')
     @isset($result)
         <div class="card">
             <div class="card-header">
-                <h3>Detected thefts</h3>
+                <h3>Detected Bad Boys</h3>
             </div>
             <div class="card-body">
                 <table class="table datatable compact table-condensed table-hover table-striped" id="mining">
