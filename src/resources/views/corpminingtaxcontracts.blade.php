@@ -30,7 +30,7 @@
                     <td>Smasher Jobs</td>
                     <td>3.581.270.000 ISK</td>
                     <td>385.127.000 ISK</td>
-                    <td><button type="button" class="btn btn-info">offered</button></td>
+                    <td>BUTTONS</td>
                 </tr>
                 <tr>
                     <td>12-2022</td>
@@ -38,7 +38,7 @@
                     <td>Mike Jag</td>
                     <td>800.000.000 ISK</td>
                     <td>80.000.000 ISK</td>
-                    <td><button type="button" class="btn btn-success">paid</button></td>
+                    <td>BUTTONS</td>
                 </tr>
                 </tbody>
             </table>
