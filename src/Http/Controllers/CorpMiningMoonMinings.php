@@ -23,7 +23,7 @@ class CorpMiningMoonMinings extends Controller
             ->LeftJoin('universe_structures as s', 'o.observer_id', '=', 's.structure_id')
             ->where('o.corporation_id', '=', '98496411')
             ->get();
-        return view('corpmoonmining::corpmoonmining', ['data' => $data]);
+        return view('corpminingtax::corpmoonmining', ['data' => $data]);
     }
 
     public function getCorpMoonExtractions(int $id)
