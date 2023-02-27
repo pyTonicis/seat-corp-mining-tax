@@ -17,7 +17,7 @@ class CorpMiningMoonMinings extends Controller
     {
         $data = DB::table('corporation_industry_mining_observers')
             ->select(
-                'oberserver_id',
+                'observer_id',
                 'name'
             )
             ->LeftJoin('universe_structures', 'corperation_industry_mining_observers.observer_id', '=', 'universe_structures.structure_id')
