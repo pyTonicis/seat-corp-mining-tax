@@ -12,15 +12,15 @@
                 <table class="table" id="mining">
                     <thead>
                     <tr>
-                        <th>CharacterName</th>
-                        <th>Corporation</th>
+                        <th>Strcuture ID</th>
+                        <th>Structure Name</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($data as $d)
                         <tr>
-                            <td>{{ $d }}</td>
-                            <td></td>
+                            <td>{{ $d->observer_id }}</td>
+                            <td>{{ $d->name }}</td>
                         </tr>
                     @endforeach
                     </tbody>
