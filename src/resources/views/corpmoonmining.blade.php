@@ -7,13 +7,13 @@
 
             <div class="card">
             <div class="card-header">
-                <h3>{{ $d->name }}</h3>
+                <h3>Übersicht</h3>
             </div>
             <div class="card-body">
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>Strcuture ID</th>
+                        <th>Structure ID</th>
                         <th>Structure Name</th>
                         <th>Last Extraction</th>
                     </tr>
@@ -23,7 +23,7 @@
                         <tr>
                             <td>{{ $d->observer_id }}</td>
                             <td>{{ $d->name }}</td>
-                            <td>{{ $extractions->$d->observer_id }}</td>
+                            <td></td>
                         </tr>
                     @endforeach
                     </tbody>

@@ -24,12 +24,7 @@ class CorpMiningMoonMinings extends Controller
             ->where('o.corporation_id', '=', '98496411')
             ->orderBy('s.name', 'desc')
             ->get();
-        $extractions = array();
-        foreach($data as $d)
-        {
-            array_push($extractions, $d->observer_id, 'data', ['date' => '2022-01-01', 'quantity' => '1000']);
-        }
-        return view('corpminingtax::corpmoonmining', ['data' => $data, 'extractions' => $extractions]);
+        return view('corpminingtax::corpmoonmining', ['data' => $data]);
     }
 
     public function getCorpMoonExtractions(int $id)
