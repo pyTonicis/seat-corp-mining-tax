@@ -19,8 +19,8 @@
                     <tbody>
                     @foreach($data as $d)
                         <tr>
-                            <td>{{ $d->character_id }}</td>
-                            <td>{{ $d->recorded_corporation_id }}</td>
+                            <td>{{ $d }}</td>
+                            <td></td>
                         </tr>
                     @endforeach
                     </tbody>
