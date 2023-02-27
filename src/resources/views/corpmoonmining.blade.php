@@ -4,16 +4,18 @@
 
 @section('left')
     @isset($data)
-        <div class="card">
+
+            <div class="card">
             <div class="card-header">
-                <h3>Corporation Moon Mining</h3>
+                <h3>{{ $d->name }}</h3>
             </div>
             <div class="card-body">
-                <table class="table" id="mining">
+                <table class="table">
                     <thead>
                     <tr>
                         <th>Strcuture ID</th>
                         <th>Structure Name</th>
+                        <th>Last Extraction</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -21,6 +23,7 @@
                         <tr>
                             <td>{{ $d->observer_id }}</td>
                             <td>{{ $d->name }}</td>
+                            <td>{{ $extractions->$d->observer_id }}</td>
                         </tr>
                     @endforeach
                     </tbody>
