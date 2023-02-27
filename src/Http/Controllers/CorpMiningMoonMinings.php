@@ -27,7 +27,7 @@ class CorpMiningMoonMinings extends Controller
         $extractions = array();
         foreach($data as $d)
         {
-            array_push($extractions, $d->oberserver_id, 'data', ['date' => '2022-01-01', 'quantity' => '1000']);
+            array_push($extractions, $d->observer_id, 'data', ['date' => '2022-01-01', 'quantity' => '1000']);
         }
         return view('corpminingtax::corpmoonmining', ['data' => $data, 'extractions' => $extractions]);
     }
