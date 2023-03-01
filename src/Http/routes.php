@@ -58,5 +58,9 @@ Route::group([
             Route::get('/corpmoonmining')
                 ->name('corpminingtax.corpmoonmining')
                 ->uses('CorpMiningMoonMinings@getCorpObservers');
+
+            Route::post('/getCorpMoonMinings')
+                ->name('corpminingtax.moonminingdata')
+                ->uses('CorpMiningMoonMinings@getCorpMoonMiningData');
         });
 });
