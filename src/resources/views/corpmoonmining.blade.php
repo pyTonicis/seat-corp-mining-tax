@@ -33,10 +33,28 @@
     </div>
     @endisset
     @isset($minings)
-        <h5>Hier könnte Ihre Werbung stehen!</h5>
-        @foreach($minings as $m)
-            <h6>{{ $m->last_updated }}</h6>
-            <h6>{{ $m->quantity }}</h6>
-        @endforeach
+        <div class="card-body">
+        <h5>{{ $minings->name }}</h5>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Quantity</th>
+                        <th>Volume</th>
+                        <th>Est. Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($minings as $m)
+                        <tr>
+                            <td>{{ $m->last_updated }}</td>
+                            <td>{{ $m->quantity }}</td>
+                            <td>{{ $m->quantity*10 }} m³</td>
+                            <td></td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+        </div>
     @endisset
 @stop

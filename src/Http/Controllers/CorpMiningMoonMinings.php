@@ -13,6 +13,12 @@ class CorpMiningMoonMinings extends Controller
     private $MoonObservers;
     private $extractions = [];
 
+
+    public function getHome()
+    {
+        return view('corpminingtax::corpmoonmining');
+    }
+
     public function getCorpObservers(Request $request)
     {
         $data = DB::table('corporation_industry_mining_observers as o')
@@ -29,12 +35,14 @@ class CorpMiningMoonMinings extends Controller
 
     public function getCorpMoonExtractions(int $id)
     {
-        $data = DB::table('corporation_industry_mining_observer_data')
+        $data = DB::table('corporation_industry_mining_observer_data as a')
             ->select(
-                'last_updated'
+                'a.last_updated',
+                'o.name'
             )
             ->selectRAW("sum(quantity) as quantity")
             ->groupby('last_updated')
+            ->LeftJoin('universe_structures as s', 'o.observer_id', '=', 's.structure_id')
             ->where('observer_id', $id)
             ->get();
         return $data;
@@ -42,7 +50,16 @@ class CorpMiningMoonMinings extends Controller
 
     public function getCorpMoonMiningData(Request $request)
     {
+        $data = DB::table('corporation_industry_mining_observers as o')
+            ->select(
+                'o.observer_id',
+                's.name'
+            )
+            ->LeftJoin('universe_structures as s', 'o.observer_id', '=', 's.structure_id')
+            ->where('o.corporation_id', '=', '98496411')
+            ->orderBy('s.name', 'desc')
+            ->get();
         $minings = $this->getCorpMoonExtractions((int)$request->get('observer'));
-        return view('corpminingtax::corpmoonmining', ['minings' => $minings]);
+        return view('corpminingtax::corpmoonmining', ['data' => $data, 'minings' => $minings]);
     }
 }
