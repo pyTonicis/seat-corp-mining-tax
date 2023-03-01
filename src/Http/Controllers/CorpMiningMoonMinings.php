@@ -35,14 +35,12 @@ class CorpMiningMoonMinings extends Controller
 
     public function getCorpMoonExtractions(int $id)
     {
-        $data = DB::table('corporation_industry_mining_observer_data as a')
+        $data = DB::table('corporation_industry_mining_observer_data as')
             ->select(
-                'a.last_updated',
-                's.name'
+                'last_updated',
             )
             ->selectRAW("sum(quantity) as quantity")
             ->groupby('last_updated')
-            ->LeftJoin('universe_structures as s', 'a.observer_id', '=', 's.structure_id')
             ->where('observer_id', $id)
             ->get();
         return $data;
