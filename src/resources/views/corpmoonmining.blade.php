@@ -48,8 +48,8 @@
                     @foreach($minings as $m)
                         <tr>
                             <td>{{ $m->last_updated }}</td>
-                            <td>{{ $m->quantity }}</td>
-                            <td>{{ $m->quantity*10 }} m³</td>
+                            <td>{{ number_format($m->quantity,0,',','.') }}</td>
+                            <td>{{ number_format($m->quantity*10,0,',','.') }} m³</td>
                             <td></td>
                         </tr>
                     @endforeach
