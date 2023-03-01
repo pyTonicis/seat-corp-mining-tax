@@ -38,11 +38,11 @@ class CorpMiningMoonMinings extends Controller
         $data = DB::table('corporation_industry_mining_observer_data as a')
             ->select(
                 'a.last_updated',
-                'o.name'
+                's.name'
             )
             ->selectRAW("sum(quantity) as quantity")
             ->groupby('last_updated')
-            ->LeftJoin('universe_structures as s', 'o.observer_id', '=', 's.structure_id')
+            ->LeftJoin('universe_structures as s', 'a.observer_id', '=', 's.structure_id')
             ->where('observer_id', $id)
             ->get();
         return $data;
