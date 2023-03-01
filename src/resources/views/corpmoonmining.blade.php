@@ -27,6 +27,7 @@
                         </select>
                     </div>
                 </div>
+                <button class="btn btn-primary" onclick="on()" type="submit">Send</button>
             </form>
         </div>
     </div>
