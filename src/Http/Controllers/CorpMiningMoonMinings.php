@@ -42,7 +42,7 @@ class CorpMiningMoonMinings extends Controller
 
     public function getCorpMoonMiningData(Request $request)
     {
-        $minings = $this->getCorpMoonExtractions($request->get('moon'));
+        $minings = $this->getCorpMoonExtractions((int)$request->get('observer'));
         return view('corpminingtax::corpmoonmining', ['minings' => $minings]);
     }
 }
