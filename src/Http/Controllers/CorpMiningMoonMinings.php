@@ -35,7 +35,7 @@ class CorpMiningMoonMinings extends Controller
 
     public function getCorpMoonExtractions(int $id)
     {
-        $data = DB::table('corporation_industry_mining_observer_data as')
+        $data = DB::table('corporation_industry_mining_observer_data')
             ->select(
                 'last_updated',
             )

@@ -34,7 +34,7 @@
     @endisset
     @isset($minings)
         <div class="card-body">
-        <h5>Result</h5>
+        <h5>Mining Result</h5>
                 <table class="table">
                     <thead>
                     <tr>
