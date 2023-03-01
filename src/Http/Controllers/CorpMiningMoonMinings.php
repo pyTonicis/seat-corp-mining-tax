@@ -59,8 +59,8 @@ class CorpMiningMoonMinings extends Controller
             ->get();
         $minings = $this->getCorpMoonExtractions((int)$request->get('observer'));
         $name = DB::table('universe_structures')
-            ->select('observer_id','name')
-            ->where('observer_id', '=', (int)$request->get('observer'))
+            ->select('structure_id','name')
+            ->where('structure_id', '=', (int)$request->get('observer'))
             ->first();
         return view('corpminingtax::corpmoonmining', ['data' => $data, 'minings' => $minings, 'name' => $name]);
     }
