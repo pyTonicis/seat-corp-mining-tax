@@ -3,7 +3,6 @@
 @section('title', 'Moonmining')
 
 @section('left')
-    @isset($data)
     <div class="card">
         <div class="card-header">
             <h3>Moon Mining Report</h3>
@@ -21,9 +20,11 @@
                     <div class="col-md-4 mb-3">
                         <label for="mining_month">Mining Observer</label>
                         <select class="custom-select mr-sm-2" name="observer" id="observer">
+                            @isset($data)
                             @foreach($data as $d)
                                 <option value="{{ $d->observer_id }}">{{ $d->name }}</option>
                             @endforeach
+                            @endisset
                         </select>
                     </div>
                 </div>
@@ -31,17 +32,19 @@
             </form>
         </div>
     </div>
-    @endisset
     @isset($minings)
-        <div class="card-body">
-        <h5>Mining Result</h5>
+        <div class="card">
+            <div class="card-header">
+                <h4>{{ $name->name }}</h4>
+            </div>
+            <div class="card-body">
                 <table class="table">
                     <thead>
                     <tr>
                         <th>Date</th>
                         <th>Quantity</th>
                         <th>Volume</th>
-                        <th>Est. Price</th>
+                        <th>Mined Ore Types</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -55,6 +58,7 @@
                     @endforeach
                     </tbody>
                 </table>
+            </div>
         </div>
     @endisset
 @stop
