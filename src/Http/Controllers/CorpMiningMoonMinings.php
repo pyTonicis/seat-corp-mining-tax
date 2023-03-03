@@ -58,6 +58,10 @@ class CorpMiningMoonMinings extends Controller
             ->orderBy('s.name', 'desc')
             ->get();
         $minings = $this->getCorpMoonExtractions((int)$request->get('observer'));
-        return view('corpminingtax::corpmoonmining', ['data' => $data, 'minings' => $minings]);
+        $name = DB::table('universe_structures')
+            ->select('structure_id','name')
+            ->where('structure_id', '=', (int)$request->get('observer'))
+            ->first();
+        return view('corpminingtax::corpmoonmining', ['data' => $data, 'minings' => $minings, 'name' => $name]);
     }
 }
