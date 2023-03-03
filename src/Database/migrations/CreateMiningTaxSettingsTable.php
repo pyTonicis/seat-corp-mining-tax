@@ -38,6 +38,7 @@ class CreateMiningTaxSettingsTable extends Migration
     {
         Schema::create('mining_tax_settings', function (Blueprint $table) {
             $table->bigInteger('corp_id');
+            $table->string('corp_name');
             $table->tinyInteger('ore_refining_rate');
             $table->tinyInteger('ore_valuation_price');
             $table->string('price_provider');
