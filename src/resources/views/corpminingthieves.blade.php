@@ -25,6 +25,17 @@
                     </tr>
                     </thead>
                     <tbody>
+                        @if(count($result) > 0)
+                            @foreach($result as $r)
+                                <tr>
+                                    <td>{{ $r->character_id }}</td>
+                                    <td>{{ $r->character_name }}</td>
+                                    <td>{{ $r->corporation_id }}</td>
+                                    <td>{{ $r->observer_id }}</td>
+                                    <td></td>
+                                </tr>
+                            @endforeach
+                        @else
                         <tr>
                             <td>98143327</td>
                             <td>Hans Peter</td>
@@ -32,6 +43,7 @@
                             <td>J-OAH2</td>
                             <td>P7M1 private</td>
                         </tr>
+                        @endif
                     </tbody>
                 </table>
             </div>
