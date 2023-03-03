@@ -25,7 +25,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                        @if(count($result) > 0)
+                        @if(!empty($result))
                             @foreach($result as $r)
                                 <tr>
                                     <td>{{ $r->character_id }}</td>

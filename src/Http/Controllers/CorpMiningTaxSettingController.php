@@ -12,8 +12,9 @@ class CorpMiningTaxSettingController extends Controller
 {
 
     public function getSettings() {
-        $settings = MiningTaxSettings::all();
-        return view('corpminingtax::corpminingsettings', ['settings' => $settings]);
+        //$settings = MiningTaxSettings::all();
+        //return view('corpminingtax::corpminingsettings', ['settings' => $settings]);
+        return view('corpminingtax::corpminingsettings');
     }
 
     public function saveSettings(Request $request) {
