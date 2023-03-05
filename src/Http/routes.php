@@ -66,5 +66,9 @@ Route::group([
             Route::post('/updatesettings')
                 ->name('corpminingtax.settings.update')
                 ->uses('CorpMiningTaxSettingController@saveSettings');
+
+            Route::get('/miningevents')
+                ->name('corpmingtax.events')
+                ->uses('CorpMiningEvents@getHome');
         });
 });
