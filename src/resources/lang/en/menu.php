@@ -28,5 +28,6 @@ return [
     'sub-corp-moon-mining' => 'Corp Moon Minings',
     'sub-tax-contracts' => 'Tax Contracts',
     'sub-thieves' => 'Thieves',
+    'sub-mining-events' => 'Mining Events',
 ];
 

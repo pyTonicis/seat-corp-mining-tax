@@ -34,7 +34,7 @@ class ThievesService
         foreach ($this->getMiningResultFromDb($corpID) as $data) {
             $result->character_id = $data->character_id;
             $result->date = date("y-m-d H:i", strtotime($data->created_at));
-            $result->character_name = CharacterHelper::getCharacterName($data->character_id);
+            $result->character_name = 'NoName';
             $result->corporation_id = $data->corporation_id;
             $result->observer_id = $data->observer_id;
         }

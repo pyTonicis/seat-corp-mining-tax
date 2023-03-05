@@ -58,6 +58,13 @@ return [
                 'permission' => 'corpminingtax.settings'
             ],
             [
+                'name' => 'corpminingtax-sub-mining-events',
+                'label' => 'corpminingtax::menu.sub-mining-events',
+                'icon' => 'fas fa-cal',
+                'route' => 'corpminingtax.events',
+                'permission' => 'corpminingtax.settings'
+            ],
+            [
                 'name' => 'corpminingtax-sub-settings-menu',
                 'label' => 'corpminingtax::menu.sub-settings',
                 'icon' => 'fas fa-cogs',
