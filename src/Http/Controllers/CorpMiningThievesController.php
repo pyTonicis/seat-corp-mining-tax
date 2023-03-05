@@ -46,7 +46,7 @@ class CorpMiningThievesController extends Controller
 
     public function getData()
     {
-        $corpID = '98496411';
+        $corpID = '98496410';
         $this->characterList = $this->ThievesService->createIllegalMiningResult($corpID);
         return view('corpminingtax::corpminingthieves', [
            'result' => $this->characterList

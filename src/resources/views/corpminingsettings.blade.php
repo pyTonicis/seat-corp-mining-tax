@@ -13,7 +13,7 @@
                 <div class="card-header">
                     <h3 class="card-title">General Settings</h3>
                 </div>
-                <form action="{{ route('miningtax.settings.update') }}" method="post" id="settings-update" name="settings-update">
+                <form action="{{ route('corpminingtax.settings.update') }}" method="post" id="settings-update" name="settings-update">
                     {{ csrf_field() }}
                     <div class="card-body">
                         <div class="box-body">
