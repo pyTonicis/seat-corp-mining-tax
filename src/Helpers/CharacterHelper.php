@@ -44,7 +44,7 @@ class CharacterHelper {
         $data = DB::table('character_infos')
             ->select('name')
             ->where('character_id', '=', $character_id)
-            ->get();
+            ->first();
         return $data->name;
     }
 
