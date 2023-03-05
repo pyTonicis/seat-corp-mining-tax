@@ -29,7 +29,7 @@
                             @foreach($result as $r)
                                 <tr>
                                     <td>{{ $r->character_id }}</td>
-                                    <td>{{ $r->character_name }}</td>
+                                    <td></td>
                                     <td>{{ $r->corporation_id }}</td>
                                     <td>{{ $r->observer_id }}</td>
                                     <td></td>
