@@ -50,7 +50,7 @@
                     <tbody>
                     @foreach($minings as $m)
                         <tr>
-                            <td>{{ $m->last_updated->format('d.m.Y') }}</td>
+                            <td>{{ $m->last_updated }}</td>
                             <td>{{ number_format($m->quantity,0,',','.') }}</td>
                             <td>{{ number_format($m->quantity*10,0,',','.') }} m³</td>
                             <td></td>

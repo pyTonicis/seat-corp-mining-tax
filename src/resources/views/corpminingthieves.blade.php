@@ -8,7 +8,6 @@
 
 
 @section('full')
-    @isset($result)
         <div class="card">
             <div class="card-header">
                 <h3>Detected Bad Boys</h3>
@@ -25,7 +24,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                        @if(!empty($result))
+                        @isset($result)
                             @foreach($result as $r)
                                 <tr>
                                     <td>{{ $r->character_id }}</td>
@@ -35,18 +34,9 @@
                                     <td></td>
                                 </tr>
                             @endforeach
-                        @else
-                        <tr>
-                            <td>98143327</td>
-                            <td>Hans Peter</td>
-                            <td>Renecance</td>
-                            <td>J-OAH2</td>
-                            <td>P7M1 private</td>
-                        </tr>
-                        @endif
+                        @endisset
                     </tbody>
                 </table>
             </div>
         </div>
-    @endisset
 @stop
