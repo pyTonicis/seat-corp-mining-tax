@@ -60,7 +60,7 @@ return [
             [
                 'name' => 'corpminingtax-sub-mining-events',
                 'label' => 'corpminingtax::menu.sub-mining-events',
-                'icon' => 'fas fa-cal',
+                'icon' => 'fas fa-calendar-alt',
                 'route' => 'corpminingtax.events',
                 'permission' => 'corpminingtax.settings'
             ],
