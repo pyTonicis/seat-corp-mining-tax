@@ -48,7 +48,7 @@ class CorpMiningThievesController extends Controller
     {
         $corpID = '98496410';
         $this->characterList = $this->ThievesService->createIllegalMiningResult($corpID);
-        if (!empty($this->characterList))
+        if (!$this->characterList)
             return view('corpminingtax::corpminingthieves', [
                 'result' => $this->characterList
             ]);

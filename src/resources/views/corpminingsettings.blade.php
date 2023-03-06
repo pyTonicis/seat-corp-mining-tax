@@ -75,44 +75,6 @@
                                 <option value="5">4 Weeks</option>
                             </select>
                         </div>
-                        <p></p>
-                        <div class="box-body">
-                            <legend>Tax Selector</legend>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group-row">
-                                <div class="form-check checkbox-lg">
-                                    <input id="taxes-moon" name="taxes-moon" type="checkbox" class="form-check-input">
-                                    <label class="form-check-label" for="taxes-moon">Moon Ore</label>
-                                </div>
-                            </div>
-                            <div class="form-group-row">
-                                <div class="form-check checkbox-lg">
-                                    <input id="taxes-corp-moon" name="taxes-corp-moon" type="checkbox" class="form-check-input">
-                                    <label class="form-check-label" for="taxes-corp-moon">Corp Moon Ore</label>
-                                </div>
-                            </div>
-                            <div class="form-group-row">
-                                <div class="form-check checkbox-lg">
-                                    <input id="taxes-ore" name="taxes-ore" type="checkbox" class="form-check-input">
-                                    <label class="form-check-label" for="taxes-ore">Ore</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group-row">
-                                <div class="form-check checkbox-lg">
-                                    <input id="taxes-ice" name="taxes-ice" type="checkbox" class="form-check-input">
-                                    <label class="form-check-label" for="taxes-ice">Ice</label>
-                                </div>
-                            </div>
-                            <div class="form-group-row">
-                                <div class="form-check checkbox-lg">
-                                    <input id="taxes-gas" name="taxes-gas" type="checkbox" class="form-check-input">
-                                    <label class="form-check-label" for="taxes-gas">Gas</label>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </form>
             </div>
@@ -182,36 +144,49 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Settings Info</h3>
+                    <h3 class="card-title">Mining Tax Selectors</h3>
                 </div>
-                <h5>Ore Refining Rate</h5>
-                <p>
-                    This value is the max refining amount in your area/space (Max Skills, Max Implants, T2 Rigged Tatara). Normally this is 91%
-                </p>
-                <h5>Ore Valuation Price</h5>
-                <p>
-                    Use ORE Price or Refined Minerals Price for calculating Mining Tax. Standard is Mineral Price
-                </p>
-                <h5>Price Provider</h5>
-                <p>
-                    Chooses a Price Provider to get market prices. Eve Market (Eve prices) or Eve Praisal
-                </p>
-                <h5>Price Modifier</h5>
-                <p>
-                    Adjust the Price from Price Provider. Normally this is 100%
-                </p>
-                <h5>Contracts Settings</h5>
-                <p>
-                    Set the Contracts Holder Name and expire time for Tax Contracts
-                </p>
-                <h5>Tax Selector</h5>
-                <p>
-                    Selection of tax groups to be taken into tax calculation
-                </p>
-                <h5>Tax Rates</h5>
-                <p>
-                    Setup the tax rates of different ore types
-                </p>
+                <div class="box-body">
+                    <legend>Tax Selector</legend>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group-row">
+                        <div class="form-check checkbox-lg">
+                            <input id="taxes-moon" name="taxes-moon" type="checkbox" class="form-check-input">
+                            <label class="form-check-label" for="taxes-moon">Moon Ore</label>
+                        </div>
+                    </div>
+                    <div class="form-group-row">
+                        <div class="form-check checkbox-lg">
+                            <input id="taxes-corp-moon" name="taxes-corp-moon" type="checkbox" class="form-check-input">
+                            <label class="form-check-label" for="taxes-corp-moon">Corp Moon Ore</label>
+                        </div>
+                    </div>
+                    <div class="form-group-row">
+                        <div class="form-check checkbox-lg">
+                            <input id="taxes-ore" name="taxes-ore" type="checkbox" class="form-check-input">
+                            <label class="form-check-label" for="taxes-ore">Ore</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group-row">
+                        <div class="form-check checkbox-lg">
+                            <input id="taxes-ice" name="taxes-ice" type="checkbox" class="form-check-input">
+                            <label class="form-check-label" for="taxes-ice">Ice</label>
+                        </div>
+                    </div>
+                    <div class="form-group-row">
+                        <div class="form-check checkbox-lg">
+                            <input id="taxes-gas" name="taxes-gas" type="checkbox" class="form-check-input">
+                            <label class="form-check-label" for="taxes-gas">Gas</label>
+                        </div>
+                    </div>
+                </div>
+                <button id="submit" type="submit" class="btn btn-success">
+                    <i class="fas fa-check"></i>
+                    Update
+                </button>
             </div>
         </div>
     </div>

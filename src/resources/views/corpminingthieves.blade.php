@@ -24,7 +24,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                        @isset($result)
+                        @if(isset($result))
                             @foreach($result as $r)
                                 <tr>
                                     <td>{{ $r->character_id }}</td>
@@ -34,7 +34,11 @@
                                     <td></td>
                                 </tr>
                             @endforeach
-                        @endisset
+                        @else
+                                <tr>
+                                    <td>No data found</td>
+                                </tr>
+                        @endif
                     </tbody>
                 </table>
             </div>
