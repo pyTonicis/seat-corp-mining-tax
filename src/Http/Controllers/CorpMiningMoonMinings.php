@@ -43,7 +43,7 @@ class CorpMiningMoonMinings extends Controller
             ->groupby('last_updated')
             ->where('observer_id', $id)
             ->get();*/
-        $data = DB::select("SELECT date_format(last_updated, '%Y-%m-%d') as last_updated, sum(quantity) as quantity FROM corporation_industry_mining_observer_data GROUP BY month(last_updated) WHERE observer_id=?",$id);
+        $data = DB::select("SELECT date_format(last_updated, '%Y-%m-%d') as last_updated, sum(quantity) as quantity FROM corporation_industry_mining_observer_data GROUP BY month(last_updated) WHERE observer_id=?",[$id]);
         return $data;
     }
 
