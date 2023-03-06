@@ -39,6 +39,10 @@ Route::group([
                 ->name('getCorporations')
                 ->uses('CorpMiningTaxController@getCorporations');
 
+            Route::get('/getMoonObservers')
+                ->name('getMoonObservers')
+                ->uses('CorpMiningMoonMinings@getMoonObservers');
+
             Route::get('/settings')
                 ->name('corpminingtax.settings')
                 ->uses('CorpMiningTaxSettingController@getSettings');

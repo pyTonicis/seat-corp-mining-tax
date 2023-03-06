@@ -46,6 +46,20 @@ class CorpMiningMoonMinings extends Controller
         return $data;
     }
 
+    public function getMoonObservers(Request $request)
+    {
+        $data = DB::table('corporation_industry_mining_observers as o')
+            ->select(
+                'o.observer_id as id',
+                's.name as name'
+            )
+            ->LeftJoin('universe_structures as s', 'o.observer_id', '=', 's.structure_id')
+            ->where('o.corporation_id', '=', '98496411')
+            ->orderBy('s.name', 'desc')
+            ->get();
+        return response()->json($data);
+    }
+
     public function getCorpMoonMiningData(Request $request)
     {
         $data = DB::table('corporation_industry_mining_observers as o')

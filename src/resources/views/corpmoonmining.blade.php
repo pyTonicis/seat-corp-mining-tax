@@ -19,13 +19,7 @@
                 <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="mining_month">Mining Observer</label>
-                        <select class="custom-select mr-sm-2" name="observer" id="observer">
-                            @isset($data)
-                            @foreach($data as $d)
-                                <option value="{{ $d->observer_id }}">{{ $d->name }}</option>
-                            @endforeach
-                            @endisset
-                        </select>
+                        <select class="custom-select mr-sm-2" name="observer" id="observer"></select>
                     </div>
                 </div>
                 <button class="btn btn-primary" onclick="on()" type="submit">Send</button>
@@ -62,3 +56,27 @@
         </div>
     @endisset
 @stop
+@push('javascript')
+    <script>
+        $('#observer').select2({
+            placeholder: 'Moon Structure',
+            ajax: {
+                url: '/corpminingtax/getMoonObservers',
+                dataType: 'json',
+                delay: 250,
+                processResults: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                text: item.name,
+                                id: item.id
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+
+    </script>
+@endpush
