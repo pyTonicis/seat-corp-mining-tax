@@ -44,8 +44,8 @@ class CharacterHelper {
         $data = DB::table('character_infos')
             ->select('name')
             ->where('character_id', '=', $character_id)
-            ->first();
-        return $data->name;
+            ->pluck('name');
+        return $data;
     }
 
     public static function getLinkedCharacters(int $character_id)
