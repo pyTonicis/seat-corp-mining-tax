@@ -183,6 +183,7 @@
                         </div>
                     </div>
                 </div>
+                <p></p>
                 <button id="submit" type="submit" class="btn btn-success">
                     <i class="fas fa-check"></i>
                     Update
@@ -193,8 +194,6 @@
 @stop
 @push('javascript')
     <script>
-        table = $('#mining').DataTable({
-        });
         $('#corpId').select2({
             placeholder: 'Corporation Name',
             ajax: {

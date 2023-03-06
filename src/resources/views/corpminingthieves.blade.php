@@ -13,7 +13,7 @@
                 <h3>Detected Bad Boys</h3>
             </div>
             <div class="card-body">
-                <table class="table datatable compact table-condensed table-hover table-striped" id="mining">
+                <table class="table" id="mining">
                     <thead>
                     <tr>
                         <th>CharacterID</th>
