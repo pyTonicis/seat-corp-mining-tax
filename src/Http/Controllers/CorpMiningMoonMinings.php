@@ -40,7 +40,7 @@ class CorpMiningMoonMinings extends Controller
                 'last_updated',
             )
             ->selectRAW("sum(quantity) as quantity")
-            ->groupby('last_updated')
+            ->groupby('last_updated', 'month')
             ->where('observer_id', $id)
             ->get();
         return $data;

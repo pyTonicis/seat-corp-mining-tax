@@ -38,7 +38,7 @@
                         <th>Date</th>
                         <th>Quantity</th>
                         <th>Volume</th>
-                        <th>Mined Ore Types</th>
+                        <th>Est.Price</th>
                     </tr>
                     </thead>
                     <tbody>
