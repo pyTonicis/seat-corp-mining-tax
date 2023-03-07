@@ -37,7 +37,7 @@ class CorpMiningMoonMinings extends Controller
     {
         $data = DB::table('corporation_industry_mining_observer_data')
             ->selectRAW("date_format(last_updated,'%Y-%m-%d') as last_updated, sum(quantity) as quantity")
-            ->groupbyraw('month(last_updated)')
+            ->groupby(DB::raw("month(last_updated)"))
             ->where('observer_id', $id)
             ->get();
         return $data;
