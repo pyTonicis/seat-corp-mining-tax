@@ -151,27 +151,27 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group-row">
-                        <div class="form-check checkbox-lg">
+                        <div class="form-check form-check-inline">
                             <input id="taxes-moon" name="taxes-moon" type="checkbox" class="form-check-input">
                             <label class="form-check-label" for="taxes-moon">Moon Ore</label>
                         </div>
-                        <div class="form-check checkbox-lg">
+                        <div class="form-check form-check-inline">
                             <input id="taxes-corp-moon" name="taxes-corp-moon" type="checkbox" class="form-check-input">
                             <label class="form-check-label" for="taxes-corp-moon">Corp Moon Ore</label>
                         </div>
                     </div>
                     <div class="form-group-row">
-                        <div class="form-check checkbox-lg">
+                        <div class="form-check form-check-inline">
                             <input id="taxes-ore" name="taxes-ore" type="checkbox" class="form-check-input">
                             <label class="form-check-label" for="taxes-ore">Ore</label>
                         </div>
-                        <div class="form-check checkbox-lg">
+                        <div class="form-check form-check-inline">
                             <input id="taxes-ice" name="taxes-ice" type="checkbox" class="form-check-input">
                             <label class="form-check-label" for="taxes-ice">Ice</label>
                         </div>
                     </div>
                     <div class="form-group-row">
-                        <div class="form-check checkbox-lg">
+                        <div class="form-check form-check-inline">
                             <input id="taxes-gas" name="taxes-gas" type="checkbox" class="form-check-input">
                             <label class="form-check-label" for="taxes-gas">Gas</label>
                         </div>
