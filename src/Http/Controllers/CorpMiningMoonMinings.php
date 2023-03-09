@@ -79,16 +79,16 @@ class CorpMiningMoonMinings extends Controller
         $ore = [];
         foreach($minings as $d)
         {
-            $ore_types = DB::table('corporation_industry_mining_observer_data as d')
+            $ore_types = DB::table('corporation_industry_mining_observer_data')
                 ->select(
                     'type_id',
-                    'i.typeName'
+                    'typeName'
                 )
                 ->selectRAW('sum(d.quantity) as quantity')
-                ->LeftJoin('invTypes as i', 'd.type_id', '=', 'i.typeID')
+                //->LeftJoin('invTypes as i', 'd.type_id', '=', 'i.typeID')
                 ->groupBy('type_id')
-                ->where('d.observer_id', '=', (int)$request->get('observer'))
-                ->where('d.last_updated', '=', $d->last_updated)
+                ->where('observer_id', '=', (int)$request->get('observer'))
+                ->where('last_updated', '=', $d->last_updated)
                 ->get();
             $ore[$d->last_updated] = $ore_types;
         }
