@@ -76,13 +76,22 @@ class CorpMiningMoonMinings extends Controller
             ->select('structure_id','name')
             ->where('structure_id', '=', (int)$request->get('observer'))
             ->first();
-        $ore_types = DB::table('corporation_industry_mining_observer_data as d')
-            ->select('d.type_id, i.typeName')
-            ->selectRAW('sum(d.quantity) as quantity')
-            ->LeftJoin('invTypes as i', 'd.type_id', '=', 'i.typeID')
-            ->groupBy('d.type_id')
-            ->where('d.observer_id', '=', (int)$request->get('observer'))
-            ->get();
-        return view('corpminingtax::corpmoonmining', ['data' => $ore_types, 'minings' => $minings, 'name' => $name]);
+        $ore = [];
+        foreach($minings as $d)
+        {
+            $ore_types = DB::table('corporation_industry_mining_observer_data as d')
+                ->select(
+                    'd.type_id',
+                    'i.typeName'
+                )
+                ->selectRAW('sum(d.quantity) as quantity')
+                ->LeftJoin('invTypes as i', 'd.type_id', '=', 'i.typeID')
+                ->groupBy('d.type_id')
+                ->where('d.observer_id', '=', (int)$request->get('observer'))
+                ->where('d.last_updated', '=', $d->last_updated)
+                ->get();
+            $ore[$d->last_updated] = $ore_types;
+        }
+        return view('corpminingtax::corpmoonmining', ['ore' => $ore, 'minings' => $minings, 'name' => $name]);
     }
 }
