@@ -137,54 +137,42 @@
                                 <input id="gas-rate" name="gas-rate" type="number" class="form-control input-md" value="10" min="0" max="100">
                             </div>
                         </div>
+                        <div class="box-body">
+                            <legend>Tax Selector</legend>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group-row">
+                                <div class="form-check form-check-inline">
+                                    <input id="taxes-moon" name="taxes-moon" type="checkbox" class="form-check-input">
+                                    <label class="form-check-label" for="taxes-moon">Moon Ore</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input id="taxes-corp-moon" name="taxes-corp-moon" type="checkbox" class="form-check-input">
+                                    <label class="form-check-label" for="taxes-corp-moon">Corp Moon Ore</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input id="taxes-ore" name="taxes-ore" type="checkbox" class="form-check-input">
+                                    <label class="form-check-label" for="taxes-ore">Ore</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input id="taxes-ice" name="taxes-ice" type="checkbox" class="form-check-input">
+                                    <label class="form-check-label" for="taxes-ice">Ice</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input id="taxes-gas" name="taxes-gas" type="checkbox" class="form-check-input">
+                                    <label class="form-check-label" for="taxes-gas">Gas</label>
+                                </div>
+                            </div>
+                        </div>
+                        <p></p>
+                        <button id="submit" type="submit" class="btn btn-success">
+                            <i class="fas fa-check"></i>
+                            Update
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Mining Tax Selectors</h3>
-                </div>
-                <div class="box-body">
-                    <legend>Tax Selector</legend>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group-row">
-                        <div class="form-check form-check-inline">
-                            <input id="taxes-moon" name="taxes-moon" type="checkbox" class="form-check-input">
-                            <label class="form-check-label" for="taxes-moon">Moon Ore</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input id="taxes-corp-moon" name="taxes-corp-moon" type="checkbox" class="form-check-input">
-                            <label class="form-check-label" for="taxes-corp-moon">Corp Moon Ore</label>
-                        </div>
-                    </div>
-                    <div class="form-group-row">
-                        <div class="form-check form-check-inline">
-                            <input id="taxes-ore" name="taxes-ore" type="checkbox" class="form-check-input">
-                            <label class="form-check-label" for="taxes-ore">Ore</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input id="taxes-ice" name="taxes-ice" type="checkbox" class="form-check-input">
-                            <label class="form-check-label" for="taxes-ice">Ice</label>
-                        </div>
-                    </div>
-                    <div class="form-group-row">
-                        <div class="form-check form-check-inline">
-                            <input id="taxes-gas" name="taxes-gas" type="checkbox" class="form-check-input">
-                            <label class="form-check-label" for="taxes-gas">Gas</label>
-                        </div>
-                    </div>
-                </div>
-                <p></p>
-                <button id="submit" type="submit" class="btn btn-success">
-                    <i class="fas fa-check"></i>
-                    Update
-                </button>
-            </div>
-        </div>
-    </div>
 @stop
 @push('javascript')
     <script>

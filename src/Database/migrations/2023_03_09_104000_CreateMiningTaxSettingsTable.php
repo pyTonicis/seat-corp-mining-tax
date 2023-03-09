@@ -69,6 +69,6 @@ class CreateMiningTaxSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mining_tax_config');
+        Schema::dropIfExists('mining_tax_settings');
     }
 }
