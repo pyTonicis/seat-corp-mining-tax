@@ -81,12 +81,12 @@ class CorpMiningMoonMinings extends Controller
         {
             $ore_types = DB::table('corporation_industry_mining_observer_data as d')
                 ->select(
-                    'd.type_id',
-                    'i.typeName'
+                    'type_id',
+                    'typeName'
                 )
                 ->selectRAW('sum(d.quantity) as quantity')
                 ->LeftJoin('invTypes as i', 'd.type_id', '=', 'i.typeID')
-                ->groupBy('d.type_id')
+                ->groupBy('type_id')
                 ->where('d.observer_id', '=', (int)$request->get('observer'))
                 ->where('d.last_updated', '=', $d->last_updated)
                 ->get();
