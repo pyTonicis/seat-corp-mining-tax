@@ -140,7 +140,7 @@
                         <div class="box-body">
                             <legend>Tax Selector</legend>
                         </div>
-                        <div class="col-md-6">
+                        <div class="row">
                             <div class="form-group-row">
                                 <div class="form-check form-check-inline">
                                     <input id="taxes-moon" name="taxes-moon" type="checkbox" class="form-check-input">
