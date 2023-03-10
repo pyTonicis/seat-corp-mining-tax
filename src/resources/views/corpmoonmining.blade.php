@@ -38,7 +38,7 @@
                         <th>Date</th>
                         <th>Quantity</th>
                         <th>Volume</th>
-                        <th>Est.Price</th>
+                        <th>Mined ORE</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -47,7 +47,7 @@
                             <td>{{ $m->last_updated }}</td>
                             <td>{{ number_format($m->quantity,0,',','.') }}</td>
                             <td>{{ number_format($m->quantity*10,0,',','.') }} m³</td>
-                            <td></td>
+                            <td>{{ $ore[$m->last_updated]->typeName }}</td>
                         </tr>
                     @endforeach
                     </tbody>

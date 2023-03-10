@@ -84,7 +84,7 @@ class CorpMiningMoonMinings extends Controller
                     'type_id'
                 )
                 ->selectRAW('sum(quantity) as quantity')
-                //->LeftJoin('invTypes as i', 'd.type_id', '=', 'i.typeID')
+                ->LeftJoin('invTypes as i', 'type_id', '=', 'i.typeID')
                 ->groupBy('type_id')
                 ->where('observer_id', '=', (int)$request->get('observer'))
                 ->where('last_updated', '=', $d->last_updated)
