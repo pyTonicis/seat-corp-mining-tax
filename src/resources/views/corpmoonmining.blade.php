@@ -47,7 +47,7 @@
                             <td>{{ $m->last_updated }}</td>
                             <td>{{ number_format($m->quantity,0,',','.') }}</td>
                             <td>{{ number_format($m->quantity*10,0,',','.') }} m³</td>
-                            <td>{{ $ore[$m->last_updated]->typeName }}</td>
+                            <td>{{ $ore[$m->last_updated] }}</td>
                         </tr>
                     @endforeach
                     </tbody>
