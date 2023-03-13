@@ -20,13 +20,13 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-namespace pyTonicis\Seat\SeatCorpMiningTax\Database\migrations;
+//namespace pyTonicis\Seat\SeatCorpMiningTax\database\migrations;
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMiningTaxSettings extends Migration
+class CreateMiningTaxSettingsTable extends Migration
 {
 
     /**

@@ -2,11 +2,10 @@
 
 namespace pyTonicis\Seat\SeatCorpMiningTax\Http\Controllers;
 
-use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\MiningTaxSettings;
-use Seat\Web\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Seat\Web\Http\Controllers\Controller;
 
 class CorpMiningTaxSettingController extends Controller
 {
