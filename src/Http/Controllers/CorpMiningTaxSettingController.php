@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class CorpMiningTaxSettingController extends Controller
 {
+    public $settingsService;
 
     public function getSettings() {
         //$settings = MiningTaxSettings::all();

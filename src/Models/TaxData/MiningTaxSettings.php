@@ -7,7 +7,11 @@ use Illuminate\Notifications\Notifiable;
 
 class MiningTaxSettings extends Model
 {
-    public $timestamps = true;
-
     protected $table = 'mining_tax_settings';
+
+    public $incrementing = false;
+
+    protected $primaryKey = 'id';
+
+    protected $guarded = [];
 }

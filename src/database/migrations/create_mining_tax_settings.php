@@ -26,7 +26,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMiningTaxSettingsTable extends Migration
+class CreateMiningTaxSettings extends Migration
 {
 
     /**
@@ -37,27 +37,10 @@ class CreateMiningTaxSettingsTable extends Migration
     public function up()
     {
         Schema::create('mining_tax_settings', function (Blueprint $table) {
-            $table->bigInteger('corp_id');
-            $table->string('corp_name');
-            $table->tinyInteger('ore_refining_rate');
-            $table->tinyInteger('ore_valuation_price');
-            $table->string('price_provider');
-            $table->tinyInteger('price_modifier');
-            $table->string('contract_holder');
-            $table->string('contract_expire');
-            $table->tinyInteger('tax_r64');
-            $table->tinyInteger('tax_r32');
-            $table->tinyInteger('tax_r16');
-            $table->tinyInteger('tax_r8');
-            $table->tinyInteger('tax_r4');
-            $table->tinyInteger('tax_ore');
-            $table->tinyInteger('tax_ice');
-            $table->tinyInteger('tax_gas');
-            $table->bool('sel_moon_ore');
-            $table->bool('sel_corp_moon_ore');
-            $table->bool('sel_ore');
-            $table->bool('sel_ice');
-            $table->bool('sel_gas');
+            $table->increments('id');
+            $table->string('name');
+            $table->string('value');
+            $table->timestramps();
         });
 
     }
