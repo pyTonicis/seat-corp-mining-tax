@@ -73,7 +73,7 @@
                 <th>CharacterName</th>
                 <th>CharacterID</th>
                 <th>Mined Amount</th>
-                <th>ISK to Pay</th>
+                <th>Est. Value</th>
                 <th>Percentage</th>
             </tr>
             </thead>
@@ -82,8 +82,8 @@
                 <tr>
                     <td>{{ $character->characterName }}</td>
                     <td>{{ $character->characterId }}</td>
-                    <td>{{ $character->priceSummary }}</td>
-                    <td>{{ $character->tax }}</td>
+                    <td>{{ number_format($character->priceSummary,2) }}</td>
+                    <td>{{ number_format($character->tax, 2) }}</td>
                     <td>10%</td>
                 </tr>
             @endforeach
