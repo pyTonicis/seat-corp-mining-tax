@@ -84,7 +84,7 @@
                     <td>{{ $character->characterId }}</td>
                     <td>{{ number_format($character->priceSummary,2) }}</td>
                     <td>{{ number_format($character->tax, 2) }}</td>
-                    <td>10%</td>
+                    <td>{{ number_format($character->tax2, 2) }}</td>
                 </tr>
             @endforeach
             </tbody>

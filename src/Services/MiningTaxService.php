@@ -8,6 +8,7 @@ use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\CharacterData;
 use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\CharacterMiningRecord;
 use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\MiningTaxResult;
 use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\OreType;
+use pyTonicis\Seat\SeatCorpMiningTax\Services\Reprocessing;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -77,6 +78,11 @@ class MiningTaxService
 
             $charData->addToPriceSummary($data->quantity);
             $charData->addTax(EvePraisalHelper::getItemPriceByTypeId($data->type_id) * $data->quantity);
+            foreach(Reprocessing::ReprocessOreByTypeId($data->type_id, $data->quantity) as $key => $value)
+            {
+                $price = EvePraisalHelper::getItemPriceByTypeId($key) * $value;
+                $charData->addTax2($price);
+            }
         }
 
         return $miningResult;
