@@ -16,7 +16,7 @@ class Reprocessing
         return $data;
     }
 
-    private static function getMaterialInfo(int $id)
+    public static function getMaterialInfo(int $id)
     {
         $data = DB::table('invTypes')
             ->select('groupID', 'mass', 'volume', 'portionSize')

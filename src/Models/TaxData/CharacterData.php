@@ -26,6 +26,8 @@ class CharacterData
 
     public $tax3;
 
+    public $volume;
+
     /**
      * @var int
      */
@@ -106,5 +108,9 @@ class CharacterData
 
     public function addTax3(int $taxValue) {
         $this->tax3 += $taxValue;
+    }
+
+    public function addVolume(int $vol) {
+        $this->volume += $vol;
     }
 }

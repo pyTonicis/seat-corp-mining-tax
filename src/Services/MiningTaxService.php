@@ -87,12 +87,14 @@ class MiningTaxService
 
             $charData->addToPriceSummary($data->quantity);
             $charData->addTax(EvePraisalHelper::getItemPriceByTypeId($data->type_id) * $data->quantity);
+            $volume = Reprocessing::getMaterialInfo($data->type_id)->volume * $data->quantity;
+            $charData->addVolume($volume);
             foreach(Reprocessing::ReprocessOreByTypeId($data->type_id, $data->quantity) as $key => $value)
             {
                 $price = EvePraisalHelper::getItemPriceByTypeId($key) * $value;
                 $charData->addTax2($price);
                 $market_price = $this->getItemPriceById($key) * $value;
-                $charData->addTax3($price);
+                $charData->addTax3($market_price);
             }
         }
 

@@ -71,8 +71,8 @@
             <thead>
             <tr>
                 <th>CharacterName</th>
-                <th>CharacterID</th>
-                <th>Mined Amount</th>
+                <th>Mined Amount units</th>
+                <th>Mined Volume</th>
                 <th>ORE Price</th>
                 <th>EvE Praisal</th>
                 <th>EvE Market</th>
@@ -82,11 +82,11 @@
             @foreach($miningData->characterData as $character)
                 <tr>
                     <td>{{ $character->characterName }}</td>
-                    <td>{{ $character->characterId }}</td>
-                    <td>{{ number_format($character->priceSummary,2) }}</td>
-                    <td>{{ number_format($character->tax, 2) }}</td>
-                    <td>{{ number_format($character->tax2, 2) }}</td>
-                    <td>{{ number_format($character->tax3, 2) }}</td>
+                    <td>{{ number_format($character->priceSummary,0,'.') }}</td>
+                    <td>{{ number_format($character->volume,0,'.') }}</td>
+                    <td>{{ number_format($character->tax, 0,'.') }}</td>
+                    <td>{{ number_format($character->tax2, 0,'.') }}</td>
+                    <td>{{ number_format($character->tax3, 0,'.') }}</td>
                 </tr>
             @endforeach
             </tbody>
