@@ -84,15 +84,7 @@
                     <td>{{ $character->characterId }}</td>
                     <td>{{ $character->priceSummary }}</td>
                     <td>{{ $character->tax }}</td>
-                    <td>
-                        @php
-                        $quantity = 0;
-                        foreach ($character->miningRecords as $k => $v) {
-                            $quantity += $v;
-                        }
-                        return $quantity;
-                        @endphp
-                    </td>
+                    <td>10%</td>
                 </tr>
             @endforeach
             </tbody>

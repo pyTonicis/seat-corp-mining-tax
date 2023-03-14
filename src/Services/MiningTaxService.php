@@ -76,6 +76,7 @@ class MiningTaxService
             ));
 
             $charData->addToPriceSummary($data->quantity);
+            $charData->addTax(EvePraisalHelper::getItemPriceByTypeId($data->type_id) * $data->quantity);
         }
 
         return $miningResult;
