@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Js;
 class Reprocessing
 {
-    private function getReprocessData(int $id)
+    private static function getReprocessData(int $id)
     {
         $data = DB::table('invTypeMaterials as m')
             ->select('m.materialTypeID', 't.groupID', 'm.quantity', 't.typeName')
@@ -16,7 +16,7 @@ class Reprocessing
         return $data;
     }
 
-    private function getMaterialInfo(int $id)
+    private static function getMaterialInfo(int $id)
     {
         $data = DB::table('invTypes')
             ->select('groupID', 'mass', 'volume', 'portionSize')
@@ -25,13 +25,13 @@ class Reprocessing
         return $data;
     }
 
-    public function ReprocessOreByTypeId(int $typeId, int $quantity)
+    public static function ReprocessOreByTypeId(int $typeId, int $quantity)
     {
-        $ore = $this->getMaterialInfo($typeId);
+        $ore = self::getMaterialInfo($typeId);
         $p_size = $ore->portionSize;
         $r_count = intval($quantity / $p_size);
         $r_rest = $quantity % $p_size;
-        $rep = $this->getReprocessData($typeId);
+        $rep = self::getReprocessData($typeId);
         $result = [];
         foreach($rep as $r)
         {
