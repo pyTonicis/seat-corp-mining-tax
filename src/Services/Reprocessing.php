@@ -21,11 +21,11 @@ class Reprocessing
         $data = DB::table('invTypes')
             ->select('groupID', 'mass', 'volume', 'portionSize')
             ->where('typeID', '=', $id)
-            ->pluck();
+            ->first();
         return $data;
     }
 
-    public static function ReprocessOreByTypeId(int $typeId, int $quantity)
+    public static function ReprocessOreByTypeId(int $typeId, int $quantity) :array
     {
         $ore = self::getMaterialInfo($typeId);
         $p_size = $ore->portionSize;
