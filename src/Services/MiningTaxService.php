@@ -41,12 +41,13 @@ class MiningTaxService
             ->get();
     }
 
-    private function getItemPriceById(int $id)
+    private function getItemPriceById(int $id) :int
     {
-        return DB::table('market_prices')
+        $data = DB::table('market_prices')
             ->select('average_price')
             ->where('type_id', '=', $id)
-            ->pluck('average_price');
+            ->first();
+        return $data->average_price;
     }
 
     public function createMiningTaxResult(int $corpId, int $month, int $year): MiningTaxResult
