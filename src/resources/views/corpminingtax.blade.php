@@ -82,11 +82,11 @@
             @foreach($miningData->characterData as $character)
                 <tr>
                     <td>{{ $character->characterName }}</td>
-                    <td>{{ number_format($character->priceSummary,0,'.') }}</td>
-                    <td>{{ number_format($character->volume,0,'.') }}</td>
-                    <td>{{ number_format($character->tax, 0,'.') }}</td>
-                    <td>{{ number_format($character->tax2, 0,'.') }}</td>
-                    <td>{{ number_format($character->tax3, 0,'.') }}</td>
+                    <td>{{ number_format($character->priceSummary) }}</td>
+                    <td>{{ number_format($character->volume) }}</td>
+                    <td>{{ number_format($character->tax) }}</td>
+                    <td>{{ number_format($character->tax2) }}</td>
+                    <td>{{ number_format($character->tax3) }}</td>
                 </tr>
             @endforeach
             </tbody>
