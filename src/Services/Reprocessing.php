@@ -35,7 +35,8 @@ class Reprocessing
         $result = [];
         foreach($rep as $r)
         {
-            $result[$r->materialTypeID] = $r->quantity * $r_count;
+            // 0.9 entspricht 90% refining Rate
+            $result[$r->materialTypeID] = ($r->quantity*0.9) * $r_count;
         }
         if (!$r_rest)
         {

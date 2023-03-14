@@ -73,8 +73,8 @@
                 <th>CharacterName</th>
                 <th>CharacterID</th>
                 <th>Mined Amount</th>
-                <th>Est. Value</th>
-                <th>Percentage</th>
+                <th>ORE Price</th>
+                <th>Refined Price 90%</th>
             </tr>
             </thead>
             <tbody>
