@@ -74,7 +74,8 @@
                 <th>CharacterID</th>
                 <th>Mined Amount</th>
                 <th>ORE Price</th>
-                <th>Refined Price 90%</th>
+                <th>EvE Praisal</th>
+                <th>EvE Market</th>
             </tr>
             </thead>
             <tbody>
@@ -85,6 +86,7 @@
                     <td>{{ number_format($character->priceSummary,2) }}</td>
                     <td>{{ number_format($character->tax, 2) }}</td>
                     <td>{{ number_format($character->tax2, 2) }}</td>
+                    <td>{{ number_format($character->tax3, 2) }}</td>
                 </tr>
             @endforeach
             </tbody>

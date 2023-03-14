@@ -41,6 +41,14 @@ class MiningTaxService
             ->get();
     }
 
+    private function getItemPriceById(int $id)
+    {
+        return DB::table('market_prices')
+            ->select('average_price')
+            ->where('type_id', '=', $id)
+            ->pluck('average_price');
+    }
+
     public function createMiningTaxResult(int $corpId, int $month, int $year): MiningTaxResult
     {
         $miningResult = new MiningTaxResult($month, $year);
@@ -82,6 +90,8 @@ class MiningTaxService
             {
                 $price = EvePraisalHelper::getItemPriceByTypeId($key) * $value;
                 $charData->addTax2($price);
+                $market_price = $this->getItemPriceById($key) * $value;
+                $charData->addTax3($price);
             }
         }
 

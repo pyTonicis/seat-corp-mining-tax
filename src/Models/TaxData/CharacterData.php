@@ -24,6 +24,8 @@ class CharacterData
 
     public $tax2;
 
+    public $tax3;
+
     /**
      * @var int
      */
@@ -100,5 +102,9 @@ class CharacterData
 
     public function addTax2(int $taxValue) {
         $this->tax2 += $taxValue;
+    }
+
+    public function addTax3(int $taxValue) {
+        $this->tax3 += $taxValue;
     }
 }
