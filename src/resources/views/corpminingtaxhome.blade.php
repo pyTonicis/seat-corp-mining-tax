@@ -43,14 +43,26 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Mining performance last 12 month`s</h3>
                 </div>
                 <div class="card-body">
-                    <div style="height: 250px">
-                    <canvas id="mining_chart" height="250"></canvas>
+                    <div style="height: 300px">
+                    <canvas id="mining_chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Mining volume per Group</h3>
+                </div>
+                <div class="card-body">
+                    <div style="height: 300px">
+                        <h3>Hier kommt ein Chart rein</h3>
                     </div>
                 </div>
             </div>
