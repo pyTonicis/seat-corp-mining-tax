@@ -62,7 +62,7 @@
                 </div>
                 <div class="card-body">
                     <div style="height: 300px">
-                        <h3>Hier kommt ein Chart rein</h3>
+                        <h3>{{ $test }}</h3>
                     </div>
                 </div>
             </div>
@@ -161,6 +161,24 @@
             },
         };
 
-            new Chart(document.getElementById('mining_chart').getContext('2d'), config);
+        new Chart(document.getElementById('mining_chart').getContext('2d'), config);
+
+/*        $.get("http://devseat.wipeout-inc.de/home/chart/server-status", function (data) {
+
+            new Chart($("canvas#serverstatus"), {
+                type   : 'line',
+                data   : data,
+                options: {
+                    legend: {
+                        display: false
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: false
+                        }]
+                    }
+                }
+            });
+        });*/
     </script>
 @endpush

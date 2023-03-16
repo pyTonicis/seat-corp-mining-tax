@@ -29,7 +29,8 @@ Route::group([
 
             Route::get('/')
                 ->name('corpminingtax.home')
-                ->uses('CorpMiningOverviewController@getHome'); //getHome
+                ->uses('CorpMiningOverviewController@getHome')
+                ->middleware('can:character.sheet,character');
 
             Route::post('/getMiningData')
                 ->name('corpminingtax.data')

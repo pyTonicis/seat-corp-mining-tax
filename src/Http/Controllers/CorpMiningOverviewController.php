@@ -32,7 +32,7 @@ use Datatables;
 
 class CorpMiningOverviewController extends Controller
 {
-    public function getHome()
+    public function getHome(CharacterInfo $character)
     {
         $tmq = 5001;
         $tmv = 500100;
@@ -41,21 +41,32 @@ class CorpMiningOverviewController extends Controller
             'total_mined_quantity' => $tmq,
             'total_mined_volume' => $tmv,
             'total_mined_isk' => $tmisk,
+            'test' => $character->character_id,
         ]);
     }
 
-    public function getCharacterMiningData(Request $request)
+    public function getCharacterMiningData(CharacterInfo $character)
     {
-        if ($request->ajax()) {
-            $data = Student::latest()->get();
-            return Datatables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
-                    return $actionBtn;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
-        }
+        /*$data = $this->getCharacterSkillsAmountPerLevel($character->character_id);
+
+        return response()->json([
+            'labels'   => [
+                'Level 0', 'Level 1', 'Level 2', 'Level 3', 'Level 4', 'Level 5',
+            ],
+            'datasets' => [
+                [
+                    'data'            => $data,
+                    'backgroundColor' => [
+                        '#00c0ef',
+                        '#39cccc',
+                        '#00a65a',
+                        '#605ca8',
+                        '#001f3f',
+                        '#3c8dbc',
+                    ],
+                ],
+            ],
+        ]);*/
+
     }
 }
