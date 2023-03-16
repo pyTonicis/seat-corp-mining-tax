@@ -22,6 +22,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 namespace pyTonicis\Seat\SeatCorpMiningTax\Http\Controllers;
 
+use pyTonicis\Seat\SeatCorpMiningTax\Helpers\CharacterHelper;
 use Seat\Web\Http\Controllers\Controller;
 use Seat\Eveapi\Models\Character\CharacterInfo;
 use Illuminate\Http\Request;
@@ -41,13 +42,13 @@ class CorpMiningOverviewController extends Controller
             'total_mined_quantity' => $tmq,
             'total_mined_volume' => $tmv,
             'total_mined_isk' => $tmisk,
-            'test' => auth()->user()->main_character['character_id'],
+            'test' => CharacterHelper::getLinkedCharacters(auth()->user()->main_character['character_id']),
         ]);
     }
 
     public function getCharacterMiningData()
     {
-
+        $main_char = auth()->user()->main_character['character_id'];
         /*$data = $this->getCharacterSkillsAmountPerLevel($character->character_id);
 
         return response()->json([
