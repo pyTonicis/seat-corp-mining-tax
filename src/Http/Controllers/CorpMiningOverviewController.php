@@ -32,7 +32,7 @@ use Datatables;
 
 class CorpMiningOverviewController extends Controller
 {
-    public function getHome(Request $request)
+    public function getHome()
     {
         $tmq = 5001;
         $tmv = 500100;
@@ -41,12 +41,13 @@ class CorpMiningOverviewController extends Controller
             'total_mined_quantity' => $tmq,
             'total_mined_volume' => $tmv,
             'total_mined_isk' => $tmisk,
-            'test' => auth()->user()->main_character,
+            'test' => auth()->user()->main_character['character_id'],
         ]);
     }
 
-    public function getCharacterMiningData(CharacterInfo $character)
+    public function getCharacterMiningData()
     {
+
         /*$data = $this->getCharacterSkillsAmountPerLevel($character->character_id);
 
         return response()->json([
