@@ -13,8 +13,10 @@ class CreateMiningTaxSettings extends Migration
      */
     public function up()
     {
-        Schema::create('mining_tax_settings', function (Blueprint $table) {
+        Schema::create('corp_mining_tax_settings', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('value');
             $table->timestamps();
         });
     }

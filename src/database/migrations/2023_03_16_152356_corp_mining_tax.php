@@ -15,7 +15,7 @@ class CorpMiningTax extends Migration
     {
         Schema::create('corp_mining_tax', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('character_id');
+            $table->integer('main_character_id');
             $table->integer('month');
             $table->integer('year');
             $table->integer('quantity');
