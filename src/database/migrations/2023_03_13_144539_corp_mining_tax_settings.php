@@ -30,7 +30,10 @@ class CreateMiningTaxSettings extends Migration
     private function init() : void
     {
         DB::table('corp_mining_tax_settings')
-            ->insert(['name' => 'corporation_id', 'value' => '']);
+            ->insert(['name' => 'corporation_id', 'value' => '98711234']);
+        DB::table('corp_mining_tax_settings')
+            ->insert(['name' => 'corporation_name', 'value' => 'WipeOut Inc. - Holding']);
+
     }
 
     /**
