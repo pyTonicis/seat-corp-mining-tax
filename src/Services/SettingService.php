@@ -8,9 +8,14 @@ class SettingService
 {
     private $_settings;
 
-    private function getSettingsFromDb()
+    public function __construct()
     {
-        $settings = DB::table('mining_tax_settings')
+        $this->getSettingsFromDb();
+    }
+
+    private function getSettingsFromDb() : void
+    {
+        $settings = DB::table('corp_mining_tax_settings')
             ->get();
         foreach($settings as $item)
         {
@@ -18,13 +23,36 @@ class SettingService
         }
     }
 
-    public function loadSettings(): array
-    {
-        return $this->_settings;
-    }
-
     public function getValue(string $key)
     {
         return $this->_settings[$key];
+    }
+
+    public function setValue(string $key, $value)
+    {
+        if (array_key_exists($key, $this->_settings))
+        {
+            DB::table('corp_mining_tax_settings')
+                ->where('key', $key)
+                ->update(['value' => $value]);
+        }
+    }
+
+    public function setAll(array $newSettings) : void
+    {
+        if (count($newSettings) <= 0)
+        {
+            return;
+        }
+
+        foreach($newSettings as $key => $value)
+        {
+            $this->setValue($key, $value);
+        }
+    }
+
+    public function getAll() : array
+    {
+        return $this->_settings;
     }
 }

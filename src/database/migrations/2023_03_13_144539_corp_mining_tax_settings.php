@@ -19,6 +19,18 @@ class CreateMiningTaxSettings extends Migration
             $table->string('value');
             $table->timestamps();
         });
+        $this->init();
+    }
+
+    /**
+     * Initalize settings table
+     *
+     * @return void
+     */
+    private function init() : void
+    {
+        DB::table('corp_mining_tax_settings')
+            ->insert(['name' => 'corporation_id', 'value' => '']);
     }
 
     /**

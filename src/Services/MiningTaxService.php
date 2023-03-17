@@ -89,6 +89,7 @@ class MiningTaxService
             $charData->addTax(EvePraisalHelper::getItemPriceByTypeId($data->type_id) * $data->quantity);
             $volume = Reprocessing::getMaterialInfo($data->type_id)->volume * $data->quantity;
             $charData->addVolume($volume);
+
             foreach(Reprocessing::ReprocessOreByTypeId($data->type_id, $data->quantity) as $key => $value)
             {
                 $price = EvePraisalHelper::getItemPriceByTypeId($key) * $value;
@@ -96,19 +97,6 @@ class MiningTaxService
                 $market_price = $this->getItemPriceById($key) * $value;
                 $charData->addTax3($market_price);
             }
-        }
-        foreach($miningResult->characterData as $cd)
-        {
-            DB::table('corp_mining_tax')
-                ->updateOrInsert(
-                    ['character_id' => $cd->characterId],
-                    ['month' => $miningResult->$month],
-                    ['year' => $miningResult->$year],
-                    ['quantity' => $cd->priceSummary],
-                    ['volume' => $cd->volume],
-                    ['price' => $cd->tax3],
-                    ['tax' => $cd->tax3 / 10]
-                );
         }
 
         return $miningResult;
