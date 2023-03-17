@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMiningTaxSettings extends Migration
+class CorpMiningTaxSettings extends Migration
 {
     /**
      * Run the migrations.
