@@ -97,6 +97,19 @@ class MiningTaxService
                 $charData->addTax3($market_price);
             }
         }
+        foreach($miningResult->characterData as $cd)
+        {
+            DB::table('corp_mining_tax')
+                ->updateOrInsert(
+                    ['character_id' => $cd->characterid],
+                    ['month' => $miningResult->$month],
+                    ['year' => $miningResult->$year],
+                    ['quantity' => $cd->priceSummary],
+                    ['volume' => $cd->volume],
+                    ['price' => $cd->tax3],
+                    ['tax' => $cd->tax3 / 10]
+                );
+        }
 
         return $miningResult;
     }
