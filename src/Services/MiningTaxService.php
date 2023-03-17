@@ -101,7 +101,7 @@ class MiningTaxService
         {
             DB::table('corp_mining_tax')
                 ->updateOrInsert(
-                    ['character_id' => $cd->characterid],
+                    ['character_id' => $cd->characterId],
                     ['month' => $miningResult->$month],
                     ['year' => $miningResult->$year],
                     ['quantity' => $cd->priceSummary],
