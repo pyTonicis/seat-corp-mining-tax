@@ -48,7 +48,23 @@ class CorpMiningOverviewController extends Controller
 
     public function getCharacterMiningData()
     {
-        $main_char = auth()->user()->main_character['character_id'];
+        $characters = CharacterHelper::getLinkedCharacters(auth()->user()->main_character['character_id']);
+
+        $data = DB::table('character_minings as cm')
+            ->select('month', 'year', 'type_id', 'quantity')
+            ->whereIn('character_id', $characters)
+            ->get();
+        $month_now = date('m');
+        $date_start = date('Y-m', strtotime('-1 year'));
+        $label = array();
+        for($i=1;$i==12;$i++)
+        {
+            array_push($label, $i);
+        }
+        foreach($data as $d)
+        {
+
+        }
         /*$data = $this->getCharacterSkillsAmountPerLevel($character->character_id);
 
         return response()->json([

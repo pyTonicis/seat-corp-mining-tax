@@ -55,11 +55,10 @@ class CharacterHelper {
            ->where('character_id', $character_id)
            ->first();
        if($result->user_id) {
-           $user_id = $result->user_id;
            $data = DB::table('refresh_tokens')
                ->select('character_id')
-               ->where('user_id', $user_id)
-               ->get();
+               ->where('user_id', $result->user_id)
+               ->pluck('character_id');
        }
        return $data;
     }
