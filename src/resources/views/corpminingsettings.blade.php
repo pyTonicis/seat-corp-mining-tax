@@ -22,7 +22,7 @@
                         <div class="form-group-row">
                             <label class="col-md4 col-form-label" for="corpId">Corporation</label>
                             <div class="col-md-12">
-                                <select class="groupSearch form-control input-xs" name="corpId" id="corpId"><option value="1">{{ $settings->corporation_name }}</option></select>
+                                <select class="groupSearch form-control input-xs" name="corpId" id="corpId"><option value="1">{{ $settings['corporation_name'] }}</option></select>
                             </div>
                         </div>
                         <div class="form-group-row">
