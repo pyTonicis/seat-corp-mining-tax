@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMiningTaxSettings extends Migration
+class CorpMiningTaxSettings extends Migration
 {
     /**
      * Run the migrations.
@@ -30,7 +30,10 @@ class CreateMiningTaxSettings extends Migration
     private function init() : void
     {
         DB::table('corp_mining_tax_settings')
-            ->insert(['name' => 'corporation_id', 'value' => '']);
+            ->insert(['name' => 'corporation_id', 'value' => '98711234']);
+        DB::table('corp_mining_tax_settings')
+            ->insert(['name' => 'corporation_name', 'value' => 'WipeOut Inc. - Holding']);
+
     }
 
     /**
