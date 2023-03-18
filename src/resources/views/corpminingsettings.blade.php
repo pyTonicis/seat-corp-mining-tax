@@ -14,7 +14,7 @@
                     <h3 class="card-title">General Settings</h3>
                 </div>
                 <form action="{{ route('corpminingtax.settings.update') }}" method="post" id="settings-update" name="settings-update">
-                    {{ csrf_field }}
+                    @csrf
                     <div class="card-body">
                         <div class="box-body">
                             <legend>Global Settings</legend>
@@ -22,7 +22,7 @@
                         <div class="form-group-row">
                             <label class="col-md4 col-form-label" for="corpId">Corporation</label>
                             <div class="col-md-12">
-                                <select class="groupSearch form-control input-xs" name="corpId" id="corpId">{{ $settings->corporation_name }}</select>
+                                <select class="groupSearch form-control input-xs" name="corpId" id="corpId"><option value="1">{{ $settings->corporation_name }}</option></select>
                             </div>
                         </div>
                         <div class="form-group-row">
@@ -174,30 +174,3 @@
             </div>
         </div>
 @stop
-@push('javascript')
-    <script>
-        $('#corpId').select2({
-            placeholder: 'Corporation Name',
-            ajax: {
-                url: '/corpminingtax/getCorporations',
-                dataType: 'json',
-                delay: 250,
-                processResults: function (data) {
-                    return {
-                        results: $.map(data, function (item) {
-                            return {
-                                text: item.name,
-                                id: item.id
-                            }
-                        })
-                    };
-                },
-                initSelection: function (element, callback) {
-                    callback({id: 1, text: 'Meine Corp'});
-                },
-                cache: true
-            }
-        });
-        $('#corpId').val({{ $settings->corporation_id }}).trigger("change");
-    </script>
-@endpush
