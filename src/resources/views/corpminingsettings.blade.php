@@ -131,7 +131,6 @@
                         </div>
                         <div class="row">
                             <div class="form-group-row">
-                                @if (!$settings['taxes_moon'])
                                 <div class="form-check form-check-inline">
                                     @if ($settings['taxes_moon'] == '1')
                                         <input id="taxes_moon" name="taxes_moon" type="checkbox" class="form-check-input" value="1" checked>
