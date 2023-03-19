@@ -59,6 +59,13 @@ class SettingService
         if (!array_key_exists('taxes_abyssal', $newSettings)) {
             $newSettings['taxes_abyssal'] = 'false';
         }
+        if (array_key_exists('corporation_id', $newSettings)) {
+            $name = DB::table('corporation_infos')
+                    ->select('corporation_id', 'name')
+                    ->where('corporation_id', '=', $newSettings['corporation_id'])
+                    ->first();
+            $newSettings['corporation_name'] = $name->name;
+        }
         foreach($newSettings as $key => $value)
         {
             $this->setValue($key, $value);
