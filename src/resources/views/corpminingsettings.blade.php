@@ -22,7 +22,7 @@
                         <div class="form-group-row">
                             <label class="col-md4 col-form-label" for="corpId">Corporation</label>
                             <div class="col-md-12">
-                                <select class="groupSearch form-control input-xs" name="corp" id="corpId"></select>
+                                <select class="groupSearch form-control input-xs" name="corpId" id="corpId"></select>
                             </div>
                         </div>
                         <div class="form-group-row">
@@ -166,7 +166,7 @@
 @stop
 @push('javascript')
     <script>
-        $('#corp').select2({
+        $('#corpId').select2({
             placeholder: {{ $settings['corporation_name'] }},
             ajax: {
                 url: '/corpminingtax/getCorporations',
@@ -185,6 +185,6 @@
                 cache: true
             }
         });
-        $('#corp').val({{ $settings['corporation_id'] }}).trigger("change");
+        $('#corpId').val({{ $settings['corporation_id'] }}).trigger("change");
     </script>
 @endpush
