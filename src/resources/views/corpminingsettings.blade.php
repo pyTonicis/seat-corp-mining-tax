@@ -41,9 +41,9 @@
                             </div>
                         </div>
                         <div class="form-group-row">
-                            <label class="col-md4 col-form-label" for="ore_price_provider">Price Provider</label>
+                            <label class="col-md4 col-form-label" for="price_provider">Price Provider</label>
                             <div class="col-md-12">
-                                <select class="custom-select mr-sm-2" name="ore_price_provider" id="ore_price_provider">
+                                <select class="custom-select mr-sm-2" name="price_provider" id="price_provider">
                                     <option value="Eve Market">Eve Market</option>
                                     <option value="Eve Praisal">Eve Praisal</option>
                                 </select>
@@ -131,29 +131,54 @@
                         </div>
                         <div class="row">
                             <div class="form-group-row">
+                                @if (!$settings['taxes_moon'])
                                 <div class="form-check form-check-inline">
-                                    <input id="taxes_moon" name="taxes_moon" type="checkbox" class="form-check-input" value="{{ $settings['taxes_moon'] }}">
+                                    @if ($settings['taxes_moon'] == '1')
+                                        <input id="taxes_moon" name="taxes_moon" type="checkbox" class="form-check-input" value="1" checked>
+                                    @else
+                                        <input id="taxes_moon" name="taxes_moon" type="checkbox" class="form-check-input" value="0">
+                                    @endif
                                     <label class="form-check-label" for="taxes_moon">Moon Ore</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input id="taxes_corp_moon" name="taxes_corp_moon" type="checkbox" class="form-check-input" value="{{ $settings['taxes_corp_moon'] }}">
+                                    @if ($settings['taxes_corp_moon'] == '1')
+                                        <input id="taxes_corp_moon" name="taxes_corp_moon" type="checkbox" class="form-check-input" value="1" checked>
+                                    @else
+                                        <input id="taxes_corp_moon" name="taxes_corp_moon" type="checkbox" class="form-check-input" value="0">
+                                    @endif
                                     <label class="form-check-label" for="taxes-corp-moon">Corp Moon Ore</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input id="taxes_ore" name="taxes_ore" type="checkbox" class="form-check-input" value="{{ $settings['taxes_ore'] }}">
+                                    @if ($settings['taxes_ore'] == '1')
+                                        <input id="taxes_ore" name="taxes_ore" type="checkbox" class="form-check-input" value="1" checked>
+                                    @else
+                                        <input id="taxes_ore" name="taxes_ore" type="checkbox" class="form-check-input" value="0">
+                                    @endif
                                     <label class="form-check-label" for="taxes_ore">Ore</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input id="taxes_ice" name="taxes_ice" type="checkbox" class="form-check-input" value="{{ $settings['taxes_ice'] }}">
+                                    @if ($settings['taxes_ice'] == '1')
+                                        <input id="taxes_ice" name="taxes_ice" type="checkbox" class="form-check-input" value="1" checked>
+                                    @else
+                                        <input id="taxes_ice" name="taxes_ice" type="checkbox" class="form-check-input" value="0">
+                                    @endif
                                     <label class="form-check-label" for="taxes_ice">Ice</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input id="taxes_gas" name="taxes_gas" type="checkbox" class="form-check-input" value="{{ $settings['taxes_gas'] }}">
+                                    @if ($settings['taxes_gas'] == '1')
+                                        <input id="taxes_gas" name="taxes_gas" type="checkbox" class="form-check-input" value="1" checked>
+                                    @else
+                                        <input id="taxes_gas" name="taxes_gas" type="checkbox" class="form-check-input" value="0">
+                                    @endif
                                     <label class="form-check-label" for="taxes_gas">Gas</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input id="taxes_abyssal" name="taxes_abyssal" type="checkbox" class="form-check-input" value="{{ $settings['taxes_abyssal'] }}">
-                                    <label class="form-check-label" for="taxes_abyssal">Gas</label>
+                                    @if ($settings['taxes_abyssal'] == '1')
+                                    <input id="taxes_abyssal" name="taxes_abyssal" type="checkbox" class="form-check-input" value="1" checked>
+                                    @else
+                                        <input id="taxes_abyssal" name="taxes_abyssal" type="checkbox" class="form-check-input" value="0">
+                                    @endif
+                                    <label class="form-check-label" for="taxes_abyssal">Abyssal Ore</label>
                                 </div>
                             </div>
                         </div>
@@ -175,6 +200,26 @@
                     <div class="box-body">
                         <legend>Global Settings</legend>
                     </div>
+                    <h4>Corporation</h4>
+                    <p>
+                        Select the name of your Corporation (It's important for automatic monthly caluculating)
+                    </p>
+                    <h4>Ore Refining Rate</h4>
+                    <p>
+                        Set the maximum refining amount for your members. With implantat, full skill and a rigged Tatara it is 90%.
+                    </p>
+                    <h4>Ore Valuation Price</h4>
+                    <p>
+                        Calculating Price from ore oder minerals (refined). Standard is mineral price.
+                    </p>
+                    <h4>Price Provider</h4>
+                    <p>
+                        Chose a price provider to get ore/mineral prices.
+                    </p>
+                    <h4>Price Modifier</h4>
+                    <p>
+                        Modify base cost of the ore/minerals to adjust inflation/transport costs. Normaly it is 100%.
+                    </p>
                 </div>
             </div>
         </div>
@@ -203,6 +248,6 @@
         });
         $('#corpOd').val('{{ $settings['corporation_id'] }}').trigger('change');
         $('#ore_valuation_price').val('{{ $settings['ore_valuation_price'] }}').trigger('change');
-        $('#price_provider').val('{{ $settings['price_provider'] }}').trigger('change');
+        $('#price_provider').val('{{ $settings['ore_price_provider'] }}').trigger('change');
     </script>
 @endpush
