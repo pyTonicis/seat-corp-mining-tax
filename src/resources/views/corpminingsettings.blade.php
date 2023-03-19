@@ -132,51 +132,27 @@
                         <div class="row">
                             <div class="form-group-row">
                                 <div class="form-check form-check-inline">
-                                    @if ($settings['taxes_moon'] == '1')
-                                        <input id="taxes_moon" name="taxes_moon" type="checkbox" class="form-check-input" value="1" checked>
-                                    @else
-                                        <input id="taxes_moon" name="taxes_moon" type="checkbox" class="form-check-input" value="0">
-                                    @endif
+                                    <input id="taxes_moon" name="taxes_moon" type="checkbox" class="form-check-input">
                                     <label class="form-check-label" for="taxes_moon">Moon Ore</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    @if ($settings['taxes_corp_moon'] == '1')
-                                        <input id="taxes_corp_moon" name="taxes_corp_moon" type="checkbox" class="form-check-input" value="1" checked>
-                                    @else
-                                        <input id="taxes_corp_moon" name="taxes_corp_moon" type="checkbox" class="form-check-input" value="0">
-                                    @endif
+                                    <input id="taxes_corp_moon" name="taxes_corp_moon" type="checkbox" class="form-check-input">
                                     <label class="form-check-label" for="taxes-corp-moon">Corp Moon Ore</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    @if ($settings['taxes_ore'] == '1')
-                                        <input id="taxes_ore" name="taxes_ore" type="checkbox" class="form-check-input" value="1" checked>
-                                    @else
-                                        <input id="taxes_ore" name="taxes_ore" type="checkbox" class="form-check-input" value="0">
-                                    @endif
+                                    <input id="taxes_ore" name="taxes_ore" type="checkbox" class="form-check-input">
                                     <label class="form-check-label" for="taxes_ore">Ore</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    @if ($settings['taxes_ice'] == '1')
-                                        <input id="taxes_ice" name="taxes_ice" type="checkbox" class="form-check-input" value="1" checked>
-                                    @else
-                                        <input id="taxes_ice" name="taxes_ice" type="checkbox" class="form-check-input" value="0">
-                                    @endif
+                                    <input id="taxes_ice" name="taxes_ice" type="checkbox" class="form-check-input">
                                     <label class="form-check-label" for="taxes_ice">Ice</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    @if ($settings['taxes_gas'] == '1')
-                                        <input id="taxes_gas" name="taxes_gas" type="checkbox" class="form-check-input" value="1" checked>
-                                    @else
-                                        <input id="taxes_gas" name="taxes_gas" type="checkbox" class="form-check-input" value="0">
-                                    @endif
+                                    <input id="taxes_gas" name="taxes_gas" type="checkbox" class="form-check-input">
                                     <label class="form-check-label" for="taxes_gas">Gas</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    @if ($settings['taxes_abyssal'] == '1')
-                                    <input id="taxes_abyssal" name="taxes_abyssal" type="checkbox" class="form-check-input" value="1" checked>
-                                    @else
-                                        <input id="taxes_abyssal" name="taxes_abyssal" type="checkbox" class="form-check-input" value="0">
-                                    @endif
+                                    <input id="taxes_abyssal" name="taxes_abyssal" type="checkbox" class="form-check-input">
                                     <label class="form-check-label" for="taxes_abyssal">Abyssal Ore</label>
                                 </div>
                             </div>
@@ -248,5 +224,11 @@
         $('#corpOd').val('{{ $settings['corporation_id'] }}').trigger('change');
         $('#ore_valuation_price').val('{{ $settings['ore_valuation_price'] }}').trigger('change');
         $('#price_provider').val('{{ $settings['price_provider'] }}').trigger('change');
+        document.getElementById('taxes_ore').checked = {{ $settings['taxes_ore'] }};
+        document.getElementById('taxes_moon').checked = {{ $settings['taxes_moon'] }};
+        document.getElementById('taxes_corp_moon').checked = {{ $settings['taxes_corp_moon'] }};
+        document.getElementById('taxes_ice').checked = {{ $settings['taxes_ice'] }};
+        document.getElementById('taxes_gas').checked = {{ $settings['taxes_gas'] }};
+        document.getElementById('taxes_abyssal').checked = {{ $settings['taxes_abyssal'] }};
     </script>
 @endpush
