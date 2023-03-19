@@ -75,17 +75,6 @@
                                 <option value="5">4 Weeks</option>
                             </select>
                         </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Tax Rates</h3>
-                </div>
-                <form action="" method="post" id="tax-settings-update" name="tax-settings-update">
-                    <div class="card-body">
                         <div class="box-body">
                             <legend>Moon Tax</legend>
                         </div>
@@ -173,6 +162,7 @@
                 </form>
             </div>
         </div>
+    </div>
 @stop
 @push('javascript')
     <script>
