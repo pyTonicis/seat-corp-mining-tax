@@ -132,27 +132,27 @@
                         <div class="row">
                             <div class="form-group-row">
                                 <div class="form-check form-check-inline">
-                                    <input id="taxes_moon" name="taxes_moon" type="checkbox" class="form-check-input">
+                                    <input id="taxes_moon" name="taxes_moon" type="checkbox" class="form-check-input" value="true">
                                     <label class="form-check-label" for="taxes_moon">Moon Ore</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input id="taxes_corp_moon" name="taxes_corp_moon" type="checkbox" class="form-check-input">
+                                    <input id="taxes_corp_moon" name="taxes_corp_moon" type="checkbox" class="form-check-input" value="true">
                                     <label class="form-check-label" for="taxes-corp-moon">Corp Moon Ore</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input id="taxes_ore" name="taxes_ore" type="checkbox" class="form-check-input">
+                                    <input id="taxes_ore" name="taxes_ore" type="checkbox" class="form-check-input" value="true">
                                     <label class="form-check-label" for="taxes_ore">Ore</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input id="taxes_ice" name="taxes_ice" type="checkbox" class="form-check-input">
+                                    <input id="taxes_ice" name="taxes_ice" type="checkbox" class="form-check-input" value="true">
                                     <label class="form-check-label" for="taxes_ice">Ice</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input id="taxes_gas" name="taxes_gas" type="checkbox" class="form-check-input">
+                                    <input id="taxes_gas" name="taxes_gas" type="checkbox" class="form-check-input" value="true">
                                     <label class="form-check-label" for="taxes_gas">Gas</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input id="taxes_abyssal" name="taxes_abyssal" type="checkbox" class="form-check-input">
+                                    <input id="taxes_abyssal" name="taxes_abyssal" type="checkbox" class="form-check-input" value="true">
                                     <label class="form-check-label" for="taxes_abyssal">Abyssal Ore</label>
                                 </div>
                             </div>
