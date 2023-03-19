@@ -215,7 +215,7 @@
 @push('javascript')
     <script>
         $('#corporation_id').select2({
-            placeholder: 'Chose a Corporation',
+            placeholder: '{{ $settings['corporation_name'] }}',
             ajax: {
                 url: '/corpminingtax/getCorporations',
                 dataType: 'json',
