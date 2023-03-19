@@ -185,7 +185,6 @@
                 cache: true
             }
         });
-        var newOption = new Option({{ $settings['corporation_name'] }}, {{ $settings['corporation_id'] }}, true, true);
-        $('#corpId').append(newOption).trigger('change');
+        $('#corpOd').val('{{ $settings['corporation_id'] }}').trigger('change');
     </script>
 @endpush

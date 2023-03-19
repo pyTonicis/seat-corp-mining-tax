@@ -31,7 +31,7 @@ class SettingService
     public function setValue(string $key, $value)
     {
         DB::table('corp_mining_tax_settings')
-            ->where('key', $key)
+            ->where('name', $key)
             ->update(['value' => $value]);
     }
 
