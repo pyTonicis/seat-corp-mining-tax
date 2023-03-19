@@ -30,12 +30,6 @@ class SettingService
 
     public function setValue(string $key, $value)
     {
-        if ($value == 'on') {
-            $value = 'true';
-        }
-        elseif ($value == 'off') {
-            $value = 'false';
-        }
         DB::table('corp_mining_tax_settings')
             ->where('name', $key)
             ->update(['value' => $value]);
@@ -47,7 +41,24 @@ class SettingService
         {
             return;
         }
-
+        if (!array_key_exists('taxes_moon', $newSettings)) {
+            $newSettings['taxes_moon'] = 'false';
+         }
+        if (!array_key_exists('taxes_corp_moon', $newSettings)) {
+            $newSettings['taxes_corp_moon'] = 'false';
+        }
+        if (!array_key_exists('taxes_ore', $newSettings)) {
+            $newSettings['taxes_ore'] = 'false';
+        }
+        if (!array_key_exists('taxes_ice', $newSettings)) {
+            $newSettings['taxes_ice'] = 'false';
+        }
+        if (!array_key_exists('taxes_gas', $newSettings)) {
+            $newSettings['taxes_gas'] = 'false';
+        }
+        if (!array_key_exists('taxes_abyssal', $newSettings)) {
+            $newSettings['taxes_abyssal'] = 'false';
+        }
         foreach($newSettings as $key => $value)
         {
             $this->setValue($key, $value);
