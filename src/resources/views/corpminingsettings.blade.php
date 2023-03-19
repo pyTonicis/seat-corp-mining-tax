@@ -203,6 +203,6 @@
         });
         $('#corpOd').val('{{ $settings['corporation_id'] }}').trigger('change');
         $('#ore_valuation_price').val('{{ $settings['ore_valuation_price'] }}').trigger('change');
-        $('#ore_price_provider').val('{{ $settings['ore_price_provider'] }}').trigger('change');
+        $('#price_provider').val('{{ $settings['price_provider'] }}').trigger('change');
     </script>
 @endpush

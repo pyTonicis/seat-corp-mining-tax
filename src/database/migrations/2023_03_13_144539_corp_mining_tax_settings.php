@@ -58,6 +58,8 @@ class CorpMiningTaxSettings extends Migration
         DB::table('corp_mining_tax_settings')
             ->insert(['name' => 'ice_rate', 'value' => '10']);
         DB::table('corp_mining_tax_settings')
+            ->insert(['name' => 'ore_rate', 'value' => '10']);
+        DB::table('corp_mining_tax_settings')
             ->insert(['name' => 'gas_rate', 'value' => '10']);
         DB::table('corp_mining_tax_settings')
             ->insert(['name' => 'abyssal_rate', 'value' => '5']);
