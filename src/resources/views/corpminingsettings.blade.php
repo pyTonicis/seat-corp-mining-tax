@@ -22,7 +22,7 @@
                         <div class="form-group-row">
                             <label class="col-md4 col-form-label" for="corpId">Corporation</label>
                             <div class="col-md-12">
-                                <select class="groupSearch form-control input-xs" name="corpId" id="corpId"></select>
+                                <select class="groupSearch form-control input-xs" name="corporation_name" id="corporation_id"></select>
                             </div>
                         </div>
                         <div class="form-group-row">
@@ -60,7 +60,7 @@
                             <legend>Contract Settings</legend>
                         </div>
                         <div class="form-group-row">
-                            <label class="col-md4 col-form-label" for="contract_issuer">Contract Character Name</label>
+                            <label class="col-md4 col-form-label" for="contract_issuer">Contract Issuer Character Name</label>
                             <div class="col-md-12">
                                 <input id="contract_issuer" name="contract_issuer" type="text" class="form-control input-md" value="{{ $settings['contract_issuer'] }}">
                             </div>
@@ -132,27 +132,27 @@
                         <div class="row">
                             <div class="form-group-row">
                                 <div class="form-check form-check-inline">
-                                    <input id="taxes_moon" name="taxes_moon" type="checkbox" class="form-check-input" value="true">
+                                    <input id="taxes_moon" name="taxes_moon" type="checkbox" class="form-check-input">
                                     <label class="form-check-label" for="taxes_moon">Moon Ore</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input id="taxes_corp_moon" name="taxes_corp_moon" type="checkbox" class="form-check-input" value="true">
+                                    <input id="taxes_corp_moon" name="taxes_corp_moon" type="checkbox" class="form-check-input">
                                     <label class="form-check-label" for="taxes-corp-moon">Corp Moon Ore</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input id="taxes_ore" name="taxes_ore" type="checkbox" class="form-check-input" value="true">
+                                    <input id="taxes_ore" name="taxes_ore" type="checkbox" class="form-check-input">
                                     <label class="form-check-label" for="taxes_ore">Ore</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input id="taxes_ice" name="taxes_ice" type="checkbox" class="form-check-input" value="true">
+                                    <input id="taxes_ice" name="taxes_ice" type="checkbox" class="form-check-input">
                                     <label class="form-check-label" for="taxes_ice">Ice</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input id="taxes_gas" name="taxes_gas" type="checkbox" class="form-check-input" value="true">
+                                    <input id="taxes_gas" name="taxes_gas" type="checkbox" class="form-check-input">
                                     <label class="form-check-label" for="taxes_gas">Gas</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input id="taxes_abyssal" name="taxes_abyssal" type="checkbox" class="form-check-input" value="true">
+                                    <input id="taxes_abyssal" name="taxes_abyssal" type="checkbox" class="form-check-input">
                                     <label class="form-check-label" for="taxes_abyssal">Abyssal Ore</label>
                                 </div>
                             </div>
@@ -175,25 +175,37 @@
                     <div class="box-body">
                         <legend>Global Settings</legend>
                     </div>
-                    <h4>Corporation</h4>
+                    <h5>Corporation</h5>
                     <p>
                         Select the name of your Corporation (It's important for automatic monthly caluculating)
                     </p>
-                    <h4>Ore Refining Rate</h4>
+                    <h5>Ore Refining Rate</h5>
                     <p>
                         Set the maximum refining amount for your members. With implantat, full skill and a rigged Tatara it is 90%.
                     </p>
-                    <h4>Ore Valuation Price</h4>
+                    <h5>Ore Valuation Price</h5>
                     <p>
                         Calculating Price from ore oder minerals (refined). Standard is mineral price.
                     </p>
-                    <h4>Price Provider</h4>
+                    <h5>Price Provider</h5>
                     <p>
                         Chose a price provider to get ore/mineral prices.
                     </p>
-                    <h4>Price Modifier</h4>
+                    <h5>Price Modifier</h5>
                     <p>
                         Modify base cost of the ore/minerals to adjust inflation/transport costs. Normaly it is 100%.
+                    </p>
+                    <legend>Contract Settings</legend>
+                    <p>
+                        Set Character Name of Contract issuer and contract exprie.
+                    </p>
+                    <legend>Moon Tax</legend>
+                    <p>
+                        Set Tax Rate for Moon Ore Types 0-100%
+                    </p>
+                    <legend>Tax Selector</legend>
+                    <p>
+                        Select Ore Groups for Tax Calculation
                     </p>
                 </div>
             </div>
@@ -202,7 +214,7 @@
 @stop
 @push('javascript')
     <script>
-        $('#corpId').select2({
+        $('#corporation_id').select2({
             placeholder: 'Chose a Corporation',
             ajax: {
                 url: '/corpminingtax/getCorporations',
@@ -221,7 +233,7 @@
                 cache: true
             }
         });
-        $('#corpOd').val('{{ $settings['corporation_id'] }}').trigger('change');
+        $('#corporation_id').val('{{ $settings['corporation_id'] }}').trigger('change');
         $('#ore_valuation_price').val('{{ $settings['ore_valuation_price'] }}').trigger('change');
         $('#price_provider').val('{{ $settings['price_provider'] }}').trigger('change');
         document.getElementById('taxes_ore').checked = {{ $settings['taxes_ore'] }};

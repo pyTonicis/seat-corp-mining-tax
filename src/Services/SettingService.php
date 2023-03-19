@@ -30,6 +30,12 @@ class SettingService
 
     public function setValue(string $key, $value)
     {
+        if ($value == 'on') {
+            $value = 'true';
+        }
+        elseif ($value == 'off') {
+            $value = 'false';
+        }
         DB::table('corp_mining_tax_settings')
             ->where('name', $key)
             ->update(['value' => $value]);
