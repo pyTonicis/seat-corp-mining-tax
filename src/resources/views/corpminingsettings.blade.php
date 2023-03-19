@@ -14,7 +14,7 @@
                     <h3 class="card-title">General Settings</h3>
                 </div>
                 <form action="{{ route('corpminingtax.settings.update') }}" method="post" id="settings-update" name="settings-update">
-                    {{ csrf_field() }}
+                    @csrf
                     <div class="card-body">
                         <div class="box-body">
                             <legend>Global Settings</legend>
@@ -198,6 +198,5 @@
                 cache: true
             }
         });
-        $('#corpId').val({{ $settings->corporation_id }}).trigger("change");
     </script>
 @endpush
