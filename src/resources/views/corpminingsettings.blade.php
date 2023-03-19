@@ -22,11 +22,7 @@
                         <div class="form-group-row">
                             <label class="col-md4 col-form-label" for="corpId">Corporation</label>
                             <div class="col-md-12">
-                                <select class="groupSearch form-control input-xs" name="corp" id="corpId">
-                                    @isset($settings['corporation_id'])
-                                        <option value="{{ $settings['corporation_id'] }}">{{ $settings['corporation_name']}}</option>
-                                    @endisset
-                                </select>
+                                <select class="groupSearch form-control input-xs" name="corp" id="corpId"></select>
                             </div>
                         </div>
                         <div class="form-group-row">
@@ -171,7 +167,7 @@
 @push('javascript')
     <script>
         $('#corp').select2({
-            placeholder: 'Corporation Name',
+            placeholder: {{ $settings['corporation_name'] }},
             ajax: {
                 url: '/corpminingtax/getCorporations',
                 dataType: 'json',
@@ -185,9 +181,6 @@
                             }
                         })
                     };
-                },
-                initSelection: function (element, callback) {
-                    callback({id: 1, text: 'Meine Corp'});
                 },
                 cache: true
             }
