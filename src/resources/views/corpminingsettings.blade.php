@@ -22,13 +22,17 @@
                         <div class="form-group-row">
                             <label class="col-md4 col-form-label" for="corpId">Corporation</label>
                             <div class="col-md-12">
-                                <select class="groupSearch form-control input-xs" name="corpId" id="corpId"></select>
+                                <select class="groupSearch form-control input-xs" name="corp" id="corpId">
+                                    @isset($settings['corporation_id'])
+                                        <option value="{{ $settings['corporation_id'] }}">{{ $settings['corporation_name']}}</option>
+                                    @endisset
+                                </select>
                             </div>
                         </div>
                         <div class="form-group-row">
                             <label class="col-md4 col-form-label" for="ore-price-modify">Ore Refining Rate</label>
                             <div class="col-md-12">
-                                <input id="ore-refining-rate" name="ore-refining-rate" type="number" class="form-control input-md" value="91" min="0" max="100">
+                                <input id="ore-refining-rate" name="ore-refining-rate" type="number" class="form-control input-md" value="{{ $settings['ore_refining_rate'] }}" min="0" max="100">
                             </div>
                         </div>
                         <div class="form-group-row">
@@ -166,7 +170,7 @@
 @stop
 @push('javascript')
     <script>
-        $('#corpId').select2({
+        $('#corp').select2({
             placeholder: 'Corporation Name',
             ajax: {
                 url: '/corpminingtax/getCorporations',
@@ -188,6 +192,6 @@
                 cache: true
             }
         });
-        $('#corpId').val({{ $settings['corporation_id'] }}).trigger("change");
+        $('#corp').val({{ $settings['corporation_id'] }}).trigger("change");
     </script>
 @endpush
