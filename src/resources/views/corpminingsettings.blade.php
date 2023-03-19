@@ -198,6 +198,6 @@
                 cache: true
             }
         });
-        $('#corpId').val({{ $settings->corporation_id }}).trigger("change");
+        $('#corpId').val({{ $settings['corporation_id'] }}).trigger("change");
     </script>
 @endpush
