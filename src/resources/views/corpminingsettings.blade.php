@@ -26,33 +26,33 @@
                             </div>
                         </div>
                         <div class="form-group-row">
-                            <label class="col-md4 col-form-label" for="ore-price-modify">Ore Refining Rate</label>
+                            <label class="col-md4 col-form-label" for="ore_refining_rate">Ore Refining Rate</label>
                             <div class="col-md-12">
                                 <input id="ore_refining_rate" name="ore_refining_rate" type="number" class="form-control input-md" value="{{ $settings['ore_refining_rate'] }}" min="0" max="100">
                             </div>
                         </div>
                         <div class="form-group-row">
-                            <label class="col-md4 col-form-label" for="ore-valuation-price">Ore Valuation Price</label>
+                            <label class="col-md4 col-form-label" for="ore_valuation_price">Ore Valuation Price</label>
                             <div class="col-md-12">
-                                <select class="custom-select mr-sm-2" name="ore-valuation-price" id="ore-valuation-price">
-                                    <option value="1">Ore Price</option>
-                                    <option value="2">Mineral Price</option>
+                                <select class="custom-select mr-sm-2" name="ore_valuation_price" id="ore_valuation_price">
+                                    <option value="Ore Price">Ore Price</option>
+                                    <option value="Mineral Price">Mineral Price</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group-row">
-                            <label class="col-md4 col-form-label" for="ore-price-provider">Price Provider</label>
+                            <label class="col-md4 col-form-label" for="ore_price_provider">Price Provider</label>
                             <div class="col-md-12">
-                                <select class="custom-select mr-sm-2" name="ore-price-provider" id="ore-price-provider">
-                                    <option value="1">Eve Market</option>
-                                    <option value="2">Eve Praisal</option>
+                                <select class="custom-select mr-sm-2" name="ore_price_provider" id="ore_price_provider">
+                                    <option value="Eve Market">Eve Market</option>
+                                    <option value="Eve Praisal">Eve Praisal</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group-row">
-                            <label class="col-md4 col-form-label" for="price-modifier">Price Modifier</label>
+                            <label class="col-md4 col-form-label" for="price_modifier">Price Modifier</label>
                             <div class="col-md-12">
-                                <input id="price-modifier" name="price-modifier" type="number" class="form-control input-md" value="98" min="0" max="100">
+                                <input id="price_modifier" name="price_modifier" type="number" class="form-control input-md" value="{{ $settings['price_modifier'] }}" min="0" max="100">
                             </div>
                         </div>
                         <p></p>
@@ -60,70 +60,70 @@
                             <legend>Contract Settings</legend>
                         </div>
                         <div class="form-group-row">
-                            <label class="col-md4 col-form-label" for="contract-holder">Contract Character Name</label>
+                            <label class="col-md4 col-form-label" for="contract_issuer">Contract Character Name</label>
                             <div class="col-md-12">
-                                <input id="contract-holder" name="contract-holder" type="text" class="form-control input-md" value="DollarBoy">
+                                <input id="contract_issuer" name="contract_issuer" type="text" class="form-control input-md" value="{{ $settings['contract_issuer'] }}">
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <label class="col-md4 col-form-label" for="contract-exprie">Expire in</label>
-                            <select class="custom-select mr-sm-2" name="contract-expire" id="contract-expire">
-                                <option value="1">1 Day</option>
-                                <option value="2">2 Days</option>
-                                <option value="3">3 Days</option>
-                                <option value="4">1 Week</option>
-                                <option value="5">4 Weeks</option>
-                            </select>
+                            <label class="col-md4 col-form-label" for="contract_expire">Expire in</label>
+                            <input id="contract_expire" name="contract_expire" type="text" class="form-control input-md" value="{{ $settings['contract_expire'] }}">
                         </div>
                         <div class="box-body">
                             <legend>Moon Tax</legend>
                         </div>
                         <div class="form-group-row">
-                            <label class="col-md4 col-form-label" for="r64-rate">R64</label>
+                            <label class="col-md4 col-form-label" for="r64_rate">R64</label>
                             <div class="col-md-12">
-                                <input id="r64-rate" name="r64-rate" type="number" class="form-control input-md" value="10" min="0" max="100">
+                                <input id="r64_rate" name="r64_rate" type="number" class="form-control input-md" value="{{ $settings['r64_rate'] }}" min="0" max="100">
                             </div>
                         </div>
                         <div class="form-group-row">
-                            <label class="col-md4 col-form-label" for="r32-rate">R32</label>
+                            <label class="col-md4 col-form-label" for="r32_rate">R32</label>
                             <div class="col-md-12">
-                                <input id="r32-rate" name="r32-rate" type="number" class="form-control input-md" value="10" min="0" max="100">
+                                <input id="r32_rate" name="r32_rate" type="number" class="form-control input-md" value="{{ $settings['r32_rate'] }}" min="0" max="100">
                             </div>
                         </div>
                         <div class="form-group-row">
-                            <label class="col-md4 col-form-label" for="r16-rate">R16</label>
+                            <label class="col-md4 col-form-label" for="r16_rate">R16</label>
                             <div class="col-md-12">
-                                <input id="r16-rate" name="r16-rate" type="number" class="form-control input-md" value="10" min="0" max="100">
+                                <input id="r16_rate" name="r16_rate" type="number" class="form-control input-md" value="{{ $settings['r16_rate'] }}" min="0" max="100">
                             </div>
                         </div>
                         <div class="form-group-row">
-                            <label class="col-md4 col-form-label" for="r8-rate">R8</label>
+                            <label class="col-md4 col-form-label" for="r8_rate">R8</label>
                             <div class="col-md-12">
-                                <input id="r8-rate" name="r8-rate" type="number" class="form-control input-md" value="10" min="0" max="100">
+                                <input id="r8_rate" name="r8_rate" type="number" class="form-control input-md" value="{{ $settings['r8_rate'] }}" min="0" max="100">
                             </div>
                         </div>
                         <div class="form-group-row">
-                            <label class="col-md4 col-form-label" for="r4-rate">R4</label>
+                            <label class="col-md4 col-form-label" for="r4_rate">R4</label>
                             <div class="col-md-12">
-                                <input id="r4-rate" name="r4-rate" type="number" class="form-control input-md" value="10" min="0" max="100">
+                                <input id="r4_rate" name="r4_rate" type="number" class="form-control input-md" value="{{ $settings['r4_rate'] }}" min="0" max="100">
                             </div>
                         </div>
                         <div class="form-group-row">
-                            <label class="col-md4 col-form-label" for="ice-rate">ICE</label>
+                            <label class="col-md4 col-form-label" for="ice_rate">ICE</label>
                             <div class="col-md-12">
-                                <input id="ice-rate" name="ice-rate" type="number" class="form-control input-md" value="10" min="0" max="100">
+                                <input id="ice_rate" name="ice_rate" type="number" class="form-control input-md" value="{{ $settings['ice_rate'] }}" min="0" max="100">
                             </div>
                         </div>
                         <div class="form-group-row">
-                            <label class="col-md4 col-form-label" for="ore-rate">ORE</label>
+                            <label class="col-md4 col-form-label" for="ore_rate">ORE</label>
                             <div class="col-md-12">
-                                <input id="ore-rate" name="ore-rate" type="number" class="form-control input-md" value="10" min="0" max="100">
+                                <input id="ore_rate" name="ore_rate" type="number" class="form-control input-md" value="{{ $settings['ore_rate'] }}" min="0" max="100">
                             </div>
                         </div>
                         <div class="form-group-row">
-                            <label class="col-md4 col-form-label" for="gas-rate">GAS</label>
+                            <label class="col-md4 col-form-label" for="gas_rate">GAS</label>
                             <div class="col-md-12">
-                                <input id="gas-rate" name="gas-rate" type="number" class="form-control input-md" value="10" min="0" max="100">
+                                <input id="gas_rate" name="gas_rate" type="number" class="form-control input-md" value="{{ $settings['gas_rate'] }}" min="0" max="100">
+                            </div>
+                        </div>
+                        <div class="form-group-row">
+                            <label class="col-md4 col-form-label" for="abyssal_rate">Abyssal Ore</label>
+                            <div class="col-md-12">
+                                <input id="abyssal_rate" name="abyssal_rate" type="number" class="form-control input-md" value="{{ $settings['abyssal_rate'] }}" min="0" max="100">
                             </div>
                         </div>
                         <div class="box-body">
@@ -132,24 +132,28 @@
                         <div class="row">
                             <div class="form-group-row">
                                 <div class="form-check form-check-inline">
-                                    <input id="taxes-moon" name="taxes-moon" type="checkbox" class="form-check-input">
-                                    <label class="form-check-label" for="taxes-moon">Moon Ore</label>
+                                    <input id="taxes_moon" name="taxes_moon" type="checkbox" class="form-check-input" value="{{ $settings['taxes_moon'] }}">
+                                    <label class="form-check-label" for="taxes_moon">Moon Ore</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input id="taxes-corp-moon" name="taxes-corp-moon" type="checkbox" class="form-check-input">
+                                    <input id="taxes_corp_moon" name="taxes_corp_moon" type="checkbox" class="form-check-input" value="{{ $settings['taxes_corp_moon'] }}">
                                     <label class="form-check-label" for="taxes-corp-moon">Corp Moon Ore</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input id="taxes-ore" name="taxes-ore" type="checkbox" class="form-check-input">
-                                    <label class="form-check-label" for="taxes-ore">Ore</label>
+                                    <input id="taxes_ore" name="taxes_ore" type="checkbox" class="form-check-input" value="{{ $settings['taxes_ore'] }}">
+                                    <label class="form-check-label" for="taxes_ore">Ore</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input id="taxes-ice" name="taxes-ice" type="checkbox" class="form-check-input">
-                                    <label class="form-check-label" for="taxes-ice">Ice</label>
+                                    <input id="taxes_ice" name="taxes_ice" type="checkbox" class="form-check-input" value="{{ $settings['taxes_ice'] }}">
+                                    <label class="form-check-label" for="taxes_ice">Ice</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input id="taxes-gas" name="taxes-gas" type="checkbox" class="form-check-input">
-                                    <label class="form-check-label" for="taxes-gas">Gas</label>
+                                    <input id="taxes_gas" name="taxes_gas" type="checkbox" class="form-check-input" value="{{ $settings['taxes_gas'] }}">
+                                    <label class="form-check-label" for="taxes_gas">Gas</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input id="taxes_abyssal" name="taxes_abyssal" type="checkbox" class="form-check-input" value="{{ $settings['taxes_abyssal'] }}">
+                                    <label class="form-check-label" for="taxes_abyssal">Gas</label>
                                 </div>
                             </div>
                         </div>
@@ -160,6 +164,18 @@
                         </button>
                     </div>
                 </form>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Settings Info</h3>
+                </div>
+                <div class="card-body">
+                    <div class="box-body">
+                        <legend>Global Settings</legend>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -186,5 +202,7 @@
             }
         });
         $('#corpOd').val('{{ $settings['corporation_id'] }}').trigger('change');
+        $('#ore_valuation_price').val('{{ $settings['ore_valuation_price'] }}').trigger('change');
+        $('#ore_price_provider').val('{{ $settings['ore_price_provider'] }}').trigger('change');
     </script>
 @endpush
