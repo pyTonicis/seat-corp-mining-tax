@@ -14,7 +14,7 @@
                     <h3 class="card-title">General Settings</h3>
                 </div>
                 <form action="{{ route('corpminingtax.settings.update') }}" method="post" id="settings-update" name="settings-update">
-                    @csrf
+                    {{ csrf_field() }}
                     <div class="card-body">
                         <div class="box-body">
                             <legend>Global Settings</legend>
@@ -22,7 +22,7 @@
                         <div class="form-group-row">
                             <label class="col-md4 col-form-label" for="corpId">Corporation</label>
                             <div class="col-md-12">
-                                <select class="groupSearch form-control input-xs" name="corpId" id="corpId">{{ $settings['corporation_name'] }}</select>
+                                <select class="groupSearch form-control input-xs" name="corpId" id="corpId">{{ $settings->corporation_name }}</select>
                             </div>
                         </div>
                         <div class="form-group-row">
@@ -198,5 +198,6 @@
                 cache: true
             }
         });
+        $('#corpId').val({{ $settings->corporation_id }}).trigger("change");
     </script>
 @endpush
