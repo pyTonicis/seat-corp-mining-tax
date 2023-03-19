@@ -30,12 +30,9 @@ class SettingService
 
     public function setValue(string $key, $value)
     {
-        if (array_key_exists($key, $this->_settings))
-        {
-            DB::table('corp_mining_tax_settings')
-                ->where('key', $key)
-                ->update(['value' => $value]);
-        }
+        DB::table('corp_mining_tax_settings')
+            ->where('key', $key)
+            ->update(['value' => $value]);
     }
 
     public function setAll(array $newSettings) : void

@@ -167,7 +167,7 @@
 @push('javascript')
     <script>
         $('#corpId').select2({
-            placeholder: {{ $settings['corporation_name'] }},
+            placeholder: 'Chose a Corporation',
             ajax: {
                 url: '/corpminingtax/getCorporations',
                 dataType: 'json',
@@ -185,6 +185,6 @@
                 cache: true
             }
         });
-        $('#corpId').val({{ $settings['corporation_id'] }}).trigger("change");
+        $('#corpId').val('{{ $settings['corporation_id'] }}').trigger("change");
     </script>
 @endpush
