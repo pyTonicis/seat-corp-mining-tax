@@ -26,7 +26,7 @@ class CorpMiningTaxSettingController extends Controller
 
     public function saveSettings(Request $request) {
         //return view('corpminingtax::corpminingsettings');
-        $this->settingsService($request->All());
+        $this->settingsService->setAll($request->All());
         return redirect()->back();
     }
 }
