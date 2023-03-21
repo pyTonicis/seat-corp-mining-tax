@@ -3,6 +3,8 @@
 namespace pyTonicis\Seat\SeatCorpMiningTax\Commands;
 
 use Illuminate\Console\Command;
+use pyTonicis\Seat\SeatCorpMiningTax\Jobs\UpdateMiningTax;
+
 class MiningTaxUpdate extends Command
 {
     protected $signature = 'tax:update {--F|force} {--N|now}  {year?} {month?}';
