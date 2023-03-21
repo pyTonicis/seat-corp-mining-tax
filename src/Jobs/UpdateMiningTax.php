@@ -35,7 +35,7 @@ class UpdateMiningTax implements ShouldQueue
     {
         //TODO Update database
         $settings = $this->settingService->getAll();
-        $data = $this->miningTaxService->createMiningTaxResult($settings['corporation_id'], $this->month, $this->year);
+        $data = $this->miningTaxService->createMiningTaxResult((int)$settings['corporation_id'], (int)$this->month, (int)$this->year);
         foreach($data->characterData as $character)
         {
             DB::table('corp_mining_tax')
