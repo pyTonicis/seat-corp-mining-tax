@@ -12,8 +12,11 @@ use pyTonicis\Seat\SeatCorpMiningTax\Services\SettingService;
 
 class UpdateMiningTax implements ShouldQueue
 {
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     private $month;
     private $year;
+
+    private $force;
 
     private $miningTaxService;
 
@@ -21,9 +24,10 @@ class UpdateMiningTax implements ShouldQueue
 
     public function __construct($force, $year, $month)
     {
+        $this->force = $force;
         $this->month = $month;
         $this->year = $year;
-        $this->miningTaxService = new MiningTaxService(19399254, $month, $year);
+        $this->miningTaxService = new MiningTaxService();
         $this->settingService = new SettingService();
     }
 
