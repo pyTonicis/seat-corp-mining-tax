@@ -7,6 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\DB;
 use pyTonicis\Seat\SeatCorpMiningTax\Services\MiningTaxService;
 use pyTonicis\Seat\SeatCorpMiningTax\Services\SettingService;
 
@@ -29,6 +30,11 @@ class UpdateMiningTax implements ShouldQueue
         $this->year = $year;
         $this->miningTaxService = new MiningTaxService();
         $this->settingService = new SettingService();
+    }
+
+    public function tags()
+    {
+        return ["seat-corp-mining-tax", "tax:update",];
     }
 
     public function handle()
