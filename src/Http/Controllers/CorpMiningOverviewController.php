@@ -63,8 +63,9 @@ class CorpMiningOverviewController extends Controller
         $data = array();
         foreach($labels as $label)
         {
-            $month = date('m', $label);
-            $year = date('Y', $label);
+            $datum = strtotime($label);
+            $month = (int)date('m', $datum);
+            $year = (int)date('Y', $datum);
             $result = DB::table('corp_mining_tax')
                         ->select('quantity', 'volume', 'price')
                         ->where('main_character_id', '=', $character)
