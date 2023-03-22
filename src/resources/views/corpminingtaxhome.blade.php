@@ -119,7 +119,9 @@
             labels: chart_labels,
             datasets: [{
                 label: 'Volume in x1000 m³',
-                data: chart_data,
+                data: [
+                    chart_data
+                    ],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.8)',
                     'rgba(255, 99, 132, 0.8)',
