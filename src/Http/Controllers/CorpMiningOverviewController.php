@@ -38,11 +38,36 @@ class CorpMiningOverviewController extends Controller
         $tmq = 5001;
         $tmv = 500100;
         $tmisk = 535345345325;
+        $character = auth()->user()->main_character['character_id'];
+        $l = array();
+        $datum_now = date('Y-m', time());
+
+        for ($i = 0; $i < 12; $i++) {
+            $m = "-" . $i . "month";
+            $datum_now = strtotime($m);
+            array_push($l, date('Y-m', (int)$datum_now));
+        }
+        $labels = array_reverse($l);
+        $data = array();
+        foreach ($labels as $label) {
+            $datum = strtotime($label);
+            $month = (int)date('m', $datum);
+            $year = (int)date('Y', $datum);
+            $result = DB::table('corp_mining_tax')
+                ->select('quantity', 'volume', 'price')
+                ->where('main_character_id', '=', $character)
+                ->where('month', '=', $month)
+                ->where('year', '=', $year)
+                ->pluck('volume');
+            array_push($data, $result);
+        }
         return view('corpminingtax::corpminingtaxhome', [
             'total_mined_quantity' => $tmq,
             'total_mined_volume' => $tmv,
             'total_mined_isk' => $tmisk,
             'test' => CharacterHelper::getLinkedCharacters(auth()->user()->main_character['character_id']),
+            'labels' => $labels,
+            'data' => $data,
         ]);
     }
 
@@ -53,65 +78,25 @@ class CorpMiningOverviewController extends Controller
         $l = array();
         $datum_now = date('Y-m', time());
 
-        for ($i=0; $i < 12; $i++)
-        {
-            $m = "-" .$i. "month";
+        for ($i = 0; $i < 12; $i++) {
+            $m = "-" . $i . "month";
             $datum_now = strtotime($m);
             array_push($l, date('Y-m', (int)$datum_now));
         }
         $labels = array_reverse($l);
         $data = array();
-        foreach($labels as $label)
-        {
+        foreach ($labels as $label) {
             $datum = strtotime($label);
             $month = (int)date('m', $datum);
             $year = (int)date('Y', $datum);
             $result = DB::table('corp_mining_tax')
-                        ->select('quantity', 'volume', 'price')
-                        ->where('main_character_id', '=', $character)
-                        ->where('month', '=', $month)
-                        ->where('year', '=', $year)
-                        ->pluck('volume');
+                ->select('quantity', 'volume', 'price')
+                ->where('main_character_id', '=', $character)
+                ->where('month', '=', $month)
+                ->where('year', '=', $year)
+                ->pluck('volume');
             array_push($data, $result);
         }
-        return response()->json([
-            'labels'   => [
-                $labels
-            ],
-            'datasets' => [
-                [
-                    'label'           => 'Volume in x1000m³',
-                    'data'            => $data,
-                    'backgroundColor' => [
-                        '#00c0ef',
-                        '#39cccc',
-                        '#00a65a',
-                        '#605ca8',
-                        '#001f3f',
-                        '#3c8dbc',
-                        '#00c0ef',
-                        '#00c0ef',
-                        '#00c0ef',
-                        '#00c0ef',
-                        '#00c0ef',
-                        '#00c0ef',
-                    ],
-                    'borderColor' => [
-                        '#ff0000',
-                        '#00ff00',
-                        '#0000ff',
-                        '#ff0000',
-                        '#00ff00',
-                        '#0000ff',
-                        '#ff0000',
-                        '#00ff00',
-                        '#0000ff',
-                        '#ff0000',
-                        '#00ff00',
-                        '#0000ff',
-                    ],
-                ],
-            ],
-        ]);
+        return $labels;
     }
 }

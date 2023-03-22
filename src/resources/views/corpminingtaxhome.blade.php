@@ -112,23 +112,60 @@
 @push('javascript')
     <script type="text/javascript">
 
-        $.get( {{ route('corpminingtax.mining.chart.data') }}, function (data) {
+        var chart_labels = {{ Js::from($labels) }};
+        var chart_data = {{ Js::from($data) }};
 
-            new Chart($("mining_chart"), {
-                type: 'bar',
-                data: data,
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    },
-                },
-            });
-            document.getElementById('tester').innerText = data;
-        });
+        const data = {
+            labels: chart_labels,
+            datasets: [{
+                label: 'Volume in x1000 m³',
+                data: chart_data,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(255, 99, 132, 0.8)',
+        ],
+        borderColor: [
+            'rgb(255, 99, 132)',
+            'rgb(255, 99, 132)',
+            'rgb(255, 99, 132)',
+            'rgb(255, 99, 132)',
+            'rgb(255, 99, 132)',
+            'rgb(255, 99, 132)',
+            'rgb(255, 99, 132)',
+            'rgb(255, 99, 132)',
+            'rgb(255, 99, 132)',
+            'rgb(255, 99, 132)',
+            'rgb(255, 99, 132)',
+            'rgb(255, 99, 132)'
+        ],
+            borderWidth: 1
+        }]
+        };
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            },
+        };
+
+        new Chart(document.getElementById('mining_chart').getContext('2d'), config);
 
     </script>
 @endpush
