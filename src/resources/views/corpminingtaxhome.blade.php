@@ -63,6 +63,7 @@
                 <div class="card-body">
                     <div style="height: 300px">
                         <h3>{{ $test }}</h3>
+                        <p id="tester">Geht nicht!</p>
                     </div>
                 </div>
             </div>
@@ -117,9 +118,6 @@
                 type: 'bar',
                 data: data,
                 options: {
-                    legend: {
-                        display: false
-                    },
                     responsive: true,
                     maintainAspectRatio: false,
                     scales: {
@@ -129,6 +127,7 @@
                     },
                 },
             });
+            document.getElementById('tester').innerText = data;
         });
 
     </script>
