@@ -112,8 +112,8 @@
 @push('javascript')
     <script type="text/javascript">
 
-        var chart_labels = {{ Js::from($labels) }};
-        var chart_data = {{ Js::from($data) }};
+        var chart_labels = @json($labels);
+        var chart_data = @json($data);
 
         const data = {
             labels: chart_labels,
