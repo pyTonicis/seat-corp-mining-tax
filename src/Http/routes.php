@@ -31,7 +31,7 @@ Route::group([
                 ->name('corpminingtax.home')
                 ->uses('CorpMiningOverviewController@getHome');
 
-            Route::get('/')
+            Route::post('/')
                 ->name('corpminingtax.mining.chart.data')
                 ->uses('CorpMiningOverviewController@getCharacterMiningBarChartData');
 

@@ -70,8 +70,8 @@ class CorpMiningOverviewController extends Controller
                         ->where('main_character_id', '=', $character)
                         ->where('month', '=', $month)
                         ->where('year', '=', $year)
-                        ->pluck();
-            array_push($data, $result->volume/1000);
+                        ->pluck('volume');
+            array_push($data, $result);
         }
         return response()->json([
             'labels'   => [
