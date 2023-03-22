@@ -35,9 +35,9 @@ class CorpMiningOverviewController extends Controller
 {
     public function getHome()
     {
-        $tmq = 5001;
+        $tmq = 0;
         $tmv = 0;
-        $tmisk = 535345345325;
+        $tmisk = 0;
         $character = auth()->user()->main_character['character_id'];
         $l = array();
         $datum_now = date('Y-m', time());
@@ -58,9 +58,11 @@ class CorpMiningOverviewController extends Controller
                 ->where('main_character_id', '=', $character)
                 ->where('month', '=', $month)
                 ->where('year', '=', $year)
-                ->pluck('volume');
-            array_push($data, $result);
-            $tmv += $result;
+                ->first();
+            array_push($data, $result->volume);
+            $tmv += $result->volume;
+            $tmisk += $result->price;
+            $tmq += $result->quantity;
         }
         return view('corpminingtax::corpminingtaxhome', [
             'total_mined_quantity' => $tmq,
