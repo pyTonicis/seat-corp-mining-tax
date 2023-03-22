@@ -59,10 +59,14 @@ class CorpMiningOverviewController extends Controller
                 ->where('month', '=', $month)
                 ->where('year', '=', $year)
                 ->first();
-            array_push($data, $result->volume);
-            $tmv += $result->volume;
-            $tmisk += $result->price;
-            $tmq += $result->quantity;
+            if(!is_null($result)) {
+                array_push($data, $result->volume);
+                $tmv += $result->volume;
+                $tmisk += $result->price;
+                $tmq += $result->quantity;
+            } else {
+                array_push($data, 0);
+            }
         }
         return view('corpminingtax::corpminingtaxhome', [
             'total_mined_quantity' => $tmq,
