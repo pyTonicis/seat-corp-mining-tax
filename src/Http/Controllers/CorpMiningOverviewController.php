@@ -46,33 +46,40 @@ class CorpMiningOverviewController extends Controller
         ]);
     }
 
-    public function getCharacterMiningData()
+    public function getCharacterMiningBarChartData()
     {
-        $characters = CharacterHelper::getLinkedCharacters(auth()->user()->main_character['character_id']);
+        //$characters = CharacterHelper::getLinkedCharacters(auth()->user()->main_character['character_id']);
+        $character = auth()->user()->main_character['character_id'];
+        $l = array();
+        $datum_now = date('Y-m', time());
 
-        $data = DB::table('character_minings as cm')
-            ->select('month', 'year', 'type_id', 'quantity')
-            ->whereIn('character_id', $characters)
-            ->get();
-        $month_now = date('m');
-        $date_start = date('Y-m', strtotime('-1 year'));
-        $label = array();
-        for($i=1;$i==12;$i++)
+        for ($i=0; $i < 12; $i++)
         {
-            array_push($label, $i);
+            $m = "-" .$i. "month";
+            $datum_now = strtotime($m);
+            array_push($l, date('Y-m', (int)$datum_now));
         }
-        foreach($data as $d)
+        $labels = array_reverse($l);
+        $data = array();
+        foreach($labels as $label)
         {
-
+            $month = date('m', $label);
+            $year = date('Y', $label);
+            $result = DB::table('corp_mining_tax')
+                        ->select('quantity', 'volume', 'price')
+                        ->where('main_character_id', '=', $character)
+                        ->where('month', '=', $month)
+                        ->where('year', '=', $year)
+                        ->pluck();
+            array_push($data, $result->volume/1000);
         }
-        /*$data = $this->getCharacterSkillsAmountPerLevel($character->character_id);
-
         return response()->json([
             'labels'   => [
-                'Level 0', 'Level 1', 'Level 2', 'Level 3', 'Level 4', 'Level 5',
+                $labels
             ],
             'datasets' => [
                 [
+                    'label'           => 'Volume in x1000m³',
                     'data'            => $data,
                     'backgroundColor' => [
                         '#00c0ef',
@@ -81,10 +88,29 @@ class CorpMiningOverviewController extends Controller
                         '#605ca8',
                         '#001f3f',
                         '#3c8dbc',
+                        '#00c0ef',
+                        '#00c0ef',
+                        '#00c0ef',
+                        '#00c0ef',
+                        '#00c0ef',
+                        '#00c0ef',
+                    ],
+                    'borderColor' => [
+                        '#ff0000',
+                        '#00ff00',
+                        '#0000ff',
+                        '#ff0000',
+                        '#00ff00',
+                        '#0000ff',
+                        '#ff0000',
+                        '#00ff00',
+                        '#0000ff',
+                        '#ff0000',
+                        '#00ff00',
+                        '#0000ff',
                     ],
                 ],
             ],
-        ]);*/
-
+        ]);
     }
 }

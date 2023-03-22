@@ -110,75 +110,26 @@
 @stop
 @push('javascript')
     <script type="text/javascript">
-        const labels = ["01-2022","02-2022","03-2022","04-2022","05-2022","06-2022","07-2022","08-2022","09-2022","10-2022","11-2022","12-2022"]
-        const data = {
-            labels: labels,
-            datasets: [{
-                label: 'Volume in x1000 m³',
-                data: [650, 590, 800, 810, 560, 550, 89, 1200, 3300, 540, 1300, 650],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(255, 99, 132, 0.8)'
-                ],
-                borderColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)'
-                ],
-                borderWidth: 1
-            }]
-        };
-        const config = {
-            type: 'bar',
-            data: data,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            },
-        };
 
-        new Chart(document.getElementById('mining_chart').getContext('2d'), config);
+        $.get( {{ route('corpminingtax.mining.chart.data') }}, function (data) {
 
-/*        $.get("http://devseat.wipeout-inc.de/home/chart/server-status", function (data) {
-
-            new Chart($("canvas#serverstatus"), {
-                type   : 'line',
-                data   : data,
+            new Chart($("mining_chart"), {
+                type: 'bar',
+                data: data,
                 options: {
                     legend: {
                         display: false
                     },
+                    responsive: true,
+                    maintainAspectRatio: false,
                     scales: {
-                        xAxes: [{
-                            display: false
-                        }]
-                    }
-                }
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                },
             });
-        });*/
+        });
+
     </script>
 @endpush

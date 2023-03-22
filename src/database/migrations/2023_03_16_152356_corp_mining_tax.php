@@ -18,10 +18,10 @@ class CorpMiningTax extends Migration
             $table->integer('main_character_id');
             $table->integer('month');
             $table->integer('year');
-            $table->integer('quantity');
-            $table->integer('volume');
-            $table->integer('price');
-            $table->integer('tax');
+            $table->biginteger('quantity');
+            $table->biginteger('volume');
+            $table->biginteger('price');
+            $table->biginteger('tax');
             $table->timestamps();
         });
     }
