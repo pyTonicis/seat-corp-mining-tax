@@ -49,6 +49,7 @@ class CorpMiningOverviewController extends Controller
         }
         $labels = array_reverse($l);
         $data = array();
+        $groups = array();
         foreach ($labels as $label) {
             $datum = strtotime($label);
             $month = (int)date('m', $datum);
@@ -60,7 +61,8 @@ class CorpMiningOverviewController extends Controller
                 ->where('year', '=', $year)
                 ->first();
             if(!is_null($result)) {
-                array_push($data, $result->volume);
+                $vol = (int)$result->volume / 1000;
+                array_push($data, $vol);
                 $tmv += $result->volume;
                 $tmisk += $result->price;
                 $tmq += $result->quantity;
@@ -78,32 +80,16 @@ class CorpMiningOverviewController extends Controller
         ]);
     }
 
-    public function getCharacterMiningBarChartData()
+    public function getCharacterMiningGroupsData(int $character_id, int $month, int $year)
     {
-        //$characters = CharacterHelper::getLinkedCharacters(auth()->user()->main_character['character_id']);
-        $character = auth()->user()->main_character['character_id'];
-        $l = array();
-        $datum_now = date('Y-m', time());
-
-        for ($i = 0; $i < 12; $i++) {
-            $m = "-" . $i . "month";
-            $datum_now = strtotime($m);
-            array_push($l, date('Y-m', (int)$datum_now));
-        }
-        $labels = array_reverse($l);
-        $data = array();
-        foreach ($labels as $label) {
-            $datum = strtotime($label);
-            $month = (int)date('m', $datum);
-            $year = (int)date('Y', $datum);
-            $result = DB::table('corp_mining_tax')
-                ->select('quantity', 'volume', 'price')
-                ->where('main_character_id', '=', $character)
-                ->where('month', '=', $month)
-                ->where('year', '=', $year)
-                ->pluck('volume');
-            array_push($data, $result);
-        }
-        return $labels;
+        $result = DB::table('character_minings as cm')
+                    ->selectRaw('cm.type_id, sum(cm.quantity) as quantity, it.typeName, it.groupName')
+                    ->join('invTypes as it', 'cm.type_id', '=', 'it.typeId')
+                    ->where('cm.character_id', '=', $character_id)
+                    ->where('cm.month', '=', $month)
+                    ->where('cm.year', '=', $year)
+                    ->groupBy('it.groupId')
+                    ->get();
+        return $result;
     }
 }

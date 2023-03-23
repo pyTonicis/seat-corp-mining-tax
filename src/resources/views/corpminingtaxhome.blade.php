@@ -166,5 +166,6 @@
 
         new Chart(document.getElementById('mining_chart').getContext('2d'), config);
 
+
     </script>
 @endpush
