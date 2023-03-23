@@ -62,7 +62,7 @@
                 </div>
                 <div class="card-body">
                     <div style="height: 300px">
-                        @foreach($mydata as $data)
+                        @foreach($test as $data)
                             <h5>{{ $data->quantity }}</h5>
                             <h5>{{ $data->typeName }}</h5>
                         @endforeach
