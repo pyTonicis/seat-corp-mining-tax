@@ -14,7 +14,7 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Total Mined Quantity <small>(last 12 month's)</small></span>
                     <span class="info-box-number">
-                        {{ number_format($total_mined_quantity) }}
+                        {{ number_format($total_mined_quantity) }} <small>units</small>
                     </span>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Total Mined Volume <small>(last 12 month's)</small></span>
                     <span class="info-box-number">
-                        {{ number_format($total_mined_volume) }}
+                        {{ number_format($total_mined_volume) }} <small>m³</small>
                     </span>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Total Mined ISK <small>(last 12 month's)</small></span>
                     <span class="info-box-number">
-                        {{ number_format($total_mined_isk) }}
+                        {{ number_format($total_mined_isk) }} <small>ISK</small>
                     </span>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="card-body">
                     <div style="height: 300px">
-                    <canvas id="mining_chart"></canvas>
+                        <canvas id="mining_chart"></canvas>
                     </div>
                 </div>
             </div>
@@ -62,8 +62,7 @@
                 </div>
                 <div class="card-body">
                     <div style="height: 300px">
-                        <p id="tester">Hier könnte Ihre Werbung stehen!</p>
-                        <p id="tester2">Huhu!</p>
+                        <canvas id="mining_groups"></canvas>
                     </div>
                 </div>
             </div>
@@ -115,9 +114,6 @@
         var chart_labels = @json($labels);
         var chart_data = @json($data);
 
-        document.getElementById('tester').innerText = chart_labels;
-        document.getElementById('tester2').innerText = chart_data;
-
         const data = {
             labels: chart_labels,
             datasets: [{
@@ -125,8 +121,30 @@
                 data: chart_data,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.9)',
+                    'rgba(255, 99, 132, 0.9)',
+                    'rgba(255, 99, 132, 0.9)',
+                    'rgba(255, 99, 132, 0.9)',
+                    'rgba(255, 99, 132, 0.9)',
+                    'rgba(255, 99, 132, 0.9)',
+                    'rgba(255, 99, 132, 0.9)',
+                    'rgba(255, 99, 132, 0.9)',
+                    'rgba(255, 99, 132, 0.9)',
+                    'rgba(255, 99, 132, 0.9)',
+                    'rgba(255, 99, 132, 0.9)',
+                    'rgba(255, 99, 132, 0.9)',
                     ],
                 borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 99, 132)',
                     'rgb(255, 99, 132)',
         ],
             borderWidth: 1

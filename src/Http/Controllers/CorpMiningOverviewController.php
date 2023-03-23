@@ -33,7 +33,7 @@ use Datatables;
 
 class CorpMiningOverviewController extends Controller
 {
-    public function getHome()
+    public function getHome(CharacterInfo $character)
     {
         $tmq = 0;
         $tmv = 0;
@@ -72,7 +72,7 @@ class CorpMiningOverviewController extends Controller
             'total_mined_quantity' => $tmq,
             'total_mined_volume' => $tmv,
             'total_mined_isk' => $tmisk,
-            'test' => CharacterHelper::getLinkedCharacters(auth()->user()->main_character['character_id']),
+            'test' => $character->character_id,
             'labels' => $labels,
             'data' => $data,
         ]);
