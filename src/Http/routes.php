@@ -27,7 +27,7 @@ Route::group([
     Route::prefix('/corpminingtax')
         ->group(function () {
 
-            Route::get('/{character}')
+            Route::get('/')
                 ->name('corpminingtax.home')
                 ->uses('CorpMiningOverviewController@getHome');
 
