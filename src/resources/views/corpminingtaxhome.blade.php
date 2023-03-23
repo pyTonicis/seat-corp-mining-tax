@@ -12,7 +12,7 @@
             <div class="info-box">
                 <span class="info-box-icon bg-yellow elevation-1"><i class="fa fa-dice-d20"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Total Mined Quantity</span>
+                    <span class="info-box-text">Total Mined Quantity <small>(last 12 month's)</small></span>
                     <span class="info-box-number">
                         {{ number_format($total_mined_quantity) }}
                     </span>
@@ -23,7 +23,7 @@
             <div class="info-box">
                 <span class="info-box-icon bg-red elevation-1"><i class="fa fa-gem"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Total Mined Volume</span>
+                    <span class="info-box-text">Total Mined Volume <small>(last 12 month's)</small></span>
                     <span class="info-box-number">
                         {{ number_format($total_mined_volume) }}
                     </span>
@@ -34,7 +34,7 @@
             <div class="info-box">
                 <span class="info-box-icon bg-green elevation-1"><i class="fa fa-coins"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Total Mined ISK</span>
+                    <span class="info-box-text">Total Mined ISK <small>(last 12 month's)</small></span>
                     <span class="info-box-number">
                         {{ number_format($total_mined_isk) }}
                     </span>
@@ -62,8 +62,6 @@
                 </div>
                 <div class="card-body">
                     <div style="height: 300px">
-                        <p>{{ $labels }}</p>
-                        <p>{{ $data }}</p>
                         <p id="tester">Hier könnte Ihre Werbung stehen!</p>
                         <p id="tester2">Huhu!</p>
                     </div>
@@ -124,36 +122,12 @@
             labels: chart_labels,
             datasets: [{
                 label: 'Volume in x1000 m³',
-                data: [
-                    chart_data
-                    ],
+                data: chart_data,
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(255, 99, 132, 0.8)',
-                    'rgba(255, 99, 132, 0.8)',
-        ],
-        borderColor: [
-            'rgb(255, 99, 132)',
-            'rgb(255, 99, 132)',
-            'rgb(255, 99, 132)',
-            'rgb(255, 99, 132)',
-            'rgb(255, 99, 132)',
-            'rgb(255, 99, 132)',
-            'rgb(255, 99, 132)',
-            'rgb(255, 99, 132)',
-            'rgb(255, 99, 132)',
-            'rgb(255, 99, 132)',
-            'rgb(255, 99, 132)',
-            'rgb(255, 99, 132)'
+                    'rgba(255, 99, 132, 0.9)',
+                    ],
+                borderColor: [
+                    'rgb(255, 99, 132)',
         ],
             borderWidth: 1
         }]
