@@ -69,12 +69,12 @@ class CorpMiningOverviewController extends Controller
                 array_push($data, 0);
             }
         }
-        $mydata = $this->getCharacterMiningGroupsData($character, 5, 2023);
+        $mydata = $this->getCharacterMiningGroupsData($character, 3, 2023);
         return view('corpminingtax::corpminingtaxhome', [
             'total_mined_quantity' => $tmq,
             'total_mined_volume' => $tmv,
             'total_mined_isk' => $tmisk,
-            'test' => 'Opps, anything looks wrong...',
+            'test' => $mydata,
             'labels' => $labels,
             'data' => $data,
         ]);
@@ -82,8 +82,9 @@ class CorpMiningOverviewController extends Controller
 
     public function getCharacterMiningGroupsData(int $character_id, int $month, int $year)
     {
+        DB::statement("SET SQL_MODE=''");
         $result = DB::table('character_minings as cm')
-                    ->selectRaw('cm.type_id, sum(cm.quantity) as quantity, it.typeName, it.groupName')
+                    ->selectRaw('cm.type_id, sum(cm.quantity) as quantity, it.typeName, it.groupId')
                     ->join('invTypes as it', 'cm.type_id', '=', 'it.typeId')
                     ->where('cm.character_id', '=', $character_id)
                     ->where('cm.month', '=', $month)

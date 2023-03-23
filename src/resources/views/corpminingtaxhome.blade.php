@@ -62,7 +62,10 @@
                 </div>
                 <div class="card-body">
                     <div style="height: 300px">
-                        <canvas id="mining_groups"></canvas>
+                        @foreach($mydata as $data)
+                            <h5>{{ $data->quantity }}</h5>
+                            <h5>{{ $data->typeName }}</h5>
+                        @endforeach
                     </div>
                 </div>
             </div>
