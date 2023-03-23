@@ -14,7 +14,7 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Total Mined Quantity</span>
                     <span class="info-box-number">
-                        {{ $total_mined_quantity }}
+                        {{ number_format($total_mined_quantity) }}
                     </span>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Total Mined Volume</span>
                     <span class="info-box-number">
-                        {{ $total_mined_volume }}
+                        {{ number_format($total_mined_volume) }}
                     </span>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Total Mined ISK</span>
                     <span class="info-box-number">
-                        {{ $total_mined_isk }}
+                        {{ number_format($total_mined_isk) }}
                     </span>
                 </div>
             </div>
@@ -62,8 +62,10 @@
                 </div>
                 <div class="card-body">
                     <div style="height: 300px">
-                        <h3>{{ $test }}</h3>
-                        <p id="tester">Geht nicht!</p>
+                        <p>{{ $labels }}</p>
+                        <p>{{ $data }}</p>
+                        <p id="tester">Hier könnte Ihre Werbung stehen!</p>
+                        <p id="tester2">Huhu!</p>
                     </div>
                 </div>
             </div>
@@ -114,6 +116,9 @@
 
         var chart_labels = @json($labels);
         var chart_data = @json($data);
+
+        document.getElementById('tester').innerText = chart_labels;
+        document.getElementById('tester2').innerText = chart_data;
 
         const data = {
             labels: chart_labels,
