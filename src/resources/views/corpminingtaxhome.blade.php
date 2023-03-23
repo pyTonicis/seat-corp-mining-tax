@@ -117,7 +117,7 @@
         const data = {
             labels: chart_labels,
             datasets: [{
-                label: 'Volume in x1000 m³',
+                label: 'Volume m³',
                 data: chart_data,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.9)',

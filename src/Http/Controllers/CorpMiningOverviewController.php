@@ -61,8 +61,7 @@ class CorpMiningOverviewController extends Controller
                 ->where('year', '=', $year)
                 ->first();
             if(!is_null($result)) {
-                $vol = (int)$result->volume / 1000;
-                array_push($data, $vol);
+                array_push($data, $result->volume);
                 $tmv += $result->volume;
                 $tmisk += $result->price;
                 $tmq += $result->quantity;
@@ -70,6 +69,7 @@ class CorpMiningOverviewController extends Controller
                 array_push($data, 0);
             }
         }
+        $mydata = $this->getCharacterMiningGroupsData($character, 5, 2023);
         return view('corpminingtax::corpminingtaxhome', [
             'total_mined_quantity' => $tmq,
             'total_mined_volume' => $tmv,
