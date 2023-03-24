@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Seat\Services\Models\Schedule;
 
 class CorpMiningTax extends Migration
 {
@@ -24,6 +25,17 @@ class CorpMiningTax extends Migration
             $table->biginteger('tax');
             $table->timestamps();
         });
+
+
+        /*
+         * Install Cron Job for monthly tax update
+         */
+        $schedule = new Schedule();
+        $schedule->command = "tax:update";
+        $schedule->expression = "0 0 * * *";
+        $schedule->allow_overlap = false;
+        $schedule->allow_maintenance = false;
+        $schedule->save();
     }
 
     /**
@@ -33,6 +45,6 @@ class CorpMiningTax extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('corp_mining_tax');
     }
 }

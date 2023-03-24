@@ -84,6 +84,6 @@ class CorpMiningTaxSettings extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mining_tax_settings');
+        Schema::dropIfExists('corp_mining_tax_settings');
     }
 }
