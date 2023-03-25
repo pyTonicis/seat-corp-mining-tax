@@ -49,7 +49,7 @@
                     <h3 class="card-title">Mining performance last 12 month`s</h3>
                 </div>
                 <div class="card-body">
-                    <div style="height: 300px">
+                    <div style="height: 350px">
                         <canvas id="mining_chart"></canvas>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                     <h3 class="card-title">Mining volume per Group</h3>
                 </div>
                 <div class="card-body">
-                    <div style="height: 300px">
+                    <div style="height: 350px">
                         <canvas id="mining_chart2"></canvas>
                     </div>
                 </div>
@@ -69,43 +69,6 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Mining Log</h3>
-                </div>
-                <div class="card-body">
-                    <table id="mining-log" class="table datatable compact table-condensed table-hover table-striped">
-                        <thead>
-                        <th class="text-center">Date</th>
-                        <th class="text-center">System</th>
-                        <th class="text-center">ORE</th>
-                        <th class="text-center">Quantity</th>
-                        <th class="text-center">>Volume</th>
-                        <th class="text-center">Est. Value</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="text-center">22-01-2023</td>
-                                <td class="text-center">OPU2-R</td>
-                                <td class="text-center">Lavish Vandanite</td>
-                                <td class="text-center">61.000</td>
-                                <td class="text-center">6.100.000</td>
-                                <td class="text-center">2.351.108.000</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">18-01-2023</td>
-                                <td class="text-center">OPU2-R</td>
-                                <td class="text-center">Vandanite</td>
-                                <td class="text-center">11.000</td>
-                                <td class="text-center">1.100.000</td>
-                                <td class="text-center">179.230.000</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
     </div>
 @stop
 @push('javascript')
@@ -172,7 +135,7 @@
                 {
                     label: 'Ice',
                     data: [5000,10305,35352,1000,422,20203,2323,1522,1000,1000,900,0],
-                    backgroudColor: "#acc239",
+                    backgroundColor: "#acc239",
                 },
                 {
                     label: 'Ore',
@@ -182,7 +145,7 @@
                 {
                     label: 'MoonOre',
                     data: [0,100305,352,10,4212,10203,20323,22,500,1000,900,100],
-                    backgroudColor: "#f53794",
+                    backgroundColor: "#f53794",
                 }
             ],
         };
