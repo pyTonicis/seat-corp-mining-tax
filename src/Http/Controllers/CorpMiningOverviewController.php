@@ -23,6 +23,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 namespace pyTonicis\Seat\SeatCorpMiningTax\Http\Controllers;
 
 use pyTonicis\Seat\SeatCorpMiningTax\Helpers\CharacterHelper;
+use pyTonicis\Seat\SeatCorpMiningTax\Models\Mining\CharacterMinings;
 use Seat\Web\Http\Controllers\Controller;
 use Seat\Eveapi\Models\Character\CharacterInfo;
 use Illuminate\Http\Request;
@@ -50,6 +51,8 @@ class CorpMiningOverviewController extends Controller
         $labels = array_reverse($l);
         $data = array();
         $groups = array();
+        $minings = new CharacterMinings();
+        $minings->character_id = $character;
         foreach ($labels as $label) {
             $datum = strtotime($label);
             $month = (int)date('m', $datum);
@@ -63,12 +66,16 @@ class CorpMiningOverviewController extends Controller
             if(!is_null($result)) {
                 array_push($data, (int)$result->volume);
                 $tmv += $result->volume;
+                $minings->add_volume($result->volume);
                 $tmisk += $result->price;
+                $minings->add_price($result->price);
                 $tmq += $result->quantity;
+                $minings->add_quantity($result->quantity);
             } else {
                 array_push($data, 0);
             }
         }
+        $minings->volume_per_month = $data;
         $mydata = $this->getCharacterMiningGroupsData($character, 3, 2023);
         return view('corpminingtax::corpminingtaxhome', [
             'total_mined_quantity' => $tmq,
@@ -76,7 +83,7 @@ class CorpMiningOverviewController extends Controller
             'total_mined_isk' => $tmisk,
             'test' => $mydata,
             'labels' => $labels,
-            'data' => $data,
+            'minings' => $minings,
         ]);
     }
 

@@ -14,7 +14,7 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Total Mined Quantity <small>(last 12 month's)</small></span>
                     <span class="info-box-number">
-                        {{ number_format($total_mined_quantity) }} <small>units</small>
+                        {{ number_format($minings->total_mined_quantity) }} <small>units</small>
                     </span>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Total Mined Volume <small>(last 12 month's)</small></span>
                     <span class="info-box-number">
-                        {{ number_format($total_mined_volume) }} <small>m³</small>
+                        {{ number_format($minings->total_mined_volume) }} <small>m³</small>
                     </span>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Total Mined ISK <small>(last 12 month's)</small></span>
                     <span class="info-box-number">
-                        {{ number_format($total_mined_isk) }} <small>ISK</small>
+                        {{ number_format($minings->total_mined_isk) }} <small>ISK</small>
                     </span>
                 </div>
             </div>
@@ -72,7 +72,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Mining performance last 12 month`s</h3>
+                    <h3 class="card-title">Mined Ore by type (last 12 month's)</h3>
                 </div>
                 <div class="card-body">
                     <div style="height: 350px">
@@ -86,8 +86,8 @@
 @push('javascript')
     <script type="text/javascript">
 
-        var chart_labels = @json($labels);
-        var chart_data = @json($data);
+        var chart_labels = @json($minings->labels);
+        var chart_data = @json($minings->volume_per_month);
 
         const data = {
             labels: chart_labels,
@@ -204,7 +204,7 @@
             }]
         };
         const config3 = {
-            type: 'bar',
+            type: 'horizontalBar',
             data: data3,
             options: {
                 indexAxis: 'y',

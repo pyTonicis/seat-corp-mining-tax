@@ -12,4 +12,6 @@ class MiningGroups
 
     public $group_id;
 
+    public $group_name;
+
 }
