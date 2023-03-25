@@ -25,7 +25,7 @@ class Reprocessing
         return $data;
     }
 
-    public static function ReprocessOreByTypeId(int $typeId, int $quantity) :array
+    public static function ReprocessOreByTypeId(int $typeId, int $quantity, float $refining_rate = 0.9) :array
     {
         $ore = self::getMaterialInfo($typeId);
         $p_size = $ore->portionSize;
@@ -35,8 +35,7 @@ class Reprocessing
         $result = [];
         foreach($rep as $r)
         {
-            // 0.9 entspricht 90% refining Rate
-            $result[$r->materialTypeID] = ($r->quantity*0.9) * $r_count;
+            $result[$r->materialTypeID] = ($r->quantity*$refining_rate) * $r_count;
         }
         if (!$r_rest)
         {

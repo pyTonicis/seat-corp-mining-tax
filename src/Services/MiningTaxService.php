@@ -53,6 +53,7 @@ class MiningTaxService
     public function createMiningTaxResult(int $corpId, int $month, int $year): MiningTaxResult
     {
         $miningResult = new MiningTaxResult($month, $year);
+        $settings = new SettingService();
 
         foreach ($this->getMiningResultsFromDb($corpId, $month, $year) as $data) {
 
@@ -90,10 +91,10 @@ class MiningTaxService
             $volume = Reprocessing::getMaterialInfo($data->type_id)->volume * $data->quantity;
             $charData->addVolume($volume);
 
-            foreach(Reprocessing::ReprocessOreByTypeId($data->type_id, $data->quantity) as $key => $value)
+            foreach(Reprocessing::ReprocessOreByTypeId($data->type_id, $data->quantity, $settings->getValue('ore_refining_rate')) as $key => $value)
             {
                 $price = EvePraisalHelper::getItemPriceByTypeId($key) * $value;
-                $charData->addTax2($price);
+                $charData->addTax2($price * ($settings->getValue('price_modifier') / 100));
                 $market_price = $this->getItemPriceById($key) * $value;
                 $charData->addTax3($market_price);
             }
