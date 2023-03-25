@@ -61,7 +61,7 @@ class CorpMiningOverviewController extends Controller
                 ->where('year', '=', $year)
                 ->first();
             if(!is_null($result)) {
-                array_push($data, (int)($result->volume / 1000));
+                array_push($data, (int)$result->volume);
                 $tmv += $result->volume;
                 $tmisk += $result->price;
                 $tmq += $result->quantity;
