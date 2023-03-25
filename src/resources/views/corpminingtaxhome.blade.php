@@ -185,20 +185,6 @@
         };
         new Chart(document.getElementById('mining_chart2').getContext('2d'), config2);
 
-        const config3 = {
-            type: 'bar',
-            data: data,
-            options: {
-                indexAxis: 'y',
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            },
-        };
         const data3 = {
             labels: ['Mexcorit', 'Thick Blue Ice', 'Arkonor', 'Lavish Cinnabar', 'Cinnabar', 'Sylvite', 'Chromite'],
             datasets: [{
@@ -216,6 +202,20 @@
                     'rgba(255, 99, 132, 0.9)',
                 ],
             }]
+        };
+        const config3 = {
+            type: 'bar',
+            data: data3,
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            },
         };
         new Chart(document.getElementById('mining_chart3').getContext('2d'), config3);
 
