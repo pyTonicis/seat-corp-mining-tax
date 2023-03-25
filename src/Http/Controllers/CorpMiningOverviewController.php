@@ -53,6 +53,7 @@ class CorpMiningOverviewController extends Controller
         $groups = array();
         $minings = new CharacterMinings();
         $minings->character_id = $character;
+        $minings->labels = $labels;
         foreach ($labels as $label) {
             $datum = strtotime($label);
             $month = (int)date('m', $datum);
