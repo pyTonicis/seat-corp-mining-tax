@@ -62,7 +62,7 @@
                 </div>
                 <div class="card-body">
                     <div style="height: 300px">
-                        <canvas id="mining_chart_groups"></canvas>
+                        <canvas id="mining_chart2"></canvas>
                     </div>
                 </div>
             </div>
@@ -172,42 +172,42 @@
                 {
                     label: 'Ice',
                     data: [5000,10305,35352,1000,422,20203,2323,1522,1000,1000,900,0],
-                    backgroudColor: Utils.CHART_COLORS.blue,
+                    backgroudColor: "#acc239",
                 },
                 {
                     label: 'Ore',
                     data: [1000,30305,5352,500,8282,203,23,122,10000,500,200,100],
-                    backgroundColor: Utils.CHART_COLORS.red,
+                    backgroundColor: "#4dc9f6",
                 },
                 {
                     label: 'MoonOre',
                     data: [0,100305,352,10,4212,10203,20323,22,500,1000,900,100],
-                    backgroudColor: Utils.CHART_COLORS.yellow,
-                },
-            ]
+                    backgroudColor: "#f53794",
+                }
+            ],
         };
         const config2 = {
             type: 'bar',
             data: data2,
             options: {
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Groups mined per month'
-                    },
+                tooltips: {
+                    displayColors: true,
                 },
                 responsive: true,
                 scales: {
-                    x: {
-                        stacked: true
-                    },
-                    y: {
-                        stacked: true
-                    },
+                    xAxes: [{
+                        stacked: true,
+                    }],
+                    yAxes: [{
+                        stacked: true,
+                        ticks: {
+                            beginAtZero: true,
+                        },
+                    }]
                 }
             },
         };
-        new Chart(document.getElementById('mining_chart_groups').getContext('2d'), config2);
+        new Chart(document.getElementById('mining_chart2').getContext('2d'), config2);
 
     </script>
 @endpush
