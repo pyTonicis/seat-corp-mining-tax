@@ -14,7 +14,7 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Total Mined Quantity <small>(last 12 month's)</small></span>
                     <span class="info-box-number">
-                        {{ number_format($minings->total_mined_quantity) }} <small>units</small>
+                        {{ number_format($minings->mined_total_quantity) }} <small>units</small>
                     </span>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Total Mined Volume <small>(last 12 month's)</small></span>
                     <span class="info-box-number">
-                        {{ number_format($minings->total_mined_volume) }} <small>m³</small>
+                        {{ number_format($minings->mined_total_volume) }} <small>m³</small>
                     </span>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Total Mined ISK <small>(last 12 month's)</small></span>
                     <span class="info-box-number">
-                        {{ number_format($minings->total_mined_isk) }} <small>ISK</small>
+                        {{ number_format($minings->mined_total_price) }} <small>ISK</small>
                     </span>
                 </div>
             </div>
