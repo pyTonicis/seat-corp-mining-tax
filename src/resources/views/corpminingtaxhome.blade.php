@@ -194,6 +194,7 @@
                     displayColors: true,
                 },
                 responsive: true,
+                maintainAspectRatio: false,
                 scales: {
                     xAxes: [{
                         stacked: true,
