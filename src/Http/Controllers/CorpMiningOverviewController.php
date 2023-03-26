@@ -111,12 +111,13 @@ class CorpMiningOverviewController extends Controller
             array_push($grp_ore, (int)$ore);
         }
         $minings->volume_per_month = $data;
-        $dataset = array(['label:' => 'Ice', 'data:' => $grp_ice, 'backgroundColor:' => '#4dc9f6'],
-                         ['label:' => 'Moon', 'data:' => $grp_moon, 'backgroundColor:' => '#f53794'],
-                         ['label:' => 'Ore', 'data:' => $grp_ore, 'backgroundColor:' => '#acc239'],
-                         ['label:' => 'Gas', 'data:' => $grp_gas, 'backgroundColor:' => '#166a8f'],
+        $dataset = array(['label' => 'Ice', 'data' => $grp_ice, 'backgroundColor' => '#4dc9f6'],
+                         ['label' => 'Moon', 'data' => $grp_moon, 'backgroundColor' => '#f53794'],
+                         ['label' => 'Ore', 'data' => $grp_ore, 'backgroundColor' => '#acc239'],
+                         ['label' => 'Gas', 'data' => $grp_gas, 'backgroundColor' => '#166a8f'],
             );
-
+        $dataset = json_encode($dataset);
+        $dataset = preg_replace("/\"/", "\\\"", $dataset);
         return view('corpminingtax::corpminingtaxhome', [
             'total_mined_quantity' => $tmq,
             'total_mined_volume' => $tmv,

@@ -90,7 +90,7 @@
                 </div>
                 <div class="card-body">
                     <div style="height: 350px">
-                        <p>@JSON($data)</p>
+                        <p>{{ $dataset }}</p>
                     </div>
                 </div>
             </div>
@@ -157,7 +157,7 @@
 
         const data2 = {
             labels: chart_labels,
-            datasets: @json($dataset)
+            datasets: {!! $dataset !!}
             ,
         };
         const config2 = {
