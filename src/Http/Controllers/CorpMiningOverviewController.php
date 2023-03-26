@@ -123,7 +123,7 @@ class CorpMiningOverviewController extends Controller
             'total_mined_isk' => $tmisk,
             'labels' => $labels,
             'minings' => $minings,
-            'data' => $dataset,
+            'dataset' => $dataset,
         ]);
     }
 

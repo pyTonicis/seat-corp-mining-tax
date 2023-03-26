@@ -157,8 +157,8 @@
 
         const data2 = {
             labels: chart_labels,
-            datasets: [@json($data)
-            ],
+            datasets: @json($dataset)
+            ,
         };
         const config2 = {
             type: 'bar',
