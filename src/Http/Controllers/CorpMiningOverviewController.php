@@ -130,7 +130,7 @@ class CorpMiningOverviewController extends Controller
         foreach($ore_types as $ore)
         {
             array_push($type_labels, $ore->typeName);
-            array_push($type_quantity, $ore->quantity);
+            array_push($type_quantity, (int)$ore->quantity);
         }
         return view('corpminingtax::corpminingtaxhome', [
             'total_mined_quantity' => $tmq,

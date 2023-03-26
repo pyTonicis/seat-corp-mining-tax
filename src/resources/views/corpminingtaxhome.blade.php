@@ -68,35 +68,6 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Mined Ore by type (last 12 month's)</h3>
-                </div>
-                <div class="card-body">
-                    <div style="height: 350px">
-                        <canvas id="mining_chart3"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Debug Window</h3>
-                </div>
-                <div class="card-body">
-                    <div style="height: 350px">
-                        <p>@JSON($type_labels)</p>
-                        <p>@JSON($type_quantity)</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 @stop
 @push('javascript')
     <script type="text/javascript">
@@ -184,40 +155,6 @@
             },
         };
         new Chart(document.getElementById('mining_chart2').getContext('2d'), config2);
-
-        const data3 = {
-            labels: ['Mexcorit', 'Thick Blue Ice', 'Arkonor', 'Lavish Cinnabar', 'Cinnabar', 'Sylvite', 'Chromite'],
-            datasets: [{
-                axis: 'y',
-                label: '',
-                data: [1000,5222,908,3200,4000,5200,4800],
-                fill: false,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.9)',
-                    'rgba(255, 99, 132, 0.9)',
-                    'rgba(255, 99, 132, 0.9)',
-                    'rgba(255, 99, 132, 0.9)',
-                    'rgba(255, 99, 132, 0.9)',
-                    'rgba(255, 99, 132, 0.9)',
-                    'rgba(255, 99, 132, 0.9)',
-                ],
-            }]
-        };
-        const config3 = {
-            type: 'horizontalBar',
-            data: data3,
-            options: {
-                indexAxis: 'y',
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            },
-        };
-        new Chart(document.getElementById('mining_chart3').getContext('2d'), config3);
 
     </script>
 @endpush
