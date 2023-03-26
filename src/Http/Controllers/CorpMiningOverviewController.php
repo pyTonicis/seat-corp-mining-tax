@@ -122,7 +122,7 @@ class CorpMiningOverviewController extends Controller
             ->selectRaw('cm.type_id, sum(cm.quantity) as quantity, it.typeName, it.groupId')
             ->join('invTypes as it', 'cm.type_id', '=', 'it.typeId')
             ->whereIn('cm.character_id', $characters)
-            ->where('cm.date', '>=', date('Y-m-01', $labels[0]))
+            ->where('cm.date', '>=', date('Y-m-01 00:00:00', strtotime('-1 years', time())))
             ->groupBy('it.groupId')
             ->get();
         return view('corpminingtax::corpminingtaxhome', [
