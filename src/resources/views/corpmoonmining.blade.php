@@ -23,7 +23,7 @@
                     <tr>
                         <td>2023-01-15</td>
                         <td>15.204.101 m³</td>
-                        <td>Lavish Chromite, Chromite, Scoridte</td>
+                        <td>Lavish Chromite, Chromite, Bitumens</td>
                         <td>1.872.223.051 ISK</td>
                     </tr>
                     </tbody>
