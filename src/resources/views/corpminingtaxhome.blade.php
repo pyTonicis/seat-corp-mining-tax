@@ -82,6 +82,21 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Debug Window</h3>
+                </div>
+                <div class="card-body">
+                    <div style="height: 350px">
+                        <p>{{ $data }}</p>
+                        <p>@JSON($data)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
 @push('javascript')
     <script type="text/javascript">
