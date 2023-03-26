@@ -143,22 +143,7 @@
 
         const data2 = {
             labels: chart_labels,
-            datasets: [
-                {
-                    label: 'Ice',
-                    data: [5000,10305,35352,1000,422,20203,2323,1522,1000,1000,900,0],
-                    backgroundColor: "#acc239",
-                },
-                {
-                    label: 'Ore',
-                    data: [1000,30305,5352,500,8282,203,23,122,10000,500,200,100],
-                    backgroundColor: "#4dc9f6",
-                },
-                {
-                    label: 'MoonOre',
-                    data: [0,100305,352,10,4212,10203,20323,22,500,1000,900,100],
-                    backgroundColor: "#f53794",
-                }
+            datasets: [ @json($data)
             ],
         };
         const config2 = {

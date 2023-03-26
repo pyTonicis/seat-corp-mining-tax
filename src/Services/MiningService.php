@@ -31,6 +31,10 @@ class MiningService
         }
         $minings->labels = array_reverse($l);
         $minings->character_id = $character_id;
+        $grp_ice = array();
+        $grp_ore = array();
+        $grp_gas = array();
+        $grp_moon = array();
         foreach ($minings->labels as $label) {
             $month = (int)date('m', strtotime($label));
             $year = (int)date('Y', strtotime($label));
@@ -57,33 +61,27 @@ class MiningService
                 ->where('cm.year', '=', $year)
                 ->groupBy('it.groupId')
                 ->get();
-            foreach($groups as $group)
-            $mining_group = new MiningGroups();
+            foreach ($groups as $group)
             if (!is_null($group)) {
                 if ($group->groupId == 465) {
-                    $mining_group->group_name = "Ice";
+                    array_push($grp_ice, $group->quantity);
                 } elseif ($group->groupId == 1884) {
-                    $mining_group->group_name = "R4";
+                    array_push($grp_moon, $group->quantity);
                 } elseif ($group->groupId == 1920) {
-                    $mining_group->group_name = "R8";
+                    array_push($grp_moon, $group->quantity);
                 } elseif ($group->groupId == 1921) {
-                    $mining_group->group_name = "R16";
+                    array_push($grp_moon, $group->quantity);
                 } elseif ($group->groupId == 1922) {
-                    $mining_group->group_name = "R32";
+                    array_push($grp_moon, $group->quantity);
                 } elseif ($group->groupId == 1923) {
-                    $mining_group->group_name = "R64";
+                    array_push($grp_moon, $group->quantity);
                 } elseif ($group->groupId == 711) {
-                    $mining_group->group_name = "Gas";
+                    array_push($grp_gas, $group->quantity);
                 } else {
-                    $mining_group->group_name = "Ore";
+                    array_push($grp_ore, $group->quantity);
                 }
-                $mining_group->group_id = $group->groupId;
-                $mining_group->quantity = $group->quantity;
-                $mining_group->type_name = $group->typeName;
-                $mining_group->type_id = $group->type_id;
             }
         }
         return $minings;
     }
-
 }

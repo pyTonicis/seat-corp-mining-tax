@@ -32,4 +32,18 @@ class CharacterMinings
     {
         $this->mined_total_price += $price;
     }
+
+    public function add_quantity_group(string $group, int $value, int $date) :void
+    {
+        if (!array_key_exists($date, $this->quantity_per_group)) {
+            $this->quantity_per_group[$date][$group] = $value;
+        } else {
+            if (!array_key_exists($group, $this->quantity_per_group[$date])) {
+                $this->quantity_per_group[$date][$group] = $value;
+            } else {
+                array_push($this->quantity_per_group[$date][$group], $value);
+            }
+        }
+    }
+
 }

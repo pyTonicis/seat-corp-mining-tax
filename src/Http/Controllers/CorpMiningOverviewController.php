@@ -54,6 +54,10 @@ class CorpMiningOverviewController extends Controller
         $minings = new CharacterMinings();
         $minings->character_id = $character;
         $minings->labels = $labels;
+        $grp_ice = array();
+        $grp_ore = array();
+        $grp_gas = array();
+        $grp_moon = array();
         foreach ($labels as $label) {
             $datum = strtotime($label);
             $month = (int)date('m', $datum);
@@ -75,16 +79,58 @@ class CorpMiningOverviewController extends Controller
             } else {
                 array_push($data, 0);
             }
+            DB::statement("SET SQL_MODE=''");
+            $groups = DB::table('character_minings as cm')
+                ->selectRaw('cm.type_id, sum(cm.quantity) as quantity, it.typeName, it.groupId')
+                ->join('invTypes as it', 'cm.type_id', '=', 'it.typeId')
+                ->where('cm.character_id', '=', $character)
+                ->where('cm.month', '=', $month)
+                ->where('cm.year', '=', $year)
+                ->groupBy('it.groupId')
+                ->get();
+            foreach ($groups as $group)
+                if (!is_null($group)) {
+                    if ($group->groupId == 465) {
+                        if(!is_null($group->quantity)) {
+                            array_push($grp_ice, $group->quantity);
+                        } else {
+                            array_push($grp_ice, 0);
+                        }
+                    } elseif ($group->groupId == 1884 or ($group->groupId >= 1920 and $group->groupId <= 1923)) {
+                        if(!is_null($group->quantity)) {
+                            array_push($grp_moon, $group->quantity);
+                        } else {
+                            array_push($grp_moon, 0);
+                        }
+                    } elseif ($group->groupId == 711) {
+                        if(!is_null($group->quantity)) {
+                            array_push($grp_gas, $group->quantity);
+                        } else {
+                            array_push($grp_gas, 0);
+                        }
+                    } else {
+                        if(!is_null($group->quantity)) {
+                            array_push($grp_ore, $group->quantity);
+                        } else {
+                            array_push($grp_ore, 0);
+                        }
+                    }
+                }
         }
         $minings->volume_per_month = $data;
-        $mydata = $this->getCharacterMiningGroupsData($character, 3, 2023);
+        $dataset = array(['label:' => 'Ice', 'data:' => $grp_ice, 'backgroundColor:' => '#4dc9f6'],
+                         ['label:' => 'Moon', 'data:' => $grp_moon, 'backgroundColor:' => '#f53794'],
+                         ['label:' => 'Ore', 'data:' => $grp_ore, 'backgroundColor:' => '#acc239'],
+                         ['label:' => 'Gas', 'data:' => $grp_gas, 'backgroundColor:' => '#166a8f'],
+            );
+
         return view('corpminingtax::corpminingtaxhome', [
             'total_mined_quantity' => $tmq,
             'total_mined_volume' => $tmv,
             'total_mined_isk' => $tmisk,
-            'test' => $mydata,
             'labels' => $labels,
             'minings' => $minings,
+            'data' => $dataset,
         ]);
     }
 
