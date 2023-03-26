@@ -95,13 +95,13 @@ class CorpMiningOverviewController extends Controller
             foreach ($groups as $group) {
                 if (!is_null($group)) {
                     if ($group->groupId == 465) {
-                        $ice += $group->quantity;
+                        $ice += (int)$group->quantity * 1000;
                     } elseif ($group->groupId == 1884 or ($group->groupId >= 1920 and $group->groupId <= 1923)) {
-                        $moon += $group->quantity;
+                        $moon += (int)$group->quantity *10;
                     } elseif ($group->groupId == 711) {
-                        $gas += $group->quantity;
+                        $gas += (int)$group->quantity *2;
                     } else {
-                        $ore += $group->quantity;
+                        $ore += (int)$group->quantity * 16;
                     }
                 }
             }

@@ -90,7 +90,7 @@
                 </div>
                 <div class="card-body">
                     <div style="height: 350px">
-                        <p>{{ $dataset }}</p>
+                        <p>@JSON($dataset)</p>
                     </div>
                 </div>
             </div>
