@@ -63,10 +63,6 @@ Route::group([
                 ->name('corpminingtax.corpmoonmining')
                 ->uses('CorpMiningMoonMinings@getHome');
 
-            Route::post('/getCorpMoonMinings')
-                ->name('corpminingtax.moonminingdata')
-                ->uses('CorpMiningMoonMinings@getCorpMoonMiningData');
-
             Route::post('/updatesettings')
                 ->name('corpminingtax.settings.update')
                 ->uses('CorpMiningTaxSettingController@saveSettings');

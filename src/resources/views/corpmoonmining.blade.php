@@ -1,4 +1,4 @@
-@extends('web::layouts.grids.8-4')
+@extends('web::layouts.grids.12')
 
 @section('title', 'Moonmining')
 
@@ -32,4 +32,5 @@
         </div>
     </div>
 </div>
+
 @stop
