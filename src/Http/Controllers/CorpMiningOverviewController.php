@@ -88,34 +88,27 @@ class CorpMiningOverviewController extends Controller
                 ->where('cm.year', '=', $year)
                 ->groupBy('it.groupId')
                 ->get();
-            foreach ($groups as $group)
+            $ice = 0;
+            $gas = 0;
+            $moon = 0;
+            $ore = 0;
+            foreach ($groups as $group) {
                 if (!is_null($group)) {
                     if ($group->groupId == 465) {
-                        if(!is_null($group->quantity)) {
-                            array_push($grp_ice, $group->quantity);
-                        } else {
-                            array_push($grp_ice, 0);
-                        }
+                        $ice += $group->quantity;
                     } elseif ($group->groupId == 1884 or ($group->groupId >= 1920 and $group->groupId <= 1923)) {
-                        if(!is_null($group->quantity)) {
-                            array_push($grp_moon, $group->quantity);
-                        } else {
-                            array_push($grp_moon, 0);
-                        }
+                        $moon += $group->quantity;
                     } elseif ($group->groupId == 711) {
-                        if(!is_null($group->quantity)) {
-                            array_push($grp_gas, $group->quantity);
-                        } else {
-                            array_push($grp_gas, 0);
-                        }
+                        $gas += $group->quantity;
                     } else {
-                        if(!is_null($group->quantity)) {
-                            array_push($grp_ore, $group->quantity);
-                        } else {
-                            array_push($grp_ore, 0);
-                        }
+                        $ore += $group->quantity;
                     }
                 }
+            }
+            array_push($grp_ice, (int)$ice);
+            array_push($grp_moon, (int)$moon);
+            array_push($grp_gas, (int)$gas);
+            array_push($grp_ore, (int)$ore);
         }
         $minings->volume_per_month = $data;
         $dataset = array(['label:' => 'Ice', 'data:' => $grp_ice, 'backgroundColor:' => '#4dc9f6'],
