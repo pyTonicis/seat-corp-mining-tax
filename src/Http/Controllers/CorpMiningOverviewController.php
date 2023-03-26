@@ -84,7 +84,7 @@ class CorpMiningOverviewController extends Controller
             $groups = DB::table('character_minings as cm')
                 ->selectRaw('cm.type_id, sum(cm.quantity) as quantity, it.typeName, it.groupId')
                 ->join('invTypes as it', 'cm.type_id', '=', 'it.typeId')
-                ->whereIn('cm.character_id', '=', $characters)
+                ->whereIn('cm.character_id', $characters)
                 ->where('cm.month', '=', $month)
                 ->where('cm.year', '=', $year)
                 ->groupBy('it.groupId')
@@ -117,10 +117,11 @@ class CorpMiningOverviewController extends Controller
                          ['label' => 'Ore', 'data' => $grp_ore, 'backgroundColor' => '#acc239'],
                          ['label' => 'Gas', 'data' => $grp_gas, 'backgroundColor' => '#166a8f'],
             );
+        DB::statement("SET SQL_MODE=''");
         $ore_types = DB::table('character_minings as cm')
             ->selectRaw('cm.type_id, sum(cm.quantity) as quantity, it.typeName, it.groupId')
             ->join('invTypes as it', 'cm.type_id', '=', 'it.typeId')
-            ->whereIn('cm.character_id', '=', $characters)
+            ->whereIn('cm.character_id', $characters)
             ->where('cm.date', '>=', date('Y-m-01', $labels[0]))
             ->groupBy('it.groupId')
             ->get();

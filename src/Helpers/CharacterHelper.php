@@ -48,7 +48,7 @@ class CharacterHelper {
         return $data;
     }
 
-    public static function getLinkedCharacters(int $character_id)
+    public static function getLinkedCharacters(int $character_id): array
     {
        $result = DB::table('refresh_tokens')
            ->select('character_id', 'user_id')
