@@ -185,9 +185,6 @@
         };
         new Chart(document.getElementById('mining_chart2').getContext('2d'), config2);
 
-        var type_labels = @json($type_labels)
-        var type_quantity = @json($type_quantity)
-
         const data3 = {
             labels: ['Mexcorit', 'Thick Blue Ice', 'Arkonor', 'Lavish Cinnabar', 'Cinnabar', 'Sylvite', 'Chromite'],
             datasets: [{
