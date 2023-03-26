@@ -116,8 +116,8 @@ class CorpMiningOverviewController extends Controller
                          ['label' => 'Ore', 'data' => $grp_ore, 'backgroundColor' => '#acc239'],
                          ['label' => 'Gas', 'data' => $grp_gas, 'backgroundColor' => '#166a8f'],
             );
-        $dataset = json_encode($dataset);
-        $dataset = preg_replace("/\"/", "", $dataset);
+        //$dataset = json_encode($dataset);
+        //$dataset = preg_replace("/\"/", "", $dataset);
         return view('corpminingtax::corpminingtaxhome', [
             'total_mined_quantity' => $tmq,
             'total_mined_volume' => $tmv,

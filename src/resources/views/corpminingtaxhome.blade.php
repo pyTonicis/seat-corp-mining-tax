@@ -157,7 +157,7 @@
 
         const data2 = {
             labels: chart_labels,
-            datasets: [ {!! $dataset !!}]
+            datasets: @JSON($dataset)
             ,
         };
         const config2 = {
