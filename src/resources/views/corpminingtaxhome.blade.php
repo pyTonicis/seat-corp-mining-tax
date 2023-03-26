@@ -184,20 +184,17 @@
         };
         new Chart(document.getElementById('mining_chart2').getContext('2d'), config2);
 
+        var type_labels = @json($type_labels)
+        var type_quantity = @json($type_quantity)
+
         const data3 = {
-            labels: ['Mexcorit', 'Thick Blue Ice', 'Arkonor', 'Lavish Cinnabar', 'Cinnabar', 'Sylvite', 'Chromite'],
+            labels: type_labels,
             datasets: [{
                 axis: 'y',
                 label: '',
-                data: [1000,5222,908,3200,4000,5200,4800],
+                data: type_quantity,
                 fill: false,
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.9)',
-                    'rgba(255, 99, 132, 0.9)',
-                    'rgba(255, 99, 132, 0.9)',
-                    'rgba(255, 99, 132, 0.9)',
-                    'rgba(255, 99, 132, 0.9)',
-                    'rgba(255, 99, 132, 0.9)',
                     'rgba(255, 99, 132, 0.9)',
                 ],
             }]

@@ -123,8 +123,15 @@ class CorpMiningOverviewController extends Controller
             ->join('invTypes as it', 'cm.type_id', '=', 'it.typeId')
             ->whereIn('cm.character_id', $characters)
             ->where('cm.date', '>=', date('Y-m-01 00:00:00', strtotime('-1 years', time())))
-            ->groupBy('it.groupId')
+            ->groupBy('it.type_id')
             ->get();
+        $type_labels = array();
+        $type_quantity = array();
+        foreach($ore_types as $ore)
+        {
+            array_push($type_labels, $ore->typeName);
+            array_push($type_quantity, $ore->quantity);
+        }
         return view('corpminingtax::corpminingtaxhome', [
             'total_mined_quantity' => $tmq,
             'total_mined_volume' => $tmv,
@@ -132,6 +139,8 @@ class CorpMiningOverviewController extends Controller
             'labels' => $labels,
             'minings' => $minings,
             'dataset' => $dataset,
+            'type_labels' => $type_labels,
+            'type_quantity' => $type_quantity,
         ]);
     }
 
