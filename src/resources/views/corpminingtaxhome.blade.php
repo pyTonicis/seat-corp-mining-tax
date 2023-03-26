@@ -90,7 +90,8 @@
                 </div>
                 <div class="card-body">
                     <div style="height: 350px">
-                        <p>@JSON($dataset)</p>
+                        <p>@JSON($type_labels)</p>
+                        <p>@JSON($type_quantity)</p>
                     </div>
                 </div>
             </div>
@@ -188,13 +189,19 @@
         var type_quantity = @json($type_quantity)
 
         const data3 = {
-            labels: type_labels,
+            labels: ['Mexcorit', 'Thick Blue Ice', 'Arkonor', 'Lavish Cinnabar', 'Cinnabar', 'Sylvite', 'Chromite'],
             datasets: [{
                 axis: 'y',
                 label: '',
-                data: type_quantity,
+                data: [1000,5222,908,3200,4000,5200,4800],
                 fill: false,
                 backgroundColor: [
+                    'rgba(255, 99, 132, 0.9)',
+                    'rgba(255, 99, 132, 0.9)',
+                    'rgba(255, 99, 132, 0.9)',
+                    'rgba(255, 99, 132, 0.9)',
+                    'rgba(255, 99, 132, 0.9)',
+                    'rgba(255, 99, 132, 0.9)',
                     'rgba(255, 99, 132, 0.9)',
                 ],
             }]
