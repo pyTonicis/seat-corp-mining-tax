@@ -103,6 +103,7 @@
             <table class="table" id="mining">
                 <thead>
                 <tr>
+                    <th>Date</th>
                     <th>CharacterName</th>
                     <th>Mined Amount units</th>
                     <th>Mined Volume</th>
@@ -114,6 +115,7 @@
                 <tbody>
                 @foreach($taxdata as $character)
                     <tr>
+                        <td>{{ $character->year }}-{{ $character->month }}</td>
                         <td>{{ $character->name }}</td>
                         <td>{{ number_format($character->quantity) }}</td>
                         <td>{{ number_format($character->volume) }}</td>

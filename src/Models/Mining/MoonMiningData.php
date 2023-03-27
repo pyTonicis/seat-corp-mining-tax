@@ -4,5 +4,11 @@ namespace pyTonicis\Seat\SeatCorpMiningTax\Models\Mining;
 
 class MoonMiningData
 {
-    public $test;
+    public $observer_id;
+
+    public $observer_name;
+
+    public $system_name;
+
+    public $minings = [];
 }
