@@ -103,12 +103,42 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Mining Report last 12 month's</h3>
+                </div>
+                <div class="card-body">
+                    <table class="datatable">
+                        <thead>
+                        <tr>
+                            <td>Date</td>
+                            <td>Mined Quantity (units)</td>
+                            <td>Mined Volume (m3)</td>
+                            <td>Mineral Price (isk)</td>
+                            <td>Tax (isk)</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($miningdata as $mining)
+                                <tr>
+                                    <td>{{ $mining->year }}-{{ $mining->month }}</td>
+                                    <td>{{ $mining->quantity }}</td>
+                                    <td>{{ $mining->volume }}</td>
+                                    <td>{{ $mining->price }}</td>
+                                    <td>{{ $mining->tax }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
 @push('javascript')
     <script type="text/javascript">
-
-        var chart_labels = @json($minings->labels);
-        var chart_data = @json($minings->volume_per_month);
 
         const data = {
             labels: @json($minings->labels),
@@ -137,7 +167,7 @@
         new Chart(document.getElementById('mining_chart').getContext('2d'), config);
 
         const data2 = {
-            labels: chart_labels,
+            labels: @json($minings->labels),
             datasets: @json($dataset),
         };
         const config2 = {

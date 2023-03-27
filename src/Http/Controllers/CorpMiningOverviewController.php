@@ -41,7 +41,7 @@ class CorpMiningOverviewController extends Controller
         $tmisk = 0;
         $character = auth()->user()->main_character['character_id'];
         $characters = CharacterHelper::getLinkedCharacters($character);
-        $linked_characters_count = array_count_values($characters->toArray()) + 1;
+        $linked_characters_count = 5;
         $l = array();
         $datum_now = date('Y-m', time());
 
@@ -143,10 +143,11 @@ class CorpMiningOverviewController extends Controller
             array_push($type_labels, $ore->typeName);
             array_push($type_quantity, (int)$ore->quantity);
         }
+        $miningdata = DB::table('corp_mining_tax')
+                        ->select('*')
+                        ->where('main_character_id', '=', $character)
+                        ->get();
         return view('corpminingtax::corpminingtaxhome', [
-            'total_mined_quantity' => $tmq,
-            'total_mined_volume' => $tmv,
-            'total_mined_isk' => $tmisk,
             'linked_characters' => $linked_characters_count,
             'tax_count' => $tax_count,
             'tax_act' => $tax_act,
@@ -155,6 +156,7 @@ class CorpMiningOverviewController extends Controller
             'dataset' => $dataset,
             'type_labels' => $type_labels,
             'type_quantity' => $type_quantity,
+            'miningdata' => $miningdata,
         ]);
     }
 
