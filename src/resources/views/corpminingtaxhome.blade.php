@@ -127,7 +127,7 @@
                                     <td>{{ number_format($mining->quantity) }}</td>
                                     <td>{{ number_format($mining->volume) }}</td>
                                     <td>{{ number_format($mining->price) }}</td>
-                                    <td>{{ nubmer_format($mining->tax) }}</td>
+                                    <td>{{ number_format($mining->tax) }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
