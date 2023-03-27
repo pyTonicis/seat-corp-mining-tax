@@ -146,6 +146,8 @@ class CorpMiningOverviewController extends Controller
         $miningdata = DB::table('corp_mining_tax')
                         ->select('*')
                         ->where('main_character_id', '=', $character)
+                        ->orderBy('year', 'asc')
+                        ->orderBy('month', 'asc')
                         ->get();
         return view('corpminingtax::corpminingtaxhome', [
             'linked_characters' => $linked_characters_count,

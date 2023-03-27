@@ -110,7 +110,7 @@
                     <h3 class="card-title">Mining Report last 12 month's</h3>
                 </div>
                 <div class="card-body">
-                    <table class="datatable">
+                    <table class="table datatable compact table-condensed table-hover table-striped" id="mining_report">
                         <thead>
                         <tr>
                             <td>Date</td>
@@ -124,10 +124,10 @@
                             @foreach($miningdata as $mining)
                                 <tr>
                                     <td>{{ $mining->year }}-{{ $mining->month }}</td>
-                                    <td>{{ $mining->quantity }}</td>
-                                    <td>{{ $mining->volume }}</td>
-                                    <td>{{ $mining->price }}</td>
-                                    <td>{{ $mining->tax }}</td>
+                                    <td>{{ number_format($mining->quantity) }}</td>
+                                    <td>{{ number_format($mining->volume) }}</td>
+                                    <td>{{ number_format($mining->price) }}</td>
+                                    <td>{{ nubmer_format($mining->tax) }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
