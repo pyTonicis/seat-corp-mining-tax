@@ -94,6 +94,39 @@
     </div>
 </div>
 @endisset
+@isset($taxdata)
+    <div class="card">
+        <div class="card-header">
+            <h3>Mining Tax Results</h3>
+        </div>
+        <div class="card-body">
+            <table class="table" id="mining">
+                <thead>
+                <tr>
+                    <th>CharacterName</th>
+                    <th>Mined Amount units</th>
+                    <th>Mined Volume</th>
+                    <th>Tax</th>
+                    <th>Tax Rate</th>
+                    <th>EvE Market</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($taxdata as $character)
+                    <tr>
+                        <td>{{ $character->name }}</td>
+                        <td>{{ number_format($character->quantity) }}</td>
+                        <td>{{ number_format($character->volume) }}</td>
+                        <td>{{ number_format($character->tax) }}</td>
+                        <td>10%</td>
+                        <td>{{ number_format($character->price) }}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+@endisset
 @stop
 
 @push('javascript')

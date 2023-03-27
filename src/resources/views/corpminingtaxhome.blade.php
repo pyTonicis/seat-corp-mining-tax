@@ -107,10 +107,10 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Mining Report last 12 month's</h3>
+                    <h3 class="card-title">Mining Tax Report last 12 month's</h3>
                 </div>
                 <div class="card-body">
-                    <table class="table datatable compact table-condensed table-hover table-striped" id="mining_report">
+                    <table class="table" id="mining_report">
                         <thead>
                         <tr>
                             <td>Date</td>

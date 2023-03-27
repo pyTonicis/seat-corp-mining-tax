@@ -126,7 +126,7 @@ class CorpMiningOverviewController extends Controller
                          ['label' => 'Moon', 'data' => $grp_moon, 'backgroundColor' => '#f53794'],
                          ['label' => 'Ore', 'data' => $grp_ore, 'backgroundColor' => '#acc239'],
                          ['label' => 'Gas', 'data' => $grp_gas, 'backgroundColor' => '#166a8f'],
-                         ['label' => 'Abyssal', 'data' => $grp_abyssal, 'backgroundColor' => '#ff0099'],
+                         ['label' => 'Abyssal', 'data' => $grp_abyssal, 'backgroundColor' => '#e2f516'],
             );
         DB::statement("SET SQL_MODE=''");
         $ore_types = DB::table('character_minings as cm')
