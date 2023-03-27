@@ -41,7 +41,7 @@ class CorpMiningOverviewController extends Controller
         $tmisk = 0;
         $character = auth()->user()->main_character['character_id'];
         $characters = CharacterHelper::getLinkedCharacters($character);
-        $linked_characters_count = array_count_values($characters);
+        $linked_characters_count = array_count_values($characters->toArray()) + 1;
         $l = array();
         $datum_now = date('Y-m', time());
 
@@ -60,6 +60,7 @@ class CorpMiningOverviewController extends Controller
         $grp_ore = array();
         $grp_gas = array();
         $grp_moon = array();
+        $grp_abyssal = array();
         $tax_count = 0;
         $tax_act = 0;
         foreach ($labels as $label) {
@@ -98,6 +99,7 @@ class CorpMiningOverviewController extends Controller
             $gas = 0;
             $moon = 0;
             $ore = 0;
+            $abyssal = 0;
             foreach ($groups as $group) {
                 if (!is_null($group)) {
                     if ($group->groupId == 465) {
@@ -106,6 +108,8 @@ class CorpMiningOverviewController extends Controller
                         $moon += (int)$group->quantity *10;
                     } elseif ($group->groupId == 711) {
                         $gas += (int)$group->quantity *2;
+                    } elseif ($group->groupId == 1996) {
+                        $abyssal += (int)$group->quantity /5;
                     } else {
                         $ore += (int)$group->quantity * 16;
                     }
@@ -115,12 +119,14 @@ class CorpMiningOverviewController extends Controller
             array_push($grp_moon, (int)$moon);
             array_push($grp_gas, (int)$gas);
             array_push($grp_ore, (int)$ore);
+            array_push($grp_abyssal, (int)$abyssal);
         }
         $minings->volume_per_month = $data;
         $dataset = array(['label' => 'Ice', 'data' => $grp_ice, 'backgroundColor' => '#4dc9f6'],
                          ['label' => 'Moon', 'data' => $grp_moon, 'backgroundColor' => '#f53794'],
                          ['label' => 'Ore', 'data' => $grp_ore, 'backgroundColor' => '#acc239'],
                          ['label' => 'Gas', 'data' => $grp_gas, 'backgroundColor' => '#166a8f'],
+                         ['label' => 'Abyssal', 'data' => $grp_abyssal, 'backgroundColor' => '#ff0099'],
             );
         DB::statement("SET SQL_MODE=''");
         $ore_types = DB::table('character_minings as cm')

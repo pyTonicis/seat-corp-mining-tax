@@ -49,7 +49,7 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Total Tax ISK <small>(last 12 month's)</small></span>
                     <span class="info-box-number">
-                        {{ number_format($tax_count) }} <small>units</small>
+                        {{ number_format($tax_count) }} <small>ISK</small>
                     </span>
                 </div>
             </div>
@@ -60,18 +60,18 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Tax ISK <small>(this month)</small></span>
                     <span class="info-box-number">
-                        {{ number_format($tax_act) }} <small>m³</small>
+                        {{ number_format($tax_act) }} <small>ISK</small>
                     </span>
                 </div>
             </div>
         </div>
         <div class="col-md-4 col-sm-6">
             <div class="info-box">
-                <span class="info-box-icon bg-blue elevation-1"><i class="fa fa-people-group"></i></span>
+                <span class="info-box-icon bg-blue elevation-1"><i class="fa fa-person"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Linked Characters</span>
                     <span class="info-box-number">
-                        {{ $linked_characters }} <small>ISK</small>
+                        {{ $linked_characters }} <small>Pilots</small>
                     </span>
                 </div>
             </div>
@@ -115,34 +115,8 @@
             datasets: [{
                 label: 'Volume m³',
                 data: @json($minings->volume_per_month),
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.9)',
-                    'rgba(255, 99, 132, 0.9)',
-                    'rgba(255, 99, 132, 0.9)',
-                    'rgba(255, 99, 132, 0.9)',
-                    'rgba(255, 99, 132, 0.9)',
-                    'rgba(255, 99, 132, 0.9)',
-                    'rgba(255, 99, 132, 0.9)',
-                    'rgba(255, 99, 132, 0.9)',
-                    'rgba(255, 99, 132, 0.9)',
-                    'rgba(255, 99, 132, 0.9)',
-                    'rgba(255, 99, 132, 0.9)',
-                    'rgba(255, 99, 132, 0.9)',
-                    ],
-                borderColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-                    'rgb(255, 99, 132)',
-        ],
+                backgroundColor: '#acc239',
+                borderColor: '#acc239',
             borderWidth: 1
         }]
         };
