@@ -41,6 +41,7 @@ class CorpMiningOverviewController extends Controller
         $tmisk = 0;
         $character = auth()->user()->main_character['character_id'];
         $characters = CharacterHelper::getLinkedCharacters($character);
+        $linked_characters_count = array_count_values($characters);
         $l = array();
         $datum_now = date('Y-m', time());
 
@@ -59,12 +60,14 @@ class CorpMiningOverviewController extends Controller
         $grp_ore = array();
         $grp_gas = array();
         $grp_moon = array();
+        $tax_count = 0;
+        $tax_act = 0;
         foreach ($labels as $label) {
             $datum = strtotime($label);
             $month = (int)date('m', $datum);
             $year = (int)date('Y', $datum);
             $result = DB::table('corp_mining_tax')
-                ->select('quantity', 'volume', 'price')
+                ->select('quantity', 'volume', 'price', 'tax')
                 ->where('main_character_id', '=', $character)
                 ->where('month', '=', $month)
                 ->where('year', '=', $year)
@@ -77,6 +80,8 @@ class CorpMiningOverviewController extends Controller
                 $minings->add_price($result->price);
                 $tmq += $result->quantity;
                 $minings->add_quantity($result->quantity);
+                $tax_count += (int)$result->tax;
+                $tax_act = (int)$result->tax;
             } else {
                 array_push($data, 0);
             }
@@ -136,6 +141,9 @@ class CorpMiningOverviewController extends Controller
             'total_mined_quantity' => $tmq,
             'total_mined_volume' => $tmv,
             'total_mined_isk' => $tmisk,
+            'linked_characters' => $linked_characters_count,
+            'tax_count' => $tax_count,
+            'tax_act' => $tax_act,
             'labels' => $labels,
             'minings' => $minings,
             'dataset' => $dataset,

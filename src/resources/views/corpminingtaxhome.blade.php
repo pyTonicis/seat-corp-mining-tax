@@ -43,6 +43,41 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-md-4 col-sm-6">
+            <div class="info-box">
+                <span class="info-box-icon bg-yellow elevation-1"><i class="fa fa-money-bill-wave"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Total Tax ISK <small>(last 12 month's)</small></span>
+                    <span class="info-box-number">
+                        {{ number_format($tax_count) }} <small>units</small>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="info-box">
+                <span class="info-box-icon bg-yellow elevation-1"><i class="fa fa-money-bill-wave"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Tax ISK <small>(this month)</small></span>
+                    <span class="info-box-number">
+                        {{ number_format($tax_act) }} <small>m³</small>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="info-box">
+                <span class="info-box-icon bg-blue elevation-1"><i class="fa fa-people-group"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Linked Characters</span>
+                    <span class="info-box-number">
+                        {{ $linked_characters }} <small>ISK</small>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
@@ -76,10 +111,10 @@
         var chart_data = @json($minings->volume_per_month);
 
         const data = {
-            labels: chart_labels,
+            labels: @json($minings->labels),
             datasets: [{
                 label: 'Volume m³',
-                data: chart_data,
+                data: @json($minings->volume_per_month),
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.9)',
                     'rgba(255, 99, 132, 0.9)',
@@ -129,8 +164,7 @@
 
         const data2 = {
             labels: chart_labels,
-            datasets: @JSON($dataset)
-            ,
+            datasets: @json($dataset),
         };
         const config2 = {
             type: 'bar',

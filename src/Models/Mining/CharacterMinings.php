@@ -6,6 +6,10 @@ class CharacterMinings
 {
     public $character_id;
 
+    public $tax_month;
+
+    public $tax_year;
+
     public $mined_total_quantity;
 
     public $mined_total_volume;
