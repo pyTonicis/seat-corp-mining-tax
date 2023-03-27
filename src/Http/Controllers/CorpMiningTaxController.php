@@ -55,12 +55,12 @@ class CorpMiningTaxController extends Controller
     {
         $taxdata = DB::table('corp_mining_tax as t')
             ->select('t.*', 'c.name')
-            ->join('character_info as c', 'main_character_id', '=', 'c.character_id')
+            ->join('character_infos as c', 'main_character_id', '=', 'c.character_id')
             ->orderBy('year', 'asc')
             ->orderBy('month', 'asc')
             ->get();
         return view('corpminingtax::corpminingtax', [
-            'taxdata' => $taxdata
+            'taxdata' => $taxdata,
         ]);
     }
 

@@ -140,9 +140,7 @@
 @push('javascript')
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#mining_report').DataTable({
-                buttons: ['excel', 'pdf']
-            });
+            $('#mining_report').DataTable({});
         });
 
         const data = {
