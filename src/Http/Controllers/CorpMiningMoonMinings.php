@@ -2,6 +2,8 @@
 
 namespace pyTonicis\Seat\SeatCorpMiningTax\Http\Controllers;
 
+use pyTonicis\Seat\SeatCorpMiningTax\Models\Mining\MoonMiningData;
+use pyTonicis\Seat\SeatCorpMiningTax\Models\Mining\MoonMinings;
 use pyTonicis\Seat\SeatCorpMiningTax\Services\SettingService;
 use Seat\Web\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -22,7 +24,7 @@ class CorpMiningMoonMinings extends Controller
     }
     public function getHome()
     {
-        $data = DB::table('corporation_industry_mining_observers as o')
+        $observers = DB::table('corporation_industry_mining_observers as o')
             ->select(
                 'o.observer_id',
                 's.name',
@@ -33,6 +35,29 @@ class CorpMiningMoonMinings extends Controller
             ->where('o.corporation_id', '=', $this->settingService->getValue('corporation_id'))
             ->orderBy('s.name', 'desc')
             ->get();
+        $mining = DB::table('corporation_industry_mining_observer_data')
+            ->select(
+                'observer_id',
+            )
+            ->selectRAW("sum(quantity) as quantity")
+            ->groupby('observer_id')
+            ->get()->toArray();
+        $data = new MoonMinings();
+        foreach ($observers as $observer)
+        {
+            $miningData = new MoonMiningData();
+            $miningData->observer_id = $observer->observer_id;
+            $miningData->observer_name = $observer->name;
+            $miningData->system_name = $observer->system_name;
+            foreach($mining as $m)
+            {
+                if($m == $observer->observer_id)
+                {
+                    $miningData->total_mined = $m->quantity;
+                }
+            }
+            $data->add_observer($miningData);
+        }
         return view('corpminingtax::corpmoonmining', ['data' => $data]);
     }
 

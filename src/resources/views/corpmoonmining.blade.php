@@ -5,7 +5,7 @@
 @section('left')
     @isset($data)
     <div id="accordion">
-        @foreach($data as $d)
+        @foreach($data->observers as $d)
         <div class="card">
         <div class="card-header border-secondary" data-toggle="collapse" data-target="#collapse_{{ $d->observer_id }}" aria-expanded="true" aria-controls="collapse_{{ $d->observer_id }}" id="heading_{{ $d->observer_id }}">
             <h5 class="mb-0">
@@ -13,12 +13,12 @@
                     <h3><span class="badge badge-primary">R16</span></h3>
                     <div class="col-md-8 align-left">
                         <button class="btn">
-                            <h3 class="card-title"><b>{{ $d->system_name }}</b> {{ $d->name }}</h3>
+                            <h3 class="card-title"><b>{{ $d->observer_name }}</b></h3>
                         </button>
                     </div>
                     <div class="ml-auto mr-2 align-right text-center align-centered">
                         <div class="row">
-                            <h4>Total Mined: <b>34.198.762 m³</b></h4>
+                            <h3>Total Mined: <b>{{ $d->total_mined }} m³</b></h3>
                         </div>
                     </div>
                 </div>

@@ -11,4 +11,7 @@ class MoonMiningData
     public $system_name;
 
     public $minings = [];
+
+    public $total_mined;
+
 }
