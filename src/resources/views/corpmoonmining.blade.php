@@ -1,22 +1,38 @@
-@extends('web::layouts.grids.12')
+@extends('web::layouts.grids.8-4')
 
 @section('title', 'Moonmining')
 
-@section('full')
-<div class="row">
-    <div class="col-md-12">
-        <div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        J-OAH2 - PRIVATE P7M2 PRESSE <span class="badge badge-pill badge-primary">R16</span>
-                    </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-                        <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+@section('left')
+<div id="accordion">
+    <div class="card">
+        <div class="card-header border-secondary" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1" id="heading_1">
+            <h5 class="mb-0">
+                <div class="row">
+                    <i class="nav-icon fas fa-eye align-middle mt-2"></i>
+                    <div class="col-md-8 align-left">
+                        <button class="btn">
+                            <h3 class="card-title"><b>Ein Test</b>
+                            </h3>
+                        </button>
+                    </div>
+                    <div class="ml-auto mr-2 align-right text-center align-centered">
+                        <div class="row">
+                            <h3>Hier könnte Ihre Werbung stehen!</h3>
+                        </div>
                     </div>
                 </div>
+            </h5>
+        </div>
+        <div id="collapse1" class="collapse" aria-labelledby="heading_1" data-parent="#accordion">
+            <div class="card-body">
+                <table class="table table-borderless">
+                    <tbody>
+                    <tr>
+                        <td>first</td>
+                        <td>second</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
