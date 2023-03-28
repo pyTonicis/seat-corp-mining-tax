@@ -8,16 +8,16 @@
         <div class="card-header border-secondary" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1" id="heading_1">
             <h5 class="mb-0">
                 <div class="row">
-                    <i class="nav-icon fas fa-eye align-middle mt-2"></i>
+                    <h2><span class="badge badge-primary">R16</span></h2>
                     <div class="col-md-8 align-left">
                         <button class="btn">
-                            <h3 class="card-title"><b>Ein Test</b>
+                            <h3 class="card-title"><b>J-OAH2</b>
                             </h3>
                         </button>
                     </div>
                     <div class="ml-auto mr-2 align-right text-center align-centered">
                         <div class="row">
-                            <h3>Hier könnte Ihre Werbung stehen!</h3>
+                            <h4>PRIVATE P7M2 PRESSE <span class="badge badge-success">Active</span></h4>
                         </div>
                     </div>
                 </div>
