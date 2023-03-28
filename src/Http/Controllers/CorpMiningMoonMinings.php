@@ -2,6 +2,7 @@
 
 namespace pyTonicis\Seat\SeatCorpMiningTax\Http\Controllers;
 
+use pyTonicis\Seat\SeatCorpMiningTax\Services\SettingService;
 use Seat\Web\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -13,10 +14,24 @@ class CorpMiningMoonMinings extends Controller
     private $MoonObservers;
     private $extractions = [];
 
+    private $settingService;
 
+    public function __construct()
+    {
+        $this->settingService = new SettingService();
+    }
     public function getHome()
     {
-        return view('corpminingtax::corpmoonmining');
+        $data = DB::table('corporation_industry_mining_observers as o')
+            ->select(
+                'o.observer_id',
+                's.name'
+            )
+            ->LeftJoin('universe_structures as s', 'o.observer_id', '=', 's.structure_id')
+            ->where('o.corporation_id', '=', $this->settingService->getValue('corporation_id'))
+            ->orderBy('s.name', 'desc')
+            ->get();
+        return view('corpminingtax::corpmoonmining', ['data' => $data]);
     }
 
     public function getCorpObservers(Request $request)

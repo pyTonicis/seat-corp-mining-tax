@@ -105,11 +105,11 @@
                 <tr>
                     <th>Date</th>
                     <th>CharacterName</th>
-                    <th>Mined Amount units</th>
-                    <th>Mined Volume</th>
+                    <th>Mined units</th>
+                    <th>Mined volume</th>
                     <th>Tax</th>
                     <th>Tax Rate</th>
-                    <th>EvE Market</th>
+                    <th>EvE Market Price</th>
                 </tr>
                 </thead>
                 <tbody>

@@ -3,15 +3,17 @@
 @section('title', 'Moonmining')
 
 @section('left')
-<div id="accordion">
-    <div class="card">
-        <div class="card-header border-secondary" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1" id="heading_1">
+    @isset($data)
+    <div id="accordion">
+        @foreach($data as $d)
+        <div class="card">
+        <div class="card-header border-secondary" data-toggle="collapse" data-target="#collapse_{{ $d->observer_id }}" aria-expanded="true" aria-controls="collapse_{{ $d->observer_id }}" id="heading_{{ $d->observer_id }}">
             <h5 class="mb-0">
                 <div class="row">
                     <h3><span class="badge badge-primary">R16</span></h3>
                     <div class="col-md-8 align-left">
                         <button class="btn">
-                            <h3 class="card-title"><b>SolarSystem</b> PRIVATE P7M2 PRESSE</h3>
+                            <h3 class="card-title"><b>SolarSystem</b> {{ $d->name }}</h3>
                         </button>
                     </div>
                     <div class="ml-auto mr-2 align-right text-center align-centered">
@@ -22,7 +24,7 @@
                 </div>
             </h5>
         </div>
-        <div id="collapse1" class="collapse" aria-labelledby="heading_1" data-parent="#accordion">
+        <div id="collapse_{{ $d->observer_id }}" class="collapse" aria-labelledby="heading_{{ $d->observer_id }}" data-parent="#accordion">
             <div class="card-body">
                 <table class="table table-borderless">
                     <thead>
@@ -51,6 +53,7 @@
             </div>
         </div>
     </div>
+        @endforeach
 </div>
-
+@endisset
 @stop

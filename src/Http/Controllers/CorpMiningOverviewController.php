@@ -76,7 +76,7 @@ class CorpMiningOverviewController extends Controller
                 ->first();
             if(!is_null($result)) {
                 array_push($data, (int)$result->volume);
-                array_push($prices, ((int)$result->price / 1000000));
+                array_push($prices, (int)$result->price);
                 $minings->add_volume($result->volume);
                 $minings->add_price($result->price);
                 $minings->add_quantity($result->quantity);

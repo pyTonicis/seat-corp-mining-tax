@@ -22,12 +22,22 @@ class CorpMiningTaxContracts extends Migration
             $table->biginteger('contractIssuer');
             $table->string('contractTitle');
             $table->text('contractData');
-            $table->enum('contractStatus');
+            $table->integer('contractStatus');
             $table->integer('month');
             $table->integer('year');
             $table->string('title');
             $table->biginteger('tax');
             $table->timestamps();
         });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('corp_mining_tax_contracts');
     }
 }
