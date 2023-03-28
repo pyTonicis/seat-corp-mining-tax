@@ -38,6 +38,7 @@ class CorpMiningMoonMinings extends Controller
         $mining = DB::table('corporation_industry_mining_observer_data')
             ->select(
                 'observer_id',
+                'type_id'
             )
             ->selectRAW("sum(quantity) as quantity")
             ->groupby('observer_id')
@@ -51,9 +52,14 @@ class CorpMiningMoonMinings extends Controller
             $miningData->system_name = $observer->system_name;
             foreach($mining as $m)
             {
-                if($m == $observer->observer_id)
+                if($m->observer_id == $observer->observer_id)
                 {
                     $miningData->total_mined = $m->quantity;
+                    if ($m->type_id == 1884) $miningData->group = 'R4';
+                    if ($m->type_id == 1920) $miningData->group = 'R8';
+                    if ($m->type_id == 1921) $miningData->group = 'R16';
+                    if ($m->type_id == 1922) $miningData->group = 'R32';
+                    if ($m->type_id == 1923) $miningData->group = 'R64';
                 }
             }
             $data->add_observer($miningData);

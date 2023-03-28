@@ -14,4 +14,6 @@ class MoonMiningData
 
     public $total_mined;
 
+    public $group;
+
 }
