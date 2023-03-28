@@ -84,7 +84,7 @@ class CorpMiningOverviewController extends Controller
                 $tax_act = (int)$result->tax;
             } else {
                 array_push($data, 0);
-                array_push($prices, (int)$result->price);
+                array_push($prices, 0);
             }
             DB::statement("SET SQL_MODE=''");
             $groups = DB::table('character_minings as cm')
