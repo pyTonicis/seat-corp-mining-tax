@@ -18,6 +18,8 @@ class CharacterMinings
 
     public $labels = [];
 
+    public $price_per_month = [];
+
     public $volume_per_month = [];
 
     public $quantity_per_group = [];

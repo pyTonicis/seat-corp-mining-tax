@@ -52,6 +52,7 @@ class CorpMiningOverviewController extends Controller
         }
         $labels = array_reverse($l);
         $data = array();
+        $prices = array();
         $groups = array();
         $minings = new CharacterMinings();
         $minings->character_id = $character;
@@ -75,16 +76,15 @@ class CorpMiningOverviewController extends Controller
                 ->first();
             if(!is_null($result)) {
                 array_push($data, (int)$result->volume);
-                $tmv += $result->volume;
+                array_push($prices, ((int)$result->price / 1000000));
                 $minings->add_volume($result->volume);
-                $tmisk += $result->price;
                 $minings->add_price($result->price);
-                $tmq += $result->quantity;
                 $minings->add_quantity($result->quantity);
                 $tax_count += (int)$result->tax;
                 $tax_act = (int)$result->tax;
             } else {
                 array_push($data, 0);
+                array_push($prices, (int)$result->price);
             }
             DB::statement("SET SQL_MODE=''");
             $groups = DB::table('character_minings as cm')
@@ -122,6 +122,7 @@ class CorpMiningOverviewController extends Controller
             array_push($grp_abyssal, (int)$abyssal);
         }
         $minings->volume_per_month = $data;
+        $minings->price_per_month = $prices;
         $dataset = array(['label' => 'Ice', 'data' => $grp_ice, 'backgroundColor' => '#4dc9f6'],
                          ['label' => 'Moon', 'data' => $grp_moon, 'backgroundColor' => '#f53794'],
                          ['label' => 'Ore', 'data' => $grp_ore, 'backgroundColor' => '#acc239'],

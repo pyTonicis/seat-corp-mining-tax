@@ -145,13 +145,21 @@
 
         const data = {
             labels: @json($minings->labels),
-            datasets: [{
-                label: 'Volume m³',
-                data: @json($minings->volume_per_month),
-                backgroundColor: '#acc239',
-                borderColor: '#acc239',
-            borderWidth: 1
-        }]
+            datasets: [
+                {
+                    label: 'Volume m³',
+                    data: @json($minings->volume_per_month),
+                    backgroundColor: '#acc239',
+                    borderColor: '#acc239',
+                    borderWidth: 1
+                },
+                {
+                    label: 'M ISK',
+                    data: @json($mining->price_per_month),
+                    backgroundColor: '#ff8c00',
+                    type: 'line',
+                    order: 0
+                }]
         };
         const config = {
             type: 'bar',
