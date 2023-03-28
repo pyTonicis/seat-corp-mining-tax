@@ -13,7 +13,7 @@
                     <h3><span class="badge badge-primary">R16</span></h3>
                     <div class="col-md-8 align-left">
                         <button class="btn">
-                            <h3 class="card-title"><b>SolarSystem</b> {{ $d->name }}</h3>
+                            <h3 class="card-title"><b>{{ $d->system_name }}</b> {{ $d->name }}</h3>
                         </button>
                     </div>
                     <div class="ml-auto mr-2 align-right text-center align-centered">

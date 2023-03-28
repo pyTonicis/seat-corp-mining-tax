@@ -25,9 +25,11 @@ class CorpMiningMoonMinings extends Controller
         $data = DB::table('corporation_industry_mining_observers as o')
             ->select(
                 'o.observer_id',
-                's.name'
+                's.name',
+                'so.name as system_name'
             )
-            ->LeftJoin('universe_structures as s', 'o.observer_id', '=', 's.structure_id')
+            ->join('universe_structures as s', 'o.observer_id', '=', 's.structure_id')
+            ->join('solar_systems as so', 's.solar_system_id', '=', 'so.system_id')
             ->where('o.corporation_id', '=', $this->settingService->getValue('corporation_id'))
             ->orderBy('s.name', 'desc')
             ->get();
