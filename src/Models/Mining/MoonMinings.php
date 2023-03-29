@@ -12,6 +12,7 @@ class MoonMinings
 
     public $volume;
 
+    private $names;
     public $scanned_volume;
 
     public function add_ore_type(string $ore_name, int $quantity) {
@@ -25,10 +26,11 @@ class MoonMinings
     }
 
     public function get_ore_types() {
+
         foreach ($this->ore_types as $n => $q) {
-            $names = $names . $n;
+            $this->names = $this->names . $n;
         }
-        return $names;
+        return $this->names;
     }
 
 }
