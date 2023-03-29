@@ -39,18 +39,11 @@
                     </thead>
                     <tbody>
                     @foreach ($d->minings as $mining)
-                    @php
-                        foreach ($mining->ore_types as $name => $quantity) {
-                            $names = $names . $name;
-                            $volumes += $quantity;
-                        }
-                        $volumes = $volumes * 10;
-                    @endphp
                         <tr>
                         <td>{{ $mining->date }}</td>
                         <td>??%</td>
-                        <td>{{ number_format($volumes) }}</td>
-                        <td>{{ $names }}</td>
+                        <td>{{ number_format($mining->quantity * 10) }}</td>
+                        <td>{{ $mining->get_ore_types() }}</td>
                         </tr>
                     @endforeach
                     </tbody>

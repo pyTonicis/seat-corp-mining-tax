@@ -24,4 +24,11 @@ class MoonMinings
         }
     }
 
+    public function get_ore_types() {
+        foreach ($this->ore_types as $n => $q) {
+            $names = $names . $n;
+        }
+        return $names;
+    }
+
 }
