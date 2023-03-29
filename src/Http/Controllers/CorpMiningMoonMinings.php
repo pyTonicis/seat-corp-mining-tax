@@ -58,9 +58,9 @@ class CorpMiningMoonMinings extends Controller
                     $data = new MoonMinings();
                     $data->date = $mining->last_updated;
                     $data->add_ore_type($mining->typeName, $mining->quantity);
-                    $moondata->observers[strtotime('Y-m-d', $mining->last_updated)]->add_mining_record($data);
+                    $moondata->observers[$mining->observer_id]->add_mining_record($data);
                 } else {
-                    $moondata->observers[strtotime('Y-m-d', $mining->last_updated)]->minings->add_ore_type($mining->typeName, $mining->quantity);
+                    $moondata->observers[$mining->observer_id]->minings[strtotime('Y-m-d', $mining->last_updated)]->add_ore_type($mining->typeName, $mining->quantity);
                 }
             }
         }
