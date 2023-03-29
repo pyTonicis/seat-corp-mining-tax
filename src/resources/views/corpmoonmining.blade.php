@@ -49,7 +49,7 @@
                         <tr>
                         <td>{{ $mining->date }}</td>
                         <td>??%</td>
-                        <td>{{ $volumes }}</td>
+                        <td>{{ number_format($volumes) }}</td>
                         <td>{{ $names }}</td>
                         </tr>
                     @endforeach
