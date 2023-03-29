@@ -28,7 +28,7 @@ class MoonMinings
     public function get_ore_types() {
 
         foreach ($this->ore_types as $n => $q) {
-            $this->names = $this->names . $n;
+            $this->names .= $n . ", ";
         }
         return $this->names;
     }
