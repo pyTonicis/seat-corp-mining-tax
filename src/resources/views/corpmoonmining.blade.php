@@ -20,7 +20,7 @@
                     </div>
                     <div class="ml-auto mr-2 align-right text-center align-centered">
                         <div class="row">
-                            <h4>Total Mined: <b>{{ $d->get_total_mined_volume($d->observer_id) }} m³</b></h4>
+                            <h4>Total Mined: <b>{{ $d->get_total_quantity() }} m³</b></h4>
                         </div>
                     </div>
                 </div>
