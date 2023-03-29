@@ -15,6 +15,8 @@ class ObserverData
 
     public $group;
 
+    public $total_mined_quantity;
+
     public function add_mining_record(MoonMinings $moonMining): void
     {
         if(!$this->has_mining_record($moonMining->date))
@@ -26,7 +28,7 @@ class ObserverData
         return array_key_exists($date, $this->minings);
     }
 
-    public function get_total_quantity(int $observer_id): int
+    public function get_total_quantity(): int
     {
         $quantity = 0;
         foreach ($this->minings as $mining) {

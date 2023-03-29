@@ -38,9 +38,9 @@ class CorpMiningMoonMinings extends Controller
             ->get();
         DB::statement("SET SQL_MODE=''");
         $minings = DB::table('corporation_industry_mining_observer_data as od')
-            ->selectRAW("od.last_updated, od.observer_id, sum(od.quantity) as quantity, it.typeName, it.groupId")
+            ->selectRAW("od.last_updated, od.observer_id, quantity, it.typeName, it.groupId")
             ->join('invTypes as it', 'od.type_id', '=', 'it.typeId')
-            ->groupby('type_id')
+            ->orderby('last_updated')
             ->get();
         $moondata = new CorporationMoonMining();
         foreach ($observers as $observer) {
