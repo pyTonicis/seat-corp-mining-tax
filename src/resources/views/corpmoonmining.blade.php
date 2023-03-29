@@ -53,7 +53,7 @@
                     </tbody>
                 </table>
                 @foreach ($d->minings as $m)
-                    <p>{{ $m }}</p>
+                    <p>{{ $m->date }} {{ $m->quantity }}</p>
                 @endforeach
             </div>
         </div>
