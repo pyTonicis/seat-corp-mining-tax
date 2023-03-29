@@ -2,7 +2,8 @@
 
 namespace pyTonicis\Seat\SeatCorpMiningTax\Http\Controllers;
 
-use pyTonicis\Seat\SeatCorpMiningTax\Models\Mining\MoonMiningData;
+use pyTonicis\Seat\SeatCorpMiningTax\Models\Mining\CorporationMoonMining;
+use pyTonicis\Seat\SeatCorpMiningTax\Models\Mining\ObserverData;
 use pyTonicis\Seat\SeatCorpMiningTax\Models\Mining\MoonMinings;
 use pyTonicis\Seat\SeatCorpMiningTax\Services\SettingService;
 use Seat\Web\Http\Controllers\Controller;
@@ -36,36 +37,35 @@ class CorpMiningMoonMinings extends Controller
             ->orderBy('s.name', 'desc')
             ->get();
         DB::statement("SET SQL_MODE=''");
-        $mining = DB::table('corporation_industry_mining_observer_data')
-            ->select(
-                'observer_id',
-                'type_id'
-            )
-            ->selectRAW("sum(quantity) as quantity")
-            ->groupby('observer_id')
+        $minings = DB::table('corporation_industry_mining_observer_data as od')
+            ->selectRAW("od.last_updated, od.observer_id, sum(od.quantity) as quantity, it.typeName, it.groupId")
+            ->join('invTypes as it', 'od.type_id', '=', 'it.typeId')
+            ->groupby('type_id')
             ->get();
-        $data = new MoonMinings();
-        foreach ($observers as $observer)
-        {
-            $miningData = new MoonMiningData();
-            $miningData->observer_id = $observer->observer_id;
-            $miningData->observer_name = $observer->name;
-            $miningData->system_name = $observer->system_name;
-            foreach($mining as $m)
-            {
-                if($m->observer_id == $observer->observer_id)
-                {
-                    $miningData->total_mined = $m->quantity;
-                    if ($m->type_id == 1884) $miningData->group = 'R4';
-                    if ($m->type_id == 1920) $miningData->group = 'R8';
-                    if ($m->type_id == 1921) $miningData->group = 'R16';
-                    if ($m->type_id == 1922) $miningData->group = 'R32';
-                    if ($m->type_id == 1923) $miningData->group = 'R64';
+        $moondata = new CorporationMoonMining();
+        foreach ($observers as $observer) {
+            if (!$moondata->has_observer($observer->observer_id)) {
+                $observerData = new ObserverData();
+                $observerData->observer_id = $observer->observer_id;
+                $observerData->observer_name = $observer->name;
+                $observerData->system_name = $observer->system_name;
+                $moondata->add_observer($observerData);
+            }
+        }
+        foreach ($minings as $mining) {
+            if($moondata->has_observer($mining->observer_id)) {
+                if(!$moondata->observers[$mining->observer_id]->has_mining_record($mining->date)) {
+                    $data = new MoonMinings();
+                    $data->date = $mining->last_updated;
+                    $data->add_ore_type($mining->typeName, $mining->quantity);
+                    $moondata->observers[$mining->date]->add_mining_record($data);
+                } else {
+                    $moondata->observers[$mining->date]->minings->add_ore_type($mining->typeName, $mining->quantity);
                 }
             }
-            $data->add_observer($miningData);
         }
-        return view('corpminingtax::corpmoonmining', ['data' => $data]);
+
+        return view('corpminingtax::corpmoonmining', ['data' => $moondata]);
     }
 
     public function getCorpObservers(Request $request)

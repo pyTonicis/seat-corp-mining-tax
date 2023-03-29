@@ -11,17 +11,7 @@
             <h5 class="mb-0">
                 <div class="row">
                     <h3>
-                        @if($d->group == 'R4')
-                            <span class="badge badge-secondary">R4</span>
-                        @elseif($d->group == 'R8')
-                            <span class="badge badge-info">R8</span>
-                        @elseif($d->group == 'R16')
-                            <span class="badge badge-success">R16</span>
-                        @elseif($d->group == 'R32')
-                            <span class="badge badge-warning">R32</span>
-                        @elseif($d->group == 'R64')
-                            <span class="badge badge-danger">R64</span>
-                        @endif
+                        R16
                     </h3>
                     <div class="col-md-8 align-left">
                         <button class="btn">
@@ -30,7 +20,7 @@
                     </div>
                     <div class="ml-auto mr-2 align-right text-center align-centered">
                         <div class="row">
-                            <h4>Total Mined: <b>{{ number_format($d->total_mined) }} m³</b></h4>
+                            <h4>Total Mined: <b>{{ number_format($d->observers[$d->observer_id]->get_total_quantity($d->observer_id)) }} m³</b></h4>
                         </div>
                     </div>
                 </div>
