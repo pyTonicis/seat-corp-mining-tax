@@ -52,6 +52,9 @@
                     </tr>
                     </tbody>
                 </table>
+                @foreach ($d->minings as $m)
+                    <p>{{ $m }}</p>
+                @endforeach
             </div>
         </div>
     </div>
