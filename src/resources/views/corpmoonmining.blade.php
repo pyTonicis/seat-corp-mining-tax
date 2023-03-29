@@ -20,7 +20,7 @@
                     </div>
                     <div class="ml-auto mr-2 align-right text-center align-centered">
                         <div class="row">
-                            <h4>Total Mined: <b>{{ $d->get_total_quantity() }} m³</b></h4>
+                            <h4>Total Mined: <b>{{ number_format($d->get_total_quantity() * 10) }} m³</b></h4>
                         </div>
                     </div>
                 </div>
@@ -38,23 +38,23 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>2023-01-07</td>
-                        <td>34%</td>
-                        <td>9.386.712</td>
-                        <td>lavish Chromite, Chromite, Sperrylite</td>
-                    </tr>
-                    <tr>
-                        <td>2023-02-18</td>
-                        <td>56%</td>
-                        <td>19.112.954</td>
-                        <td>Lavish Chromite, Chromite, Lavish Euxenite, Sperrylite</td>
-                    </tr>
+                    @foreach ($d->minings as $mining)
+                    @php
+                        foreach ($mining->ore_types as $name => $quantity) {
+                            $names = $names . $name;
+                            $volumes += $quantity;
+                        }
+                        $volumes = $volumes * 10;
+                    @endphp
+                        <tr>
+                        <td>{{ $mining->date }}</td>
+                        <td>??%</td>
+                        <td>{{ $volumes }}</td>
+                        <td>{{ $names }}</td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
-                @foreach ($d->minings as $m)
-                    <p>{{ $m->date }} @json($m->ore_types)</p>
-                @endforeach
             </div>
         </div>
     </div>
