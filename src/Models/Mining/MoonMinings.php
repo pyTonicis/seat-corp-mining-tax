@@ -8,7 +8,7 @@ class MoonMinings
 
     public $ore_types = [];
 
-    public $quantity;
+    public $quantity = 0;
 
     public $volume;
 
@@ -17,7 +17,7 @@ class MoonMinings
     public function add_ore_type(string $ore_name, int $quantity) {
         if(!array_key_exists($ore_name, $this->ore_types)) {
             $this->ore_types[$ore_name] = $quantity;
-            $this->quantity = $quantity;
+            $this->quantity += $quantity;
         } else {
             $this->ore_types[$ore_name] += $quantity;
             $this->quantity += $quantity;
