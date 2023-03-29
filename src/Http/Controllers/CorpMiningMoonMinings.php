@@ -64,15 +64,7 @@ class CorpMiningMoonMinings extends Controller
                 }
                 if(!$moondata->observers[$mining->observer_id]->group) {
                     $moondata->observers[$mining->observer_id]->group = $mining->groupId;
-                } elseif ($moondata->observers[$mining->observer_id]->group <= 1884) {
-                    $moondata->observers[$mining->observer_id]->group = $mining->groupId;
-                } elseif ($moondata->observers[$mining->observer_id]->group <= 1920) {
-                    $moondata->observers[$mining->observer_id]->group = $mining->groupId;
-                } elseif ($moondata->observers[$mining->observer_id]->group <= 1921) {
-                    $moondata->observers[$mining->observer_id]->group = $mining->groupId;
-                } elseif ($moondata->observers[$mining->observer_id]->group <= 1922) {
-                    $moondata->observers[$mining->observer_id]->group = $mining->groupId;
-                } elseif ($moondata->observers[$mining->observer_id]->group <= 1923) {
+                } elseif ($moondata->observers[$mining->observer_id]->group <= $mining->groupId) {
                     $moondata->observers[$mining->observer_id]->group = $mining->groupId;
                 }
             }
