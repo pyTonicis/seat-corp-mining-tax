@@ -39,7 +39,7 @@ class ObserverData
 
     public function get_moon_ore_group()
     {
-        if ($this->group = 1884)
+        if ($this->group == 1884)
             $result = "<span class=\"badge badge-secondary\">R4</span>";
         elseif($this->group == 1920)
             $result = "<span class=\"badge badge-info\">R8</span>";
