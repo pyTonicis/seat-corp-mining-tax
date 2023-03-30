@@ -13,7 +13,7 @@ class ObserverData
 
     public $minings = [];
 
-    public $group;
+    public $group = 0;
 
     public $total_mined_quantity;
 
