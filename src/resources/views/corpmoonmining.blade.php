@@ -11,7 +11,17 @@
             <h5 class="mb-0">
                 <div class="row">
                     <h3>
-                        <span class=\"badge {{ $d->get_moon_ore_group() }}</span>
+                        @if($d->group == 1884)
+                            <span class="badge badge-secondary">R4</span>
+                        @elseif($d->group == 1920)
+                            <span class="badge badge-info">R8</span>
+                        @elseif($d->group == 1921)
+                            <span class="badge badge-success">R16</span>
+                        @elseif($d->group == 1922)
+                            <span class="badge badge-warning">R32</span>
+                        @elseif($d->group == 1923)
+                            <span class="badge badge-danger">R64</span>
+                        @endif
                     </h3>
                     <div class="col-md-8 align-left">
                         <button class="btn">
