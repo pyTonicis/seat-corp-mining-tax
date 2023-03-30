@@ -13,7 +13,7 @@
                 <h3>Detected Bad Boys</h3>
             </div>
             <div class="card-body">
-                <table class="table" id="mining">
+                <table class="table" id="thieves">
                     <thead>
                     <tr>
                         <th>CharacterID</th>
@@ -34,13 +34,15 @@
                                     <td></td>
                                 </tr>
                             @endforeach
-                        @else
-                                <tr>
-                                    <td>No data found</td>
-                                </tr>
                         @endif
                     </tbody>
                 </table>
             </div>
         </div>
 @stop
+@push('javascript')
+    <script>
+    table = $('#thieves').DataTable({
+    });
+    </script>
+@endpush

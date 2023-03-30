@@ -86,6 +86,7 @@ class CorpMiningOverviewController extends Controller
                 array_push($data, 0);
                 array_push($prices, 0);
             }
+            $tax_act = (int)$result->tax;
             DB::statement("SET SQL_MODE=''");
             $groups = DB::table('character_minings as cm')
                 ->selectRaw('cm.type_id, sum(cm.quantity) as quantity, it.typeName, it.groupId')
@@ -121,6 +122,7 @@ class CorpMiningOverviewController extends Controller
             array_push($grp_ore, (int)$ore);
             array_push($grp_abyssal, (int)$abyssal);
         }
+        $tax_act = (int)$result->tax;
         $minings->volume_per_month = $data;
         $minings->price_per_month = $prices;
         $dataset = array(['label' => 'Ice', 'data' => $grp_ice, 'backgroundColor' => '#4dc9f6'],
