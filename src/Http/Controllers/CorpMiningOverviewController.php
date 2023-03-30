@@ -63,7 +63,6 @@ class CorpMiningOverviewController extends Controller
         $grp_moon = array();
         $grp_abyssal = array();
         $tax_count = 0;
-        $tax_act = 0;
         foreach ($labels as $label) {
             $datum = strtotime($label);
             $month = (int)date('m', $datum);
@@ -81,12 +80,10 @@ class CorpMiningOverviewController extends Controller
                 $minings->add_price($result->price);
                 $minings->add_quantity($result->quantity);
                 $tax_count += (int)$result->tax;
-                $tax_act = (int)$result->tax;
             } else {
                 array_push($data, 0);
                 array_push($prices, 0);
             }
-            $tax_act = (int)$result->tax;
             DB::statement("SET SQL_MODE=''");
             $groups = DB::table('character_minings as cm')
                 ->selectRaw('cm.type_id, sum(cm.quantity) as quantity, it.typeName, it.groupId')
@@ -122,7 +119,15 @@ class CorpMiningOverviewController extends Controller
             array_push($grp_ore, (int)$ore);
             array_push($grp_abyssal, (int)$abyssal);
         }
-        $tax_act = (int)$result->tax;
+        $tax_act = 0;
+        $result = DB::table('corp_mining_tax')
+            ->select('quantity', 'volume', 'price', 'tax')
+            ->where('main_character_id', '=', $character)
+            ->where('month', '=', date('m', strtotime(time())))
+            ->where('year', '=', date('Y', strtotime(time())))
+            ->first();
+        if(!is_null($result))
+            $tax_act = (int)$result->tax;
         $minings->volume_per_month = $data;
         $minings->price_per_month = $prices;
         $dataset = array(['label' => 'Ice', 'data' => $grp_ice, 'backgroundColor' => '#4dc9f6'],
