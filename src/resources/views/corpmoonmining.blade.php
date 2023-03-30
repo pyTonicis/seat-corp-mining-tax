@@ -11,7 +11,7 @@
             <h5 class="mb-0">
                 <div class="row">
                     <h3>
-
+                        {{ $d->group }}
                     </h3>
                     <div class="col-md-8 align-left">
                         <button class="btn">
