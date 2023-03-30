@@ -42,15 +42,20 @@ class CorpMiningOverviewController extends Controller
         $character = auth()->user()->main_character['character_id'];
         $characters = CharacterHelper::getLinkedCharacters($character);
         $linked_characters_count = 5;
-        $l = array();
+        /*$l = array();
         $datum_now = date('Y-m', time());
 
-        for ($i = 0; $i < 12; $i++) {
+        for ($i = 1; $i = 12; $i++) {
             $m = "-" . $i . "month";
             $datum_now = strtotime($m);
             array_push($l, date('Y-m', (int)$datum_now));
         }
-        $labels = array_reverse($l);
+        $labels = array_reverse($l);*/
+        $labels = array();
+        for ($i = 0, $con = 0; $i < 12; $i++) {
+            array_push($labels, date('Y-m', (time() - $con)));
+            $con += 2635200;
+        }
         $data = array();
         $prices = array();
         $groups = array();
