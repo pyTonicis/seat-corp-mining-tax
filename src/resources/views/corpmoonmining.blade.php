@@ -11,7 +11,7 @@
             <h5 class="mb-0">
                 <div class="row">
                     <h3>
-                        {{ $d->get_moon_ore_group() }}
+                        <span class=\"badge {{ $d->get_moon_ore_group() }}</span>
                     </h3>
                     <div class="col-md-8 align-left">
                         <button class="btn">

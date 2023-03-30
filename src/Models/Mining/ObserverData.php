@@ -40,15 +40,15 @@ class ObserverData
     public function get_moon_ore_group()
     {
         if ($this->group == 1884)
-            $result = "<span class=\"badge badge-secondary\">R4</span>";
+            $result = " badge-secondary\">R4";
         elseif($this->group == 1920)
-            $result = "<span class=\"badge badge-info\">R8</span>";
+            $result = " badge-info\">R8";
         elseif($this->group == 1921)
-            $result = "<span class=\"badge badge-success\">R16</span>";
+            $result = " badge-success\">R16";
         elseif($this->group == 1921)
-            $result = "<span class=\"badge badge-warning\">R32</span>";
+            $result = " badge-warning\">R32";
         elseif($this->group == 1922)
-            $result = "<span class=\"badge badge-danger\">R8</span>";
+            $result = " badge-danger\">R8";
         else $result = "UNK";
         return $result;
     }
