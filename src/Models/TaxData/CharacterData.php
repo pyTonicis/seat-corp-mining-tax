@@ -21,12 +21,23 @@ class CharacterData
      * @var int
      */
     public $tax;
-
+    /**
+     * @var int
+     */
     public $tax2;
-
+    /**
+     * @var int
+     */
     public $tax3;
-
+    /**
+     * @var int
+     */
     public $volume;
+
+    /**
+     * @var int
+     */
+    public $quantity;
 
     /**
      * @var int
@@ -112,5 +123,9 @@ class CharacterData
 
     public function addVolume(int $vol) {
         $this->volume += $vol;
+    }
+
+    public function addQuantity(int $q) {
+        $this->quantity += $q;
     }
 }

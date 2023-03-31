@@ -30,7 +30,8 @@ class MiningTaxService
                 'cm.character_id',
                 'cm.quantity',
                 'cm.type_id',
-                'it.typeName'
+                'it.typeName',
+                'it.groupId'
             )
             ->join('corporation_members as cmem', 'cm.character_id', '=', 'cmem.character_id')
             ->join('market_prices as mp', 'cm.type_id', 'mp.type_id')
@@ -48,6 +49,10 @@ class MiningTaxService
             ->where('type_id', '=', $id)
             ->first();
         return $data->average_price;
+    }
+
+    private function calculateTaxById(int $type_id, int $group_id) {
+
     }
 
     public function createMiningTaxResult(int $corpId, int $month, int $year): MiningTaxResult
@@ -86,17 +91,24 @@ class MiningTaxService
                 $data->quantity
             ));
 
-            $charData->addToPriceSummary($data->quantity);
-            $charData->addTax(EvePraisalHelper::getItemPriceByTypeId($data->type_id) * $data->quantity);
+            $charData->addQuantity($data->quantity);
+            //$charData->addTax(EvePraisalHelper::getItemPriceByTypeId($data->type_id) * $data->quantity);
             $volume = Reprocessing::getMaterialInfo($data->type_id)->volume * $data->quantity;
             $charData->addVolume($volume);
 
-            foreach(Reprocessing::ReprocessOreByTypeId($data->type_id, $data->quantity, $settings->getValue('ore_refining_rate')) as $key => $value)
+            foreach(Reprocessing::ReprocessOreByTypeId($data->type_id, $data->quantity, (float)($settings->getValue('ore_refining_rate') / 100)) as $key => $value)
             {
-                $price = EvePraisalHelper::getItemPriceByTypeId($key) * $value;
-                $charData->addTax2($price * ($settings->getValue('price_modifier') / 100));
-                $market_price = $this->getItemPriceById($key) * $value;
-                $charData->addTax3($market_price);
+                if($settings->getValue('price_provider') == 'Eve Market')
+                    $price = $this->getItemPriceById($key) * $value;
+                else
+                    $price = EvePraisalHelper::getItemPriceByTypeId($key) * $value;
+                //$price = EvePraisalHelper::getItemPriceByTypeId($key) * $value;
+                $charData->addToPriceSummary($price);
+                $charData->addTax($price / 10);
+
+                //$charData->addTax2($price * ($settings->getValue('price_modifier') / 100));
+                //$market_price = $this->getItemPriceById($key) * $value;
+                //$charData->addTax3($market_price * ($settings->getValue('price_modifier') / 100));
             }
         }
 
