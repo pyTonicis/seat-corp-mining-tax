@@ -65,6 +65,12 @@
                                 <input id="contract_issuer" name="contract_issuer" type="text" class="form-control input-md" value="{{ $settings['contract_issuer'] }}">
                             </div>
                         </div>
+                        <div class="form-group-row">
+                            <label class="col-md4 col-form-label" for="contract_tag">Contract Tag</label>
+                            <div class="col-md-12">
+                                <input id="contract_tag" name="contract_tag" type="text" class="form-control input-md" value="{{ $settings['contract_tag'] }}">
+                            </div>
+                        </div>
                         <div class="col-md-12">
                             <label class="col-md4 col-form-label" for="contract_expire">Expire in</label>
                             <input id="contract_expire" name="contract_expire" type="text" class="form-control input-md" value="{{ $settings['contract_expire'] }}">
