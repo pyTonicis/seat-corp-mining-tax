@@ -12,7 +12,7 @@
             <h3>Corporation Tax Contracts</h3>
         </div>
         <div class="card-body">
-            <table class="table datatable compact table-condensed table-hover table-striped" id="contracts">
+            <table class="table" id="contracts">
                 <thead>
                 <tr>
                     <th>Date</th>
@@ -45,3 +45,9 @@
         </div>
     </div>
 @stop
+@push('javascript')
+    <script>
+        table = $('#contracts').DataTable({
+        });
+    </script>
+@endpush

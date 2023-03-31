@@ -203,7 +203,7 @@
                     </p>
                     <legend>Contract Settings</legend>
                     <p>
-                        Set Character Name of Contract issuer and contract exprie.
+                        Set Character Name of Contract issuer, contract expire time and a "tag" for Contract Description: e.g.: "Mining Tax"
                     </p>
                     <legend>Moon Tax</legend>
                     <p>

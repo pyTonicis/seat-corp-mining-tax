@@ -17,7 +17,7 @@ class CorpMiningTaxContracts extends Migration
     {
         Schema::create('corp_mining_tax_contracts', function (Blueprint $table) {
             $table->increments('id');
-            $table->biginteger('main_character_id');
+            $table->biginteger('character_id');
             $table->biginteger('contractId')->primary();
             $table->biginteger('contractIssuer');
             $table->string('contractTitle');

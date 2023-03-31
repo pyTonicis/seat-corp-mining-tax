@@ -10,6 +10,6 @@ class CorpMiningEvents extends Controller
 {
     public function getHome()
     {
-        return view('corpminingtax::corpminingtaxhome');
+        return view('corpminingtax::corpminingevents');
     }
 }
