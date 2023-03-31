@@ -118,7 +118,7 @@ class SeatCorpMiningTaxServiceProvider extends AbstractSeatPlugin
      */
     private function add_migrations()
     {
-        $this->loadMigrationsFrom(__DIR__ . '/database/migrations/');
+        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
     }
 
     private function add_commands()
