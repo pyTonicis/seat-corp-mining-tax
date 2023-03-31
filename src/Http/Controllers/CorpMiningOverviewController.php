@@ -56,6 +56,7 @@ class CorpMiningOverviewController extends Controller
             array_push($labels, date('Y-m', (time() - $con)));
             $con += 2635200;
         }
+        $labels = array_reverse($labels);
         $data = array();
         $prices = array();
         $groups = array();
