@@ -29,5 +29,6 @@ return [
     'sub-tax-contracts' => 'Tax Contracts',
     'sub-thieves' => 'Thieves',
     'sub-mining-events' => 'Mining Events',
+    'sub-refining' => 'Reprocessing',
 ];
 
