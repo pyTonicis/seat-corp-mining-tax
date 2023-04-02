@@ -16,7 +16,8 @@ class CorpMiningRefiningController extends Controller
 
     public function getRefinings(Request $request)
     {
-        $items = $request->except('_token');
+        $sum = $request->except('_token');
+        $items = $request->get('itmes');
         $data = [];
 
         foreach($items as $name => $quantity) {

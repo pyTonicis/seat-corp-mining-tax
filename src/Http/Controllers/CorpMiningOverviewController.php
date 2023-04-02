@@ -50,13 +50,27 @@ class CorpMiningOverviewController extends Controller
             $datum_now = strtotime($m);
             array_push($l, date('Y-m', (int)$datum_now));
         }
-        $labels = array_reverse($l);*/
+        $labels = array_reverse($l);
         $labels = array();
         for ($i = 0, $con = 0; $i < 12; $i++) {
             array_push($labels, date('Y-m', (time() - $con)));
             $con += 2635200;
         }
-        $labels = array_reverse($labels);
+        $labels = array_reverse($labels);*/
+        $labels = array();
+        $act_m = (date('m', time()) +1);
+        $act_y = (date('Y', time()) -1);
+        $start = ($act_y-1) . "-". $act_m;
+        for ($i = 0; $i < 12; $i++) {
+            $datum = $act_y . "-". $act_m;
+            array_push($labels, date('Y-m', strtotime($act_y . "-" . $act_m)));
+            if ($act_m == 12) {
+                $act_y += 1;
+                $act_m = 1;
+            } else {
+                $act_m += 1;
+            }
+        }
         $data = array();
         $prices = array();
         $groups = array();

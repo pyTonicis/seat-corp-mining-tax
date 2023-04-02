@@ -22,7 +22,7 @@
                     <p>Copy your EvE items wirh (Ctrl+C) in your inventory and past them with (Ctrl+V) into the onput field below and press "Reprocess"</p>
                     <textarea class="w-100" name="items" rows="10"></textarea>
                 </div>
-                <button type="submit" onclick="on()" class="btn btn-primary" form="item-check">Reprocess</button>
+                <button type="submit" onclick="on()" class="btn btn-primary" form="refine">Reprocess</button>
             </form>
         </div>
     </div>
