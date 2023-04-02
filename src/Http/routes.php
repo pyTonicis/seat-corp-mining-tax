@@ -74,5 +74,9 @@ Route::group([
             Route::get('/refining')
                 ->name('corpminingtax.refining')
                 ->uses('CorpMiningRefiningController@getHome');
+
+            Route::post('/getRefinings')
+                ->name('corpminingtax.refinings')
+                ->uses('CorpMiningRefiningController@getRefinings');
         });
 });
