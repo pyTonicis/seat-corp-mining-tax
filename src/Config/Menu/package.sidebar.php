@@ -40,7 +40,7 @@ return [
                 'name' => 'corpminingtax-sub-refining',
                 'label' => 'corpminingtax::menu.sub-refining',
                 'icon' => 'fas fa-hammer',
-                'route' => 'corpminingtax.corpminingrefining',
+                'route' => 'corpminingtax.refining',
                 'permission' => 'corpminingtax.view'
             ],
             [

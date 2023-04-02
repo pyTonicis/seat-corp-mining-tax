@@ -70,5 +70,9 @@ Route::group([
             Route::get('/miningevents')
                 ->name('corpminingtax.events')
                 ->uses('CorpMiningEvents@getHome');
+
+            Route::get('/refining')
+                ->name('corpminingtax.refining')
+                ->uses('CorpMiningRefiningController@getHome');
         });
 });
