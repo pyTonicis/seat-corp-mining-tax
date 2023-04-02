@@ -15,7 +15,7 @@
                     <div class="spinner"></div>
                 </div>
             </div>
-            <form action="{{ route('corpminingtax.refine') }}" method="post" id="refine" name="refine">
+            <form action="{{ route('corpminingtax.refinings') }}" method="post" id="refine" name="refine">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label for="items">Copy and past Raw Ore Material</label>
