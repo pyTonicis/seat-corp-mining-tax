@@ -26,4 +26,23 @@
             </form>
         </div>
     </div>
+
+    @isset($data)
+        @json($data)
+    @endisset
+
 @stop
+
+@push('javascript')
+    @push('javascript')
+        <script>
+            function on() {
+                document.getElementById("overlay").style.display = "flex";
+            }
+        </script>
+    @endpush
+    <script>
+        table = $('#refined').DataTable({
+        });
+    </script>
+@endpush

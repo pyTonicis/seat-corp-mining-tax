@@ -25,6 +25,14 @@ class Reprocessing
         return $data;
     }
 
+    public static function getItemIdByName(string $name)
+    {
+        return DB::table('invTypes')
+            ->select('typeId')
+            ->where('typeName', '=', $name)
+            ->pluck('typeId');
+    }
+
     public static function ReprocessOreByTypeId(int $typeId, int $quantity, float $refining_rate = 0.9) :array
     {
         $ore = self::getMaterialInfo($typeId);
