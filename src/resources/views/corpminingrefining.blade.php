@@ -28,7 +28,31 @@
     </div>
 
     @isset($data)
-        @json($data)
+        <div class="card">
+            <div class="card-header">
+                <h3>Refined Materials</h3>
+            </div>
+            <div class="card-body">
+                <table class="table" id="refined">
+                    <thead>
+                    <tr>
+                        <th>Material</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($data as $item => $quantity)
+                        <tr>
+                            <td>{{ $item }}</td>
+                            <td>{{ number_format($quantity) }}</td>
+                            <td>0</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
     @endisset
 
 @stop
