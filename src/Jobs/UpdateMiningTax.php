@@ -46,7 +46,7 @@ class UpdateMiningTax implements ShouldQueue
         {
             DB::table('corp_mining_tax')
                 ->updateOrInsert(['main_character_id' => $character->characterId, 'year' => $this->year, 'month' => $this->month],
-                ['quantity' => $character->quantity, 'volume' => $character->volume, 'price' => $character->priceSummary, 'tax' => $character->tax/10, 'status' => 0, 'contractId' => 0]
+                ['quantity' => $character->quantity, 'volume' => $character->volume, 'price' => $character->priceSummary, 'tax' => $character->tax, 'status' => 0, 'contractId' => 0]
                 );
         }
     }

@@ -37,6 +37,13 @@ return [
                 'permission' => 'corpminingtax.view'
             ],
             [
+                'name' => 'corpminingtax-sub-refining',
+                'label' => 'corpminingtax::menu.sub-refining',
+                'icon' => 'fas fa-arrow-progress',
+                'route' => 'corpminingtax.corpminingrefining',
+                'permission' => 'corpminingtax.view'
+            ],
+            [
                 'name' => 'corpminingtax-sub-mining-tax',
                 'label' => 'corpminingtax::menu.sub-mining-tax',
                 'icon' => 'fas fa-th-list',
