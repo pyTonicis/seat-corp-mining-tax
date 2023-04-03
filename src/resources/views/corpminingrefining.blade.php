@@ -33,7 +33,7 @@
                 <h3>Raw Materials</h3>
             </div>
             <div class="card-body">
-                <table class="table" id="refined">
+                <table class="table" id="raw_materials">
                     <thead>
                     <tr>
                         <th>Material</th>
@@ -58,7 +58,7 @@
                 <h3>Refined Materials</h3>
             </div>
             <div class="card-body">
-                <table class="table" id="refined">
+                <table class="table" id="refined_materials">
                     <thead>
                     <tr>
                         <th>Material</th>
@@ -71,12 +71,11 @@
                         <tr>
                             <td><img src="https://images.evetech.net/types/{{ $item["typeID"] }}/icon?size=32"/>{{ $item['name'] }}</td>
                             <td>{{ $item['quantity'] }}</td>
-                            <td>0</td>
+                            <td>{{ number_format($item['price'] * $item['quantity']) }}</td>
                         </tr>
                     @endforeach
                     </tbody>
                 </table>
-                <p>@json($data2)</p>
             </div>
         </div>
     @endisset

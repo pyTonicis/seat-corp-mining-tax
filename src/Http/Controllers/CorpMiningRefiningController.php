@@ -5,6 +5,7 @@ namespace pyTonicis\Seat\SeatCorpMiningTax\Http\Controllers;
 use pyTonicis\Seat\SeatCorpMiningTax\Services\Reprocessing;
 use Seat\Web\Http\Controllers\Controller;
 use Seat\Eveapi\Models\Sde\InvType;
+use Seat\Eveapi\Models\Market\Price;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
@@ -30,10 +31,12 @@ class CorpMiningRefiningController extends Controller
             $raw = Reprocessing::ReprocessOreByTypeId($item['typeID'], $item['quantity']);
             foreach($raw as $key => $value) {
                 $inv_type = InvType::where('typeId', '=', $key)->first();
+                $price = Price::where('type_id', '=', $key)->first();
                 if (!array_key_exists($inv_type->typeName, $refinedMaterials)) {
                     $refinedMaterials[$inv_type->typeName]['name'] = $inv_type->typeName;
                     $refinedMaterials[$inv_type->typeName]['typeID'] = $key;
                     $refinedMaterials[$inv_type->typeName]['quantity'] = $value;
+                    $refinedMaterials[$inv_type->typeName]['price'] = $price->average_price;
                 }
                 $refinedMaterials[$inv_type->typeName]['quantity'] += $item['quantity'];
             }
