@@ -23,10 +23,14 @@ class CorpMiningRefiningController extends Controller
         ]);
 
         $parsedOre = $this->parseItems($request->get('items'));
+        $refinedMaterials = [];
 
+        foreach($parsedOre as $key => $item) {
+            $refinedMaterials[$item[$key]] = Reprocessing::ReprocessOreByTypeId($item['typeID'], $item['quantity']);
+        }
         return view('corpminingtax::corpminingrefining', [
             'data' => $parsedOre,
-            'data2' => $request->get('items'),
+            'data2' => $refinedMaterials,
         ]);
 
 /*

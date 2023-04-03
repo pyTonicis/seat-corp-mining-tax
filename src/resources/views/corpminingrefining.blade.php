@@ -30,6 +30,32 @@
     @isset($data)
         <div class="card">
             <div class="card-header">
+                <h3>Raw Materials</h3>
+            </div>
+            <div class="card-body">
+                <table class="table" id="refined">
+                    <thead>
+                    <tr>
+                        <th>Material</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($data as $key => $item)
+                        <tr>
+                            <td><img src="https://images.evetech.net/types/{{ $item["typeId"] }}/icon?size=32"/>{{ $d['name'] }}</td>
+                            <td>{{ $d['quantity'] }}</td>
+                            <td>0</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <p>@json($data2)</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
                 <h3>Refined Materials</h3>
             </div>
             <div class="card-body">
@@ -42,13 +68,13 @@
                     </tr>
                     </thead>
                     <tbody>
-                        @foreach($data as $d)
+                    @foreach($data2 as $key => $item)
                         <tr>
-                            <td>{{ $d->name }}</td>
-                            <td>{{ $d->quantity }}</td>
+                            <td><img src="https://images.evetech.net/types/{{ $item["typeId"] }}/icon?size=32"/>{{ $d['name'] }}</td>
+                            <td>{{ $d['quantity'] }}</td>
                             <td>0</td>
                         </tr>
-                        @endforeach
+                    @endforeach
                     </tbody>
                 </table>
                 <p>@json($data2)</p>
