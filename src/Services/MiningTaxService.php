@@ -101,35 +101,35 @@ class MiningTaxService
                 $charData->addToPriceSummary($price * (float)($settings->getValue('ore_refining_rate') / 100));
                 switch($invGroup) {
                     case 465:
-                        if ($settings->getValue('taxes_ice'))
+                        if ($settings->getValue('taxes_ice') == "true")
                             $charData->addTax($price * ($settings->getValue('ice_rate') / 100));
                         break;
                     case 711:
-                        if ($settings->getValue('taxes_gas'))
+                        if ($settings->getValue('taxes_gas') == "true")
                             $charData->addTax($price * ($settings->getValue('gas_rate') / 100));
                         break;
                     case 1884:
-                        if ($settings->getValue('taxes_corp_moon'))
+                        if ($settings->getValue('taxes_corp_moon') == "true")
                             $charData->addTax($price * ($settings->getValue('r4_rate') / 100));
                         break;
                     case 1920:
-                        if ($settings->getValue('taxes_corp_moon'))
+                        if ($settings->getValue('taxes_corp_moon') == "true")
                             $charData->addTax($price * ($settings->getValue('r8_rate') / 100));
                         break;
                     case 1921:
-                        if ($settings->getValue('taxes_corp_moon'))
+                        if ($settings->getValue('taxes_corp_moon') == "true")
                             $charData->addTax($price * ($settings->getValue('r16_rate') / 100));
                         break;
                     case 1922:
-                        if ($settings->getValue('taxes_corp_moon'))
+                        if ($settings->getValue('taxes_corp_moon') == "true")
                             $charData->addTax($price * ($settings->getValue('r32_rate') / 100));
                         break;
                     case 1923:
-                        if ($settings->getValue('taxes_corp_moon'))
+                        if ($settings->getValue('taxes_corp_moon') == "true")
                             $charData->addTax($price * ($settings->getValue('r64_rate') / 100));
                         break;
                     case 1996:
-                        if ($settings->getValue('taxes_abyssal'))
+                        if ($settings->getValue('taxes_abyssal') == "true")
                             $charData->addTax($price * ($settings->getValue('abyssal_rate') / 100));
                         break;
                 }
