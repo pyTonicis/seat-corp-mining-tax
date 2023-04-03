@@ -25,7 +25,7 @@ class CorpMiningRefiningController extends Controller
 
         $parsedOre = $this->parseItems($request->get('items'));
         $refinedMaterials = [];
-        $raw = [];
+        $summary = 0;
 
         foreach($parsedOre as $key => $item) {
             $raw = Reprocessing::ReprocessOreByTypeId($item['typeID'], $item['quantity']);
@@ -37,13 +37,16 @@ class CorpMiningRefiningController extends Controller
                     $refinedMaterials[$inv_type->typeName]['typeID'] = $key;
                     $refinedMaterials[$inv_type->typeName]['quantity'] = $value;
                     $refinedMaterials[$inv_type->typeName]['price'] = $price->average_price;
+                    $summary += (int)$price->average_price * (int)$value;
                 }
-                $refinedMaterials[$inv_type->typeName]['quantity'] += $item['quantity'];
+                $refinedMaterials[$inv_type->typeName]['quantity'] += $value;
+                $summary += (int)$price->average_price * (int)$value;
             }
         }
         return view('corpminingtax::corpminingrefining', [
             'data' => $parsedOre,
             'data2' => $refinedMaterials,
+            'total' => $summary,
         ]);
 
 /*

@@ -33,7 +33,7 @@
                 <h3>Raw Materials</h3>
             </div>
             <div class="card-body">
-                <table class="table" id="raw_materials">
+                <table class="table table-borderless" id="raw_materials">
                     <thead>
                     <tr>
                         <th>Material</th>
@@ -58,7 +58,7 @@
                 <h3>Refined Materials</h3>
             </div>
             <div class="card-body">
-                <table class="table" id="refined_materials">
+                <table class="table table-borderless" id="refined_materials">
                     <thead>
                     <tr>
                         <th>Material</th>
@@ -74,6 +74,11 @@
                             <td>{{ number_format($item['price'] * $item['quantity']) }}</td>
                         </tr>
                     @endforeach
+                        <tr>
+                            <td></td>
+                            <td>Total Price:</td>
+                            <td>{{ $total }}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
