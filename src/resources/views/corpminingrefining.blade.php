@@ -49,7 +49,8 @@
                         </tr>
                     </tbody>
                 </table>
-                @json($data)
+                <p>@json($data)</p>
+                <p>@json($data2)</p>
             </div>
         </div>
     @endisset

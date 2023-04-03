@@ -26,6 +26,7 @@ class CorpMiningRefiningController extends Controller
 
         return view('corpminingtax::corpminingrefining', [
             'data' => $parsedOre,
+            'data2' => $request->get('items'),
         ]);
 
 /*
@@ -72,6 +73,6 @@ class CorpMiningRefiningController extends Controller
                 $sorted_item_data[$item_name]["quantity"] += $item_quantity;
             }
         }
-            return $sorted_item_data;
+        return $sorted_item_data;
     }
 }
