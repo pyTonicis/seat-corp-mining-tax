@@ -32,7 +32,7 @@ return [
             [
                 'name' => 'corpminingtax-home-sub-menu',
                 'label' => 'corpminingtax::menu.sub-home-level',
-                'icon' => 'fas fa-money-bill',
+                'icon' => 'fas fa-house',
                 'route' => 'corpminingtax.home',
                 'permission' => 'corpminingtax.view'
             ],
