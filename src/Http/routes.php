@@ -77,6 +77,6 @@ Route::group([
 
             Route::post('/getRefinings')
                 ->name('corpminingtax.refinings')
-                ->uses('CorpMiningRefiningController@getRefinings');
+                ->uses('CorpMiningRefiningController@reprocessItems');
         });
 });
