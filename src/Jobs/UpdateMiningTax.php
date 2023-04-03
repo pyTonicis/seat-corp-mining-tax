@@ -39,7 +39,6 @@ class UpdateMiningTax implements ShouldQueue
 
     public function handle()
     {
-        //TODO Update database
         $settings = $this->settingService->getAll();
         $data = $this->miningTaxService->createMiningTaxResult((int)$settings['corporation_id'], (int)$this->month, (int)$this->year);
         foreach($data->characterData as $character)

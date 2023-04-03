@@ -45,7 +45,7 @@ class Reprocessing
         {
             $result[$r->materialTypeID] = ($r->quantity*$refining_rate) * $r_count;
         }
-        if (!$r_rest)
+        if ($r_rest)
         {
             $result[$typeId] = $r_rest;
         }

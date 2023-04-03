@@ -30,7 +30,7 @@ class CorpMiningTax extends Migration
 
 
         /*
-         * Install Cron Job for monthly tax update
+         * Install Cron Job for daily tax update
          */
         $schedule = new Schedule();
         $schedule->command = "tax:update";

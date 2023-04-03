@@ -13,8 +13,8 @@ class MiningTaxUpdate extends Command
 
     public function handle()
     {
-        $year = date('Y', strtotime('-1 month'));
-        $month = date('n', strtotime('-1 month'));
+        $year = date('Y', time());
+        $month = date('n', time());
 
         if (($this->argument('month')) && ($this->argument('year'))) {
             $year = $this->argument('year');
