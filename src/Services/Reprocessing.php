@@ -19,7 +19,7 @@ class Reprocessing
     public static function getMaterialInfo(int $id)
     {
         $data = DB::table('invTypes')
-            ->select('groupID', 'mass', 'volume', 'portionSize')
+            ->select('groupID', 'mass', 'volume', 'portionSize', 'typeName')
             ->where('typeID', '=', $id)
             ->first();
         return $data;

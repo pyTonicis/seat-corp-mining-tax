@@ -51,7 +51,6 @@
                         @endforeach
                     </tbody>
                 </table>
-                <p>@json($data2)</p>
             </div>
         </div>
         <div class="card">

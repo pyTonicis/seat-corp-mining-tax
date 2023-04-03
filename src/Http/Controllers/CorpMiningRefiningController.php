@@ -24,9 +24,18 @@ class CorpMiningRefiningController extends Controller
 
         $parsedOre = $this->parseItems($request->get('items'));
         $refinedMaterials = [];
+        $raw = [];
 
         foreach($parsedOre as $key => $item) {
-            $refinedMaterials[$item[$key]] = Reprocessing::ReprocessOreByTypeId($item['typeID'], $item['quantity']);
+            $raw = Reprocessing::ReprocessOreByTypeId($item['typeID'], $item['quantity']);
+            $inv_type = InvType::where('typeId', '=', $item['typeID'])->first();
+            if (!array_key_exists($inv_type->typeName, $refinedMaterials)) {
+                $refinedMaterials[$inv_type->typeName]['name'] = $inv_type->typeName;
+                $refinedMaterials[$inv_type->typeName]['typeID'] = $item['typeID'];
+                $refinedMaterials[$inv_type->typeName]['quantity'] = $item['quantity'];
+            }
+            $refinedMaterials[$inv_type->typeName]['quantity'] += $item['quantity'];
+
         }
         return view('corpminingtax::corpminingrefining', [
             'data' => $parsedOre,
