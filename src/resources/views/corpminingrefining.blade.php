@@ -37,16 +37,12 @@
                     <thead>
                     <tr>
                         <th>Material</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
                     </tr>
                     </thead>
                     <tbody>
                         @foreach($data as $key => $item)
                         <tr>
-                            <td><img src="https://images.evetech.net/types/{{ $item["typeID"] }}/icon?size=32"/>{{ $item['name'] }}</td>
-                            <td>{{ number_format($item['quantity']) }}</td>
-                            <td>0</td>
+                            <td><img src="https://images.evetech.net/types/{{ $item["typeID"] }}/icon?size=32"/>{{ $item['name'] }} x{{ number_format($item['quantity']) }}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -77,7 +73,7 @@
                         <tr>
                             <td></td>
                             <td>Total Price:</td>
-                            <td>{{ $total }}</td>
+                            <td><b>{{ number_format($total) }} ISK</b></td>
                         </tr>
                     </tbody>
                 </table>

@@ -49,14 +49,6 @@ class CorpMiningRefiningController extends Controller
             'data2' => $refinedMaterials,
             'total' => $summary,
         ]);
-
-/*
-        foreach($items as $name => $quantity) {
-            array_push($data, Reprocessing::ReprocessOreByTypeId(Reprocessing::getItemIdByName($name), $quantity));
-        }
-        return view('corpminingtax::corpminingrefining', [
-            'data' => $items,
-        ]);*/
     }
 
     private function parseItems(string $item_string): ?array
