@@ -51,10 +51,6 @@ class MiningTaxService
         return $data->average_price;
     }
 
-    private function calculateTaxById(int $type_id, int $group_id) {
-
-    }
-
     public function createMiningTaxResult(int $corpId, int $month, int $year): MiningTaxResult
     {
         $miningResult = new MiningTaxResult($month, $year);
@@ -92,8 +88,8 @@ class MiningTaxService
             ));
 
             $charData->addQuantity($data->quantity);
-            //$charData->addTax(EvePraisalHelper::getItemPriceByTypeId($data->type_id) * $data->quantity);
             $volume = Reprocessing::getMaterialInfo($data->type_id)->volume * $data->quantity;
+            $invGroup = Reprocessing::getMaterialInfo($data->type_id)->groupID;
             $charData->addVolume($volume);
 
             foreach(Reprocessing::ReprocessOreByTypeId($data->type_id, $data->quantity, (float)($settings->getValue('ore_refining_rate') / 100)) as $key => $value)
@@ -102,16 +98,43 @@ class MiningTaxService
                     $price = $this->getItemPriceById($key) * $value;
                 else
                     $price = EvePraisalHelper::getItemPriceByTypeId($key) * $value;
-                //$price = EvePraisalHelper::getItemPriceByTypeId($key) * $value;
-                $charData->addToPriceSummary($price);
-                $charData->addTax($price / 10);
-
-                //$charData->addTax2($price * ($settings->getValue('price_modifier') / 100));
-                //$market_price = $this->getItemPriceById($key) * $value;
-                //$charData->addTax3($market_price * ($settings->getValue('price_modifier') / 100));
+                $charData->addToPriceSummary($price * (float)($settings->getValue('ore_refining_rate') / 100));
+                switch($invGroup) {
+                    case 465:
+                        if ($settings->getValue('taxes_ice'))
+                            $charData->addTax($price * ($settings->getValue('ice_rate') / 100));
+                        break;
+                    case 711:
+                        if ($settings->getValue('taxes_gas'))
+                            $charData->addTax($price * ($settings->getValue('gas_rate') / 100));
+                        break;
+                    case 1884:
+                        if ($settings->getValue('taxes_corp_moon'))
+                            $charData->addTax($price * ($settings->getValue('r4_rate') / 100));
+                        break;
+                    case 1920:
+                        if ($settings->getValue('taxes_corp_moon'))
+                            $charData->addTax($price * ($settings->getValue('r8_rate') / 100));
+                        break;
+                    case 1921:
+                        if ($settings->getValue('taxes_corp_moon'))
+                            $charData->addTax($price * ($settings->getValue('r16_rate') / 100));
+                        break;
+                    case 1922:
+                        if ($settings->getValue('taxes_corp_moon'))
+                            $charData->addTax($price * ($settings->getValue('r32_rate') / 100));
+                        break;
+                    case 1923:
+                        if ($settings->getValue('taxes_corp_moon'))
+                            $charData->addTax($price * ($settings->getValue('r64_rate') / 100));
+                        break;
+                    case 1996:
+                        if ($settings->getValue('taxes_abyssal'))
+                            $charData->addTax($price * ($settings->getValue('abyssal_rate') / 100));
+                        break;
+                }
             }
         }
-
         return $miningResult;
     }
 }
