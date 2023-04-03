@@ -44,7 +44,7 @@
                     <tbody>
                         @foreach($data as $key => $item)
                         <tr>
-                            <td><img src="https://images.evetech.net/types/{{ $item["typeId"] }}/icon?size=32"/>{{ $item['name'] }}</td>
+                            <td><img src="https://images.evetech.net/types/{{ $item["typeID"] }}/icon?size=32"/>{{ $item['name'] }}</td>
                             <td>{{ $item['quantity'] }}</td>
                             <td>0</td>
                         </tr>
@@ -69,7 +69,7 @@
                     <tbody>
                     @foreach($data2 as $key => $item)
                         <tr>
-                            <td><img src="https://images.evetech.net/types/{{ $item["typeId"] }}/icon?size=32"/>{{ $item['name'] }}</td>
+                            <td><img src="https://images.evetech.net/types/{{ $item["typeID"] }}/icon?size=32"/>{{ $item['name'] }}</td>
                             <td>{{ $item['quantity'] }}</td>
                             <td>0</td>
                         </tr>
