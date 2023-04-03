@@ -42,14 +42,15 @@
                     </tr>
                     </thead>
                     <tbody>
+                        @foreach($data as $d)
                         <tr>
-                            <td>0</td>
-                            <td>0</td>
+                            <td>{{ $d->name }}</td>
+                            <td>{{ $d->quantity }}</td>
                             <td>0</td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
-                <p>@json($data)</p>
                 <p>@json($data2)</p>
             </div>
         </div>
