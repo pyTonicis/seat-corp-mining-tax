@@ -38,9 +38,10 @@ class CorpMiningRefiningController extends Controller
                     $refinedMaterials[$inv_type->typeName]['quantity'] = $value;
                     $refinedMaterials[$inv_type->typeName]['price'] = $price->average_price;
                     $summary += (int)$price->average_price * (int)$value;
+                } else {
+                    $refinedMaterials[$inv_type->typeName]['quantity'] += $value;
+                    $summary += (int)$price->average_price * (int)$value;
                 }
-                $refinedMaterials[$inv_type->typeName]['quantity'] += $value;
-                $summary += (int)$price->average_price * (int)$value;
             }
         }
         return view('corpminingtax::corpminingrefining', [

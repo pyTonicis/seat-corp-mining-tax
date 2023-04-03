@@ -45,7 +45,7 @@
                         @foreach($data as $key => $item)
                         <tr>
                             <td><img src="https://images.evetech.net/types/{{ $item["typeID"] }}/icon?size=32"/>{{ $item['name'] }}</td>
-                            <td>{{ $item['quantity'] }}</td>
+                            <td>{{ number_format($item['quantity']) }}</td>
                             <td>0</td>
                         </tr>
                         @endforeach
@@ -70,7 +70,7 @@
                     @foreach($data2 as $key => $item)
                         <tr>
                             <td><img src="https://images.evetech.net/types/{{ $item["typeID"] }}/icon?size=32"/>{{ $item['name'] }}</td>
-                            <td>{{ $item['quantity'] }}</td>
+                            <td>{{ number_format($item['quantity']) }}</td>
                             <td>{{ number_format($item['price'] * $item['quantity']) }}</td>
                         </tr>
                     @endforeach
