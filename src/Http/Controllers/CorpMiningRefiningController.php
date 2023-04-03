@@ -20,11 +20,12 @@ class CorpMiningRefiningController extends Controller
         $items = $request->get('itmes');
         $data = [];
 
+
         foreach($items as $name => $quantity) {
             array_push($data, Reprocessing::ReprocessOreByTypeId(Reprocessing::getItemIdByName($name), $quantity));
         }
         return view('corpminingtax::corpminingrefining', [
-            'data' => $data,
+            'data' => $items,
         ]);
     }
 }

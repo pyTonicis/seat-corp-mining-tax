@@ -42,15 +42,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($data as $item => $quantity)
                         <tr>
-                            <td>{{ $item }}</td>
-                            <td>{{ number_format($quantity) }}</td>
+                            <td>0</td>
+                            <td>0</td>
                             <td>0</td>
                         </tr>
-                    @endforeach
                     </tbody>
                 </table>
+                @json($data)
             </div>
         </div>
     @endisset
