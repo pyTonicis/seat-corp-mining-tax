@@ -42,9 +42,6 @@
                 <div class="col-md-4 mb-3">
                     <label for="mining_year">Year</label>
                     <select class="custom-select mr-sm-2" name="mining_year" id="mining_year">
-                        <option value="2018">2018</option>
-                        <option value="2019">2019</option>
-                        <option value="2020">2020</option>
                         <option value="2021">2021</option>
                         <option value="2022">2022</option>
                         <option value="2023" selected>2023</option>
@@ -71,22 +68,20 @@
             <thead>
             <tr>
                 <th>CharacterName</th>
-                <th>Mined Amount units</th>
-                <th>Mined Volume</th>
-                <th>ORE Price</th>
-                <th>EvE Praisal</th>
-                <th>EvE Market</th>
+                <th>Mined units</th>
+                <th>Mined volume</th>
+                <th>Tax</th>
+                <th>EvE Market Price</th>
             </tr>
             </thead>
             <tbody>
             @foreach($miningData->characterData as $character)
                 <tr>
-                    <td>{{ $character->characterName }}</td>
-                    <td>{{ number_format($character->priceSummary) }}</td>
+                    <td>{{ $character->name }}</td>
+                    <td>{{ number_format($character->quantity) }}</td>
                     <td>{{ number_format($character->volume) }}</td>
                     <td>{{ number_format($character->tax) }}</td>
-                    <td>{{ number_format($character->tax2) }}</td>
-                    <td>{{ number_format($character->tax3) }}</td>
+                    <td>{{ number_format($character->price) }}</td>
                 </tr>
             @endforeach
             </tbody>
@@ -108,7 +103,6 @@
                     <th>Mined units</th>
                     <th>Mined volume</th>
                     <th>Tax</th>
-                    <th>Tax Rate</th>
                     <th>EvE Market Price</th>
                 </tr>
                 </thead>
@@ -120,7 +114,6 @@
                         <td>{{ number_format($character->quantity) }}</td>
                         <td>{{ number_format($character->volume) }}</td>
                         <td>{{ number_format($character->tax) }}</td>
-                        <td>10%</td>
                         <td>{{ number_format($character->price) }}</td>
                     </tr>
                 @endforeach
