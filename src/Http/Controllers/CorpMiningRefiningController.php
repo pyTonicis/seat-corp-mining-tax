@@ -28,13 +28,13 @@ class CorpMiningRefiningController extends Controller
         $summary = 0;
 
         foreach($parsedOre as $key => $item) {
-            $raw = Reprocessing::ReprocessOreByTypeId($item['typeID'], $item['quantity']);
-            foreach($raw as $key => $value) {
-                $inv_type = InvType::where('typeId', '=', $key)->first();
-                $price = Price::where('type_id', '=', $key)->first();
+            $raw = Reprocessing::ReprocessOreByTypeId($item['typeID'], $item['quantity'], ((float)$request->get('modifier') / 100));
+            foreach($raw as $n => $value) {
+                $inv_type = InvType::where('typeId', '=', $n)->first();
+                $price = Price::where('type_id', '=', $n)->first();
                 if (!array_key_exists($inv_type->typeName, $refinedMaterials)) {
                     $refinedMaterials[$inv_type->typeName]['name'] = $inv_type->typeName;
-                    $refinedMaterials[$inv_type->typeName]['typeID'] = $key;
+                    $refinedMaterials[$inv_type->typeName]['typeID'] = $n;
                     $refinedMaterials[$inv_type->typeName]['quantity'] = $value;
                     $refinedMaterials[$inv_type->typeName]['price'] = $price->average_price;
                     $summary += (int)$price->average_price * (int)$value;

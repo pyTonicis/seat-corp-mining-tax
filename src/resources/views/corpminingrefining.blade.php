@@ -21,6 +21,8 @@
                     <label for="items">Copy and past Raw Ore Material</label>
                     <p>Copy your EvE items wirh (Ctrl+C) in your inventory and past them with (Ctrl+V) into the onput field below and press "Reprocess"</p>
                     <textarea class="w-100" name="items" rows="10"></textarea>
+                    <label for="modifier">Ore Refining rate <small>(90% full Skilled with Imps and rigged Tatara)</small></label>
+                    <input id="modifier" name="modifier" type="text" class="form-control input-md" value="90">
                 </div>
                 <button type="submit" onclick="on()" class="btn btn-primary" form="refine">Reprocess</button>
             </form>
