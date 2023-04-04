@@ -82,7 +82,7 @@ class CorpMiningRefiningController extends Controller
 
                 if(!is_null($inv_type)) {
 
-                    $inv_group = InvGroup::where('groupID', '=', $inv_type->groupID);
+                    $inv_group = InvGroup::where('groupID', '=', $inv_type->groupID)->first();
                     if (!array_key_exists($item_name, $sorted_item_data)) {
                         $sorted_item_data[$item_name]["name"] = $item_name;
                         $sorted_item_data[$item_name]["typeID"] = $inv_type->typeID;
