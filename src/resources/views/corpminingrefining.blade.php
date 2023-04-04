@@ -13,7 +13,7 @@
             <h4 class="alert-heading">Error !</h4>
             <p>{{$errors->first()}}</p>
         </div>
-    @endif
+    @elseif
     <div class="card">
         <div class="card-body">
             <div id="overlay" style="border-radius: 5px">
@@ -88,6 +88,7 @@
             </div>
         </div>
     @endisset
+    @endif
 
 @stop
 
