@@ -82,12 +82,9 @@ class CorpMiningRefiningController extends Controller
                         $sorted_item_data[$item_name]["typeID"] = $inv_type->typeID;
                         $sorted_item_data[$item_name]["quantity"] = 0;
                         $sorted_item_data[$item_name]["price"] = 0;
-                        $sorted_item_data[$item_name]["sum"] = 0;
                     }
 
                     $sorted_item_data[$item_name]["quantity"] += $item_quantity;
-                } else {
-                    return Redirect::back()->withErrors(['msg', 'Item '. $item_name . ' is not reprocessable!']);
                 }
             }
         }
