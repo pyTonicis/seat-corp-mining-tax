@@ -77,6 +77,14 @@ class CorpMiningRefiningController extends Controller
 
                 if(!is_null($inv_type)) {
 
+                    $inv_cat = DB::table('invTypes as t')
+                        ->select('t.typeID', 'g.categoryID')
+                        ->join('invGroups', 't.groupID', '=', 'g.groupID')
+                        ->where('t.typeID', '=', $inv_type->typeID)
+                        ->first();
+                    if($inv_cat->categoryID != 25)
+                        return redirect()->back()->with('error', $inv_type->typeName);
+
                     if (!array_key_exists($item_name, $sorted_item_data)) {
                         $sorted_item_data[$item_name]["name"] = $item_name;
                         $sorted_item_data[$item_name]["typeID"] = $inv_type->typeID;
