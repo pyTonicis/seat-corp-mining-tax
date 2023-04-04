@@ -23,7 +23,8 @@ class CorpMiningRefiningController extends Controller
             'items' => 'required',
         ]);
 
-        $parsedOre = $this->parseItems($request->get('items'));
+        $parsed = $this->parseItems($request->get('items'));
+        $parsedOre = $this->checkReprocessableItems($parsed);
         $refinedMaterials = [];
         $summary = 0;
 
@@ -87,5 +88,20 @@ class CorpMiningRefiningController extends Controller
             }
         }
         return $sorted_item_data;
+    }
+
+    private function checkReprocessableItems(array $items): ?array
+    {
+        foreach($items as $name => $item) {
+            $req = DB::table('invTypes as t')
+                ->select('t.typeID', 'g.categoryID')
+                ->join('invGroups as g', 't.groupID', '=', 'g.groupID')
+                ->where('t.typeID', '=', $item['typeID'])
+                ->first();
+            if(($req->categoryID != 25) or ($req->categoryID != 17)) {
+                unset($items, $item['name']);
+            }
+        }
+        return $items;
     }
 }
