@@ -29,10 +29,7 @@ class CorpMiningRefiningController extends Controller
         $summary = 0;
 
         foreach($parsedOre as $key => $item) {
-            if ($item['categoryID'] != 25) {
-                $error_msg = "Item " . $item['name']. " is not reprocessable";
-                return view('corpminingtax::corpminingrefining')->withErrors(['msg' => $error_msg]);
-            }
+
             $raw = Reprocessing::ReprocessOreByTypeId($item['typeID'], $item['quantity'], ((float)$request->get('modifier') / 100));
             foreach($raw as $n => $value) {
                 $inv_type = InvType::where('typeId', '=', $n)->first();

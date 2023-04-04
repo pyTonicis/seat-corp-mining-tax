@@ -50,7 +50,7 @@
                     <tbody>
                         @foreach($data as $key => $item)
                         <tr>
-                            <td><img src="https://images.evetech.net/types/{{ $item["typeID"] }}/icon?size=32"/>{{ $item['name'] }} x{{ number_format($item['quantity']) }}</td>
+                            <td><img src="https://images.evetech.net/types/{{ $item["typeID"] }}/icon?size=32"/>{{ $item['categoryID'] }} {{ $item['name'] }} x{{ number_format($item['quantity']) }}</td>
                         </tr>
                         @endforeach
                     </tbody>
