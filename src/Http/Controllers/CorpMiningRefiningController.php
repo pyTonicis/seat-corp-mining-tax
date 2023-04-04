@@ -23,12 +23,19 @@ class CorpMiningRefiningController extends Controller
             'items' => 'required',
         ]);
 
-        $parsed = $this->parseItems($request->get('items'));
-        $parsedOre = $this->checkReprocessableItems($parsed);
+        $parsedOre = $this->parseItems($request->get('items'));
         $refinedMaterials = [];
         $summary = 0;
 
         foreach($parsedOre as $key => $item) {
+            $req = DB::table('invTypes as t')
+                ->select('t.typeID', 'g.categoryID')
+                ->join('invGroups as g', 't.groupID', '=', 'g.groupID')
+                ->where('t.typeID', '=', $item['typeID'])
+                ->first();
+            if(($req->categoryID != 25) or ($req->categoryID != 17)) {
+                unset($items, $item['name']);
+            }
             $raw = Reprocessing::ReprocessOreByTypeId($item['typeID'], $item['quantity'], ((float)$request->get('modifier') / 100));
             foreach($raw as $n => $value) {
                 $inv_type = InvType::where('typeId', '=', $n)->first();
@@ -88,20 +95,5 @@ class CorpMiningRefiningController extends Controller
             }
         }
         return $sorted_item_data;
-    }
-
-    private function checkReprocessableItems(array $items): ?array
-    {
-        foreach($items as $name => $item) {
-            $req = DB::table('invTypes as t')
-                ->select('t.typeID', 'g.categoryID')
-                ->join('invGroups as g', 't.groupID', '=', 'g.groupID')
-                ->where('t.typeID', '=', $item['typeID'])
-                ->first();
-            if(($req->categoryID != 25) or ($req->categoryID != 17)) {
-                unset($items, $item['name']);
-            }
-        }
-        return $items;
     }
 }
