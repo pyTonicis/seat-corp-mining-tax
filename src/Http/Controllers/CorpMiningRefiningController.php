@@ -5,6 +5,7 @@ namespace pyTonicis\Seat\SeatCorpMiningTax\Http\Controllers;
 use pyTonicis\Seat\SeatCorpMiningTax\Services\Reprocessing;
 use Seat\Web\Http\Controllers\Controller;
 use Seat\Eveapi\Models\Sde\InvType;
+use Seat\Eveapi\Models\Sde\InvGroup;
 use Seat\Eveapi\Models\Market\Price;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -28,6 +29,10 @@ class CorpMiningRefiningController extends Controller
         $summary = 0;
 
         foreach($parsedOre as $key => $item) {
+            if ($item['categoryID'] != 25) {
+                $error_msg = "Item " . $item['name']. " is not reprocessable";
+                return view('corpminingtax::corpminingrefining')->withErrors(['msg' => $error_msg]);
+            }
             $raw = Reprocessing::ReprocessOreByTypeId($item['typeID'], $item['quantity'], ((float)$request->get('modifier') / 100));
             foreach($raw as $n => $value) {
                 $inv_type = InvType::where('typeId', '=', $n)->first();
@@ -77,9 +82,11 @@ class CorpMiningRefiningController extends Controller
 
                 if(!is_null($inv_type)) {
 
+                    $inv_group = InvGroup::where('groupID', '=', $inv_type->groupID);
                     if (!array_key_exists($item_name, $sorted_item_data)) {
                         $sorted_item_data[$item_name]["name"] = $item_name;
                         $sorted_item_data[$item_name]["typeID"] = $inv_type->typeID;
+                        $sorted_item_data[$item_name]["categoryID"] = $inv_group->categoryID;
                         $sorted_item_data[$item_name]["quantity"] = 0;
                         $sorted_item_data[$item_name]["price"] = 0;
                     }
