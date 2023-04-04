@@ -28,14 +28,6 @@ class CorpMiningRefiningController extends Controller
         $summary = 0;
 
         foreach($parsedOre as $key => $item) {
-            $req = DB::table('invTypes as t')
-                ->select('t.typeID', 'g.categoryID')
-                ->join('invGroups as g', 't.groupID', '=', 'g.groupID')
-                ->where('t.typeID', '=', $item['typeID'])
-                ->first();
-            if(($req->categoryID != 25) or ($req->categoryID != 17)) {
-                unset($items, $item['name']);
-            }
             $raw = Reprocessing::ReprocessOreByTypeId($item['typeID'], $item['quantity'], ((float)$request->get('modifier') / 100));
             foreach($raw as $n => $value) {
                 $inv_type = InvType::where('typeId', '=', $n)->first();
@@ -83,15 +75,18 @@ class CorpMiningRefiningController extends Controller
 
                 $inv_type = InvType::where('typeName', '=', $item_name)->first();
 
-                if (!array_key_exists($item_name, $sorted_item_data)) {
-                    $sorted_item_data[$item_name]["name"] = $item_name;
-                    $sorted_item_data[$item_name]["typeID"] = $inv_type->typeID;
-                    $sorted_item_data[$item_name]["quantity"] = 0;
-                    $sorted_item_data[$item_name]["price"] = 0;
-                    $sorted_item_data[$item_name]["sum"] = 0;
-                }
+                if(!is_null($inv_type)) {
 
-                $sorted_item_data[$item_name]["quantity"] += $item_quantity;
+                    if (!array_key_exists($item_name, $sorted_item_data)) {
+                        $sorted_item_data[$item_name]["name"] = $item_name;
+                        $sorted_item_data[$item_name]["typeID"] = $inv_type->typeID;
+                        $sorted_item_data[$item_name]["quantity"] = 0;
+                        $sorted_item_data[$item_name]["price"] = 0;
+                        $sorted_item_data[$item_name]["sum"] = 0;
+                    }
+
+                    $sorted_item_data[$item_name]["quantity"] += $item_quantity;
+                }
             }
         }
         return $sorted_item_data;
