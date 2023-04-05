@@ -3,7 +3,7 @@
 namespace pyTonicis\Seat\SeatCorpMiningTax\Commands;
 
 use Illuminate\Console\Command;
-use pyTonicis\Seat\SeatCorpMiningTax\Jobs\UpdateMiningTax;
+use pyTonicis\Seat\SeatCorpMiningTax\Jobs\CreateContracts;
 
 class MiningTaxGenerator extends Command
 {
@@ -22,9 +22,9 @@ class MiningTaxGenerator extends Command
         }
 
         if($this->option('now')){
-            UpdateMiningTax::dispatchNow($this->option('force'), $year, $month);
+            CreateContracts::dispatchNow($this->option('force'), $year, $month);
         } else {
-            UpdateMiningTax::dispatch($this->option('force'), $year, $month);
+            CreateContracts::dispatch($this->option('force'), $year, $month);
         }
 
 

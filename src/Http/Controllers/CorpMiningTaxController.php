@@ -66,7 +66,9 @@ class CorpMiningTaxController extends Controller
 
     public function getTest()
     {
-        return view('corpminingtax::corpminingtaxcontracts');
+        $contracts = DB::table('corp_mining_tax_contracts')
+            ->get();
+        return view('corpminingtax::corpminingtaxcontracts', ['contracts' => $contracts]);
     }
 
     /**

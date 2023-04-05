@@ -22,6 +22,7 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 namespace pyTonicis\Seat\SeatCorpMiningTax;
 
+use pyTonicis\Seat\SeatCorpMiningTax\Commands\MiningTaxGenerator;
 use pyTonicis\Seat\SeatCorpMiningTax\Commands\MiningTaxUpdate;
 use pyTonicis\Seat\SeatCorpMiningTax\Services\MiningTaxService;
 use pyTonicis\Seat\SeatCorpMiningTax\Services\ThievesService;
@@ -124,6 +125,7 @@ class SeatCorpMiningTaxServiceProvider extends AbstractSeatPlugin
     private function add_commands()
     {
         $this->commands([MiningTaxUpdate::class]);
+        $this->commands([MiningTaxGenerator::class]);
     }
     /**
      * Return the plugin public name as it should be displayed into settings.

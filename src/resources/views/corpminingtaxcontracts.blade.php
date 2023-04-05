@@ -18,28 +18,28 @@
                     <th>Date</th>
                     <th>Contract</th>
                     <th>Character</th>
-                    <th>Mined ISK</th>
                     <th>Tax ISK</th>
                     <th>Status</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>12-2022</td>
-                    <td>Corporation Mining Tax 9vu331bZ</td>
-                    <td>Smasher Jobs</td>
-                    <td>3.581.270.000 ISK</td>
-                    <td>385.127.000 ISK</td>
-                    <td>BUTTONS</td>
-                </tr>
-                <tr>
-                    <td>12-2022</td>
-                    <td>Corporation Mining Tax 58jiTt21</td>
-                    <td>Mike Jag</td>
-                    <td>800.000.000 ISK</td>
-                    <td>80.000.000 ISK</td>
-                    <td>BUTTONS</td>
-                </tr>
+                @isset($contracts)
+                    @foreach($contracts as $contract)
+                        <tr>
+                            <td>{{ $contract->year }}-{{ $contract->month }}</td>
+                            <td>{{ $contract->contractTitle }}</td>
+                            <td>{{ $contract->character_id }}</td>
+                            <td>{{ number_format($contract->tax) }}</td>
+                            @if($contract->status == 1)
+                                <td>initalized</td>
+                            @elseif($contract->status == 2)
+                                <td>offered</td>
+                            @endif
+                            <td>BUTTONS</td>
+                        </tr>
+                    @endforeach
+                @endisset
                 </tbody>
             </table>
         </div>
