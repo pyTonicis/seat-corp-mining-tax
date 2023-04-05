@@ -24,7 +24,6 @@ class CorpMiningTaxContracts extends Migration
             $table->integer('contractStatus');
             $table->integer('month');
             $table->integer('year');
-            $table->string('title');
             $table->biginteger('tax');
             $table->timestamps();
         });

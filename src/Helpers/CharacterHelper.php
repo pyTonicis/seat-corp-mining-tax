@@ -48,6 +48,14 @@ class CharacterHelper {
         return $data;
     }
 
+    public static function getCharacterIdByName(string $name) {
+        $data = DB::table('character_infos')
+            ->select('character_id', 'name')
+            ->where('name', '=', $name)
+            ->first();
+        return $data->character_id;
+    }
+
     public static function getLinkedCharacters(int $character_id)
     {
        $result = DB::table('refresh_tokens')
