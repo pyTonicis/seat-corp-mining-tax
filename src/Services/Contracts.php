@@ -3,6 +3,7 @@
 namespace pyTonicis\Seat\SeatCorpMiningTax\Services;
 
 use pyTonicis\Seat\SeatCorpMiningTax\Helpers\CharacterHelper;
+use Illuminate\Support\Facades\DB;
 
 class Contracts
 {
