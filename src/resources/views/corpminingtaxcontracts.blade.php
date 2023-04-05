@@ -31,10 +31,12 @@
                             <td>{{ $contract->contractTitle }}</td>
                             <td>{{ $contract->character_id }}</td>
                             <td>{{ number_format($contract->tax) }}</td>
-                            @if($contract->status == 1)
-                                <td>initalized</td>
-                            @elseif($contract->status == 2)
-                                <td>offered</td>
+                            @if($contract->contractStatus == 1)
+                                <td><span class="badge badge-info">new</span></td>
+                            @elseif($contract->contractStatus == 2)
+                                <td><span class="badge badge-primary">offered</span></td>
+                            @elseif($contract->contractStatus == 3)
+                                <td><span class="badge badge-success">paid</span></td>
                             @endif
                             <td>BUTTONS</td>
                         </tr>
