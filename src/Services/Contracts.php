@@ -31,6 +31,13 @@ class Contracts
         }
     }
 
+    public function setTaxContractStatus(int $contract_id, int $status)
+    {
+        DB::table('corp_mining_tax_contracts')
+            ->update(['contractStatus' => $status])
+            ->where('contractId', '=', $contract_id);
+    }
+
     private function generate_string($input, $strength = 10) {
 
         $input_length = strlen($input);
