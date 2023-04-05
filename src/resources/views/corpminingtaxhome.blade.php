@@ -161,6 +161,11 @@
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }, },
+                },
                 scales: {
                     y: {
                         beginAtZero: true
