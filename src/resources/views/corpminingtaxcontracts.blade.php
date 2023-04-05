@@ -57,7 +57,7 @@
                             @endif
                                 </b></h3>
                             <td>
-                                <form action="{{ route('contract.details', $contract->id) }}" method="POST">
+                                <form action="{{ route('corpminingtax.contractdata', $contract->id) }}" method="POST">
                                     @csrf
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_detail" >
                                         <i class="fas fa-info"></i>Details

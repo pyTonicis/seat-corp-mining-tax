@@ -93,13 +93,11 @@ class CorpMiningTaxController extends Controller
 
     public function getData2(Request $request)
     {
-        $tmq = 5001;
-        $tmv = 500100;
-        $tmisk = 535345345325;
+        $details = DB::table('corp_mining_tax_contracts')
+            ->where('id', '=', $request->get('id'))
+            ->get();
         return view('corpminingtax::corpminingtaxhome', [
-            'total_mined_quantity' => $tmq,
-            'total_mined_volume' => $tmv,
-            'total_mined_isk' => $tmisk,
+            'details' => $details,
         ]);
     }
 
