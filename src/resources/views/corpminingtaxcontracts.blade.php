@@ -29,8 +29,9 @@
                         <tr>
                             <td>{{ $contract->year }}-{{ $contract->month }}</td>
                             <td>{{ $contract->contractTitle }}</td>
-                            <td>{{ $contract->character_id }}</td>
+                            <td>{{ $contract->character_name}}</td>
                             <td>{{ number_format($contract->tax) }}</td>
+                            <h4>
                             @if($contract->contractStatus == 1)
                                 <td><span class="badge badge-info">new</span></td>
                             @elseif($contract->contractStatus == 2)
@@ -38,6 +39,7 @@
                             @elseif($contract->contractStatus == 3)
                                 <td><span class="badge badge-success">paid</span></td>
                             @endif
+                            </h4>
                             <td>BUTTONS</td>
                         </tr>
                     @endforeach
