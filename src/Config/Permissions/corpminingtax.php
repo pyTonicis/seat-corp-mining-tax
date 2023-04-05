@@ -22,12 +22,17 @@
 
 return [
     'view' => [
-        'label' => 'Grants access to the Member Tracking Panel',
-        'description' => 'This permission is needed if you wanna see the member tracking panel',
+        'label' => 'Grants access to View Only',
+        'description' => 'This permission is needed if you wanna see the dashboard and use reprocessing',
+    ],
+
+    'manager' => [
+        'label' => 'Grants access to Contracts and Tax Page',
+        'description' => 'This permission is needed to manage tax contracts',
     ],
 
     'settings' => [
-        'label' => 'Garants access to Settings Panel',
+        'label' => 'Garants full access to Mininx Tax Plugin',
         'description' => 'Allows Admins to edit settings'
     ],
 ];

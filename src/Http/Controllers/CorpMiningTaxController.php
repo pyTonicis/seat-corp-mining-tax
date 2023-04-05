@@ -96,7 +96,7 @@ class CorpMiningTaxController extends Controller
         $details = DB::table('corp_mining_tax_contracts')
             ->where('id', '=', $request->get('id'))
             ->get();
-        return view('corpminingtax::corpminingtaxhome', [
+        return view('corpminingtax::corpminingtaxcontracts', [
             'details' => $details,
         ]);
     }

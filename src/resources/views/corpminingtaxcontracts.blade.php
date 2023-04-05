@@ -79,7 +79,10 @@
                         </div>
                         <div class="modal-body" id="mediumBody">
                             <div>
+                                @isset($details)
+                                    @json($details)
                                 <!-- the result to be displayed apply here -->
+                                @endisset
                             </div>
                         </div>
                     </div>
