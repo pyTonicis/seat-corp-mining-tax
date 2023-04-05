@@ -36,27 +36,9 @@ class CorpMiningOverviewController extends Controller
 {
     public function getHome()
     {
-        $tmq = 0;
-        $tmv = 0;
-        $tmisk = 0;
         $character = auth()->user()->main_character['character_id'];
         $characters = CharacterHelper::getLinkedCharacters($character);
         $linked_characters_count = 5;
-        /*$l = array();
-        $datum_now = date('Y-m', time());
-
-        for ($i = 1; $i = 12; $i++) {
-            $m = "-" . $i . "month";
-            $datum_now = strtotime($m);
-            array_push($l, date('Y-m', (int)$datum_now));
-        }
-        $labels = array_reverse($l);
-        $labels = array();
-        for ($i = 0, $con = 0; $i < 12; $i++) {
-            array_push($labels, date('Y-m', (time() - $con)));
-            $con += 2635200;
-        }
-        $labels = array_reverse($labels);*/
         $labels = array();
         $act_m = (date('m', time()) +1);
         $act_y = (date('Y', time()) -1);
@@ -171,8 +153,9 @@ class CorpMiningOverviewController extends Controller
                         ->orderBy('year', 'asc')
                         ->orderBy('month', 'asc')
                         ->get();
+        $rank = $this->getCharacterMiningRank($character, date('m'), date('Y'));
         return view('corpminingtax::corpminingtaxhome', [
-            'linked_characters' => $linked_characters_count,
+            'rank' => $rank,
             'tax_count' => $tax_count,
             'tax_act' => $tax_act,
             'labels' => $labels,
@@ -196,5 +179,23 @@ class CorpMiningOverviewController extends Controller
                     ->groupBy('it.groupId')
                     ->get();
         return $result;
+    }
+
+    private function getCharacterMiningRank(int $character_id, int $month, int $year)
+    {
+        DB::statement("SET SQL_MODE=''");
+        $result = DB::table('corp_mining_tax')
+            ->select('tax')
+            ->where('month', '=', $month)
+            ->where('year', '=', $year)
+            ->orderBy('tax')
+            ->get();
+        $count = 1;
+        foreach($result as $r) {
+            if ($r->character_id = $character_id)
+                break;
+            $count += 1;
+        }
+        return $count;
     }
 }

@@ -67,11 +67,11 @@
         </div>
         <div class="col-md-4 col-sm-6">
             <div class="info-box">
-                <span class="info-box-icon bg-blue elevation-1"><i class="fa fa-person"></i></span>
+                <span class="info-box-icon bg-blue elevation-1"><i class="fa fa-trophy"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Linked Characters</span>
+                    <span class="info-box-text">Top Miners Ranking <small>(this month)</small></span>
                     <span class="info-box-number">
-                        {{ $linked_characters }} <small>Pilots</small>
+                        {{ $rank }}
                     </span>
                 </div>
             </div>
