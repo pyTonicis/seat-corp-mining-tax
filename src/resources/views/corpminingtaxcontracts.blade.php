@@ -57,12 +57,7 @@
                             @endif
                                 </b></h3>
                             <td>
-                                <form action="{{ route('corpminingtax.contractdata', $contract->id) }}" method="POST">
-                                    @csrf
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_detail" >
-                                        <i class="fas fa-info"></i>Details
-                                    </button>
-                                </form>
+                                <button class="btn btn-info viewdetails" data-id="{{ $contract->id }}">Details</button>
                             </td>
                         </tr>
                     @endforeach
@@ -73,17 +68,12 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body" id="mediumBody">
-                            <div>
-                                @isset($details)
-                                    @json($details)
-                                <!-- the result to be displayed apply here -->
-                                @endisset
-                            </div>
+                        <div class="modal-body">
+                            <div id="myinfo"></div>
                         </div>
                     </div>
                 </div>
@@ -96,29 +86,24 @@
         table = $('#contracts').DataTable({
         });
 
-        $(document).on('click', '#modal', function(event) {
-            event.preventDefault();
-            let href = $(this).attr('data-attr');
-            $.ajax({
-                url: href,
-                beforeSend: function() {
-                    $('#loader').show();
-                },
-                // return the result
-                success: function(result) {
-                    $('#modal_detail').modal("show");
-                    $('#mediumBody').html(result).show();
-                },
-                complete: function() {
-                    $('#loader').hide();
-                },
-                error: function(jqXHR, testStatus, error) {
-                    console.log(error);
-                    alert("Page " + href + " cannot open. Error:" + error);
-                    $('#loader').hide();
-                },
-                timeout: 8000
-            })
+        $('#modal_detail').on('click', '.viewdetails', function(){
+            var cid = $(this).attr('data-id');
+
+            if(cid > 0) {
+                var url = "{{ route('corpminingtax.contractdata', [':cid']) }}";
+                url = url.replace(':cid','cid');
+
+                $('#myinfo').empty();
+
+                $.ajax({
+                    url: url,
+                    dataType: 'json',
+                    success: function(response) {
+                        $('#myinfo').html(response.html);
+                        $('#modal_detail').modal('show');
+                    }
+                });
+            }
         });
     </script>
 @endpush

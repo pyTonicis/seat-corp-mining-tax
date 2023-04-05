@@ -91,14 +91,16 @@ class CorpMiningTaxController extends Controller
         ]);
     }
 
-    public function getData2(Request $request)
+    public function getData2($cid = 0)
     {
         $details = DB::table('corp_mining_tax_contracts')
-            ->where('id', '=', $request->get('id'))
+            ->select('*')
+            ->where('id', '=', $cid)
             ->get();
-        return view('corpminingtax::corpminingtaxcontracts', [
-            'details' => $details,
-        ]);
+        $html = "<p>Das ist ein Test</p>
+                 <p>".$details->contractStatus."</p>";
+        $response['html'] = $html;
+        return response()->json($response);
     }
 
     public function getDashboard(Request $request)
