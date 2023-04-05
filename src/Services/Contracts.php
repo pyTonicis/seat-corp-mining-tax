@@ -19,13 +19,13 @@ class Contracts
                 ->where('month', '=', $month)
                 ->where('year', '=', $year)
                 ->get();
-            foreach ($taxes as $tax) {
-                if($tax>tax != 0) {
-                    $c_title = $settings['contract_tag'] . " ". $tax->year . "-". $tax->month. " ". $this->generate_string($this->permitted_chars);
+            foreach ($taxes as $t) {
+
+                    $c_title = $settings['contract_tag'] . " ". $t->year . "-". $t->month. " ". $this->generate_string($this->permitted_chars);
                     DB::table('corp_mining_tax_contracts')
-                        ->updateOrInsert(['character_id' => $tax->main_character_id, 'month' => $tax->month, 'year' => $tax->year, 'tax' => $tax->tax],
+                        ->updateOrInsert(['character_id' => $t->main_character_id, 'month' => $t->month, 'year' => $t->year, 'tax' => $t->tax],
                         ['contractId' => 0, 'contractIssuer' => CharacterHelper::getCharacterIdByName($settings['contract_issuer']), 'contractTitle' => $c_title, 'contractData' => "None", 'contractStatus' => 1]);
-                }
+
             }
         }
     }
