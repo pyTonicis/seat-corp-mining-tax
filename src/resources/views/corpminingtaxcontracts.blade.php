@@ -56,18 +56,66 @@
                                             <td><span class="badge badge-danger">open</span></td>
                             @endif
                                 </b></h3>
-                            <td>BUTTONS</td>
+                            <td>
+                                <form action="{{ route('contract.details', $contract->id) }}" method="POST">
+                                    @csrf
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_detail" >
+                                        <i class="fas fa-info"></i>Details
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 @endisset
                 </tbody>
             </table>
+            <div class="modal fade" id="modal_detail" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body" id="mediumBody">
+                            <div>
+                                <!-- the result to be displayed apply here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @stop
 @push('javascript')
     <script>
         table = $('#contracts').DataTable({
+        });
+
+        $(document).on('click', '#modal', function(event) {
+            event.preventDefault();
+            let href = $(this).attr('data-attr');
+            $.ajax({
+                url: href,
+                beforeSend: function() {
+                    $('#loader').show();
+                },
+                // return the result
+                success: function(result) {
+                    $('#modal_detail').modal("show");
+                    $('#mediumBody').html(result).show();
+                },
+                complete: function() {
+                    $('#loader').hide();
+                },
+                error: function(jqXHR, testStatus, error) {
+                    console.log(error);
+                    alert("Page " + href + " cannot open. Error:" + error);
+                    $('#loader').hide();
+                },
+                timeout: 8000
+            })
         });
     </script>
 @endpush
