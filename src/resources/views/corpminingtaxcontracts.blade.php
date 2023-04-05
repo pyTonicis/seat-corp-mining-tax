@@ -86,12 +86,12 @@
         table = $('#contracts').DataTable({
         });
 
-        $('#modal_detail').on('click', '.viewdetails', function(){
+        $('#contracts').on('click', '.viewdetails', function(){
             var cid = $(this).attr('data-id');
 
             if(cid > 0) {
                 var url = "{{ route('corpminingtax.contractdata', [':cid']) }}";
-                url = url.replace(':cid','cid');
+                url = url.replace(':cid',cid);
 
                 $('#myinfo').empty();
 
