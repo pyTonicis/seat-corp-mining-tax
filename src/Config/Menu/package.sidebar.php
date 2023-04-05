@@ -41,7 +41,7 @@ return [
                 'label' => 'corpminingtax::menu.sub-mining-tax',
                 'icon' => 'fas fa-money-bill-wave',
                 'route' => 'corpminingtax.tax',
-                'permission' => 'corpminingtax.view'
+                'permission' => 'corpminingtax.manager'
             ],
             [
                 'name' => 'corpminingtax-sub-refining',
@@ -55,7 +55,7 @@ return [
                 'label' => 'corpminingtax::menu.sub-corp-moon-mining',
                 'icon' => 'fas fa-moon',
                 'route' => 'corpminingtax.corpmoonmining',
-                'permission' => 'corpminingtax.view'
+                'permission' => 'corpminingtax.manager'
             ],
             [
                 'name' => 'corpminingtax-sub-tax-contracts',
