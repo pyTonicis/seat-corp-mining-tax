@@ -30,6 +30,9 @@ class MiningTaxService
                 'cm.character_id',
                 'cm.quantity',
                 'cm.type_id',
+                'cm.date',
+                'cm.time',
+                'cm.solar_system_id',
                 'it.typeName',
                 'it.groupId'
             )
@@ -49,6 +52,24 @@ class MiningTaxService
             ->where('type_id', '=', $id)
             ->first();
         return $data->average_price;
+    }
+
+    private function checkIfCorpMoon(int $character_id, int $type_id, int $system_id, string $date): bool
+    {
+        $m_date = $date . " 00:00:00";
+        $result = DB::table('corporation_industry_mining_observer_data as d')
+            ->select('*')
+            ->join('universe_structures as u', 'd.observer_id', '=', 'u.structure_id')
+            ->where('d.last_updated', '=', $m_date)
+            ->where('d.character_id', '=', $character_id)
+            ->where('d.type_id', '=', $type_id)
+            ->where('u.solar_system_id', '=', $system_id)
+            ->first();
+        if(!is_null($result)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function createMiningTaxResult(int $corpId, int $month, int $year): MiningTaxResult
@@ -109,24 +130,44 @@ class MiningTaxService
                             $charData->addTax($price * ($settings->getValue('gas_rate') / 100));
                         break;
                     case 1884:
-                        if ($settings->getValue('taxes_corp_moon') == "true")
+                        if ($settings->getValue('taxes_moon') == "true") {
                             $charData->addTax($price * ($settings->getValue('r4_rate') / 100));
+                        } elseif ($settings->getValue('taxes_corp_moon') == "true") {
+                            if($this->checkIfCorpMoon($data->character_id, $data->type_id, $data->solar_system_id, $data->date))
+                                $charData->addTax($price * ($settings->getValue('r4_rate') / 100));
+                        }
                         break;
                     case 1920:
-                        if ($settings->getValue('taxes_corp_moon') == "true")
+                        if ($settings->getValue('taxes_moon') == "true") {
                             $charData->addTax($price * ($settings->getValue('r8_rate') / 100));
+                        } elseif ($settings->getValue('taxes_corp_moon') == "true") {
+                            if($this->checkIfCorpMoon($data->character_id, $data->type_id, $data->solar_system_id, $data->date))
+                                $charData->addTax($price * ($settings->getValue('r8_rate') / 100));
+                        }
                         break;
                     case 1921:
-                        if ($settings->getValue('taxes_corp_moon') == "true")
+                        if ($settings->getValue('taxes_moon') == "true") {
                             $charData->addTax($price * ($settings->getValue('r16_rate') / 100));
+                        } elseif ($settings->getValue('taxes_corp_moon') == "true") {
+                            if($this->checkIfCorpMoon($data->character_id, $data->type_id, $data->solar_system_id, $data->date))
+                                $charData->addTax($price * ($settings->getValue('r16_rate') / 100));
+                        }
                         break;
                     case 1922:
-                        if ($settings->getValue('taxes_corp_moon') == "true")
+                        if ($settings->getValue('taxes_moon') == "true") {
                             $charData->addTax($price * ($settings->getValue('r32_rate') / 100));
+                        } elseif ($settings->getValue('taxes_corp_moon') == "true") {
+                            if($this->checkIfCorpMoon($data->character_id, $data->type_id, $data->solar_system_id, $data->date))
+                                $charData->addTax($price * ($settings->getValue('r32_rate') / 100));
+                        }
                         break;
                     case 1923:
-                        if ($settings->getValue('taxes_corp_moon') == "true")
+                        if ($settings->getValue('taxes_moon') == "true") {
                             $charData->addTax($price * ($settings->getValue('r64_rate') / 100));
+                        } elseif ($settings->getValue('taxes_corp_moon') == "true") {
+                            if($this->checkIfCorpMoon($data->character_id, $data->type_id, $data->solar_system_id, $data->date))
+                                $charData->addTax($price * ($settings->getValue('r64_rate') / 100));
+                        }
                         break;
                     case 1996:
                         if ($settings->getValue('taxes_abyssal') == "true")
