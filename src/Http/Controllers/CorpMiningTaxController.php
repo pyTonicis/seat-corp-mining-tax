@@ -99,7 +99,7 @@ class CorpMiningTaxController extends Controller
             ->get();
         $html = "<p>Das ist ein Test</p>";
         $response['html'] = $html;
-        return response()->json($response);
+        return response()->json(['html' => $response]);
     }
 
     public function getDashboard(Request $request)
