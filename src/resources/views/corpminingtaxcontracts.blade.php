@@ -98,7 +98,7 @@
                     url: url,
                     dataType: 'json',
                     success: function(response) {
-                        $('#modal-body').html(response.html);
+                        $('#modal_detail modal-body').html(response);
                         $('#modal_detail').modal('show');
                     }
                 });
