@@ -97,8 +97,7 @@ class CorpMiningTaxController extends Controller
             ->select('*')
             ->where('id', '=', $cid)
             ->get();
-        $html = "<p>Das ist ein Test</p>
-                 <p>".$details->contractStatus."</p>";
+        $html = "<p>Das ist ein Test</p>";
         $response['html'] = $html;
         return response()->json($response);
     }

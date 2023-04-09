@@ -86,7 +86,7 @@
         table = $('#contracts').DataTable({
         });
 
-        $('#viewdetails').click(function(){
+        $('.viewdetails').click(function(){
             var cid = $(this).attr('data-id');
 
             if(cid > 0) {
@@ -99,7 +99,7 @@
                     url: url,
                     dataType: 'json',
                     success: function(response) {
-                        $('#myinfo').html(response.html);
+                        $('modal-body').html(response.html);
                         $('#modal_detail').modal('show');
                     }
                 });
