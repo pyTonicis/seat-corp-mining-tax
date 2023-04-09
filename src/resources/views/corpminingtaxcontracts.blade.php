@@ -57,7 +57,7 @@
                             @endif
                                 </b></h3>
                             <td>
-                                <button class="btn btn-primary viewdetails" data-id="{{ $contract->id }}">Details</button>
+                                <button class="btn btn-primary offer" data-toggle="modal" data-target="#modal_detail" data-id="{{ $contract->id }}">Details</button>
                             </td>
                         </tr>
                     @endforeach
@@ -86,7 +86,7 @@
         table = $('#contracts').DataTable({
         });
 
-        $('.viewdetails').click(function(){
+        $('.offer').click(function(){
             var cid = $(this).attr('data-id');
 
             if(cid > 0) {
