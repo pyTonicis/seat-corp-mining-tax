@@ -57,7 +57,7 @@
                             @endif
                                 </b></h3>
                             <td>
-                                <button class="btn btn-primary" id="viewdetails" data-id="{{ $contract->id }}">Details</button>
+                                <button class="btn btn-primary viewdetails" data-id="{{ $contract->id }}">Details</button>
                             </td>
                         </tr>
                     @endforeach
@@ -93,13 +93,12 @@
                 var url = "{{ route('corpminingtax.contractdata', [':cid']) }}";
                 url = url.replace(':cid',cid);
 
-                $('#myinfo').empty();
 
                 $.ajax({
                     url: url,
                     dataType: 'json',
                     success: function(response) {
-                        $('modal-body').html(response.html);
+                        $('#modal-body').html(response.html);
                         $('#modal_detail').modal('show');
                     }
                 });
