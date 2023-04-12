@@ -97,15 +97,14 @@ class CorpMiningTaxController extends Controller
             ->select('*')
             ->where('id', '=', $cid)
             ->first();
-        /*$html = "<table class=\"table table-sm no-border\">";
-        $html .= "<tbody>";
-        $html .= "<tr>";
-        $html .= "<td>Contract Issuer:<td>";
-        $html .= "<td>" .$details->contractIssuer. "</td>";
-        $html .= "</tr></table>";
+        $html = "<table class=\"table table-sm no-border\">";
+        $html .= "<tbody><tr>";
+        $html .= "<td><b>Contract to</b></td><td>" .$details->character_name ."</td></tr><tr>";
+        $html .= "<td><b>Contract Title</b></td><td>" .$details->contractTitle ."</td></tr><tr>";
+        $html .= "<td><b>Contract Type</b></td><td>ItemExchange</td></tr><tr>";
+        $html .= "<td><b>Tax</b></td><td>" .number_format($details->tax). "</td></tr></tbody></table>";
         $response['html'] = $html;
-        return response()->json($response);*/
-        return view('corpminingtaxhome::contractdetails', ['detail' => $details]);
+        return response()->json($response);
     }
 
     public function getDashboard(Request $request)

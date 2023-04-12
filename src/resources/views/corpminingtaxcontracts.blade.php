@@ -99,6 +99,7 @@
                 $.ajax({
                     url: url,
                     type: "GET",
+                    datatype: 'json',
                     success: function(data) {
                         $('.modal-body').html(data.html);
                         $('#modal_detail').modal('show');
