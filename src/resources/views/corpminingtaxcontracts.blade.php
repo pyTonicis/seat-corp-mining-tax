@@ -91,10 +91,10 @@
             if(cid > 0) {
                 var url = "{{ route('corpminingtax.contractdata', [':cid']) }}";
                 url = url.replace(':cid',cid);
-                document.getElementById('deb').innerText = "Hallo es geht";
 
                 $.ajax({
                     url: url,
+                    type: "GET",
                     dataType: 'json',
                     success: function(data) {
                         $('.modal-body').html(data.html);
