@@ -117,6 +117,16 @@ class CorpMiningTaxController extends Controller
         }
     }
 
+    public function filterContracts(Request $request)
+    {
+        if ($request->get('status') != 0) {
+            $data = DB::table('corp_mining_tax_contracts')
+                ->where('contractStatus', '=', $request->get('status'))
+                ->get();
+            return view('corpminingtax::corpminingtaxcontracts', ['contracts' => $data]);
+        }
+    }
+
     public function getDashboard(Request $request)
     {
         return view('corpminingtaxhome::corpminingtaxhome');
