@@ -99,12 +99,22 @@ class CorpMiningTaxController extends Controller
             ->first();
         $html = "<table class=\"table table-sm no-border\">";
         $html .= "<tbody><tr>";
-        $html .= "<td><b>Contract to</b></td><td>" .$details->character_name ."</td></tr><tr>";
-        $html .= "<td><b>Contract Title</b></td><td>" .$details->contractTitle ."</td></tr><tr>";
+        $html .= "<td><b>Contract to</b></td><td id='c_name'>" .$details->character_name ."<button class='btn' data-copy='#c_name' data-done='copied'><i class='fas fa-copy'></i></button></td></tr><tr>";
+        $html .= "<td><b>Contract Title</b></td><td id='c_title'>" .$details->contractTitle ."<button class='btn' data-copy='#c_title' data-done='copied'><i class='fas fa-copy'></i></button></td></tr><tr>";
         $html .= "<td><b>Contract Type</b></td><td>ItemExchange</td></tr><tr>";
-        $html .= "<td><b>Tax</b></td><td>" .number_format($details->tax). "</td></tr></tbody></table>";
+        $html .= "<td><b>Tax</b></td><td id='c_tax'>" .number_format($details->tax). "<button class='btn' data-copy='#c_tax' data-done='copied'><i class='fas fa-copy'></i></button></td></tr></tbody></table>";
         $response['html'] = $html;
         return response()->json($response);
+    }
+
+    public function setContractOffered(Request $request)
+    {
+        $cid = $request->get('cid');
+        if ($cid != 0) {
+            DB::table('corp_mining_tax_contracts')
+                ->update(['contractStatus' => 2])
+                ->where('id', '=', $cid);
+        }
     }
 
     public function getDashboard(Request $request)
