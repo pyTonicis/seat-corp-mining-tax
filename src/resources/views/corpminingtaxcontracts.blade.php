@@ -14,7 +14,7 @@
                     {{ csrf_field() }}
                 <label><strong>Status :</strong></label>
                 <select id='status' class="form-control" style="width: 200px">
-                    <option value="">--Select Status--</option>
+                    <option value="0">--Select Status--</option>
                     <option value="1">new</option>
                     <option value="2">offered</option>
                     <option value="3">complete</option>
@@ -79,32 +79,9 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <table class="table table-sm no-border">
-                                <tbody>
-                                <tr>
-                                    <td><b>Contract to</b></td>
-                                    <td id="c_name"></td>
-                                    <td><button class='btn' onclick="copyToClipboard('c_name')" data-copy='#c_name' data-done='copied'><i class='fas fa-copy'></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td><b>Contract Title</b></td>
-                                    <td id="c_title"></td>
-                                    <td><button class='btn' onclick="copyToClipboard('c_title')" data-copy='#c_title' data-done='copied'><i class='fas fa-copy'></i></button></td>
-                                </tr>
-                                <tr>
-                                    <td><b>Contract Type</b></td>
-                                    <td>Item Exchange</td>
-                                </tr>
-                                <tr>
-                                    <td><b>ISK to pay</b></td>
-                                    <td id="c_tax"></td>
-                                    <td><button class='btn' onclick="copyToClipboard('c_tax')" data-copy='#c_tax' data-done='copied'><i class='fas fa-copy'></i></button></td>
-                                </tr>
-                                </tbody>
-                            </table>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             <button type="button" class="btn btn-primary" id="confirm" data-dismiss="modal">Offered</button>
                         </div>
                     </div>
@@ -130,8 +107,8 @@
                     type: "GET",
                     datatype: 'json',
                     success: function(data) {
-                        //$('.modal-body').html(data.html);
-                        $('#c_name').innerText(data.character_name);
+                        $('.modal-body').html(data.html);
+                        //$('#c_name').innerText(data.character_name);
                         $('#modal_detail').modal('show');
                     }
                 });
@@ -139,14 +116,8 @@
         });
 
         function copyToClipboard(id) {
-            let text = document.getElementById(id).innerHTML;
-            const copyContent = async () => {
-                try {
-                    await navigator.clipboard.writeText(text);
-                } catch (err) {
-                    console.error('Failed to copy', err);
-                }
-            }
+            let text = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(text);
         }
     </script>
 @endpush
