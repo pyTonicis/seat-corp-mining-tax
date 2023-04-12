@@ -110,6 +110,13 @@ class CorpMiningTaxController extends Controller
         }
     }
 
+    public function filterContracts(Request $request)
+    {
+        $contracts = DB::table('corp_mining_tax_contracts')
+            ->get();
+        return view('corpminingtax::corpminingtaxcontracts', ['contracts' => $contracts]);
+    }
+
     public function getDashboard(Request $request)
     {
         return view('corpminingtaxhome::corpminingtaxhome');

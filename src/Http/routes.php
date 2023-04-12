@@ -67,6 +67,10 @@ Route::group([
                 ->name('corpminingtax.contractstatus')
                 ->uses('CorpMiningTaxController@setContractOffered');
 
+            Route::post('/contracts')
+                ->name('corpminingtax.contractfilter')
+                ->uses('CorpMiningTaxController@filterContracts');
+
             Route::get('/corpmoonmining')
                 ->name('corpminingtax.corpmoonmining')
                 ->uses('CorpMiningMoonMinings@getHome');
