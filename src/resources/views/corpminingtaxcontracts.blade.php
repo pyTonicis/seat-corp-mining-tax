@@ -45,7 +45,6 @@
                             <td>{{ $contract->contractTitle }}</td>
                             <td>{{ $contract->character_name}}</td>
                             <td><b>{{ number_format($contract->tax) }}</b></td>
-                                <h3><b>
                             @if($contract->contractStatus == 1)
                                 <td><span class="badge badge-info">new</span></td>
                             @elseif($contract->contractStatus == 2)
@@ -55,9 +54,8 @@
                                         @elseif($contract->contractStatus == 4)
                                             <td><span class="badge badge-danger">open</span></td>
                             @endif
-                                </b></h3>
                             <td>
-                                <button class="btn btn-primary offer" data-toggle="modal" data-target="#modal_detail" data-id="{{ $contract->id }}">Details</button>
+                                <button class="btn btn-primary offer" id="offer" data-toggle="modal" data-target="#modal_detail" data-id="{{ $contract->id }}">Details</button>
                             </td>
                         </tr>
                     @endforeach
@@ -86,7 +84,7 @@
         table = $('#contracts').DataTable({
         });
 
-        $('.offer').click(function(){
+        $('#offer').on('click', function(){
             var cid = $(this).attr('data-id');
 
             if(cid > 0) {
