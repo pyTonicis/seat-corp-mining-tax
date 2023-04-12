@@ -26,6 +26,7 @@
             <h3>Corporation Tax Contracts</h3>
         </div>
         <div class="card-body">
+            <p id="deb"></p>
             <table class="table" id="contracts">
                 <thead>
                 <tr>
@@ -90,7 +91,7 @@
             if(cid > 0) {
                 var url = "{{ route('corpminingtax.contractdata', [':cid']) }}";
                 url = url.replace(':cid',cid);
-
+                document.getElementById('deb').innerText = "Hallo es geht";
 
                 $.ajax({
                     url: url,
