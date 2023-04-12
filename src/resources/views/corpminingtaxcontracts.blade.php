@@ -130,7 +130,8 @@
                     type: "GET",
                     datatype: 'json',
                     success: function(data) {
-                        $('.modal-body').html(data.html);
+                        //$('.modal-body').html(data.html);
+                        $('#c_name').innerText(data.character_name);
                         $('#modal_detail').modal('show');
                     }
                 });
