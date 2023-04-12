@@ -99,10 +99,10 @@ class CorpMiningTaxController extends Controller
             ->first();
         $html = "<table class=\"table table-sm no-border\">";
         $html .= "<tbody><tr>";
-        $html .= "<td><b>Contract to</b></td><td id='c_name'>" .$details->character_name ."<button class='btn' onclick=\"copyToClipboard('c_name')\" data-copy='#c_name' data-done='copied'><i class='fas fa-copy'></i></button></td></tr><tr>";
-        $html .= "<td><b>Contract Title</b></td><td id='c_title'>" .$details->contractTitle ."<button class='btn' onclick=\"copyToClipboard('c_title')\" data-copy='#c_title' data-done='copied'><i class='fas fa-copy'></i></button></td></tr><tr>";
+        $html .= "<td><b>Contract to</b></td><td id='c_name'>" .$details->character_name ."<button class='btn' onclick=\"copyToClipboard('c_name')\" data-copy='c_name' data-done='copied'><i class='fas fa-copy'></i></button></td></tr><tr>";
+        $html .= "<td><b>Contract Title</b></td><td id='c_title'>" .$details->contractTitle ."<button class='btn' onclick=\"copyToClipboard('c_title')\" data-copy='c_title' data-done='copied'><i class='fas fa-copy'></i></button></td></tr><tr>";
         $html .= "<td><b>Contract Type</b></td><td>ItemExchange</td></tr><tr>";
-        $html .= "<td><b>Tax</b></td><td id='c_tax'>" .number_format($details->tax). "<button class='btn' onclick=\"copyToClipboard('c_tax')\" data-copy='#c_tax' data-done='copied'><i class='fas fa-copy'></i></button></td></tr></tbody></table>";
+        $html .= "<td><b>Tax</b></td><td id='c_tax'>" .number_format($details->tax). "<button class='btn' onclick=\"copyToClipboard('c_tax')\" data-copy='c_tax' data-done='copied'><i class='fas fa-copy'></i></button></td></tr></tbody></table>";
         $response['html'] = $html;
         return response()->json($response);
     }
@@ -119,7 +119,7 @@ class CorpMiningTaxController extends Controller
 
     public function filterContracts(Request $request)
     {
-        if ($request->get('status') != 0) {
+        if ($request->get('status')) {
             $data = DB::table('corp_mining_tax_contracts')
                 ->where('contractStatus', '=', $request->get('status'))
                 ->get();

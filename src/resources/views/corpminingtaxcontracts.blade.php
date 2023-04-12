@@ -13,7 +13,7 @@
                 <form action="{{ route('corpminingtax.contractfilter') }}" method="post" id="contract_filter" name="contract_filter">
                     {{ csrf_field() }}
                 <label><strong>Status :</strong></label>
-                <select id='status' class="form-control" style="width: 200px">
+                <select id="status" name="status" class="form-control" style="width: 200px">
                     <option value="0">--Select Status--</option>
                     <option value="1">new</option>
                     <option value="2">offered</option>
@@ -101,6 +101,7 @@
             if(cid > 0) {
                 var url = "{{ route('corpminingtax.contractdata', [':cid']) }}";
                 url = url.replace(':cid',cid);
+                $('.modal-body').empty();
 
                 $.ajax({
                     url: url,
@@ -117,6 +118,7 @@
 
         function copyToClipboard(id) {
             let text = document.getElementById(id).innerText;
+            text.select();
             navigator.clipboard.writeText(text);
         }
     </script>
