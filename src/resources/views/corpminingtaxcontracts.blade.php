@@ -10,6 +10,8 @@
     <div class="card">
         <div class="card-body">
             <div class="form-group">
+                <form action="{{ route('corpminingtax.contractfilter') }}" method="post" id="contract_filter" name="contract_filter">
+                    {{ csrf_field() }}
                 <label><strong>Status :</strong></label>
                 <select id='status' class="form-control" style="width: 200px">
                     <option value="">--Select Status--</option>
@@ -18,6 +20,8 @@
                     <option value="3">complete</option>
                     <option value="4">open</option>
                 </select>
+                <button type="submit" class="btn btn-primary" id="filter">Filter</button>
+                </form>
             </div>
         </div>
     </div>
@@ -57,6 +61,8 @@
                             @endif
                             <td>
                                 <button class="btn btn-primary offer" id="offer" data-toggle="modal" data-target="#modal_detail" data-id="{{ $contract->id }}">Details</button>
+                                <button type="button" class="btn btn-success" id="activate" data-id="{{ $contract->id }}">Activate</button>
+                                <button type="button" class="btn btn-danger" id="delete" data-id="{{ $contract->id }}">Delete</button>
                             </td>
                         </tr>
                     @endforeach
@@ -73,6 +79,29 @@
                             </button>
                         </div>
                         <div class="modal-body">
+                            <table class="table table-sm no-border">
+                                <tbody>
+                                <tr>
+                                    <td><b>Contract to</b></td>
+                                    <td id="c_name"></td>
+                                    <td><button class='btn' onclick="copyToClipboard('c_name')" data-copy='#c_name' data-done='copied'><i class='fas fa-copy'></i></button></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Contract Title</b></td>
+                                    <td id="c_title"></td>
+                                    <td><button class='btn' onclick="copyToClipboard('c_title')" data-copy='#c_title' data-done='copied'><i class='fas fa-copy'></i></button></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Contract Type</b></td>
+                                    <td>Item Exchange</td>
+                                </tr>
+                                <tr>
+                                    <td><b>ISK to pay</b></td>
+                                    <td id="c_tax"></td>
+                                    <td><button class='btn' onclick="copyToClipboard('c_tax')" data-copy='#c_tax' data-done='copied'><i class='fas fa-copy'></i></button></td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -109,10 +138,14 @@
         });
 
         function copyToClipboard(id) {
-            document.getElementById(id).select();
-            document.execCommand('copy');
+            let text = document.getElementById(id).innerHTML;
+            const copyContent = async () => {
+                try {
+                    await navigator.clipboard.writeText(text);
+                } catch (err) {
+                    console.error('Failed to copy', err);
+                }
+            }
         }
-
-
     </script>
 @endpush
