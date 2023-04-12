@@ -96,9 +96,13 @@ class CorpMiningTaxController extends Controller
         $details = DB::table('corp_mining_tax_contracts')
             ->select('*')
             ->where('id', '=', $cid)
-            ->get();
-        $html = "<p>Affe</p>";
-        $html .= "<p>mit Waffe</p>";
+            ->first();
+        $html = "<table class=\"table table-sm no-border\">";
+        $html .= "<tbody>";
+        $html .= "<tr>";
+        $html .= "<td>Contract Issuer:<td>";
+        $html .= "<td>" .$details->contractIssuer. "</td>";
+        $html .= "</tr></table>";
         $response['html'] = $html;
         return response()->json($response);
     }

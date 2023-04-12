@@ -66,13 +66,17 @@
             <div class="modal fade" id="modal_detail" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">
+                        <div class="modal-header bg-yellow">
+                            <h4 class="modal-title" id="contract-detail">Contract Details</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <div id="myinfo"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary" id="confirm" data-dismiss="modal">Offered</button>
                         </div>
                     </div>
                 </div>
