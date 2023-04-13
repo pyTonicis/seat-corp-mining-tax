@@ -101,12 +101,12 @@
             if(cid > 0) {
                 var url = "{{ route('corpminingtax.contractdata', [':cid']) }}";
                 url = url.replace(':cid',cid);
-                $('.modal-body').empty();
 
                 $.ajax({
                     url: url,
                     type: "GET",
                     datatype: 'json',
+                    timeout: 10000,
                     success: function(data) {
                         $('.modal-body').html(data.html);
                         //$('#c_name').innerText(data.character_name);
@@ -117,9 +117,13 @@
         });
 
         function copyToClipboard(id) {
-            let text = document.getElementById(id).innerText;
-            text.select();
-            navigator.clipboard.writeText(text);
+            const storage = document.createElement('textarea');
+            storage.value = element.innerHTML;
+            const element = document.querySelector(id);
+            element.appendChild(storage);
+            storage.select();
+            storage.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(storage.value);
         }
     </script>
 @endpush
