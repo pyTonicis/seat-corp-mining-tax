@@ -136,6 +136,7 @@
                     },
                 });
             }
+            document.getElementById('deb').innerText = "Lala Luli";
         }
 
         function copyToClipboard(id) {
