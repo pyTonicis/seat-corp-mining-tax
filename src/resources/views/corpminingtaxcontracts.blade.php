@@ -124,7 +124,7 @@
         function setStatus(cid) {
 
             if(cid > 0) {
-                var url = "{{ route('corpminingtax.contractdata', [':cid']) }}";
+                var url = "{{ route('corpminingtax.contractstatus', [':cid']) }}";
                 url = url.replace(':cid',cid);
 
                 $.ajax({
