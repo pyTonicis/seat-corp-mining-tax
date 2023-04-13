@@ -63,7 +63,7 @@ Route::group([
                 ->name('corpminingtax.contractdata')
                 ->uses('CorpMiningTaxController@getData2');
 
-            Route::post('/contracts')
+            Route::post('/updatecontractstatus')
                 ->name('corpminingtax.contractstatus')
                 ->uses('CorpMiningTaxController@setContractOffered');
 
