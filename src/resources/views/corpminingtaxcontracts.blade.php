@@ -95,6 +95,10 @@
         table = $('#contracts').DataTable({
         });
 
+        $('#modal_detail').on('hidden.bs.modal', function() {
+            $('.modal-body').html("");
+        });
+
         $('#offer').on('click', function(){
             var cid = $(this).attr('data-id');
 
