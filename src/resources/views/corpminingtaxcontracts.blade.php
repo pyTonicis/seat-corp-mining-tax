@@ -31,8 +31,6 @@
         </div>
         <div class="card-body">
             <p id="deb"></p>
-            <form action="{{ route('corpminingtax.contractstatus') }}" method="post" id="contract_status" name="contract_status">
-                {{ csrf_field() }}
             <table class="table" id="contracts">
                 <thead>
                 <tr>
@@ -71,7 +69,6 @@
                 @endisset
                 </tbody>
             </table>
-            </form>
             <div class="modal fade" id="modal_detail" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
