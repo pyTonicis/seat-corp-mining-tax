@@ -31,6 +31,8 @@
         </div>
         <div class="card-body">
             <p id="deb"></p>
+            <form action="{{ route('corpminingtax.contractstatus') }}" method="post" id="contract_status" name="contract_status">
+                {{ csrf_field() }}
             <table class="table" id="contracts">
                 <thead>
                 <tr>
@@ -60,8 +62,8 @@
                                             <td><span class="badge badge-danger">open</span></td>
                             @endif
                             <td>
-                                <button class="btn btn-primary offer" id="offer" data-toggle="modal" data-target="#modal_detail" data-id="{{ $contract->id }}">Details</button>
-                                <button type="button" class="btn btn-success" id="activate" data-id="{{ $contract->id }}">Activate</button>
+                                <button class="btn btn-primary offer" onclick="getDetails({{ $contract->id }})" data-toggle="modal" data-target="#modal_detail" data-id="{{ $contract->id }}">Details</button>
+                                <button type="button" class="btn btn-success" onclick="setStatus({{ $contract->id }})" data-id="{{ $contract->id }}">Activate</button>
                                 <button type="button" class="btn btn-danger" id="delete" data-id="{{ $contract->id }}">Delete</button>
                             </td>
                         </tr>
@@ -69,6 +71,7 @@
                 @endisset
                 </tbody>
             </table>
+            </form>
             <div class="modal fade" id="modal_detail" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -82,7 +85,6 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" id="confirm" data-dismiss="modal">Offered</button>
                         </div>
                     </div>
                 </div>
@@ -99,8 +101,7 @@
             $('.modal-body').html("");
         });
 
-        $('#offer').on('click', function(){
-            var cid = $(this).attr('data-id');
+        function getDetails(cid) {
 
             if(cid > 0) {
                 var url = "{{ route('corpminingtax.contractdata', [':cid']) }}";
@@ -118,16 +119,30 @@
                     }
                 });
             }
-        });
+        }
+
+        function setStatus(cid) {
+
+            if(cid > 0) {
+                var url = "{{ route('corpminingtax.contractdata', [':cid']) }}";
+                url = url.replace(':cid',cid);
+
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        cid: cid,
+                    },
+                });
+            }
+        }
 
         function copyToClipboard(id) {
-            const storage = document.createElement('textarea');
-            storage.value = element.innerHTML;
-            const element = document.querySelector(id);
-            element.appendChild(storage);
-            storage.select();
-            storage.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(storage.value);
+            let copy_text = document.getElementById(id).innerText;
+            if(navigator.clipboard) {
+                navigator.clipboard.writeText(copy_text);
+            }
         }
     </script>
 @endpush
