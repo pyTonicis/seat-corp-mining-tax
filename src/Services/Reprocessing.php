@@ -25,12 +25,13 @@ class Reprocessing
         return $data;
     }
 
-    public static function getItemIdByName(string $name)
+    public static function getItemIdByName(string $name): int
     {
-        return DB::table('invTypes')
+        $id = DB::table('invTypes')
             ->select('typeId')
             ->where('typeName', '=', $name)
-            ->pluck('typeId');
+            ->first();
+        return $id->typeID;
     }
 
     public static function ReprocessOreByTypeId(int $typeId, int $quantity, float $refining_rate = 0.9) :array
