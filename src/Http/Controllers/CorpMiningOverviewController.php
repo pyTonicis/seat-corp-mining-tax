@@ -185,14 +185,14 @@ class CorpMiningOverviewController extends Controller
     {
         DB::statement("SET SQL_MODE=''");
         $result = DB::table('corp_mining_tax')
-            ->select('tax')
+            ->select('tax', 'main_character_id')
             ->where('month', '=', $month)
             ->where('year', '=', $year)
-            ->orderBy('tax')
+            ->orderBy('tax', 'desc')
             ->get();
         $count = 1;
         foreach($result as $r) {
-            if ($r->character_id = $character_id)
+            if ($r->main_character_id = $character_id)
                 break;
             $count += 1;
         }

@@ -61,7 +61,7 @@
                             @endif
                             <td>
                                 <button class="btn btn-primary offer" onclick="getDetails({{ $contract->id }})" data-toggle="modal" data-target="#modal_detail" data-id="{{ $contract->id }}">Details</button>
-                                <button type="button" class="btn btn-success" onclick="setStatus({{ $contract->id }})" data-id="{{ $contract->id }}">Activate</button>
+                                <button type="button" class="btn btn-success" onclick="setStatus({{ $contract->id }})">Activate</button>
                                 <button type="button" class="btn btn-danger" id="delete" data-id="{{ $contract->id }}">Delete</button>
                             </td>
                         </tr>
@@ -133,7 +133,6 @@
                     },
                 });
             }
-            document.getElementById('deb').innerText = "Lala Luli";
         }
 
         function copyToClipboard(id) {

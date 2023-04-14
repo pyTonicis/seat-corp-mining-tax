@@ -45,7 +45,10 @@ class CharacterHelper {
             ->select('name')
             ->where('character_id', '=', $character_id)
             ->first();
-        return $data->name;
+        if (!is_null($data))
+            return $data->name;
+        else
+            return "unknown";
     }
 
     public static function getCharacterIdByName(string $name) {

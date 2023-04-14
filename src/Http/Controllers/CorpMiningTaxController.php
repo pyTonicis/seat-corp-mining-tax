@@ -114,7 +114,7 @@ class CorpMiningTaxController extends Controller
                 ->update(['contractStatus' => 2])
                 ->where('id', '=', $cid);
         }
-        return redirect()->back()->with(['stat' => 100]);
+        return redirect()->back();
     }
 
     public function filterContracts(Request $request)
