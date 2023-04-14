@@ -3,6 +3,8 @@
 namespace pyTonicis\Seat\SeatCorpMiningTax\Models\Mining;
 
 
+use pyTonicis\Seat\SeatCorpMiningTax\Services\Reprocessing;
+
 class ObserverData
 {
     public $observer_id;
@@ -37,6 +39,21 @@ class ObserverData
         return $quantity;
     }
 
+    public function get_total_mined_isk(): int
+    {
+        $sum = 0;
+        foreach ($this->minings as $mining) {
+            foreach($mining->ore_types as $name => $quantity) {
+                $materials = Reprocessing::ReprocessOreByTypeId(Reprocessing::getItemIdByName($name), $quantity);
+                foreach($materials as $mid => $mq) {
+                    $price = $this->getItemPriceById($mid) * $mq;
+                    $sum += $price;
+                }
+            }
+        }
+        return $sum;
+    }
+
     public function get_moon_ore_group()
     {
         if ($this->group == 1884)
@@ -51,5 +68,14 @@ class ObserverData
             $result = " badge-danger\">R8";
         else $result = "UNK";
         return $result;
+    }
+
+    private function getItemPriceById(int $id) :int
+    {
+        $data = DB::table('market_prices')
+            ->select('average_price')
+            ->where('type_id', '=', $id)
+            ->first();
+        return $data->average_price;
     }
 }

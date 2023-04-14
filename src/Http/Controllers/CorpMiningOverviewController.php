@@ -192,7 +192,7 @@ class CorpMiningOverviewController extends Controller
             ->get();
         $count = 1;
         foreach($result as $r) {
-            if ($r->main_character_id = $character_id)
+            if ($r->main_character_id == $character_id)
                 break;
             $count += 1;
         }
