@@ -28,7 +28,7 @@ class Reprocessing
     public static function getItemIdByName(string $name): int
     {
         $id = DB::table('invTypes')
-            ->select('typeId')
+            ->select('typeID')
             ->where('typeName', '=', $name)
             ->first();
         return $id->typeID;

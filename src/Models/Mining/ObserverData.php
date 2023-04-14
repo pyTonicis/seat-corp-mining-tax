@@ -4,6 +4,8 @@ namespace pyTonicis\Seat\SeatCorpMiningTax\Models\Mining;
 
 
 use pyTonicis\Seat\SeatCorpMiningTax\Services\Reprocessing;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Js;
 
 class ObserverData
 {
