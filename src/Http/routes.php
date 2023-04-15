@@ -57,19 +57,19 @@ Route::group([
 
             Route::get('/contracts')
                 ->name('corpminingtax.contracts')
-                ->uses('CorpMiningTaxController@getTest');
+                ->uses('CorpMiningContracts@getHome');
 
             Route::get('/contracts/{cid}')
                 ->name('corpminingtax.contractdata')
-                ->uses('CorpMiningTaxController@getData2');
+                ->uses('CorpMiningContracts@getDetails');
 
             Route::post('/updatecontractstatus')
                 ->name('corpminingtax.contractstatus')
-                ->uses('CorpMiningTaxController@setContractOffered');
+                ->uses('CorpMiningContracts@setContractOffered');
 
             Route::post('/contracts')
                 ->name('corpminingtax.contractfilter')
-                ->uses('CorpMiningTaxController@filterContracts');
+                ->uses('CorpMiningContracts@filterContracts');
 
             Route::get('/corpmoonmining')
                 ->name('corpminingtax.corpmoonmining')

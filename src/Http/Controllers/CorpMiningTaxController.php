@@ -64,13 +64,6 @@ class CorpMiningTaxController extends Controller
         ]);
     }
 
-    public function getTest()
-    {
-        $contracts = DB::table('corp_mining_tax_contracts')
-            ->get();
-        return view('corpminingtax::corpminingtaxcontracts', ['contracts' => $contracts]);
-    }
-
     /**
      * @param Request $request
      * @return void
@@ -91,46 +84,6 @@ class CorpMiningTaxController extends Controller
         ]);
     }
 
-    public function getData2($cid = 0)
-    {
-        $details = DB::table('corp_mining_tax_contracts')
-            ->select('*')
-            ->where('id', '=', $cid)
-            ->first();
-        $html = "<table class=\"table table-sm no-border\"><tbody><tr>";
-        $html .= "<td><b>Contract to</b></td><td id='c_name'>" .$details->character_name ."</td><td><button class='btn' onclick=\"copyToClipboard('#c_name')\" data-copy='c_name' data-done='copied'><i class='fas fa-copy'></i></button></td></tr><tr>";
-        $html .= "<td><b>Contract Title</b></td><td id='c_title'>" .$details->contractTitle ."</td><td><button class='btn' onclick=\"copyToClipboard('#c_title')\" data-copy='c_title' data-done='copied'><i class='fas fa-copy'></i></button></td></tr><tr>";
-        $html .= "<td><b>Contract Type</b></td><td>ItemExchange</td><td></td></tr><tr>";
-        $html .= "<td><b>Tax</b></td><td id='c_tax'>" .number_format($details->tax). "</td><td><button class='btn' onclick=\"copyToClipboard('#c_tax')\" data-copy='c_tax' data-done='copied'><i class='fas fa-copy'></i></button></td></tr></tbody></table>";
-        $response['html'] = $html;
-        return response()->json($response);
-    }
-
-    public function setContractOffered(Request $request)
-    {
-        $cid = $request->get('cid');
-        if ($cid != 0) {
-            DB::table('corp_mining_tax_contracts')
-                ->update(['contractStatus' => 2])
-                ->where('id', '=', $cid);
-        }
-        return redirect()->back();
-    }
-
-    public function filterContracts(Request $request)
-    {
-        if ($request->get('status')) {
-            $data = DB::table('corp_mining_tax_contracts')
-                ->where('contractStatus', '=', $request->get('status'))
-                ->get();
-            return view('corpminingtax::corpminingtaxcontracts', ['contracts' => $data]);
-        }
-    }
-
-    public function getDashboard(Request $request)
-    {
-        return view('corpminingtaxhome::corpminingtaxhome');
-    }
     public function getCorporations(Request $request)
     {
         if ($request->has('q')) {
