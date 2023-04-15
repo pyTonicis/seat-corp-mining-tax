@@ -2,11 +2,7 @@
 
 @section('title', trans('corpminingtax::global.browser_title'))
 
-@push('head')
-<link rel="stylesheet" type="text/css" href="{{ asset('web/css/corpminingtax.css') }}"/>
-@endpush
-
-@section('left')
+@section('full')
     <div class="card">
         <div class="card-body">
         <form action="{{ route('corpminingtax.eventcmd') }}" method="post" id="eventcmd" name="eventcmd">
