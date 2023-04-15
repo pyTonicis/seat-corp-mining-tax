@@ -33,10 +33,10 @@
                     </div>
                     <div class="ml-auto mr-2 align-right text-right align-centered">
                         <div class="row">
-                            <h4>Total Mined: <b>{{ number_format($d->get_total_quantity() * 10) }} m³</b></h4>
+                            <h5>Total vol: <b>{{ number_format($d->get_total_quantity() * 10) }}</b></h5>
                         </div>
                         <div class="row">
-                            <h4><b>{{ number_format($d->get_total_mined_isk()) }} ISK</b></h4>
+                            <h5>Total isk: <b>{{ number_format($d->get_total_mined_isk()) }}</b></h5>
                         </div>
                     </div>
                 </div>

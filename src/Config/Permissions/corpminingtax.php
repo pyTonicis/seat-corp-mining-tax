@@ -22,7 +22,7 @@
 
 return [
     'view' => [
-        'label' => 'Grants access to dashboard and reprocessing tool',
+        'label' => 'Grants access to overview and reprocessing tool',
         'description' => 'This permission is needed if you wanna see the dashboard and use reprocessing',
     ],
 

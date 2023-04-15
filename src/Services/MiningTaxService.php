@@ -4,6 +4,7 @@ namespace pyTonicis\Seat\SeatCorpMiningTax\Services;
 
 use DateTime;
 use pyTonicis\Seat\SeatCorpMiningTax\Helpers\CharacterHelper;
+use pyTonicis\Seat\SeatCorpMiningTax\Helpers\EveMarketHelper;
 use pyTonicis\Seat\SeatCorpMiningTax\Helpers\EvePraisalHelper;
 use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\CharacterData;
 use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\CharacterMiningRecord;
@@ -44,15 +45,6 @@ class MiningTaxService
             ->where('cm.month', '=', $month)
             ->where('cm.year', '=', $year)
             ->get();
-    }
-
-    private function getItemPriceById(int $id) :int
-    {
-        $data = DB::table('market_prices')
-            ->select('average_price')
-            ->where('type_id', '=', $id)
-            ->first();
-        return $data->average_price;
     }
 
     private function checkIfCorpMoon(int $character_id, int $type_id, int $system_id, string $date): bool
@@ -116,15 +108,15 @@ class MiningTaxService
             $invGroup = Reprocessing::getMaterialInfo($data->type_id)->groupID;
             $charData->addVolume($volume);
 
-            $event_start = new DateTime('2023-03-23 12:00:00');
-            $event_stop = new DateTime('2023-03-24 23:59:59');
-            $dt = $data->date ." ". $data->time;
+            $event_start = new DateTime('2023-03-23');
+            $event_stop = new DateTime('2023-03-24');
+            $dt = $data->date;
             $datum = new DateTime($dt);
 
             if (($datum <= $event_start) or ($datum >= $event_stop)) {
                 foreach (Reprocessing::ReprocessOreByTypeId($data->type_id, $data->quantity, (float)($settings['ore_refining_rate'] / 100)) as $key => $value) {
                     if ($settings['price_provider'] == 'Eve Market')
-                        $price = $this->getItemPriceById($key) * $value;
+                        $price = EveMarketHelper::getItemPriceById($key) * $value;
                     else
                         $price = EvePraisalHelper::getItemPriceByTypeId($key) * $value;
                     $charData->addToPriceSummary($price * ($settings['ore_refining_rate'] / 100));

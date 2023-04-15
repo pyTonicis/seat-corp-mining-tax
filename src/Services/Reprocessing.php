@@ -4,6 +4,7 @@ namespace pyTonicis\Seat\SeatCorpMiningTax\Services;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Js;
+
 class Reprocessing
 {
     private static function getReprocessData(int $id)
