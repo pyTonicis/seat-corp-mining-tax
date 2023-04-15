@@ -115,70 +115,71 @@ class MiningTaxService
             $invGroup = Reprocessing::getMaterialInfo($data->type_id)->groupID;
             $charData->addVolume($volume);
 
-            foreach(Reprocessing::ReprocessOreByTypeId($data->type_id, $data->quantity, (float)($settings['ore_refining_rate'] / 100)) as $key => $value)
-            {
-                if($settings['price_provider'] == 'Eve Market')
-                    $price = $this->getItemPriceById($key) * $value;
-                else
-                    $price = EvePraisalHelper::getItemPriceByTypeId($key) * $value;
-                $charData->addToPriceSummary($price * ($settings['ore_refining_rate'] / 100));
-                switch($invGroup) {
-                    case 465:
-                        if ($settings['taxes_ice'] == "true")
-                            $charData->addTax($price * ($settings['ice_rate'] / 100));
-                        break;
-                    case 711:
-                        if ($settings['taxes_gas'] == "true")
-                            $charData->addTax($price * ($settings['gas_rate'] / 100));
-                        break;
-                    case 1884:
-                        if ($settings['taxes_moon'] == "true") {
-                            $charData->addTax($price * ($settings['r4_rate'] / 100));
-                        } elseif ($settings['taxes_corp_moon'] == "true") {
-                            if($this->checkIfCorpMoon($data->character_id, $data->type_id, $data->solar_system_id, $data->date))
+            if (!($data->date >= '2023-03-23' and $data->time > '12:00:00') and !($data->date <= '2023-03-24' and $data->time < '12:00:00')) {
+                foreach (Reprocessing::ReprocessOreByTypeId($data->type_id, $data->quantity, (float)($settings['ore_refining_rate'] / 100)) as $key => $value) {
+                    if ($settings['price_provider'] == 'Eve Market')
+                        $price = $this->getItemPriceById($key) * $value;
+                    else
+                        $price = EvePraisalHelper::getItemPriceByTypeId($key) * $value;
+                    $charData->addToPriceSummary($price * ($settings['ore_refining_rate'] / 100));
+                    switch ($invGroup) {
+                        case 465:
+                            if ($settings['taxes_ice'] == "true")
+                                $charData->addTax($price * ($settings['ice_rate'] / 100));
+                            break;
+                        case 711:
+                            if ($settings['taxes_gas'] == "true")
+                                $charData->addTax($price * ($settings['gas_rate'] / 100));
+                            break;
+                        case 1884:
+                            if ($settings['taxes_moon'] == "true") {
                                 $charData->addTax($price * ($settings['r4_rate'] / 100));
-                        }
-                        break;
-                    case 1920:
-                        if ($settings['taxes_moon'] == "true") {
-                            $charData->addTax($price * ($settings['r8_rate'] / 100));
-                        } elseif ($settings['taxes_corp_moon'] == "true") {
-                            if($this->checkIfCorpMoon($data->character_id, $data->type_id, $data->solar_system_id, $data->date))
+                            } elseif ($settings['taxes_corp_moon'] == "true") {
+                                if ($this->checkIfCorpMoon($data->character_id, $data->type_id, $data->solar_system_id, $data->date))
+                                    $charData->addTax($price * ($settings['r4_rate'] / 100));
+                            }
+                            break;
+                        case 1920:
+                            if ($settings['taxes_moon'] == "true") {
                                 $charData->addTax($price * ($settings['r8_rate'] / 100));
-                        }
-                        break;
-                    case 1921:
-                        if ($settings['taxes_moon'] == "true") {
-                            $charData->addTax($price * ($settings['r16_rate'] / 100));
-                        } elseif ($settings['taxes_corp_moon'] == "true") {
-                            if($this->checkIfCorpMoon($data->character_id, $data->type_id, $data->solar_system_id, $data->date))
+                            } elseif ($settings['taxes_corp_moon'] == "true") {
+                                if ($this->checkIfCorpMoon($data->character_id, $data->type_id, $data->solar_system_id, $data->date))
+                                    $charData->addTax($price * ($settings['r8_rate'] / 100));
+                            }
+                            break;
+                        case 1921:
+                            if ($settings['taxes_moon'] == "true") {
                                 $charData->addTax($price * ($settings['r16_rate'] / 100));
-                        }
-                        break;
-                    case 1922:
-                        if ($settings['taxes_moon'] == "true") {
-                            $charData->addTax($price * ($settings['r32_rate'] / 100));
-                        } elseif ($settings['taxes_corp_moon'] == "true") {
-                            if($this->checkIfCorpMoon($data->character_id, $data->type_id, $data->solar_system_id, $data->date))
+                            } elseif ($settings['taxes_corp_moon'] == "true") {
+                                if ($this->checkIfCorpMoon($data->character_id, $data->type_id, $data->solar_system_id, $data->date))
+                                    $charData->addTax($price * ($settings['r16_rate'] / 100));
+                            }
+                            break;
+                        case 1922:
+                            if ($settings['taxes_moon'] == "true") {
                                 $charData->addTax($price * ($settings['r32_rate'] / 100));
-                        }
-                        break;
-                    case 1923:
-                        if ($settings['taxes_moon'] == "true") {
-                            $charData->addTax($price * ($settings['r64_rate'] / 100));
-                        } elseif ($settings['taxes_corp_moon'] == "true") {
-                            if($this->checkIfCorpMoon($data->character_id, $data->type_id, $data->solar_system_id, $data->date))
+                            } elseif ($settings['taxes_corp_moon'] == "true") {
+                                if ($this->checkIfCorpMoon($data->character_id, $data->type_id, $data->solar_system_id, $data->date))
+                                    $charData->addTax($price * ($settings['r32_rate'] / 100));
+                            }
+                            break;
+                        case 1923:
+                            if ($settings['taxes_moon'] == "true") {
                                 $charData->addTax($price * ($settings['r64_rate'] / 100));
-                        }
-                        break;
-                    case 1996:
-                        if ($settings['taxes_abyssal'] == "true")
-                            $charData->addTax($price * ($settings['abyssal_rate'] / 100));
-                        break;
-                    default:
-                        if ($settings['taxes_ore'] == "true")
-                            $charData->addTax($price * ($settings['ore_rate'] / 100));
-                        break;
+                            } elseif ($settings['taxes_corp_moon'] == "true") {
+                                if ($this->checkIfCorpMoon($data->character_id, $data->type_id, $data->solar_system_id, $data->date))
+                                    $charData->addTax($price * ($settings['r64_rate'] / 100));
+                            }
+                            break;
+                        case 1996:
+                            if ($settings['taxes_abyssal'] == "true")
+                                $charData->addTax($price * ($settings['abyssal_rate'] / 100));
+                            break;
+                        default:
+                            if ($settings['taxes_ore'] == "true")
+                                $charData->addTax($price * ($settings['ore_rate'] / 100));
+                            break;
+                    }
                 }
             }
         }
