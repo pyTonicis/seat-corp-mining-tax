@@ -7,20 +7,8 @@
 @endpush
 
 @section('left')
-    @if($errors->any())
-        <div class="alert alert-success" role="alert">
-            <h4 class="alert-heading">Error !</h4>
-            <p>{{$errors->first()}}</p>
-        </div>
-    @endif
     <div class="card">
         <div class="card-body">
-            <div id="overlay" style="border-radius: 5px">
-                <div class="w-100 d-flex justify-content-center align-items-center">
-                    <div class="spinner"></div>
-                </div>
-            </div>
-        </div>
         <form action="{{ route('corpminingtax.eventcmd') }}" method="post" id="eventcmd" name="eventcmd">
             {{ csrf_field() }}
             <div class="form-row">
@@ -30,12 +18,13 @@
                     </p>
                     <div class="collapse" id="collapseExample">
                         <div class="card card-body">
-
+                            <p>Hier könnte Ihre Werbung stehen!</p>
                         </div>
                     </div>
                 </div>
             </div>
         </form>
+        </div>
     </div>
     @isset($eventData)
         <div class="card">
