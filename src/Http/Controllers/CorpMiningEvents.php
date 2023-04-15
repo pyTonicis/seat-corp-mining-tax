@@ -12,4 +12,9 @@ class CorpMiningEvents extends Controller
     {
         return view('corpminingtax::corpminingevents');
     }
+
+    public function eventCmd(Request $request)
+    {
+        redirect()->back();
+    }
 }

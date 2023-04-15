@@ -83,6 +83,10 @@ Route::group([
                 ->name('corpminingtax.events')
                 ->uses('CorpMiningEvents@getHome');
 
+            Route::post('/miningeventscmd')
+                ->name('corpminingtax.eventcmd')
+                ->uses('CorpMiningEvents@eventCmd');
+
             Route::get('/refining')
                 ->name('corpminingtax.refining')
                 ->uses('CorpMiningRefiningController@getHome');
