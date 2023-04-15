@@ -31,7 +31,7 @@
                     <div class="ml-auto mr-2 align-center text-center align-centered">
                         <span class="info-box-icon bg-blue elevation-1"><i class="fa-solid fa-arrow-down-to-line"></i></span>
                     </div>
-                    <div class="ml-auto mr-2 align-right text-center align-centered">
+                    <div class="ml-auto mr-2 align-right text-right align-centered">
                         <div class="row">
                             <h4>Total Mined: <b>{{ number_format($d->get_total_quantity() * 10) }} m³</b></h4>
                         </div>

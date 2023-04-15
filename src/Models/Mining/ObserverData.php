@@ -4,6 +4,7 @@ namespace pyTonicis\Seat\SeatCorpMiningTax\Models\Mining;
 
 
 use pyTonicis\Seat\SeatCorpMiningTax\Services\Reprocessing;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Js;
 
@@ -43,16 +44,21 @@ class ObserverData
 
     public function get_total_mined_isk(): int
     {
-        $sum = 0;
-        foreach ($this->minings as $mining) {
-            foreach($mining->ore_types as $name => $quantity) {
-                $materials = Reprocessing::ReprocessOreByTypeId(Reprocessing::getItemIdByName($name), $quantity);
-                foreach($materials as $mid => $mq) {
-                    $price = $this->getItemPriceById($mid) * $mq;
-                    $sum += $price;
+        if(Cache::has($this->observer_id)) {
+            return Cache::get($this->observer_id);
+        } else {
+            $sum = 0;
+            foreach ($this->minings as $mining) {
+                foreach ($mining->ore_types as $name => $quantity) {
+                    $materials = Reprocessing::ReprocessOreByTypeId(Reprocessing::getItemIdByName($name), $quantity);
+                    foreach ($materials as $mid => $mq) {
+                        $price = $this->getItemPriceById($mid) * $mq;
+                        $sum += $price;
+                    }
                 }
             }
         }
+        Cache::put($this->observer_id, $sum, 86400);
         return $sum;
     }
 

@@ -2,6 +2,7 @@
 
 namespace pyTonicis\Seat\SeatCorpMiningTax\Services;
 
+use DateTime;
 use pyTonicis\Seat\SeatCorpMiningTax\Helpers\CharacterHelper;
 use pyTonicis\Seat\SeatCorpMiningTax\Helpers\EvePraisalHelper;
 use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\CharacterData;
@@ -115,13 +116,12 @@ class MiningTaxService
             $invGroup = Reprocessing::getMaterialInfo($data->type_id)->groupID;
             $charData->addVolume($volume);
 
-            $event_start = strtotime('2023-03-23 12:00:00');
-            $event_stop = strtotime('2023-03-24 12:00:00');
-            $datum = strtotime($data->date . $data->time);
+            $event_start = new DateTime('2023-03-23 12:00:00');
+            $event_stop = new DateTime('2023-03-24 23:59:59');
+            $dt = $data->date ." ". $data->time;
+            $datum = new DateTime($dt);
 
-            if (($datum >= $event_start) && ($datum <= $event_stop)) {
-                //TODO Summary Dackeltag
-            } else {
+            if (($datum <= $event_start) or ($datum >= $event_stop)) {
                 foreach (Reprocessing::ReprocessOreByTypeId($data->type_id, $data->quantity, (float)($settings['ore_refining_rate'] / 100)) as $key => $value) {
                     if ($settings['price_provider'] == 'Eve Market')
                         $price = $this->getItemPriceById($key) * $value;
