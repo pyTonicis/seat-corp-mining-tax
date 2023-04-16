@@ -9,14 +9,28 @@
             {{ csrf_field() }}
             <div class="form-row">
                 <div class="col-md-4 mb-3">
-                    <p>
-                        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">New Event</button>
-                    </p>
-                    <div class="collapse" id="collapseExample">
-                        <div class="card card-body">
-                            <p>Hier könnte Ihre Werbung stehen!</p>
+                    <div class="input-group date" data-provide="datepicker">
+                        <label for="c_date">Date:</label>
+                        <input type="text" class="form-control" id="c_date">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
                         </div>
+                        <label for="c_duration">Duration:</label>
+                        <input type="number" class="form-control" id="c_duration">
                     </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <div class="input-group">
+                        <label for="c_name">Event Title:</label>
+                        <input type="text" class="form-control" id="c_name">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <button class="btn btn-primary" type="submin" id="send">Create</button>
                 </div>
             </div>
         </form>
@@ -60,5 +74,11 @@
         function on() {
             document.getElementById("overlay").style.display = "flex";
         }
+    </script>
+    <script>
+        $('.datepicker').datepicker({
+            format: 'yyyy-mm-dd',
+            startDate: '-3d'
+        });
     </script>
 @endpush
