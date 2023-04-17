@@ -43,10 +43,10 @@ class CorpMiningContracts extends Controller
             ->where('id', '=', $cid)
             ->first();
         $html = "<table class=\"table table-sm no-border\"><tbody><tr>";
-        $html .= "<td><b>Contract to</b></td><td id='c_name'>" .$details->character_name ."</td><td><button class='btn' onclick=\"copyToClipboard('#c_name')\" data-copy='c_name' data-done='copied'><i class='fas fa-copy'></i></button></td></tr><tr>";
-        $html .= "<td><b>Contract Title</b></td><td id='c_title'>" .$details->contractTitle ."</td><td><button class='btn' onclick=\"copyToClipboard('#c_title')\" data-copy='c_title' data-done='copied'><i class='fas fa-copy'></i></button></td></tr><tr>";
+        $html .= "<td><b>Contract to</b></td><td id='c_name'>" .$details->character_name ."</td><td><button class='btn btn-sm copy-data' data-toggle='tooltip' data-export='c_name'><i class='fas fa-copy'></i></button></td></tr><tr>";
+        $html .= "<td><b>Contract Title</b></td><td id='c_title'>" .$details->contractTitle ."</td><td><button class='btn btn-sm copy-data' data-toggle='tooltip' data-export='c_title'><i class='fas fa-copy'></i></button></td></tr><tr>";
         $html .= "<td><b>Contract Type</b></td><td>ItemExchange</td><td></td></tr><tr>";
-        $html .= "<td><b>Tax</b></td><td id='c_tax'>" .number_format($details->tax). "</td><td><button class='btn' onclick=\"copyToClipboard('#c_tax')\" data-copy='c_tax' data-done='copied'><i class='fas fa-copy'></i></button></td></tr></tbody></table>";
+        $html .= "<td><b>Tax</b></td><td id='c_tax'>" .number_format($details->tax). "</td><td><button class='btn btn-sm copy-data' data-toggle='tooltip' data-export='c_tax'><i class='fas fa-copy'></i></button></td></tr></tbody></table>";
         $response['html'] = $html;
         return response()->json($response);
     }

@@ -13,13 +13,13 @@
         </div>
         <div class="card-body">
             <p id="deb"></p>
-            <div class="col-4">
+            <div class="col-md">
                 <div class="btn-group submitter-group float-right">
                     <div class="input-group-prepend">
                         <div class="input-group-text">Status</div>
                     </div>
                     <select class="form-control status-dropdown">
-                        <option value="0">All</option>
+                        <option value="0">all</option>
                         <option value="1">new</option>
                         <option value="2">offered</option>
                         <option value="3">clear</option>
@@ -47,13 +47,13 @@
                             <td>{{ $contract->character_name}}</td>
                             <td><b>{{ number_format($contract->tax) }}</b></td>
                             @if($contract->contractStatus == 1)
-                                <td><span class="badge badge-info">new</span></td>
+                                <td><h5><span class="badge badge-info">new</span></h5></td>
                             @elseif($contract->contractStatus == 2)
-                                <td><span class="badge badge-primary">offered</span></td>
+                                <td><h5><span class="badge badge-primary">offered</span></h5></td>
                             @elseif($contract->contractStatus == 3)
-                                <td><span class="badge badge-success">clear</span></td>
-                                        @elseif($contract->contractStatus == 4)
-                                            <td><span class="badge badge-danger">outstanding</span></td>
+                                <td><h5><span class="badge badge-success">clear</span></h5></td>
+                            @elseif($contract->contractStatus == 4)
+                                <td><h5><span class="badge badge-danger">outstanding</span></h5></td>
                             @endif
                             <td>
                                 <button class="btn btn-primary offer" onclick="getDetails({{ $contract->id }})" data-toggle="modal" data-target="#modal_detail" data-id="{{ $contract->id }}">Details</button>
@@ -87,71 +87,83 @@
 @stop
 @push('javascript')
     <script>
-        table = $('#contracts').DataTable({
-            "columnDefs": [
-                {
-                    "targets": [6],
-                    "visible": false
-                }
-            ]
-        });
-
-        $('.status-dropdown').on('change', function(e){
-            var status = $(this).val();
-            $('.status-dropdown').val(status)
-            console.log(status)
-            //dataTable.column(6).search('\\s' + status + '\\s', true, false, true).draw();
-            dataTable.column(5).search(status).draw();
-        })
-
-        $('#modal_detail').on('hidden.bs.modal', function() {
-            $('.modal-body').html("");
-        });
-
-
-
-        function getDetails(cid) {
-
-            if(cid > 0) {
-                var url = "{{ route('corpminingtax.contractdata', [':cid']) }}";
-                url = url.replace(':cid',cid);
-
-                $.ajax({
-                    url: url,
-                    type: "GET",
-                    datatype: 'json',
-                    timeout: 10000,
-                    success: function(data) {
-                        $('.modal-body').html(data.html);
-                        //$('#c_name').innerText(data.character_name);
-                        $('#modal_detail').modal('show');
+        $(document).ready(function() {
+            dataTable = $('#contracts').DataTable({
+                "columnDefs": [
+                    {
+                        "targets": [6],
+                        "visible": false
                     }
-                });
+                ]
+            });
+
+            $('.status-dropdown').on('change', function (e) {
+                var status = $(this).val();
+                $('.status-dropdown').val(status)
+                console.log(status)
+                dataTable.column(5).search(status).draw();
+            })
+
+            $('#modal_detail').on('hidden.bs.modal', function () {
+                $('.modal-body').html("");
+            });
+
+            $(document).on('click', '.copy-data', function (e) {
+                var buffer = $(this).data('export');
+                $('body').append('<textarea id="copied-data"></textarea>');
+                $('#copied-data').val(buffer);
+                document.getElementById('copied-data').select();
+                document.execCommand('copy');
+                document.getElementById('copied-data').remove();
+                $(this).attr('data-original-title', 'Copied !')
+                    .tooltip('show');
+                $(this).attr('data-original-title', 'Copy to clipboard');
+            });
+
+
+            function getDetails(cid) {
+
+                if (cid > 0) {
+                    var url = "{{ route('corpminingtax.contractdata', [':cid']) }}";
+                    url = url.replace(':cid', cid);
+
+                    $.ajax({
+                        url: url,
+                        type: "GET",
+                        datatype: 'json',
+                        timeout: 10000,
+                        success: function (data) {
+                            $('.modal-body').html(data.html);
+                            //$('#c_name').innerText(data.character_name);
+                            $('#modal_detail').modal('show');
+                        }
+                    });
+                }
             }
-        }
 
-        function setStatus(cid) {
+            function setStatus(cid) {
 
-            if(cid > 0) {
-                var url = "{{ route('corpminingtax.contractstatus', [':cid']) }}";
-                url = url.replace(':cid',cid);
+                if (cid > 0) {
+                    var url = "{{ route('corpminingtax.contractstatus', [':cid']) }}";
+                    url = url.replace(':cid', cid);
 
-                $.ajax({
-                    url: url,
-                    type: "POST",
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        cid: cid,
-                    },
-                });
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            cid: cid,
+                        },
+                    });
+                }
             }
-        }
 
-        function copyToClipboard(id) {
-            let copy_text = document.getElementById(id).innerText;
-            if(navigator.clipboard) {
-                navigator.clipboard.writeText(copy_text);
+            function copyToClipboard(id) {
+                let copy_text = document.getElementById(id).innerText;
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(copy_text);
+                }
             }
-        }
+        });
     </script>
 @endpush
