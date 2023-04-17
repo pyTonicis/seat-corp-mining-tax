@@ -8,29 +8,25 @@
 
 @section('full')
     <div class="card">
-        <div class="card-body">
-            <div class="form-group">
-                <form action="{{ route('corpminingtax.contractfilter') }}" method="post" id="contract_filter" name="contract_filter">
-                    {{ csrf_field() }}
-                <label><strong>Status :</strong></label>
-                <select id="status" name="status" class="form-control" style="width: 200px">
-                    <option value="0">--Select Status--</option>
-                    <option value="1">new</option>
-                    <option value="2">offered</option>
-                    <option value="3">complete</option>
-                    <option value="4">open</option>
-                </select>
-                <button type="submit" class="btn btn-primary" id="filter">Filter</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="card">
         <div class="card-header">
             <h3>Corporation Tax Contracts</h3>
         </div>
         <div class="card-body">
             <p id="deb"></p>
+            <div class="col-4">
+                <div class="btn-group submitter-group float-right">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">Status</div>
+                    </div>
+                    <select class="form-control status-dropdown">
+                        <option value="0">All</option>
+                        <option value="1">new</option>
+                        <option value="2">offered</option>
+                        <option value="3">clear</option>
+                        <option value="4">outstanding</option>
+                    </select>
+                </div>
+            </div>
             <table class="table" id="contracts">
                 <thead>
                 <tr>
@@ -55,9 +51,9 @@
                             @elseif($contract->contractStatus == 2)
                                 <td><span class="badge badge-primary">offered</span></td>
                             @elseif($contract->contractStatus == 3)
-                                <td><span class="badge badge-success">complete</span></td>
+                                <td><span class="badge badge-success">clear</span></td>
                                         @elseif($contract->contractStatus == 4)
-                                            <td><span class="badge badge-danger">open</span></td>
+                                            <td><span class="badge badge-danger">outstanding</span></td>
                             @endif
                             <td>
                                 <button class="btn btn-primary offer" onclick="getDetails({{ $contract->id }})" data-toggle="modal" data-target="#modal_detail" data-id="{{ $contract->id }}">Details</button>
@@ -92,11 +88,27 @@
 @push('javascript')
     <script>
         table = $('#contracts').DataTable({
+            "columnDefs": [
+                {
+                    "targets": [6],
+                    "visible": false
+                }
+            ]
         });
+
+        $('.status-dropdown').on('change', function(e){
+            var status = $(this).val();
+            $('.status-dropdown').val(status)
+            console.log(status)
+            //dataTable.column(6).search('\\s' + status + '\\s', true, false, true).draw();
+            dataTable.column(5).search(status).draw();
+        })
 
         $('#modal_detail').on('hidden.bs.modal', function() {
             $('.modal-body').html("");
         });
+
+
 
         function getDetails(cid) {
 
