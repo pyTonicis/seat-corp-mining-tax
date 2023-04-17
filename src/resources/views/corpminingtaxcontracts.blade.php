@@ -143,10 +143,10 @@
             $('.offer').on('click', function() {
                 var cid = $(this).attr('id');
                 cid = cid.replace('o_', '');
+                document.getElementById('deb').innerText = cid;
                 if (cid > 0) {
                     var url = "{{ route('corpminingtax.contractstatus', [':cid']) }}";
                     url = url.replace(':cid', cid);
-
                     $.ajax({
                         url: url,
                         type: "POST",
