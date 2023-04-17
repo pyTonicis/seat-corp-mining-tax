@@ -7,6 +7,11 @@
 @endpush
 
 @section('full')
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
     <div class="card">
         <div class="card-header">
             <h3>Corporation Tax Contracts</h3>
@@ -59,7 +64,7 @@
                             <td>
                                 <button class="btn btn-primary details" id="d_{{ $contract->id }}" data-toggle="modal" data-target="#modal_detail" data-id="{{ $contract->id }}">Details</button>
                                 <button class="btn btn-success offer" id="o_{{ $contract->id }}">Activate</button>
-                                <button class="btn btn-danger" id="r_{{ $contract->id }}">Delete</button>
+                                <button class="btn btn-danger remove" id="r_{{ $contract->id }}">Delete</button>
                             </td>
                             <td>{{ $contract->contractStatus }}</td>
                         </tr>
@@ -111,7 +116,7 @@
             });
 
             $(document).on('click', '.copy-data', function (e) {
-                var buffer = $(this).data('data-export');
+                var buffer = $(this).attr('data-export');
                 $('body').append('<textarea id="copied-data"></textarea>');
                 $('#copied-data').val(buffer);
                 document.getElementById('copied-data').select();
@@ -143,7 +148,7 @@
             $('.offer').on('click', function() {
                 var cid = $(this).attr('id');
                 cid = cid.replace('o_', '');
-                document.getElementById('deb').innerText = cid;
+                $(id).find('')
                 if (cid > 0) {
                     var url = "{{ route('corpminingtax.contractstatus', [':cid']) }}";
                     url = url.replace(':cid', cid);
@@ -158,12 +163,23 @@
                 }
             });
 
-            function copyToClipboard(id) {
-                let copy_text = document.getElementById(id).innerText;
-                if (navigator.clipboard) {
-                    navigator.clipboard.writeText(copy_text);
+            $('.remove').on('click', function() {
+                var cid = $(this).attr('id');
+                cid = cid.replace('o_', '');
+                $(id).find('')
+                if (cid > 0) {
+                    var url = "{{ route('corpminingtax.contractremove', [':cid']) }}";
+                    url = url.replace(':cid', cid);
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            cid: cid,
+                        },
+                    });
                 }
-            }
+            });
         });
     </script>
 @endpush
