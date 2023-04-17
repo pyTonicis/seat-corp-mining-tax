@@ -57,7 +57,7 @@
                                 <td><h5><span class="badge badge-danger">outstanding</span></h5></td>
                             @endif
                             <td>
-                                <button class="btn btn-primary details" onclick="getDetails({{ $contract->id }})" data-toggle="modal" data-target="#modal_detail" data-id="{{ $contract->id }}">Details</button>
+                                <button class="btn btn-primary details" id="{{ $contract->id }}" data-toggle="modal" data-target="#modal_detail" data-id="{{ $contract->id }}">Details</button>
                                 <button type="button" class="btn btn-success" onclick="setStatus({{ $contract->id }})">Activate</button>
                                 <button type="button" class="btn btn-danger" id="delete" data-id="{{ $contract->id }}">Delete</button>
                             </td>
@@ -123,7 +123,7 @@
             });
 
             $('details').on('click', function(e) {
-               var cid = $(this).data('data-id');
+               var cid = $(this).attr('id');
                 var url = "{{ route('corpminingtax.contractdata', [':cid']) }}";
                 url = url.replace(':cid', cid);
                 $.ajax({
