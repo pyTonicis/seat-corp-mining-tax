@@ -19,7 +19,7 @@
                         <div class="input-group-text">Status</div>
                     </div>
                     <select class="form-control status-dropdown">
-                        <option value="0">all</option>
+                        <option value="">all</option>
                         <option value="1">new</option>
                         <option value="2">offered</option>
                         <option value="3">clear</option>
@@ -36,6 +36,7 @@
                     <th>Tax ISK</th>
                     <th>Status</th>
                     <th>Actions</th>
+                    <th>Hidden</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -56,10 +57,11 @@
                                 <td><h5><span class="badge badge-danger">outstanding</span></h5></td>
                             @endif
                             <td>
-                                <button class="btn btn-primary offer" onclick="getDetails({{ $contract->id }})" data-toggle="modal" data-target="#modal_detail" data-id="{{ $contract->id }}">Details</button>
+                                <button class="btn btn-primary details" onclick="getDetails({{ $contract->id }})" data-toggle="modal" data-target="#modal_detail" data-id="{{ $contract->id }}">Details</button>
                                 <button type="button" class="btn btn-success" onclick="setStatus({{ $contract->id }})">Activate</button>
                                 <button type="button" class="btn btn-danger" id="delete" data-id="{{ $contract->id }}">Delete</button>
                             </td>
+                            <td>{{ $contract->contractStatus }}</td>
                         </tr>
                     @endforeach
                 @endisset
@@ -101,7 +103,7 @@
                 var status = $(this).val();
                 $('.status-dropdown').val(status)
                 console.log(status)
-                dataTable.column(5).search(status).draw();
+                dataTable.column(6).search(status).draw();
             })
 
             $('#modal_detail').on('hidden.bs.modal', function () {
@@ -120,13 +122,29 @@
                 $(this).attr('data-original-title', 'Copy to clipboard');
             });
 
+            $('details').on('click', function(e) {
+               var cid = $(this).data('data-id');
+                var url = "{{ route('corpminingtax.contractdata', [':cid']) }}";
+                url = url.replace(':cid', cid);
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    datatype: 'json',
+                    timeout: 10000,
+                    success: function (data) {
+                        $('.modal-body').html(data.html);
+                        //$('#c_name').innerText(data.character_name);
+                        $('#modal_detail').modal('show');
+                    }
+                });
+            });
+
 
             function getDetails(cid) {
 
                 if (cid > 0) {
                     var url = "{{ route('corpminingtax.contractdata', [':cid']) }}";
                     url = url.replace(':cid', cid);
-
                     $.ajax({
                         url: url,
                         type: "GET",
