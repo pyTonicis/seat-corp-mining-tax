@@ -1,7 +1,11 @@
 @extends('web::layouts.grids.12')
 
 @section('title', trans('corpminingtax::global.browser_title'))
-
+@push('body-scripts')
+    @once
+        <script src="bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    @endonce
+@endpush
 @section('full')
     <div class="card">
         <div class="card-body">

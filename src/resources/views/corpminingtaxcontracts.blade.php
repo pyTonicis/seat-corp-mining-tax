@@ -57,9 +57,9 @@
                                 <td><h5><span class="badge badge-danger">outstanding</span></h5></td>
                             @endif
                             <td>
-                                <button class="btn btn-primary details" id="{{ $contract->id }}" data-toggle="modal" data-target="#modal_detail" data-id="{{ $contract->id }}">Details</button>
-                                <button type="button" class="btn btn-success" onclick="setStatus({{ $contract->id }})">Activate</button>
-                                <button type="button" class="btn btn-danger" id="delete" data-id="{{ $contract->id }}">Delete</button>
+                                <button class="btn btn-primary details" id="d_{{ $contract->id }}" data-toggle="modal" data-target="#modal_detail" data-id="{{ $contract->id }}">Details</button>
+                                <button class="btn btn-success offer" id="o_{{ $contract->id }}">Activate</button>
+                                <button class="btn btn-danger" id="r_{{ $contract->id }}">Delete</button>
                             </td>
                             <td>{{ $contract->contractStatus }}</td>
                         </tr>
@@ -124,6 +124,7 @@
 
             $('.details').on('click', function(e) {
                var cid = $(this).attr('id');
+               cid = cid.replace('d_', '');
                 var url = "{{ route('corpminingtax.contractdata', [':cid']) }}";
                 url = url.replace(':cid', cid);
                 $.ajax({
@@ -138,6 +139,24 @@
                     }
                 });
             });
+
+            $('.offer').on('click', function() {
+                var cid = $(this).attr('id');
+                cid = cid.replace('o_', '');
+                if (cid > 0) {
+                    var url = "{{ route('corpminingtax.contractstatus', [':cid']) }}";
+                    url = url.replace(':cid', cid);
+
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            cid: cid,
+                        },
+                    });
+                }
+            })
 
 
             function getDetails(cid) {
