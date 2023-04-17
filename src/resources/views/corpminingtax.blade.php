@@ -92,7 +92,7 @@
 @isset($taxdata)
     <div class="card">
         <div class="card-header">
-            <h3>Mining Tax Results</h3>
+            <h3>Mining Tax Results <small>(this month)</small></h3>
         </div>
         <div class="card-body">
             <table class="table" id="mining">

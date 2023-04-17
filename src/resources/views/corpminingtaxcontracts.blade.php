@@ -111,7 +111,7 @@
             });
 
             $(document).on('click', '.copy-data', function (e) {
-                var buffer = $(this).data('export');
+                var buffer = $(this).data('data-export');
                 $('body').append('<textarea id="copied-data"></textarea>');
                 $('#copied-data').val(buffer);
                 document.getElementById('copied-data').select();
@@ -156,44 +156,7 @@
                         },
                     });
                 }
-            })
-
-
-            function getDetails(cid) {
-
-                if (cid > 0) {
-                    var url = "{{ route('corpminingtax.contractdata', [':cid']) }}";
-                    url = url.replace(':cid', cid);
-                    $.ajax({
-                        url: url,
-                        type: "GET",
-                        datatype: 'json',
-                        timeout: 10000,
-                        success: function (data) {
-                            $('.modal-body').html(data.html);
-                            //$('#c_name').innerText(data.character_name);
-                            $('#modal_detail').modal('show');
-                        }
-                    });
-                }
-            }
-
-            function setStatus(cid) {
-
-                if (cid > 0) {
-                    var url = "{{ route('corpminingtax.contractstatus', [':cid']) }}";
-                    url = url.replace(':cid', cid);
-
-                    $.ajax({
-                        url: url,
-                        type: "POST",
-                        data: {
-                            "_token": "{{ csrf_token() }}",
-                            cid: cid,
-                        },
-                    });
-                }
-            }
+            });
 
             function copyToClipboard(id) {
                 let copy_text = document.getElementById(id).innerText;
