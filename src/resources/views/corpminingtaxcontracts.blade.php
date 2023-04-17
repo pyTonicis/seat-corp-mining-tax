@@ -122,7 +122,7 @@
                 $(this).attr('data-original-title', 'Copy to clipboard');
             });
 
-            $('details').on('click', function(e) {
+            $('.details').on('click', function(e) {
                var cid = $(this).attr('id');
                 var url = "{{ route('corpminingtax.contractdata', [':cid']) }}";
                 url = url.replace(':cid', cid);
