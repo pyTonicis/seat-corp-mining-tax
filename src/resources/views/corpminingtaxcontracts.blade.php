@@ -148,7 +148,6 @@
             $('.offer').on('click', function() {
                 var cid = $(this).attr('id');
                 cid = cid.replace('o_', '');
-                $(id).find('')
                 if (cid > 0) {
                     var url = "{{ route('corpminingtax.contractstatus', [':cid']) }}";
                     url = url.replace(':cid', cid);
@@ -166,7 +165,6 @@
             $('.remove').on('click', function() {
                 var cid = $(this).attr('id');
                 cid = cid.replace('o_', '');
-                $(id).find('')
                 if (cid > 0) {
                     var url = "{{ route('corpminingtax.contractremove', [':cid']) }}";
                     url = url.replace(':cid', cid);

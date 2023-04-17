@@ -67,7 +67,8 @@ class CorpMiningContracts extends Controller
         $cid = $request->get('cid');
         if ($cid != 0) {
             DB::table('corp_mining_tax_contracts')
-                ->delete('id', $cid);
+                ->where('id', $cid)
+                ->delete();
         }
         return redirect()->back()->with('status', 'Contract successful deleted');
     }
