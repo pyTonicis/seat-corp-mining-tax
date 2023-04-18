@@ -15,6 +15,7 @@
             <div class="card-body">
                 <div class="col-md">
                     <div class="btn-group submitter-group float-right">
+                        <button class="btn btn-default create" id="create_event" data-toggle="modal" data-target="#modal_detail">Create Event</button>
                         <div class="input-group-prepend">
                             <div class="input-group-text">Status</div>
                         </div>
@@ -56,6 +57,24 @@
                     @endforeach
                     </tbody>
                 </table>
+                <div class="modal fade" id="modal_detail" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-yellow">
+                                <h4 class="modal-title" id="contract-detail">Contract Details</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     @endisset
