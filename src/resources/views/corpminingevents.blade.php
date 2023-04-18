@@ -1,12 +1,8 @@
 @extends('web::layouts.grids.12')
 
 @section('title', trans('corpminingtax::global.browser_title'))
-@push('body-scripts')
-    @once
-        <script src="bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-    @endonce
-@endpush
-@section('left')
+
+@section('full')
     @isset($eventdata)
         <div class="card">
             <div class="card-header">
@@ -44,12 +40,12 @@
                         <tr>
                             <td>{{ $event->event_start }}</td>
                             <td>{{ $event->event_name }}</td>
-                            <td>{{ $event->duration }}</td>
-                            <td>{{ $event->tax }}</td>
+                            <td>{{ $event->event_duration }}</td>
+                            <td>{{ $event->event_tax }}</td>
                             <td>0</td>
                             <td id="s_{{ $event->id }}"><h5><span class="badge badge-success">running</span></h5></td>
                             <td>
-                                <button class="btn btn-warning details" id="d_{{ $event->id }}" data-toggle="modal" data-target="#modal_detail" data-id="{{ $contract->id }}">Edit</button>
+                                <button class="btn btn-warning details" id="d_{{ $event->id }}" data-toggle="modal" data-target="#modal_detail">Edit</button>
                                 <button class="btn btn-danger remove" id="r_{{ $event->id }}">Delete</button>
                             </td>
                             <td>{{ $event->event_status }}</td>
@@ -69,7 +65,7 @@
                             <div class="modal-body">
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+                                <button type="button" class="btn btn-default save-data">Save</button>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </div>
                         </div>
