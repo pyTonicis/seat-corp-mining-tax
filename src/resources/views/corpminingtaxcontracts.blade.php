@@ -128,8 +128,7 @@
                     datatype: 'json',
                     timeout: 10000,
                     success: function (data) {
-                        $('.modal-body').html(data.html);
-                        //$('#c_name').innerText(data.character_name);
+                        $('.modal-body').html(data);
                         $('#modal_detail').modal('show');
                     }
                 });

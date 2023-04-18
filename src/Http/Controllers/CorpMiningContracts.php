@@ -49,7 +49,7 @@ class CorpMiningContracts extends Controller
         $html .= "<td><b>Tax</b></td><td id='c_tax'>" .number_format($details->tax). "</td><td><button class='btn btn-sm copy-data' data-toggle='tooltip' data-export='c_tax'><i class='fas fa-copy'></i></button></td></tr></tbody></table>";
         $response['html'] = $html;
         return response()->json($response);*/
-        return view::make('corpminingtax::contractdetails')->with(['details' => $details])->render();
+        return view::make('corpminingtax::contractdetails', ['details' => $details])->render();
     }
 
     public function setContractOffered(Request $request)
