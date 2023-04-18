@@ -42,13 +42,14 @@ class CorpMiningContracts extends Controller
             ->select('*')
             ->where('id', '=', $cid)
             ->first();
-        $html = "<table class=\"table table-sm no-border\"><tbody><tr>";
+        /*$html = "<table class=\"table table-sm no-border\"><tbody><tr>";
         $html .= "<td><b>Contract to</b></td><td id='c_name'>" .$details->character_name ."</td><td><button class='btn btn-sm copy-data' data-toggle='tooltip' data-export=".$details->character_name."><i class='fas fa-copy'></i></button></td></tr><tr>";
         $html .= "<td><b>Contract Title</b></td><td id='c_title'>" .$details->contractTitle ."</td><td><button class='btn btn-sm copy-data' data-toggle='tooltip' data-export='c_title'><i class='fas fa-copy'></i></button></td></tr><tr>";
         $html .= "<td><b>Contract Type</b></td><td>ItemExchange</td><td></td></tr><tr>";
         $html .= "<td><b>Tax</b></td><td id='c_tax'>" .number_format($details->tax). "</td><td><button class='btn btn-sm copy-data' data-toggle='tooltip' data-export='c_tax'><i class='fas fa-copy'></i></button></td></tr></tbody></table>";
         $response['html'] = $html;
-        return response()->json($response);
+        return response()->json($response);*/
+        return view::make('corpminingtax::contractdetails')->with(['details' => $details])->render();
     }
 
     public function setContractOffered(Request $request)
@@ -60,7 +61,10 @@ class CorpMiningContracts extends Controller
                 ->update(['contractStatus' => 2]);
         }
         //return redirect()->back()->with('status', 'Contract successful offered');
-        return redirect()->route('corpminingtax.contracts')->with('status', 'Contract successful offered!');
+        //return redirect()->route('corpminingtax.contracts')->with('status', 'Contract successful offered!');
+        $contracts = DB::table('corp_mining_tax_contracts')
+            ->get();
+        return view('corpminingtax::corpminingtaxcontracts', ['contracts' => $contracts]);
     }
 
     public function removeContract(Request $request)
@@ -72,7 +76,17 @@ class CorpMiningContracts extends Controller
                 ->delete();
         }
         //return redirect()->back()->with('status', 'Contract successful deleted');
-        return redirect()->route('corpminingtax.contracts')->with('status', 'Contract successful deleted!');
+        //return redirect()->route('corpminingtax.contracts')->with('status', 'Contract successful deleted!');
+        $contracts = DB::table('corp_mining_tax_contracts')
+            ->get();
+        return view('corpminingtax::corpminingtaxcontracts', ['contracts' => $contracts]);
+    }
+
+    public function editContract(Request $request)
+    {
+        $contracts = DB::table('corp_mining_tax_contracts')
+            ->get();
+        return view('corpminingtax::corpminingtaxcontracts', ['contracts' => $contracts]);
     }
 
     public function filterContracts(Request $request)

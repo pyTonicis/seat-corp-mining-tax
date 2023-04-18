@@ -7,11 +7,11 @@
 @endpush
 
 @section('full')
-    @if (session('status'))
+    @isset($status)
         <div class="alert alert-success">
-            {{ session('status') }}
+            {{ $status }}
         </div>
-    @endif
+    @endisset
     <div class="card">
         <div class="card-header">
             <h3>Corporation Tax Contracts</h3>
@@ -116,17 +116,6 @@
                 $('.modal-body').html("");
             });
 
-            $(document).on('click', '.copy-data', function (e) {
-                var buffer = $(this).attr('data-export');
-                $('body').append('<textarea id="copied-data"></textarea>');
-                $('#copied-data').val(buffer);
-                document.getElementById('copied-data').select();
-                document.execCommand('copy');
-                document.getElementById('copied-data').remove();
-                $(this).attr('data-original-title', 'Copied !')
-                    .tooltip('show');
-                $(this).attr('data-original-title', 'Copy to clipboard');
-            });
 
             $('.details').on('click', function(e) {
                 var cid = $(this).attr('id');
@@ -165,7 +154,7 @@
 
             $('.remove').on('click', function() {
                 var cid = $(this).attr('id');
-                cid = cid.replace('o_', '');
+                cid = cid.replace('r_', '');
                 if (cid > 0) {
                     var url = "{{ route('corpminingtax.contractremove', [':cid']) }}";
                     url = url.replace(':cid', cid);
