@@ -2,7 +2,33 @@
 
 @section('title', trans('corpminingtax::global.browser_title'))
 
+@push('head')
+    <link rel ="stylesheet" href ="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+@endpush
+
 @section('full')
+    <div class="card">
+        <div class="card-header">
+            <h3>Create Event</h3>
+        </div>
+        <div class="card-body">
+            <form action="{{ route('corpminingtax.createevent') }}" method="post" id="new-event" name="new-event">
+                {{ csrf_field() }}
+                <div class="form-row">
+                    <div class="col">
+                        <div class="container">
+                            <h2>Basic Date Time Picker</h2>
+                            <div class='input-group date' id='picker'>
+                                <input type='text' class="form-control" />
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>	                 </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     @isset($events)
         <div class="card">
             <div class="card-header">
@@ -11,7 +37,6 @@
             <div class="card-body">
                 <div class="col-md">
                     <div class="btn-group submitter-group float-right">
-                        <button class="btn btn-default create" id="create_event" data-toggle="modal" data-target="#modal_detail">Create Event</button>
                         <div class="input-group-prepend">
                             <div class="input-group-text">Status</div>
                         </div>
@@ -40,10 +65,14 @@
                         <tr>
                             <td>{{ $event->event_start }}</td>
                             <td>{{ $event->event_name }}</td>
-                            <td>{{ $event->event_duration }}</td>
-                            <td>{{ $event->event_tax }}</td>
+                            <td>{{ $event->event_duration }} day(s)</td>
+                            <td>{{ $event->event_tax }} %</td>
                             <td>0</td>
-                            <td id="s_{{ $event->id }}"><h5><span class="badge badge-success">running</span></h5></td>
+                            @if ($event->event_status == 1)
+                                <td id="s_{{ $event->id }}"><h5><span class="badge badge-info">new</span></h5></td>
+                            @elseif ($event->event_status == 2)
+                                <td id="s_{{ $event->id }}"><h5><span class="badge badge-success">running</span></h5></td>
+                            @endif
                             <td>
                                 <button class="btn btn-warning details" id="d_{{ $event->id }}" data-toggle="modal" data-target="#modal_detail">Edit</button>
                                 <button class="btn btn-danger remove" id="r_{{ $event->id }}">Delete</button>
@@ -85,6 +114,10 @@
                         "visible": false
                     }
                 ]
+            });
+
+            $(function () {
+                $('#picker').datetimepicker();
             });
 
             $('.status-dropdown').on('change', function (e) {

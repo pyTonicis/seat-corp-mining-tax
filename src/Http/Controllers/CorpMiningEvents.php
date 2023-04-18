@@ -19,4 +19,11 @@ class CorpMiningEvents extends Controller
     {
         redirect()->back();
     }
+
+    public function createEvent(Request $request)
+    {
+        $events = DB::table('corp_mining_tax_events')
+            ->get();
+        return view('corpminingtax::corpminingevents', ['events' => $events]);
+    }
 }
