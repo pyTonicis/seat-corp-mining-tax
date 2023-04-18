@@ -10,7 +10,9 @@ class CorpMiningEvents extends Controller
 {
     public function getHome()
     {
-        return view('corpminingtax::corpminingevents');
+        $events = DB::table('corp_mining_tax_events')
+            ->get();
+        return view('corpminingtax::corpminingevents', ['eventData', $events]);
     }
 
     public function eventCmd(Request $request)

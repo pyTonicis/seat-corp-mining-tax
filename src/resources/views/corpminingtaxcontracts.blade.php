@@ -148,7 +148,7 @@
                             cid: cid,
                         },
                         success: function() {
-                            document.getElementById('s_' + cid).innerHTML = "<h1>geht</h1>";
+                            document.getElementById('s_' + cid).innerHTML = "<h5><span class='badge badge-primary'>offered</span>";
                         }
                     });
                 }
@@ -167,6 +167,9 @@
                             "_token": "{{ csrf_token() }}",
                             cid: cid,
                         },
+                        success: function() {
+                            document.getElementById('s_' + cid).innerHTML = "<h5><span class='badge badge-danger'>deleted</span>";
+                        }
                     });
                 }
             });
