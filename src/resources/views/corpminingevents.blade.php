@@ -9,7 +9,7 @@
 @section('full')
     <div class="card">
         <div class="card-header">
-            <h3>Create Event</h3>
+            <h4>Create Event</h4>
         </div>
         <div class="card-body">
             <form action="{{ route('corpminingtax.createevent') }}" method="post" id="new-event" name="new-event">
