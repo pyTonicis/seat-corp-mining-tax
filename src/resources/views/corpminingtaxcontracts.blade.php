@@ -57,13 +57,14 @@
                             @elseif($contract->contractStatus == 2)
                                 <td><h5><span class="badge badge-primary">offered</span></h5></td>
                             @elseif($contract->contractStatus == 3)
-                                <td><h5><span class="badge badge-success">clear</span></h5></td>
+                                <td><h5><span class="badge badge-success">completed</span></h5></td>
                             @elseif($contract->contractStatus == 4)
                                 <td><h5><span class="badge badge-danger">outstanding</span></h5></td>
                             @endif
                             <td>
-                                <button class="btn btn-primary details" id="d_{{ $contract->id }}" data-toggle="modal" data-target="#modal_detail" data-id="{{ $contract->id }}">Details</button>
-                                <button class="btn btn-success offer" id="o_{{ $contract->id }}">Activate</button>
+                                <button class="btn btn-warning details" id="d_{{ $contract->id }}" data-toggle="modal" data-target="#modal_detail" data-id="{{ $contract->id }}">Edit</button>
+                                <button class="btn btn-primary offer" id="o_{{ $contract->id }}">Set Offered</button>
+                                <button class="btn btn-success complete" id="c_{{ $contract->id }}">Set Completed</button>
                                 <button class="btn btn-danger remove" id="r_{{ $contract->id }}">Delete</button>
                             </td>
                             <td>{{ $contract->contractStatus }}</td>
@@ -109,7 +110,7 @@
                 $('.status-dropdown').val(status)
                 console.log(status)
                 dataTable.column(6).search(status).draw();
-            })
+            });
 
             $('#modal_detail').on('hidden.bs.modal', function () {
                 $('.modal-body').html("");
@@ -128,8 +129,8 @@
             });
 
             $('.details').on('click', function(e) {
-               var cid = $(this).attr('id');
-               cid = cid.replace('d_', '');
+                var cid = $(this).attr('id');
+                cid = cid.replace('d_', '');
                 var url = "{{ route('corpminingtax.contractdata', [':cid']) }}";
                 url = url.replace(':cid', cid);
                 $.ajax({
