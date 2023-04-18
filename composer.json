@@ -20,7 +20,8 @@
         "laravel/framework": "^6.2",
         "eveseat/web": "^4.0",
         "eveseat/eveapi": "^4.0",
-        "ext-json": "*"
+        "ext-json": "*",
+        "etdsolutions/flatpickr": "^2.6.0",
     },
     "require-dev": {
         "orchestra/testbench": "^4.0",

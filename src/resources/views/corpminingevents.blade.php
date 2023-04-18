@@ -3,8 +3,7 @@
 @section('title', trans('corpminingtax::global.browser_title'))
 
 @push('head')
-    <link rel ="stylesheet" href ="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 @endpush
 
 @section('full')
@@ -21,7 +20,7 @@
                             <div class="row">
                                 <div class='col-sm-6'>
                                     <div class="form-group">
-                                        <div class='input-group date' id='datetimepicker1'>
+                                        <div class='input-group date datepicker' id='datepicker'>
                                             <input type='text' class="form-control" />
                                             <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
@@ -123,12 +122,9 @@
                 ]
             });
 
-            $(function () {
-                $('#picker').datetimepicker();
-            });
-
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
+            $('.datepicker').flatpickr({
+                enableTime: true,
+                dateFormat: "Y-m-d H:i",
             });
 
             $('.status-dropdown').on('change', function (e) {
