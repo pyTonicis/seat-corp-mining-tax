@@ -111,6 +111,7 @@
     @endisset
 @stop
 @push('javascript')
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
         $(document).ready(function() {
             dataTable = $('#events').DataTable({
