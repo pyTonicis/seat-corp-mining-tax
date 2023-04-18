@@ -3,7 +3,7 @@
 @section('title', trans('corpminingtax::global.browser_title'))
 
 @section('full')
-    @isset($eventdata)
+    @isset($events)
         <div class="card">
             <div class="card-header">
                 <h3>Corp Mining Events</h3>
@@ -36,7 +36,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($eventdata as $event)
+                    @foreach($events as $event)
                         <tr>
                             <td>{{ $event->event_start }}</td>
                             <td>{{ $event->event_name }}</td>
@@ -75,7 +75,6 @@
         </div>
     @endisset
 @stop
-
 @push('javascript')
     <script>
         $(document).ready(function() {

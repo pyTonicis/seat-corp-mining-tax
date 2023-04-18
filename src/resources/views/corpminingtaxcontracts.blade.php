@@ -64,7 +64,7 @@
                             <td>
                                 <button class="btn btn-warning details" id="d_{{ $contract->id }}" data-toggle="modal" data-target="#modal_detail" data-id="{{ $contract->id }}">Edit</button>
                                 <button class="btn btn-primary offer" id="o_{{ $contract->id }}">Set Offered</button>
-                                <button class="btn btn-success complete" id="c_{{ $contract->id }}">Set Completed</button>
+                                <button class="btn btn-success compl" id="c_{{ $contract->id }}">Set Completed</button>
                                 <button class="btn btn-danger remove" id="r_{{ $contract->id }}">Delete</button>
                             </td>
                             <td>{{ $contract->contractStatus }}</td>
@@ -149,6 +149,26 @@
                         },
                         success: function() {
                             document.getElementById('s_' + cid).innerHTML = "<h5><span class='badge badge-primary'>offered</span>";
+                        }
+                    });
+                }
+            });
+
+            $('.compl').on('click', function() {
+                var cid = $(this).attr('id');
+                cid = cid.replace('c_', '');
+                if (cid > 0) {
+                    var url = "{{ route('corpminingtax.complitecontract', [':cid']) }}";
+                    url = url.replace(':cid', cid);
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            cid: cid,
+                        },
+                        success: function() {
+                            document.getElementById('s_' + cid).innerHTML = "<h5><span class='badge badge-success'>completed</span>";
                         }
                     });
                 }

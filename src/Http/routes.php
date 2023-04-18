@@ -67,6 +67,10 @@ Route::group([
                 ->name('corpminingtax.contractstatus')
                 ->uses('CorpMiningContracts@setContractOffered');
 
+            Route::post('/complitecontract')
+                ->name('corpminingtax.complitecontract')
+                ->uses('CorpMiningContracts@setContractCompleted');
+
             Route::post('/removecontract')
                 ->name('corpminingtax.contractremove')
                 ->uses('CorpMiningContracts@removeContract');

@@ -58,6 +58,16 @@ class CorpMiningContracts extends Controller
         return redirect()->back()->with('status', 'Contract successful offered');
     }
 
+    public function setContractCompleted(Request $request)
+    {
+        $cid = $request->get('cid');
+        if ($cid != 0) {
+            DB::table('corp_mining_tax_contracts')
+                ->where('id', $cid)
+                ->update(['contractStatus' => 3]);
+        }
+        return redirect()->back()->with('status', 'Contract successful complited');
+    }
     public function removeContract(Request $request)
     {
         $cid = $request->get('cid');
