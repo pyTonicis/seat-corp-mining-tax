@@ -6,8 +6,8 @@
         <script src="bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
     @endonce
 @endpush
-@section('full')
-    @isset($eventData)
+@section('left')
+    @isset($eventdata)
         <div class="card">
             <div class="card-header">
                 <h3>Corp Mining Events</h3>
@@ -40,7 +40,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($eventData as $event)
+                    @foreach($eventdata as $event)
                         <tr>
                             <td>{{ $event->event_start }}</td>
                             <td>{{ $event->event_name }}</td>
