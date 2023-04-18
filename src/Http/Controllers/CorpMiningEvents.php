@@ -12,7 +12,7 @@ class CorpMiningEvents extends Controller
     {
         $events = DB::table('corp_mining_tax_events')
             ->get();
-        return view('corpminingtax::corpminingevents', ['eventdata', $events]);
+        return view('corpminingtax::corpminingevents', ['eventdata' => $events]);
     }
 
     public function eventCmd(Request $request)
