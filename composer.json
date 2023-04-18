@@ -21,7 +21,7 @@
         "eveseat/web": "^4.0",
         "eveseat/eveapi": "^4.0",
         "ext-json": "*",
-        "etdsolutions/flatpickr": "^2.6.0",
+        "etdsolutions/flatpickr": "^2.6.1"
     },
     "require-dev": {
         "orchestra/testbench": "^4.0",
