@@ -59,7 +59,8 @@ class CorpMiningContracts extends Controller
                 ->where('id', $cid)
                 ->update(['contractStatus' => 2]);
         }
-        return redirect()->back()->with('status', 'Contract successful offered');
+        //return redirect()->back()->with('status', 'Contract successful offered');
+        return redirect()->route('corpminingtax.contracts')->with('status', 'Contract successful offered!');
     }
 
     public function removeContract(Request $request)
@@ -70,7 +71,8 @@ class CorpMiningContracts extends Controller
                 ->where('id', $cid)
                 ->delete();
         }
-        return redirect()->back()->with('status', 'Contract successful deleted');
+        //return redirect()->back()->with('status', 'Contract successful deleted');
+        return redirect()->route('corpminingtax.contracts')->with('status', 'Contract successful deleted!');
     }
 
     public function filterContracts(Request $request)
