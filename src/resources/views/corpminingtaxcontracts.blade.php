@@ -53,13 +53,13 @@
                             <td>{{ $contract->character_name}}</td>
                             <td><b>{{ number_format($contract->tax) }}</b></td>
                             @if($contract->contractStatus == 1)
-                                <td><h5><span class="badge badge-info">new</span></h5></td>
+                                <td id="s_{{ $contract->id }}"><h5><span class="badge badge-info">new</span></h5></td>
                             @elseif($contract->contractStatus == 2)
-                                <td><h5><span class="badge badge-primary">offered</span></h5></td>
+                                <td id="s_{{ $contract->id }}"><h5><span class="badge badge-primary">offered</span></h5></td>
                             @elseif($contract->contractStatus == 3)
-                                <td><h5><span class="badge badge-success">completed</span></h5></td>
+                                <td id="s_{{ $contract->id }}"><h5><span class="badge badge-success">completed</span></h5></td>
                             @elseif($contract->contractStatus == 4)
-                                <td><h5><span class="badge badge-danger">outstanding</span></h5></td>
+                                <td id="s_{{ $contract->id }}"><h5><span class="badge badge-danger">outstanding</span></h5></td>
                             @endif
                             <td>
                                 <button class="btn btn-warning details" id="d_{{ $contract->id }}" data-toggle="modal" data-target="#modal_detail" data-id="{{ $contract->id }}">Edit</button>
@@ -147,6 +147,9 @@
                             "_token": "{{ csrf_token() }}",
                             cid: cid,
                         },
+                        success: function() {
+                            document.getElementById('s_' + cid).innerHTML = "<h1>geht</h1>";
+                        }
                     });
                 }
             });
