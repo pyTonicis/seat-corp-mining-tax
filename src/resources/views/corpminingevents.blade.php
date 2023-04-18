@@ -29,11 +29,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <script type="text/javascript">
-                                    $(function () {
-                                        $('#datetimepicker1').datetimepicker();
-                                    });
-                                </script>
                             </div>
                         </div>
                     </div>
@@ -130,6 +125,10 @@
 
             $(function () {
                 $('#picker').datetimepicker();
+            });
+
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
             });
 
             $('.status-dropdown').on('change', function (e) {
