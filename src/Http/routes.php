@@ -87,6 +87,10 @@ Route::group([
                 ->name('corpminingtax.events')
                 ->uses('CorpMiningEvents@getHome');
 
+            Route::get('/miningevents/{cid}')
+                ->name('corpminingtax.eventdetails')
+                ->uses('CorpMiningEvents@getDetails');
+
             Route::post('/createevent')
                 ->name('corpminingtax.createevent')
                 ->uses('CorpMiningEvents@createEvent');

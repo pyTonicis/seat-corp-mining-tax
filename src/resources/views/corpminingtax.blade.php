@@ -8,11 +8,11 @@
 
 
 @section('left')
-<div class="card border-dark mb-3" style="max-width: 18rem;">
+<div class="card">
     <div class="card-header">
         <h3>Calculate Mining Tax</h3>
     </div>
-    <div class="card-body text-dark">
+    <div class="card-body">
         <div id="overlay" style="border-radius: 5px">
             <div class="w-100 d-flex justify-content-center align-items-center">
                 <div class="spinner">

@@ -26,4 +26,9 @@ class CorpMiningEvents extends Controller
             ->get();
         return view('corpminingtax::corpminingevents', ['events' => $events]);
     }
+
+    public function getDetails($cid = 0)
+    {
+        return view::make('corpminingtax::eventdetails')->render();
+    }
 }

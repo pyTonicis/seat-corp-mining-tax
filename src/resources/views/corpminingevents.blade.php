@@ -135,6 +135,23 @@
                 dataTable.column(7).search(status).draw();
             });
 
+            $('.details').on('click', function(e) {
+                var cid = $(this).attr('id');
+                cid = cid.replace('d_', '');
+                var url = "{{ route('corpminingtax.eventdetails', [':cid']) }}";
+                url = url.replace(':cid', cid);
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    datatype: 'json',
+                    timeout: 10000,
+                    success: function (data) {
+                        $('.modal-body').html(data);
+                        $('#modal_detail').modal('show');
+                    }
+                });
+            });
+
         });
     </script>
 @endpush
