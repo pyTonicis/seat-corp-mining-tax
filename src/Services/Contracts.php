@@ -21,7 +21,7 @@ class Contracts
                 ->get();
             foreach ($taxes as $t) {
 
-                    $c_title = $settings['contract_tag'] . " ". $t->year . "-". $t->month. " ". $this->generate_string($this->permitted_chars);
+                    $c_title = $settings['contract_tag'] . " ". $t->year . "-". $t->month. "  (". $this->generate_string($this->permitted_chars) .")";
                     DB::table('corp_mining_tax_contracts')
                         ->updateOrInsert(['character_id' => $t->main_character_id, 'month' => $t->month, 'year' => $t->year, 'tax' => $t->tax],
                         ['contractId' => 0, 'contractIssuer' => CharacterHelper::getCharacterIdByName($settings['contract_issuer']), 'contractTitle' => $c_title,
