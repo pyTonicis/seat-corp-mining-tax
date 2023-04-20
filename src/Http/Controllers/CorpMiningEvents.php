@@ -28,8 +28,23 @@ class CorpMiningEvents extends Controller
         return view('corpminingtax::corpminingevents', ['events' => $events]);
     }
 
-    public function getDetails($cid = 0)
+    public function getDetails($eid = 0)
     {
-        return view::make('corpminingtax::eventdetails')->render();
+        $event_minings = DB::table('corp_mining_tax_event_minings as em')
+            ->select('em.*', 'it.typeName')
+            ->join('invTypes as it', 'em.type_id', '=', 'it.typeID')
+            ->where('em.event_id', $eid)
+            ->orderBy('em.character_name')
+            ->get();
+        return view::make('corpminingtax::eventdetails', ['event_minings' => $event_minings])->render();
+    }
+
+    private function getEventMinings(int $event_id)
+    {
+        $minings = DB::table('corp_mining_tax_event_minings')
+            ->where('event_id', $event_id)
+            ->orderBy('character_name')
+            ->get();
+        return $minings;
     }
 }

@@ -41,23 +41,19 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Smasher Jobs</td>
-                <td>1,063,955,000</td>
-                <td>Lavish Chromite 19844, Lavish Otavite 22316</td>
-                <td>
-                    <button class="btn btn-warning details" id="d_1">Edit</button>
-                    <button class="btn btn-danger remove" id="r_1">Delete</button>
-                </td>
-            </tr><tr>
-                <td>Mike Jag</td>
-                <td>1,333,700,000</td>
-                <td>Xenotime 22314, Lavish Silvite 10712</td>
-                <td>
-                    <button class="btn btn-warning details" id="d_2">Edit</button>
-                    <button class="btn btn-danger remove" id="r_2">Delete</button>
-                </td>
-            </tr>
+            @isset($event_minings)
+                @foreach($event_minings as $mining)
+                    <tr>
+                        <td>{{ $mining->character_name }}</td>
+                        <td>{{ $mining->refined_price }}</td>
+                        <td>{{ $mining->typeName }} x{{ $mining->quantity }}</td>
+                        <td>
+                            <button class="btn btn-warning details" id="d_{{ $mining->id }}">Edit</button>
+                            <button class="btn btn-danger remove" id="r_{{ $mining->id }}">Delete</button>
+                        </td>
+                    </tr>
+                @endforeach
+            @endisset
             </tbody>
         </table>
 

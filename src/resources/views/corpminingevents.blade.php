@@ -60,7 +60,7 @@
                         <th>Event</th>
                         <th>Duration</th>
                         <th>Tax Rate</th>
-                        <th>Total Income</th>
+                        <th>Total Income ISK</th>
                         <th>Status</th>
                         <th>Actions</th>
                         <th>Hidden</th>
@@ -137,8 +137,8 @@
             $('.details').on('click', function(e) {
                 var cid = $(this).attr('id');
                 cid = cid.replace('d_', '');
-                var url = "{{ route('corpminingtax.eventdetails', [':cid']) }}";
-                url = url.replace(':cid', cid);
+                var url = "{{ route('corpminingtax.eventdetails', [':eid']) }}";
+                url = url.replace(':eid', cid);
                 $.ajax({
                     url: url,
                     type: "GET",
