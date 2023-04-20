@@ -48,7 +48,7 @@
                     <thead>
                     <tr>
                         <th>Date</th>
-                        <th>Mined %</th>
+                        <th>Mined ISK</th>
                         <th>Volume m³</th>
                         <th>Ore Types</th>
                     </tr>
@@ -57,7 +57,7 @@
                     @foreach ($d->minings as $mining)
                         <tr>
                         <td>{{ $mining->date }}</td>
-                        <td>??%</td>
+                        <td>{{ $mining->get_mined_isk() }}</td>
                         <td>{{ number_format($mining->quantity * 10) }}</td>
                         <td>{{ $mining->get_ore_types() }}</td>
                         </tr>

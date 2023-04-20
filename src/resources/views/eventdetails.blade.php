@@ -60,13 +60,6 @@
             </tr>
             </tbody>
         </table>
-        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">Add Mining</button>
 
-        <div id="collapse1" class="collapse" aria-labelledby="heading_1" data-parent="#accordion">
-            <div class="card-body">
-                <p>Hier könnte Ihre Werbung stehen!</p>
-                <button class="btn btn-primary" id="s_1">Save</button>
-            </div>
-        </div>
     </div>
 </div>

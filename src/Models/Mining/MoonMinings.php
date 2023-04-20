@@ -2,6 +2,9 @@
 
 namespace pyTonicis\Seat\SeatCorpMiningTax\Models\Mining;
 
+use pyTonicis\Seat\SeatCorpMiningTax\Helpers\EveMarketHelper;
+use pyTonicis\Seat\SeatCorpMiningTax\Services\Reprocessing;
+
 class MoonMinings
 {
     public $date;
@@ -31,6 +34,18 @@ class MoonMinings
             $this->names .= $n . " x" . $q . " ,";
         }
         return $this->names;
+    }
+
+    public function get_mined_isk() {
+        $sum = 0;
+        foreach ($this->ore_types as $o_typeName => $o_quantity) {
+            $materials = Reprocessing::ReprocessOreByTypeId(Reprocessing::getItemIdByName($o_typeName), $o_quantity);
+            foreach ($materials as $mid => $mq) {
+                $price = EveMarketHelper::getItemPriceById($mid) * $mq;
+                $sum += $price;
+            }
+        }
+        return $sum;
     }
 
 }
