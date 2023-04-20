@@ -4,6 +4,7 @@ namespace pyTonicis\Seat\SeatCorpMiningTax\Models\Mining;
 
 use pyTonicis\Seat\SeatCorpMiningTax\Helpers\EveMarketHelper;
 use pyTonicis\Seat\SeatCorpMiningTax\Services\Reprocessing;
+use Illuminate\Support\Facades\Cache;
 
 class MoonMinings
 {

@@ -28,11 +28,17 @@ class Reprocessing
 
     public static function getItemIdByName(string $name): int
     {
-        $id = DB::table('invTypes')
-            ->select('typeID')
-            ->where('typeName', '=', $name)
-            ->first();
-        return $id->typeID;
+        $cname = "r_" .$name;
+        if (Cache::has($cname)) {
+            return Cache::get($cname);
+        } else {
+            $id = DB::table('invTypes')
+                ->select('typeID')
+                ->where('typeName', '=', $name)
+                ->first();
+            Cache::put($cname, $id->typeID, 86400);
+            return $id->typeID;
+        }
     }
 
     public static function ReprocessOreByTypeId(int $typeId, int $quantity, float $refining_rate = 0.9) :array
