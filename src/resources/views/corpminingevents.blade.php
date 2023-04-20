@@ -14,20 +14,13 @@
         <div class="card-body">
             <form action="{{ route('corpminingtax.createevent') }}" method="post" id="new-event" name="new-event">
                 {{ csrf_field() }}
-                <div class="form-row">
-                    <div class="col">
-                        <div class="container">
-                            <div class="row">
-                                <div class='col-sm-6'>
-                                    <div class="form-group">
-
-                                            <input type='text' class="form-control datepicker" placeholder="Select Date..">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="form-group">
+                    <label for="start">Start Date:</label>
+                    <input type='text' class="form-control datepicker" id="start" placeholder="Select Date..">
+                </div>
+                <div class="form-group">
+                    <label for="duration">Duration:</label>
+                    <input type="number" class="form-control" id="duration">
                 </div>
             </form>
         </div>
