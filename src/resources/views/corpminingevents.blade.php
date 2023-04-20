@@ -20,12 +20,12 @@
                             <div class="row">
                                 <div class='col-sm-6'>
                                     <div class="form-group">
-                                        <div class='input-group date datepicker' id='datepicker'>
-                                            <input type='text' class="form-control" />
+
+                                            <input type='text' class="datepickr" placeholder="Select Date..">
                                             <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                                             </span>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -123,8 +123,8 @@
             });
 
             $('.datepicker').flatpickr({
-                enableTime: true,
-                dateFormat: "Y-m-d H:i",
+                enableTime: false,
+                dateFormat: "Y-m-d",
             });
 
             $('.status-dropdown').on('change', function (e) {
