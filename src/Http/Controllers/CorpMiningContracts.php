@@ -34,6 +34,7 @@ class CorpMiningContracts extends Controller
     public function getHome()
     {
         $contracts = DB::table('corp_mining_tax_contracts')
+            ->orderBy('character_name')
             ->get();
         return view('corpminingtax::corpminingtaxcontracts', ['contracts' => $contracts]);
     }

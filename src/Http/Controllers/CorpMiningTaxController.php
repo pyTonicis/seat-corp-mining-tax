@@ -58,6 +58,7 @@ class CorpMiningTaxController extends Controller
             ->join('character_infos as c', 'main_character_id', '=', 'c.character_id')
             ->where('year', date('Y', time()))
             ->where('month', date('m', time()))
+            ->orderBy('c.name')
             ->get();
         return view('corpminingtax::corpminingtax', [
             'taxdata' => $taxdata,
