@@ -14,13 +14,23 @@
         <div class="card-body">
             <form action="{{ route('corpminingtax.createevent') }}" method="post" id="new-event" name="new-event">
                 {{ csrf_field() }}
-                <div class="form-group">
-                    <label for="start">Start Date:</label>
-                    <input type='text' class="form-control datepicker" id="start" placeholder="Select Date..">
+                <div class="form-row">
+                    <label for="event">Event Name</label>
+                    <input type="text" class="form control" id="event">
                 </div>
-                <div class="form-group">
-                    <label for="duration">Duration:</label>
-                    <input type="number" class="form-control" id="duration">
+                <div class="form-row">
+                    <div class="col">
+                        <label for="start">Start Date</label>
+                        <input type='text' class="form-control datepicker" id="start" placeholder="Select Date..">
+                    </div>
+                    <div class="col">
+                        <label for="duration">Duration</label>
+                        <input type="number" class="form-control" id="duration">
+                    </div>
+                    <div class="col">
+                        <label for="taxrate">Duration</label>
+                        <input type="number" class="form-control" id="taxrate">
+                    </div>
                 </div>
             </form>
         </div>
@@ -112,7 +122,7 @@
                 ]
             });
 
-            $.fn.modal.Constructor.prototype.enforceFocus = function() {};
+            $.fn.modal.Constructor.prototype._enforceFocus = function() {};
 
             $('.datepicker').flatpickr({
                 enableTime: false,
