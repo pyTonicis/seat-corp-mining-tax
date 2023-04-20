@@ -3,36 +3,24 @@
         <h3>Event: Dackeltag 23.03.2022</h3>
     </div>
     <div class="card-body">
-        <div class="col-md">
-            <div class="col-md-4">
-                <div class="info-box">
-                    <span class="info-box-icon bg-yellow elevation-1"><i class="fa fa-dice-d20"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">Total Mined Tax</span>
-                        <span class="info-box-number"><small>ISK</small>
-                    </span>
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col-4">
+                <dl>
+                    <dt>Total Mined ISK</dt>
+                    <dd>12,060,312,050 ISK</dd>
+                </dl>
             </div>
-            <div class="col-md-4">
-                <div class="info-box">
-                    <span class="info-box-icon bg-yellow elevation-1"><i class="fa fa-dice-d20"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">Active Members</span>
-                        <span class="info-box-number">
-                    </span>
-                    </div>
-                </div>
+            <div class="col-4">
+                <dl>
+                    <dt>7</dt>
+                    <dd></dd>
+                </dl>
             </div>
-            <div class="col-md-4">
-                <div class="info-box">
-                    <span class="info-box-icon bg-yellow elevation-1"><i class="fa fa-dice-d20"></i></span>
-                    <div class="info-box-content">
-                        <span class="info-box-text">Event Duration</span>
-                        <span class="info-box-number"><small>days</small>
-                    </span>
-                    </div>
-                </div>
+            <div class="col-4">
+                <dl>
+                    <dt>1 days</dt>
+                    <dd></dd>
+                </dl>
             </div>
         </div>
     </div>
@@ -49,7 +37,6 @@
                 <th>Mined ISK</th>
                 <th>Mined ORE</th>
                 <th>Actions</th>
-                <th>Hidden</th>
             </tr>
             </thead>
             <tbody>
@@ -57,10 +44,26 @@
                 <td>Smasher Jobs</td>
                 <td>1,063,955,000</td>
                 <td>Lavish Chromite 19844, Lavish Otavite 22316</td>
-                <td></td>
-                <td></td>
+                <td>
+                    <button class="btn btn-warning details" id="d_1">Edit</button>
+                    <button class="btn btn-danger remove" id="r_1">Delete</button>
+                </td>
+            </tr><tr>
+                <td>Mike Jag</td>
+                <td>1,333,700,000</td>
+                <td>Xenotime 22314, Lavish Silvite 10712</td>
+                <td>
+                    <button class="btn btn-warning details" id="d_2">Edit</button>
+                    <button class="btn btn-danger remove" id="r_2">Delete</button>
+                </td>
             </tr>
             </tbody>
         </table>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse_1" aria-expanded="false" aria-controls="collapseExample">Add Mining</button>
+        <div id="collapse_1" class="collapse" aria-labelledby="heading_1" data-parent="#accordion">
+            <div class="card-body">
+                <p>Hier könnte Ihre Werbung stehen!</p>
+            </div>
+        </div>
     </div>
 </div>
