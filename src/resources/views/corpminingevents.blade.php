@@ -15,8 +15,10 @@
             <form action="{{ route('corpminingtax.createevent') }}" method="post" id="new-event" name="new-event">
                 {{ csrf_field() }}
                 <div class="form-row">
-                    <label for="event">Event Name</label>
-                    <input type="text" class="form control" id="event">
+                    <div class="col">
+                        <label for="event">Event Name</label>
+                        <input type="text" class="form control" id="event">
+                    </div>
                 </div>
                 <div class="form-row">
                     <div class="col">
