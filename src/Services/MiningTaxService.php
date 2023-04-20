@@ -108,12 +108,7 @@ class MiningTaxService
             $invGroup = Reprocessing::getMaterialInfo($data->type_id)->groupID;
             $charData->addVolume($volume);
 
-            $event_start = new DateTime('2023-03-23');
-            $event_stop = new DateTime('2023-03-24');
-            $dt = $data->date;
-            $datum = new DateTime($dt);
 
-            if (($datum <= $event_start) or ($datum >= $event_stop)) {
                 foreach (Reprocessing::ReprocessOreByTypeId($data->type_id, $data->quantity, (float)($settings['ore_refining_rate'] / 100)) as $key => $value) {
                     if ($settings['price_provider'] == 'Eve Market')
                         $price = EveMarketHelper::getItemPriceById($key) * $value;
@@ -180,7 +175,7 @@ class MiningTaxService
                     }
                 }
             }
-        }
+
         return $miningResult;
     }
 }
