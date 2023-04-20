@@ -6,7 +6,7 @@
         <form>
             <div class="form-group">
                 <label for="character">Character</label>
-                <select class="groupSearch form-control" id="character2"></select>
+                <select class="groupSearch form-control" id="character" name="character"></select>
                 <label for="ore">Mined Ore</label>
                 <textarea class="form-control" id="ore" rows="3"></textarea>
                 <button class="btn btn-light" id="save_data">Save</button>

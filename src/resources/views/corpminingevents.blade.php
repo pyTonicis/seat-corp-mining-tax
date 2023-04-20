@@ -71,8 +71,7 @@
                             @endif
                             <td>
                                 <button class="btn btn-warning details" id="d_{{ $event->id }}" data-toggle="modal" data-target="#modal_detail">Edit</button>
-                                <button class="btn btn-warning add_mining" id="a_{{ $event->id }}" data-toggle="modal" data-target="#modal_detail">Add Mining</button>
-                                <button class="btn btn-danger remove" id="r_{{ $event->id }}">Delete Event</button>
+                                <button class="btn btn-danger remove" id="r_{{ $event->id }}">Delete</button>
                             </td>
                             <td>{{ $event->event_status }}</td>
                         </tr>
