@@ -63,8 +63,8 @@
                             @endif
                             <td>
                                 <button class="btn btn-warning details" id="d_{{ $contract->id }}" data-toggle="modal" data-target="#modal_detail" data-id="{{ $contract->id }}">Edit</button>
-                                <button class="btn btn-primary offer" id="o_{{ $contract->id }}">Set Offered</button>
-                                <button class="btn btn-success compl" id="c_{{ $contract->id }}">Set Completed</button>
+                                <button class="btn btn-primary offer" id="o_{{ $contract->id }}">Offer</button>
+                                <button class="btn btn-success compl" id="c_{{ $contract->id }}">Complete</button>
                                 <button class="btn btn-danger remove" id="r_{{ $contract->id }}">Delete</button>
                             </td>
                             <td>{{ $contract->contractStatus }}</td>
