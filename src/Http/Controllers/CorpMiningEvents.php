@@ -26,7 +26,7 @@ class CorpMiningEvents extends Controller
     {
         $update = DB::table('corp_mining_tax_events')
             ->insert(['event_name' => $request->get('event'), 'event_start' => $request->get('start'),
-                'event_duration' => $request->get('duration'), 'event_status' => 1, 'event_tax' => $request->get('taxrate')]);
+                'event_duration' => $request->get('duration'), 'event_status' => 1, 'event_tax' => $request->get('taxrate'), 'event_stop' => '1999-12-31']);
         $events = DB::table('corp_mining_tax_events')
             ->get();
         return view('corpminingtax::corpminingevents', ['events' => $events]);
