@@ -71,6 +71,7 @@
                             @endif
                             <td>
                                 <button class="btn btn-warning details" id="d_{{ $event->id }}" data-toggle="modal" data-target="#modal_detail">Edit</button>
+                                <button class="btn btn-warning add_mining" id="a_{{ $event->id }}" data-toggle="modal" data-target="#modal_detail">Add Mining</button>
                                 <button class="btn btn-danger remove" id="r_{{ $event->id }}">Delete</button>
                             </td>
                             <td>{{ $event->event_status }}</td>
@@ -139,6 +140,43 @@
                         $('#modal_detail').modal('show');
                     }
                 });
+            });
+
+            $('.add_mining').on('click', function(e) {
+                var cid = $(this).attr('id');
+                cid = cid.replace('d_', '');
+                var url = "{{ route('corpminingtax.eventdetails', [':eid']) }}";
+                url = url.replace(':eid', cid);
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    datatype: 'json',
+                    timeout: 10000,
+                    success: function (data) {
+                        $('.modal-body').html(data);
+                        $('#modal_detail').modal('show');
+                    }
+                });
+            });
+
+            $('#character').select2({
+                placeholder: 'Character Name',
+                ajax: {
+                    url: '/corpminingtax/getCharacters',
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (item) {
+                                return {
+                                    text: item.name,
+                                    id: item.id
+                                }
+                            })
+                        };
+                    },
+                    cache: true
+                }
             });
 
         });

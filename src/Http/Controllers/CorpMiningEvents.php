@@ -47,4 +47,19 @@ class CorpMiningEvents extends Controller
             ->get();
         return $minings;
     }
+
+    public function getCharacters(Request $request)
+    {
+        if ($request->has('q')) {
+            $data = DB::table('character_infos')
+                ->select(
+                    'character_id AS id',
+                    'name'
+                )
+                ->where('name', 'LIKE', "%" . $request->get('q') . "%")
+                ->orderBy('name', 'asc')
+                ->get();
+        }
+        return response()->json($data);
+    }
 }
