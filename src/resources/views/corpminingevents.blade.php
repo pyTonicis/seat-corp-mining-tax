@@ -25,26 +25,26 @@
                 {{ csrf_field() }}
                 <div class="form-row">
                         <label for="event">Event Name</label>
-                        <input type="text" class="form-control" id="event">
+                        <input type="text" class="form-control" id="event" name="event">
                 </div>
                 <div class="form-row">
                     <div class="col-7">
                         <label for="start">Start Date</label>
-                        <input type='text' class="form-control datepicker" id="start" placeholder="Select Date..">
+                        <input type='text' class="form-control datepicker" id="start" name="start" placeholder="Select Date..">
                     </div>
                     <div class="col">
                         <label for="duration">Duration</label>
-                        <input type="number" class="form-control" id="duration">
+                        <input type="number" class="form-control" id="duration" name="duration">
                     </div>
                     <div class="col">
                         <label for="taxrate">Tax Rate %</label>
-                        <input type="number" class="form-control" id="taxrate">
+                        <input type="number" class="form-control" id="taxrate" name="taxrate">
                     </div>
                 </div>
                 <div class="form-row">
                     <p></p>
                 </div>
-                <button class="btn btn-primary" id="send">Add Event</button>
+                <button type="submit" class="btn btn-primary" id="send">Add Event</button>
             </form>
         </div>
     </div>
