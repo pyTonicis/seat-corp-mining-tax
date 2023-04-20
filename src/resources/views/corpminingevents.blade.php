@@ -7,6 +7,15 @@
 @endpush
 
 @section('full')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="card">
         <div class="card-header">
             <h4>Create Event</h4>
@@ -14,24 +23,28 @@
         <div class="card-body">
             <form action="{{ route('corpminingtax.createevent') }}" method="post" id="new-event" name="new-event">
                 {{ csrf_field() }}
-                <div class="form-group">
+                <div class="form-row">
                         <label for="event">Event Name</label>
-                        <input type="text" class="form control" id="event">
+                        <input type="text" class="form-control" id="event">
                 </div>
                 <div class="form-row">
-                    <div class="form-group col-md-4">
+                    <div class="col-7">
                         <label for="start">Start Date</label>
                         <input type='text' class="form-control datepicker" id="start" placeholder="Select Date..">
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="col">
                         <label for="duration">Duration</label>
                         <input type="number" class="form-control" id="duration">
                     </div>
-                    <div class="form-group col-md-4">
-                        <label for="taxrate">Duration</label>
+                    <div class="col">
+                        <label for="taxrate">Tax Rate %</label>
                         <input type="number" class="form-control" id="taxrate">
                     </div>
                 </div>
+                <div class="form-row">
+                    <p></p>
+                </div>
+                <button class="btn btn-primary" id="send">Add Event</button>
             </form>
         </div>
     </div>
@@ -171,6 +184,7 @@
             });
 
             $('#character').select2({
+                dropdownParent: $('#modal_detail'),
                 placeholder: 'Character Name',
                 ajax: {
                     url: '/corpminingtax/getCharacters',
