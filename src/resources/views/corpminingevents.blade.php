@@ -21,10 +21,7 @@
                                 <div class='col-sm-6'>
                                     <div class="form-group">
 
-                                            <input type='text' class="datepickr" placeholder="Select Date..">
-                                            <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                                            </span>
+                                            <input type='text' class="form-control datepicker" placeholder="Select Date..">
 
                                     </div>
                                 </div>
