@@ -160,6 +160,7 @@
 
             $('#character').select2({
                 placeholder: 'Character Name',
+                dropdownParent: $('#modal_detail .modal-body'),
                 ajax: {
                     url: '/corpminingtax/getCharacters',
                     dataType: 'json',
