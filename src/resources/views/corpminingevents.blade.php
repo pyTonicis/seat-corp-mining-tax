@@ -112,6 +112,8 @@
                 ]
             });
 
+            $.fn.modal.Constructor.prototype.enforceFocus = function() {};
+
             $('.datepicker').flatpickr({
                 enableTime: false,
                 dateFormat: "Y-m-d",
@@ -160,7 +162,7 @@
 
             $('#character').select2({
                 placeholder: 'Character Name',
-                dropdownParent: $('#modal_detail .modal-body'),
+                dropdownParent: $('#modal_detail'),
                 ajax: {
                     url: '/corpminingtax/getCharacters',
                     dataType: 'json',
