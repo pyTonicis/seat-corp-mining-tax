@@ -64,7 +64,7 @@ class CorpMiningEvents extends Controller
                 ->insertOrUpdate(['character_name' => $character, 'event_id' => $event_id, 'type_id' => $item['typeID'], 'quantity' => $item['quantity'], 'refined_price' => $summary]);
             $summary = 0;
         }
-        return redirect()->back()->withError('status', $character);
+        return redirect()->back()->with('status', "Hallo".$character);
     }
 
     public function getDetails($eid = 0)

@@ -172,7 +172,7 @@
             $('.add-mining').on('click', function() {
                 var cid = $(this).attr('id');
                 cid = cid.replace('a_', '');
-                document.getElementById('#deb').innerText = $('#character').val();
+                document.getElementById('deb').innerText = $('#character').val();
                 if (cid > 0) {
                     var url = "{{ route('corpminingtax.addmining') }}";
                     $.ajax({
