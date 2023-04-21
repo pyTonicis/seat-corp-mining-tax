@@ -61,7 +61,7 @@ class CorpMiningEvents extends Controller
                 }
             }
             DB::table('corp_mining_tax_event_minings')
-                ->insertOrUpdate(['character_name' => $character, 'event_id' => $event, 'type_id' => $item['typeID'], 'quantity' => $item['quantity'], 'refined_price' => $summary]);
+                ->insertOrUpdate(['character_name' => $character, 'event_id' => $event_id, 'type_id' => $item['typeID'], 'quantity' => $item['quantity'], 'refined_price' => $summary]);
             $summary = 0;
         }
         return redirect()->back()->with('status', 'Successful added...');
