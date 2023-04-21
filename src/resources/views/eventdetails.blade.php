@@ -7,7 +7,7 @@
             <div class="col-4">
                 <dl>
                     <dt>Total Mined ISK</dt>
-                    <dd>12,060,312,050 ISK</dd>
+                    <dd>{{ number_format($total_mined_isk) }} ISK</dd>
                 </dl>
             </div>
             <div class="col-4">
@@ -45,7 +45,7 @@
                 @foreach($event_minings as $mining)
                     <tr>
                         <td>{{ $mining->character_name }}</td>
-                        <td>{{ $mining->refined_price }}</td>
+                        <td>{{ number_format($mining->refined_price) }}</td>
                         <td>{{ $mining->typeName }} x{{ $mining->quantity }}</td>
                         <td>
                             <button class="btn btn-danger remove" id="r_{{ $mining->id }}">Delete</button>

@@ -79,7 +79,12 @@ class CorpMiningEvents extends Controller
             ->orderBy('em.character_name')
             ->get();
         $characters = CharacterHelper::getMainCharacters();
-        return view::make('corpminingtax::eventdetails', ['event_minings' => $event_minings, 'characters' => $characters, 'event_id' => $eid])->render();
+        $total_mined_isk = DB::table('corp_mining_tax_event_minings')
+            ->selectRAW('sum(refined_price) as tax')
+            ->where('event_id', $eid)
+            ->first();
+        return view::make('corpminingtax::eventdetails', ['event_minings' => $event_minings, 'characters' => $characters,
+            'event_id' => $eid, 'total_mined_isk' => $total_mined_isk->tax])->render();
     }
 
     private function getEventMinings(int $event_id)
