@@ -66,8 +66,11 @@
         <form>
             <div class="form-group">
                 <label for="character">Character</label>
-                <select class="groupSearch form-control" data-control="select2" data-dropdown-parent="#modal_detail" id="character" name="character">
+                <select class="groupSearch form-control" id="character" name="character">
                     <option></option>
+                    @foreach($characters as $character)
+                        <option value="{{ $character->id }}">{{ $character->name }}</option>
+                    @endforeach
                 </select>
                 <label for="ore">Mined Ore</label>
                 <textarea class="form-control" id="ore" rows="3"></textarea>

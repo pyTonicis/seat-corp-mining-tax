@@ -2,6 +2,7 @@
 
 namespace pyTonicis\Seat\SeatCorpMiningTax\Http\Controllers;
 
+use pyTonicis\Seat\SeatCorpMiningTax\Helpers\CharacterHelper;
 use Seat\Web\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -40,7 +41,8 @@ class CorpMiningEvents extends Controller
             ->where('em.event_id', $eid)
             ->orderBy('em.character_name')
             ->get();
-        return view::make('corpminingtax::eventdetails', ['event_minings' => $event_minings])->render();
+        $characters = CharacterHelper::getMainCharacters();
+        return view::make('corpminingtax::eventdetails', ['event_minings' => $event_minings, 'characters' => $characters])->render();
     }
 
     private function getEventMinings(int $event_id)

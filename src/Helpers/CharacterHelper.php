@@ -39,6 +39,15 @@ class CharacterHelper {
             ->first();
     }
 
+    public static function getMainCharacters() {
+
+        return DB::table('refresh_tokens as t')
+            ->select('u.main_character_id as id', 'u.name')
+            ->join('users as u', 't.user_id', '=', 'u.id')
+            ->groupBy('u.id')
+            ->get();
+    }
+
     public static function getCharacterName(int $character_id) {
 
         $data = DB::table('character_infos')
