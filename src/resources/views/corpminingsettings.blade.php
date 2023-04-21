@@ -187,7 +187,7 @@
                     </p>
                     <h5>Ore Refining Rate</h5>
                     <p>
-                        Set the maximum refining amount for your members. With implantat, full skill and a rigged Tatara it is 90%.
+                        Set the maximum refining amount for your members. With implantat, full skill and a rigged Tatara it is 90.6%
                     </p>
                     <h5>Ore Valuation Price</h5>
                     <p>
@@ -199,7 +199,7 @@
                     </p>
                     <h5>Price Modifier</h5>
                     <p>
-                        Modify base cost of the ore/minerals to adjust inflation/transport costs. Normaly it is 100%.
+                        Modify base cost of the ore/minerals to adjust inflation/transport costs. Normal it is 100%.
                     </p>
                     <legend>Contract Settings</legend>
                     <p>

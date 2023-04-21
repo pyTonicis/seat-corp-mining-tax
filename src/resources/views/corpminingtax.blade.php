@@ -62,6 +62,9 @@
 <div class="card">
     <div class="card-header">
         <h3>Tax Summary - {{ ($miningData->month < 10) ? "0" . $miningData->month : $miningData->month }}/{{ $miningData->year }}</h3>
+        <div class="ml-auto mr-2 align-right text-right align-centered">
+            <h4>Total Tax <small>(this month)</small> {{ number_format($miningData->getTotalTax()) }}</h4>
+        </div>
     </div>
     <div class="card-body">
         <table class="table" id="mining">
@@ -93,6 +96,9 @@
     <div class="card">
         <div class="card-header">
             <h3>Mining Tax Results <small>(this month)</small></h3>
+            <div class="ml-auto mr-2 align-right text-right align-centered">
+                <h4>Total Tax <small>(this month)</small> {{ number_format($total_tax) }}</h4>
+            </div>
         </div>
         <div class="card-body">
             <table class="table" id="mining">

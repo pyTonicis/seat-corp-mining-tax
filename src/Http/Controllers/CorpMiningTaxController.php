@@ -60,8 +60,13 @@ class CorpMiningTaxController extends Controller
             ->where('month', date('m', time()))
             ->orderBy('c.name')
             ->get();
+        $total_tax = 0;
+        foreach($taxdata as $tax) {
+            $total_tax += $tax->tax;
+        }
         return view('corpminingtax::corpminingtax', [
             'taxdata' => $taxdata,
+            'total_tax' => $total_tax,
         ]);
     }
 

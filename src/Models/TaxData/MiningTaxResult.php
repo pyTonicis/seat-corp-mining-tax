@@ -103,4 +103,13 @@ class MiningTaxResult
 
         return $this->characterData[$characterId];
     }
+
+    public function getTotalTax(): int
+    {
+        $total_tax = 0;
+        foreach($this->characterData as $data) {
+            $total_tax += $data->tax;
+        }
+        return $total_tax;
+    }
 }
