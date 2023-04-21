@@ -44,11 +44,11 @@ class CorpMiningEvents extends Controller
         $character = CharacterHelper::getCharacterName($request->get('character'));
         $parsed_items = ItemParser::parseItems($request->get('ore'));
         $refinedMaterials = [];
-        $summary = 0;
 
         foreach($parsed_items as $key => $item) {
 
-            $raw = Reprocessing::ReprocessOreByTypeId($item['typeID'], $item['quantity'], ((float)$request->get('modifier') / 100));
+            $summary = 0;
+            $raw = Reprocessing::ReprocessOreByTypeId($item['typeID'], $item['quantity']);
             foreach($raw as $n => $value) {
                 $inv_type = InvType::where('typeId', '=', $n)->first();
                 $price = Price::where('type_id', '=', $n)->first();

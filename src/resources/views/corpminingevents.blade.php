@@ -193,7 +193,6 @@
                 cid = cid.replace('r_', '');
                 if (cid > 0) {
                     var url = "{{ route('corpminingtax.removeeventmining') }}";
-                    url = url.replace(':cid', cid);
                     $.ajax({
                         url: url,
                         type: "POST",
