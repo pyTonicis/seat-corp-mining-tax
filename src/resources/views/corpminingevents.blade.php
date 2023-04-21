@@ -188,24 +188,20 @@
                 }
             });
 
-            $('#character').select2({
-                dropdownParent: $('#modal_detail'),
-                placeholder: 'Character Name',
-                ajax: {
-                    url: '/corpminingtax/getCharacters',
-                    dataType: 'json',
-                    delay: 250,
-                    processResults: function (data) {
-                        return {
-                            results: $.map(data, function (item) {
-                                return {
-                                    text: item.name,
-                                    id: item.id
-                                }
-                            })
-                        };
-                    },
-                    cache: true
+            $('.remove').on('click', function() {
+                var cid = $(this).attr('id');
+                cid = cid.replace('r_', '');
+                if (cid > 0) {
+                    var url = "{{ route('corpminingtax.removeeventmining') }}";
+                    url = url.replace(':cid', cid);
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            cid: cid,
+                        }
+                    });
                 }
             });
 

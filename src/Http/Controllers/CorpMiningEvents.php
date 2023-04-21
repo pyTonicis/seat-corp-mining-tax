@@ -69,6 +69,17 @@ class CorpMiningEvents extends Controller
         return redirect()->back()->with('status', "Successful added...");
     }
 
+    public function delMining(Request $request)
+    {
+        $cid = $request->get('cid');
+        if ($cid != 0) {
+            DB::table('corp_mining_tax_event_minings')
+                ->where('id', $cid)
+                ->delete();
+        }
+        return redirect()->back()->with('status', "Successful removed...");
+    }
+
     public function getDetails($eid = 0)
     {
         $event_minings = DB::table('corp_mining_tax_event_minings as em')
