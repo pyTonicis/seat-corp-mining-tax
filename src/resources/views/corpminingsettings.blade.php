@@ -28,7 +28,7 @@
                         <div class="form-group-row">
                             <label class="col-md4 col-form-label" for="ore_refining_rate">Ore Refining Rate</label>
                             <div class="col-md-12">
-                                <input id="ore_refining_rate" name="ore_refining_rate" type="number" class="form-control input-md" value="{{ $settings['ore_refining_rate'] }}" min="0" max="100">
+                                <input id="ore_refining_rate" name="ore_refining_rate" type="text" class="form-control input-md" value="{{ $settings['ore_refining_rate'] }}">
                             </div>
                         </div>
                         <div class="form-group-row">
