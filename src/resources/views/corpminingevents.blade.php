@@ -63,6 +63,7 @@
                             <option value="">all</option>
                             <option value="1">new</option>
                             <option value="2">running</option>
+                            <option value="3">completed</option>
                         </select>
                     </div>
                 </div>

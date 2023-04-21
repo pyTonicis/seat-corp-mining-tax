@@ -27,7 +27,7 @@ return [
     'sub-mining-tax' => 'Mining Tax',
     'sub-corp-moon-mining' => 'Corp Moon Minings',
     'sub-tax-contracts' => 'Tax Contracts',
-    'sub-thieves' => 'Thieves',
+    'sub-thieves' => 'Moon Mining Thieves',
     'sub-mining-events' => 'Mining Events',
     'sub-refining' => 'Reprocessing',
 ];

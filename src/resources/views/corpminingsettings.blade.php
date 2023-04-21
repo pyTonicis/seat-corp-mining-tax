@@ -205,13 +205,21 @@
                     <p>
                         Set Character Name of Contract issuer, contract expire time and a "tag" for Contract Description: e.g.: "Mining Tax"
                     </p>
-                    <legend>Moon Tax</legend>
+                    <legend>Mining Tax</legend>
                     <p>
-                        Set Tax Rate for Moon Ore Types 0-100%
+                        Set Tax Rate for different Ore Groups
                     </p>
-                    <legend>Tax Selector</legend>
+                    <legend>Tax Pre-Selector</legend>
                     <p>
-                        Select Ore Groups for Tax Calculation
+                        Select Tax Filters:
+                        <ul>
+                        <li>Moon Ore = Taxes all Moon Minings</li>
+                        <li>Corp Moon Ore = Taxes only Corporation Moon's</li>
+                        <li>Ore = Taxes all normal Ore</li>
+                        <li>Ice = Taxes all Ice Ore</li>
+                        <li>Gas = Taxes all Gas Minings</li>
+                        <li>Abyssal = Taxes Abysaal Ore</li>
+                        </ul>
                     </p>
                 </div>
             </div>

@@ -13,6 +13,7 @@ use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\OreType;
 use pyTonicis\Seat\SeatCorpMiningTax\Services\Reprocessing;
 use Illuminate\Support\Facades\DB;
 
+
 /**
  * Class MiningTaxService
  */
@@ -80,7 +81,6 @@ class MiningTaxService
                 $ore = new OreType();
                 $ore->id = $data->type_id;
                 $ore->name = $data->typeName;
-                //$ore->price = EvePraisalHelper::getItemPriceByTypeId($data->type_id);
                 $ore->price = 0;
 
                 $miningResult->addOre($ore);
@@ -104,17 +104,22 @@ class MiningTaxService
             ));
 
             $charData->addQuantity($data->quantity);
-            $volume = Reprocessing::getMaterialInfo($data->type_id)->volume * $data->quantity;
-            $invGroup = Reprocessing::getMaterialInfo($data->type_id)->groupID;
+
+            $material_info = Reprocessing::getMaterialInfo($data->type_id);
+            $volume = $material_info->volume * $data->quantity;
+            $invGroup = $material_info->groupID;
+
             $charData->addVolume($volume);
 
 
                 foreach (Reprocessing::ReprocessOreByTypeId($data->type_id, $data->quantity, (float)($settings['ore_refining_rate'] / 100)) as $key => $value) {
+
                     if ($settings['price_provider'] == 'Eve Market')
                         $price = EveMarketHelper::getItemPriceById($key) * $value;
                     else
                         $price = EvePraisalHelper::getItemPriceByTypeId($key) * $value;
-                    $charData->addToPriceSummary($price * ($settings['ore_refining_rate'] / 100));
+                    $charData->addToPriceSummary($price);
+
                     switch ($invGroup) {
                         case 465:
                             if ($settings['taxes_ice'] == "true")

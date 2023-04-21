@@ -66,7 +66,9 @@
         <form>
             <div class="form-group">
                 <label for="character">Character</label>
-                <select class="groupSearch form-control" data-dropdown-parent="#modal_detail" id="character" name="character"></select>
+                <select class="groupSearch form-control" data-control="select2" data-dropdown-parent="#modal_detail" id="character" name="character">
+                    <option></option>
+                </select>
                 <label for="ore">Mined Ore</label>
                 <textarea class="form-control" id="ore" rows="3"></textarea>
                 <button class="btn btn-light" id="save_data">Save</button>
