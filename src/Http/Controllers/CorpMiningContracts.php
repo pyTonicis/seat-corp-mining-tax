@@ -77,8 +77,6 @@ class CorpMiningContracts extends Controller
                 ->where('id', $cid)
                 ->delete();
         }
-        //return redirect()->back()->with('status', 'Contract successful deleted');
-        //return redirect()->route('corpminingtax.contracts')->with('status', 'Contract successful deleted!');
         $contracts = DB::table('corp_mining_tax_contracts')
             ->get();
         return view('corpminingtax::corpminingtaxcontracts', ['contracts' => $contracts]);
