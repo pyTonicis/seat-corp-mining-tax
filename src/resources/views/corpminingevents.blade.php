@@ -169,21 +169,23 @@
                 });
             });
 
-            $('.add-mining').on('click', function(e) {
-                var eid = $(this).attr('id');
-                eid = eid.replace('a_', '');
-                var url = "{{ route('corpminingtax.eventdetails', [':eid']) }}";
-                url = url.replace(':eid', eid);
-                $.ajax({
-                    url: url,
-                    type: "POST",
-                    datatype: 'json',
-                    timeout: 10000,
-                    success: function (data) {
-                        $('.modal-body').html(data);
-                        $('#modal_detail').modal('show');
-                    }
-                });
+            $('.add-mining').on('click', function() {
+                var cid = $(this).attr('id');
+                cid = cid.replace('a_', '');
+                if (cid > 0) {
+                    var url = "{{ route('corpminingtax.addmining', [':cid']) }}";
+                    url = url.replace(':cid', cid);
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            eid: cid,
+                            character: $('#character').val(),
+                            ore: $('#ore').val(),
+                        }
+                    });
+                }
             });
 
             $('#character').select2({

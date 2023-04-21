@@ -99,9 +99,9 @@ Route::group([
                 ->name('corpminingtax.createevent')
                 ->uses('CorpMiningEvents@createEvent');
 
-            Route::post('/miningeventscmd')
-                ->name('corpminingtax.eventcmd')
-                ->uses('CorpMiningEvents@eventCmd');
+            Route::post('/addmining')
+                ->name('corpminingtax.addmining')
+                ->uses('CorpMiningEvents@addMining');
 
             Route::get('/refining')
                 ->name('corpminingtax.refining')
