@@ -74,7 +74,7 @@
                 </select>
                 <label for="ore">Mined Ore</label>
                 <textarea class="form-control" id="ore" rows="3"></textarea>
-                <button class="btn btn-light" id="save_data">Save</button>
+                <button class="btn btn-light add-mining" id="a_{{ $event_id }}">Save</button>
             </div>
         </form>
     </div>

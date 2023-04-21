@@ -136,7 +136,9 @@
                 ]
             });
 
-            $.fn.modal.Constructor.prototype._enforceFocus = function() {};
+            $('#modal_detail').modal({
+                backdrop: 'static'
+            })
 
             $('.datepicker').flatpickr({
                 enableTime: false,
@@ -167,14 +169,14 @@
                 });
             });
 
-            $('.add_mining').on('click', function(e) {
-                var cid = $(this).attr('id');
-                cid = cid.replace('d_', '');
+            $('.add-mining').on('click', function(e) {
+                var eid = $(this).attr('id');
+                eid = eid.replace('a_', '');
                 var url = "{{ route('corpminingtax.eventdetails', [':eid']) }}";
-                url = url.replace(':eid', cid);
+                url = url.replace(':eid', eid);
                 $.ajax({
                     url: url,
-                    type: "GET",
+                    type: "POST",
                     datatype: 'json',
                     timeout: 10000,
                     success: function (data) {

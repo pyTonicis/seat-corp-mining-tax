@@ -41,9 +41,11 @@ class CharacterHelper {
 
     public static function getMainCharacters() {
 
+        DB::statement("SET SQL_MODE=''");
         return DB::table('refresh_tokens as t')
             ->select('u.main_character_id as id', 'u.name')
             ->join('users as u', 't.user_id', '=', 'u.id')
+            ->where('u.active', '=', 1)
             ->groupBy('u.id')
             ->get();
     }

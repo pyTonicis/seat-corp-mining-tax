@@ -3,6 +3,8 @@
 namespace pyTonicis\Seat\SeatCorpMiningTax\Http\Controllers;
 
 use pyTonicis\Seat\SeatCorpMiningTax\Helpers\CharacterHelper;
+use pyTonicis\Seat\SeatCorpMiningTax\Services\ItemParser;
+use pyTonicis\Seat\SeatCorpMiningTax\Services\Reprocessing;
 use Seat\Web\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -33,6 +35,38 @@ class CorpMiningEvents extends Controller
         return view('corpminingtax::corpminingevents', ['events' => $events]);
     }
 
+    public function addMining(Request $request)
+    {
+        $event = $request->get('eid');
+        $character = CharacterHelper::getCharacterName($request->get('character'));
+        $parsed_items = ItemParser::parseItems($request->get('ore'));
+        $refinedMaterials = [];
+        $summary = 0;
+
+        foreach($parsed_items as $key => $item) {
+
+            $raw = Reprocessing::ReprocessOreByTypeId($item['typeID'], $item['quantity'], ((float)$request->get('modifier') / 100));
+            foreach($raw as $n => $value) {
+                $inv_type = InvType::where('typeId', '=', $n)->first();
+                $price = Price::where('type_id', '=', $n)->first();
+                if (!array_key_exists($inv_type->typeName, $refinedMaterials)) {
+                    $refinedMaterials[$inv_type->typeName]['name'] = $inv_type->typeName;
+                    $refinedMaterials[$inv_type->typeName]['typeID'] = $n;
+                    $refinedMaterials[$inv_type->typeName]['quantity'] = $value;
+                    $refinedMaterials[$inv_type->typeName]['price'] = $price->average_price;
+                    $summary += (int)$price->average_price * (int)$value;
+                } else {
+                    $refinedMaterials[$inv_type->typeName]['quantity'] += $value;
+                    $summary += (int)$price->average_price * (int)$value;
+                }
+            }
+            DB::table('corp_mining_tax_event_minings')
+                ->insertOrUpdate(['character_name' => $character, 'event_id' => $event, 'type_id' => $item['typeID'], 'quantity' => $item['quantity'], 'refined_price' => $summary]);
+            $summary = 0;
+        }
+        return redirect()->back()->with('status', 'Successful added...');
+    }
+
     public function getDetails($eid = 0)
     {
         $event_minings = DB::table('corp_mining_tax_event_minings as em')
@@ -42,7 +76,7 @@ class CorpMiningEvents extends Controller
             ->orderBy('em.character_name')
             ->get();
         $characters = CharacterHelper::getMainCharacters();
-        return view::make('corpminingtax::eventdetails', ['event_minings' => $event_minings, 'characters' => $characters])->render();
+        return view::make('corpminingtax::eventdetails', ['event_minings' => $event_minings, 'characters' => $characters, 'event_id' => $eid])->render();
     }
 
     private function getEventMinings(int $event_id)
