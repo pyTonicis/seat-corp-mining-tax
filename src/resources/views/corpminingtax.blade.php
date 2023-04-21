@@ -61,9 +61,13 @@
 @isset($miningData)
 <div class="card">
     <div class="card-header">
-        <h3>Tax Summary - {{ ($miningData->month < 10) ? "0" . $miningData->month : $miningData->month }}/{{ $miningData->year }}</h3>
-        <div class="ml-auto mr-2 align-right text-right align-centered">
-            <h4>Total Tax <small>(this month)</small> {{ number_format($miningData->getTotalTax()) }}</h4>
+        <div class="row">
+            <div class="col-md-8 align-left">
+                <h3>Tax Summary - {{ ($miningData->month < 10) ? "0" . $miningData->month : $miningData->month }}/{{ $miningData->year }}</h3>
+            </div>
+            <div class="ml-auto mr-2 align-right text-right align-centered">
+                <h4>Total Tax <small>(this month)</small> {{ number_format($miningData->getTotalTax()) }} ISK</h4>
+            </div>
         </div>
     </div>
     <div class="card-body">
@@ -95,9 +99,13 @@
 @isset($taxdata)
     <div class="card">
         <div class="card-header">
-            <h3>Mining Tax Results <small>(this month)</small></h3>
-            <div class="ml-auto mr-2 align-right text-right align-centered">
-                <h4>Total Tax <small>(this month)</small> {{ number_format($total_tax) }}</h4>
+            <div class="row">
+                <div class="col-md-8 align-left">
+                    <h3>Mining Tax Results <small>(this month)</small></h3>
+                </div>
+                <div class="ml-auto mr-2 align-right text-right align-centered">
+                    <h4>Total Tax <small>(this month)</small> {{ number_format($total_tax) }} ISK</h4>
+                </div>
             </div>
         </div>
         <div class="card-body">
