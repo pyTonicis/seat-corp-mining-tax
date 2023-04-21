@@ -21,6 +21,7 @@
             <h4>Create Event</h4>
         </div>
         <div class="card-body">
+            <p id="deb"></p>
             <form action="{{ route('corpminingtax.createevent') }}" method="post" id="new-event" name="new-event">
                 {{ csrf_field() }}
                 <div class="form-row">
@@ -169,22 +170,23 @@
                 });
             });
 
-            $('.add-mining').on('submit', function(event) {
-                event.preventDefault();
-
-                var url = $(this).attr('data-action');
-
-                $.ajax({
-                    url: url,
-                    method: 'POST',
-                    data: new FormData(this),
-                    dataType: 'JSON',
-                    contentType: false,
-                    success: function(response)
-                    {
-                        $(form).trigger("reset");
-                    }
-                });
+            $('.add-mining').on('click', function() {
+                var cid = $(this).attr('id');
+                cid = cid.replace('a_', '');
+                document.getElementById('#deb').innerText = $('#character').val();
+                if (cid > 0) {
+                    var url = "{{ route('corpminingtax.addmining') }}";
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            eid: cid,
+                            character: $('#character').val(),
+                            ore: $('#ore').val(),
+                        }
+                    });
+                }
             });
 
             $('#character').select2({
