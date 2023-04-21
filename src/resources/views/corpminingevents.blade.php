@@ -22,7 +22,9 @@
         </div>
         <div class="card-body">
             <p id="deb"></p>
+            @isset($status)
             <p>{{ $status }}</p>
+            @endisset
             <form action="{{ route('corpminingtax.createevent') }}" method="post" id="new-event" name="new-event">
                 {{ csrf_field() }}
                 <div class="form-row">
