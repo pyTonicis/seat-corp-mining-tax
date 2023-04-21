@@ -63,7 +63,7 @@
         <h4>Add Character Mining</h4>
     </div>
     <div class="card-body">
-        <form>
+        <form action="{{ route('corpminingtax.addmining') }}" method="post" id="mining" name="mining">
             <div class="form-group">
                 <label for="character">Character</label>
                 <select class="groupSearch form-control" id="character" name="character">
@@ -73,8 +73,9 @@
                     @endforeach
                 </select>
                 <label for="ore">Mined Ore</label>
-                <textarea class="form-control" id="ore" rows="3"></textarea>
-                <button class="btn btn-primary add-mining" id="a_{{ $event_id }}">Save</button>
+                <textarea class="form-control" id="ore" name="ore" rows="3"></textarea>
+                <input type="hidden" id="event_id" name="event_id" value="{{ $event_id }}">
+                <button type="submit" class="btn btn-primary" id="e_{{ $event_id }}">Save</button>
             </div>
         </form>
     </div>
