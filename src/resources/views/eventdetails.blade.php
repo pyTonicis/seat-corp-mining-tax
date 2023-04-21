@@ -64,6 +64,7 @@
     </div>
     <div class="card-body">
         <form action="{{ route('corpminingtax.addmining') }}" method="post" id="mining" name="mining">
+            {{ csrf_field() }}
             <div class="form-group">
                 <label for="character">Character</label>
                 <select class="groupSearch form-control" id="character" name="character">
