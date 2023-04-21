@@ -169,23 +169,22 @@
                 });
             });
 
-            $('.add-mining').on('click', function() {
-                var cid = $(this).attr('id');
-                cid = cid.replace('a_', '');
-                if (cid > 0) {
-                    var url = "{{ route('corpminingtax.addmining', [':cid']) }}";
-                    url = url.replace(':cid', cid);
-                    $.ajax({
-                        url: url,
-                        type: "POST",
-                        data: {
-                            "_token": "{{ csrf_token() }}",
-                            eid: cid,
-                            character: $('#character').val(),
-                            ore: $('#ore').val(),
-                        }
-                    });
-                }
+            $('.add-mining').on('submit', function(event) {
+                event.preventDefault();
+
+                var url = $(this).attr('data-action');
+
+                $.ajax({
+                    url: url,
+                    method: 'POST',
+                    data: new FormData(this),
+                    dataType: 'JSON',
+                    contentType: false,
+                    success: function(response)
+                    {
+                        $(form).trigger("reset");
+                    }
+                });
             });
 
             $('#character').select2({

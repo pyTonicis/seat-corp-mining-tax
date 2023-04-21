@@ -37,7 +37,7 @@ class CorpMiningEvents extends Controller
 
     public function addMining(Request $request)
     {
-        $event = $request->get('eid');
+        $event_id = $request->get('event_id');
         $character = CharacterHelper::getCharacterName($request->get('character'));
         $parsed_items = ItemParser::parseItems($request->get('ore'));
         $refinedMaterials = [];
