@@ -203,8 +203,8 @@
                             cid: cid,
                         },
                         success: function () {
-                            var tag = "#mod_" + cid;
-                            $(tag).remove();
+                            var tag_mod = "#mod_" + cid;
+                            $(tag_mod).remove();
                         }
                     });
                 }

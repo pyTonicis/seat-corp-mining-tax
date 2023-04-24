@@ -43,7 +43,7 @@
             <tbody>
             @isset($event_minings)
                 @foreach($event_minings as $mining)
-                    <tr id="mod_{{ $mining_id }}">
+                    <tr id="mod_{{ $mining->id }}">
                         <td>{{ $mining->character_name }}</td>
                         <td>{{ number_format($mining->refined_price) }}</td>
                         <td>{{ $mining->typeName }} x{{ $mining->quantity }}</td>
