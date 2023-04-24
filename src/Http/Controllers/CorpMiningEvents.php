@@ -20,10 +20,10 @@ class CorpMiningEvents extends Controller
     public function getHome()
     {
         DB::table('corp_mining_tax_events')
-            ->where(DB::raw('event_start >= now() and event_stop <= now()'))
+            ->where(DB::raw('event_start >= date(now()) and event_stop <= date(now())'))
             ->update(['event_status' => 2]);
         DB::table('corp_mining_tax_events')
-            ->where(DB::raw('event_stop < now()'))
+            ->where(DB::raw('event_stop < date(now())'))
             ->update(['event_status' => 3]);
         $events = DB::table('corp_mining_tax_events')
             ->get();
@@ -119,7 +119,7 @@ class CorpMiningEvents extends Controller
     {
         $cid = $request->get('cid');
         DB::table('corp_mining_tax_events')
-            ->where('event_id', '=', $cid)
+            ->where('id', '=', $cid)
             ->delete();
         return redirect()->back()->with('status', "Successful removed...");
     }
