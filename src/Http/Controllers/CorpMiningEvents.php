@@ -27,6 +27,15 @@ class CorpMiningEvents extends Controller
             ->update(['event_status' => 3]);
         $events = DB::table('corp_mining_tax_events')
             ->get();
+        $minings = DB::table('corp_mining_tax_event_minings')
+            ->selectRAW('event_id, SUM(refined_price) as price')
+            ->groupBy('event_id')
+            ->get();
+        foreach ($minings as $mining) {
+            DB::table('corp_mining_tax_events')
+                ->where('id', '=', $mining->event_id)
+                ->update(['event_total_tax' => $mining->price]);
+        }
         return view('corpminingtax::corpminingevents', ['events' => $events]);
     }
 
