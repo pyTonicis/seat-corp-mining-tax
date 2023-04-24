@@ -37,7 +37,7 @@
                         <input type='text' class="form-control datepicker" id="start" name="start" placeholder="Select Date..">
                     </div>
                     <div class="col">
-                        <label for="duration">Duration</label>
+                        <label for="duration">Duration <small>days</small></label>
                         <input type="number" class="form-control" id="duration" name="duration">
                     </div>
                     <div class="col">
