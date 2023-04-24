@@ -2,6 +2,7 @@
 
 namespace pyTonicis\Seat\SeatCorpMiningTax\Http\Controllers;
 
+use DateTime;
 use pyTonicis\Seat\SeatCorpMiningTax\Helpers\CharacterHelper;
 use pyTonicis\Seat\SeatCorpMiningTax\Services\ItemParser;
 use pyTonicis\Seat\SeatCorpMiningTax\Services\Reprocessing;
@@ -33,9 +34,11 @@ class CorpMiningEvents extends Controller
 
     public function createEvent(Request $request)
     {
+        $dt = new DateTime($request->get('start'));
+        $event_stop = $dt->modify("+ ".$request->get('duration'). " day");
         $update = DB::table('corp_mining_tax_events')
             ->insert(['event_name' => $request->get('event'), 'event_start' => $request->get('start'),
-                'event_duration' => $request->get('duration'), 'event_status' => 1, 'event_tax' => $request->get('taxrate'), 'event_stop' => DB::raw('DATE_ADD(event_start, INTERVAL event_duration DAY')]);
+                'event_duration' => $request->get('duration'), 'event_status' => 1, 'event_tax' => $request->get('taxrate'), 'event_stop' => $event_stop]);
         $events = DB::table('corp_mining_tax_events')
             ->get();
         return view('corpminingtax::corpminingevents', ['events' => $events]);
