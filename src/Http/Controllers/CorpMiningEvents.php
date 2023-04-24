@@ -31,6 +31,10 @@ class CorpMiningEvents extends Controller
             ->selectRAW('event_id, SUM(refined_price) as price')
             ->groupBy('event_id')
             ->get();
+        if(is_null($minings)) {
+            DB::table('corp_mining_tax_events')
+                ->update(['event_tax_total' => 0]);
+        }
         foreach ($minings as $mining) {
             DB::table('corp_mining_tax_events')
                 ->where('id', '=', $mining->event_id)
