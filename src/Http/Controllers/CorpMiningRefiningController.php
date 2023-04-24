@@ -31,6 +31,10 @@ class CorpMiningRefiningController extends Controller
 
         foreach($parsedOre as $key => $item) {
 
+            if ($item['categoryID'] != 25) {
+                return redirect()->back()->withError('error', "ERROR: ".$item['name'] ." is not reprocessable...");
+            }
+
             $raw = Reprocessing::ReprocessOreByTypeId($item['typeID'], $item['quantity'], ((float)$request->get('modifier') / 100));
             foreach($raw as $n => $value) {
                 $inv_type = InvType::where('typeId', '=', $n)->first();

@@ -114,10 +114,17 @@ class MiningTaxService
 
                 foreach (Reprocessing::ReprocessOreByTypeId($data->type_id, $data->quantity, (float)($settings['ore_refining_rate'] / 100)) as $key => $value) {
 
-                    if ($settings['price_provider'] == 'Eve Market')
-                        $price = EveMarketHelper::getItemPriceById($key) * $value;
-                    else
-                        $price = EvePraisalHelper::getItemPriceByTypeId($key) * $value;
+                    if ($settings['ore_valuation_price'] == 'Ore Price') {
+                        if ($settings['price_provider'] == 'Eve Market')
+                            $price = EveMarketHelper::getItemPriceById($data->type_id) * $data->quantity;
+                        else
+                            $price = EvePraisalHelper::getItemPriceByTypeId($data->type_id) * $data->quantity;
+                    } else {
+                        if ($settings['price_provider'] == 'Eve Market')
+                            $price = EveMarketHelper::getItemPriceById($key) * $value;
+                        else
+                            $price = EvePraisalHelper::getItemPriceByTypeId($key) * $value;
+                    }
                     $charData->addToPriceSummary($price);
 
                     switch ($invGroup) {

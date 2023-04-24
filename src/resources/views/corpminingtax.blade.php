@@ -77,8 +77,8 @@
                 <th>CharacterName</th>
                 <th>Mined units</th>
                 <th>Mined volume</th>
+                <th>Mineral price</th>
                 <th>Tax</th>
-                <th>EvE Market Price</th>
             </tr>
             </thead>
             <tbody>
@@ -87,8 +87,8 @@
                     <td>{{ $character->characterName }}</td>
                     <td>{{ number_format($character->quantity) }}</td>
                     <td>{{ number_format($character->volume) }}</td>
-                    <td>{{ number_format($character->tax) }}</td>
                     <td>{{ number_format($character->priceSummary) }}</td>
+                    <td>{{ number_format($character->tax) }}</td>
                 </tr>
             @endforeach
             </tbody>
@@ -116,8 +116,8 @@
                     <th>CharacterName</th>
                     <th>Mined units</th>
                     <th>Mined volume</th>
+                    <th>Mineral Price</th>
                     <th>Tax</th>
-                    <th>EvE Market Price</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -127,8 +127,8 @@
                         <td>{{ $character->name }}</td>
                         <td>{{ number_format($character->quantity) }}</td>
                         <td>{{ number_format($character->volume) }}</td>
-                        <td>{{ number_format($character->tax) }}</td>
                         <td>{{ number_format($character->price) }}</td>
+                        <td>{{ number_format($character->tax) }}</td>
                     </tr>
                 @endforeach
                 </tbody>
