@@ -190,11 +190,11 @@
                 }
             });
 
-            $('.remove, .modal').on('click', function() {
+            $('.remove').on('click', function() {
                 var cid = $(this).attr('id');
                 cid = cid.replace('r_', '');
                 if (cid > 0) {
-                    var url = "{{ route('corpminingtax.removeeventmining') }}";
+                    var url = "{{ route('corpminingtax.removeevent') }}";
                     $.ajax({
                         url: url,
                         type: "POST",

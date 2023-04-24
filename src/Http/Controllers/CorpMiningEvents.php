@@ -115,18 +115,12 @@ class CorpMiningEvents extends Controller
         return $minings;
     }
 
-    public function getCharacters(Request $request)
+    public function removeEvent(Request $request)
     {
-        if ($request->has('q')) {
-            $data = DB::table('character_infos')
-                ->select(
-                    'character_id AS id',
-                    'name'
-                )
-                ->where('name', 'LIKE', "%" . $request->get('q') . "%")
-                ->orderBy('name', 'asc')
-                ->get();
-        }
-        return response()->json($data);
+        $cid = $request->get('cid');
+        DB::table('corp_mining_tax_events')
+            ->where('event_id', '=', $cid)
+            ->delete();
+        return redirect()->back()->with('status', "Successful removed...");
     }
 }
