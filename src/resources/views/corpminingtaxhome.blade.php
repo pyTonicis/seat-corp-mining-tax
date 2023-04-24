@@ -186,6 +186,9 @@
             options: {
                 tooltips: {
                     displayColors: true,
+                    callbacks: {
+                        label: function(tooltipItem, data2) {
+                            return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }, },
                 },
                 responsive: true,
                 maintainAspectRatio: false,
