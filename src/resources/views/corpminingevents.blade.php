@@ -86,7 +86,7 @@
                     </thead>
                     <tbody>
                     @foreach($events as $event)
-                        <tr>
+                        <tr id="tr_{{ $event->id }}">
                             <td>{{ $event->event_start }}</td>
                             <td>{{ $event->event_name }}</td>
                             <td>{{ $event->event_duration }} day(s)</td>
@@ -201,6 +201,10 @@
                         data: {
                             "_token": "{{ csrf_token() }}",
                             cid: cid,
+                        },
+                        success: function () {
+                            var tag = "#mod_" + cid;
+                            $(tag).remove();
                         }
                     });
                 }
