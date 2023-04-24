@@ -28,7 +28,12 @@
                     <p>Copy your EvE items wirh (Ctrl+C) in your inventory and past them with (Ctrl+V) into the onput field below and press "Reprocess"</p>
                     <textarea class="w-100" name="items" rows="10"></textarea>
                     <label for="modifier">Ore Refining rate <small>(90% full Skilled with Imps and rigged Tatara)</small></label>
-                    <input id="modifier" name="modifier" type="text" class="form-control input-md" value="90">
+                    <input id="modifier" name="modifier" type="text" class="form-control input-md" value="90.6">
+                    <label for="provider">Price Provider</label>
+                    <select id="provider" name="provider" type="text" class="form-control input-md">
+                        <option value="Eve Market" selected>Eve Market</option>
+                        <option value="Eve Praisal">Eve Praisal</option>
+                    </select>
                 </div>
                 <button type="submit" onclick="on()" class="btn btn-primary" form="refine">Reprocess</button>
             </form>
