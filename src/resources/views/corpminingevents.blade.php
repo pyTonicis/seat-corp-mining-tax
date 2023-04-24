@@ -190,7 +190,7 @@
                 }
             });
 
-            $('.remove, .modal').on('click', function() {
+            $(document).on('click', '.remove', function() {
                 var cid = $(this).attr('id');
                 cid = cid.replace('r_', '');
                 if (cid > 0) {
