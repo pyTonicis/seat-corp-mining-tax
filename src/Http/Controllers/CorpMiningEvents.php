@@ -25,21 +25,11 @@ class CorpMiningEvents extends Controller
         DB::table('corp_mining_tax_events')
             ->where(DB::raw('event_stop < date(now())'))
             ->update(['event_status' => 3]);
-        $events = DB::table('corp_mining_tax_events')
+        $events = DB::table('corp_mining_tax_events as e')
+            ->selectRAW('e.*, sum(m.refined_price) as total')
+            ->join('corp_mining_tax_event_minings as m', 'e.id', '=', 'm.event_id')
+            ->groupBy('m.event_id')
             ->get();
-        $minings = DB::table('corp_mining_tax_event_minings')
-            ->selectRAW('event_id, SUM(refined_price) as price')
-            ->groupBy('event_id')
-            ->get();
-        if(is_null($minings)) {
-            DB::table('corp_mining_tax_events')
-                ->update(['event_tax_total' => 0]);
-        }
-        foreach ($minings as $mining) {
-            DB::table('corp_mining_tax_events')
-                ->where('id', '=', $mining->event_id)
-                ->update(['event_tax_total' => $mining->price]);
-        }
         return view('corpminingtax::corpminingevents', ['events' => $events]);
     }
 
@@ -55,7 +45,10 @@ class CorpMiningEvents extends Controller
         $update = DB::table('corp_mining_tax_events')
             ->insert(['event_name' => $request->get('event'), 'event_start' => $request->get('start'),
                 'event_duration' => $request->get('duration'), 'event_status' => 1, 'event_tax' => $request->get('taxrate'), 'event_stop' => $event_stop]);
-        $events = DB::table('corp_mining_tax_events')
+        $events = DB::table('corp_mining_tax_events as e')
+            ->selectRAW('e.*, sum(m.refined_price) as total')
+            ->join('corp_mining_tax_event_minings as m', 'e.id', '=', 'm.event_id')
+            ->groupBy('m.event_id')
             ->get();
         return view('corpminingtax::corpminingevents', ['events' => $events]);
     }
