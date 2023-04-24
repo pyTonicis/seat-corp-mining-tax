@@ -20,8 +20,11 @@ class CorpMiningEvents extends Controller
     public function getHome()
     {
         DB::table('corp_mining_tax_events')
-            ->where(DB::raw('event_start < now() and event_stop > now()'))
+            ->where(DB::raw('event_start >= now() and event_stop <= now()'))
             ->update(['event_status' => 2]);
+        DB::table('corp_mining_tax_events')
+            ->where(DB::raw('event_stop < now()'))
+            ->update(['event_status' => 3]);
         $events = DB::table('corp_mining_tax_events')
             ->get();
         return view('corpminingtax::corpminingevents', ['events' => $events]);

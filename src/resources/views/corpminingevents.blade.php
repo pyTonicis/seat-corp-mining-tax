@@ -95,7 +95,9 @@
                             @if ($event->event_status == 1)
                                 <td id="s_{{ $event->id }}"><h5><span class="badge badge-info">new</span></h5></td>
                             @elseif ($event->event_status == 2)
-                                <td id="s_{{ $event->id }}"><h5><span class="badge badge-success">running</span></h5></td>
+                                <td id="s_{{ $event->id }}"><h5><span class="badge badge-warning">running</span></h5></td>
+                            @elseif ($event->event_status == 3)
+                                <td id="s_{{ $event->id }}"><h5><span class="badge badge-success">complete</span></h5></td>
                             @endif
                             <td>
                                 <button class="btn btn-warning details" id="d_{{ $event->id }}" data-toggle="modal" data-target="#modal_detail">Edit</button>
