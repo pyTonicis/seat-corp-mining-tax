@@ -91,7 +91,7 @@
                             <td>{{ $event->event_name }}</td>
                             <td>{{ $event->event_duration }} day(s)</td>
                             <td>{{ $event->event_tax }} %</td>
-                            <td>0</td>
+                            <td>{{ number_format($event->event_tax_total) }}</td>
                             @if ($event->event_status == 1)
                                 <td id="s_{{ $event->id }}"><h5><span class="badge badge-info">new</span></h5></td>
                             @elseif ($event->event_status == 2)

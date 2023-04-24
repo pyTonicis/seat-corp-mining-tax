@@ -34,7 +34,7 @@ class CorpMiningEvents extends Controller
         foreach ($minings as $mining) {
             DB::table('corp_mining_tax_events')
                 ->where('id', '=', $mining->event_id)
-                ->update(['event_total_tax' => $mining->price]);
+                ->update(['event_tax_total' => $mining->price]);
         }
         return view('corpminingtax::corpminingevents', ['events' => $events]);
     }
