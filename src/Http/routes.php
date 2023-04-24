@@ -103,8 +103,8 @@ Route::group([
                 ->name('corpminingtax.addmining')
                 ->uses('CorpMiningEvents@addMining');
 
-            Route::post('/removeeventmining')
-                ->name('corpminingtax.removeeventmining')
+            Route::post('/removeevent')
+                ->name('corpminingtax.removeevent')
                 ->uses('CorpMiningEvents@removeEvent');
 
             Route::get('/refining')
