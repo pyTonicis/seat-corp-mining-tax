@@ -101,7 +101,7 @@
                             @endif
                             <td>
                                 <button class="btn btn-warning details" id="d_{{ $event->id }}" data-toggle="modal" data-target="#modal_detail">Edit</button>
-                                <button class="btn btn-danger remove" id="r_{{ $event->id }}">Delete</button>
+                                <button class="btn btn-danger delete" id="r_{{ $event->id }}">Delete</button>
                             </td>
                             <td>{{ $event->event_status }}</td>
                         </tr>
@@ -190,7 +190,23 @@
                 }
             });
 
-            $('.remove').on('click', function() {
+            $('.remove, .modal').on('click', function() {
+                var cid = $(this).attr('id');
+                cid = cid.replace('r_', '');
+                if (cid > 0) {
+                    var url = "{{ route('corpminingtax.removeeventmining') }}";
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            cid: cid,
+                        }
+                    });
+                }
+            });
+
+            $('.delete').on('click', function() {
                 var cid = $(this).attr('id');
                 cid = cid.replace('r_', '');
                 if (cid > 0) {
@@ -201,6 +217,10 @@
                         data: {
                             "_token": "{{ csrf_token() }}",
                             cid: cid,
+                        },
+                        success: function () {
+                            var tag = "#tr_" + cid;
+                            $(tag).remove();
                         }
                     });
                 }
