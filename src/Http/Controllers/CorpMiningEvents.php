@@ -19,12 +19,8 @@ class CorpMiningEvents extends Controller
 {
     public function getHome()
     {
-        DB::table('corp_mining_tax_events')
-            ->where(DB::raw('event_start >= date(now()) and event_stop <= date(now())'))
-            ->update(['event_status' => 2]);
-        DB::table('corp_mining_tax_events')
-            ->where(DB::raw('event_stop < date(now())'))
-            ->update(['event_status' => 3]);
+        DB::select(DB::raw("update corp_mining_tax_events set event_status=2 where event_start >= date(now()) and event_stop <= date(now())"));
+        DB::select(DB::raw("update corp_mining_tax_events set event_status=3 where event_stop < date(now())"));
         DB::statement("SET SQL_MODE=''");
         $events = DB::table('corp_mining_tax_events as e')
             ->selectRAW('e.*, sum(m.refined_price) as total')
@@ -46,13 +42,14 @@ class CorpMiningEvents extends Controller
         $update = DB::table('corp_mining_tax_events')
             ->insert(['event_name' => $request->get('event'), 'event_start' => $request->get('start'),
                 'event_duration' => $request->get('duration'), 'event_status' => 1, 'event_tax' => $request->get('taxrate'), 'event_stop' => $event_stop]);
-        DB::statement("SET SQL_MODE=''");
+        /*DB::statement("SET SQL_MODE=''");
         $events = DB::table('corp_mining_tax_events as e')
             ->selectRAW('e.*, sum(m.refined_price) as total')
             ->join('corp_mining_tax_event_minings as m', 'e.id', '=', 'm.event_id')
             ->groupBy('m.event_id')
             ->get();
-        return view('corpminingtax::corpminingevents', ['events' => $events]);
+        return view('corpminingtax::corpminingevents', ['events' => $events]);*/
+        return redirect()->action([CorpMiningEvents::class, 'getHome']);
     }
 
     public function addMining(Request $request)
