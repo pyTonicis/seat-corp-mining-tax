@@ -23,7 +23,7 @@ class CorpMiningEvents extends Controller
         DB::select(DB::raw("update corp_mining_tax_events set event_status=3 where event_stop < date(now())"));
         DB::statement("SET SQL_MODE=''");
         $events = DB::table('corp_mining_tax_events as e')
-            ->selectRAW('e.*, IFFNULL(sum(m.refined_price), 0) as total')
+            ->selectRAW('e.*, IFNULL(sum(m.refined_price), 0) as total')
             ->leftJoin('corp_mining_tax_event_minings as m', 'e.id', '=', 'm.event_id')
             ->groupBy('e.id')
             ->get();
