@@ -62,7 +62,7 @@
                                 <td id="s_{{ $contract->id }}"><h5><span class="badge badge-danger">outstanding</span></h5></td>
                             @endif
                             <td>
-                                <button class="btn btn-warning details" id="d_{{ $contract->id }}" data-toggle="modal" data-target="#modal_detail" data-id="{{ $contract->id }}">Edit</button>
+                                <button class="btn btn-warning details" onclick="showDetials({{ $contract->id }})" id="d_{{ $contract->id }}" data-toggle="modal" data-target="#modal_detail" data-id="{{ $contract->id }}">Edit</button>
                                 <button class="btn btn-primary offer" id="o_{{ $contract->id }}">Offer</button>
                                 <button class="btn btn-success compl" id="c_{{ $contract->id }}">Complete</button>
                                 <button class="btn btn-danger remove" id="r_{{ $contract->id }}">Delete</button>
@@ -117,9 +117,9 @@
             });
 
 
-            $('.details').on('click', function(e) {
-                var cid = $(this).attr('id');
-                cid = cid.replace('d_', '');
+            function showDetails(cid) {
+                //var cid = $(this).attr('id');
+                //cid = cid.replace('d_', '');
                 var url = "{{ route('corpminingtax.contractdata', [':cid']) }}";
                 url = url.replace(':cid', cid);
                 $.ajax({
@@ -132,7 +132,7 @@
                         $('#modal_detail').modal('show');
                     }
                 });
-            });
+            }
 
             $('.offer').on('click', function() {
                 var cid = $(this).attr('id');
