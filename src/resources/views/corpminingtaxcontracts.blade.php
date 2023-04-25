@@ -62,7 +62,7 @@
                                 <td id="s_{{ $contract->id }}"><h5><span class="badge badge-danger">outstanding</span></h5></td>
                             @endif
                             <td>
-                                <button class="btn btn-warning details" onclick="showDetials({{ $contract->id }})" id="d_{{ $contract->id }}" data-toggle="modal" data-target="#modal_detail" data-id="{{ $contract->id }}">Edit</button>
+                                <button class="btn btn-warning details" id="d_{{ $contract->id }}" data-toggle="modal" data-target="#modal_detail" data-id="{{ $contract->id }}">Edit</button>
                                 <button class="btn btn-primary offer" id="o_{{ $contract->id }}">Offer</button>
                                 <button class="btn btn-success compl" id="c_{{ $contract->id }}">Complete</button>
                                 <button class="btn btn-danger remove" id="r_{{ $contract->id }}">Delete</button>
@@ -134,7 +134,7 @@
             });
 
 
-            $('.offer').on('click', function() {
+            $('#contracts').on('click', '.offer', function() {
                 var cid = $(this).attr('id');
                 cid = cid.replace('o_', '');
                 if (cid > 0) {
@@ -154,7 +154,7 @@
                 }
             });
 
-            $('.compl').on('click', function() {
+            $('#contracts').on('click', '.compl', function() {
                 var cid = $(this).attr('id');
                 cid = cid.replace('c_', '');
                 if (cid > 0) {
@@ -174,7 +174,7 @@
                 }
             });
 
-            $('.remove').on('click', function() {
+            $('#contracts').on('click', '.remove', function() {
                 var cid = $(this).attr('id');
                 cid = cid.replace('r_', '');
                 if (cid > 0) {
@@ -192,6 +192,22 @@
                         }
                     });
                 }
+            });
+
+            $('#modal_detail').on('click', '.copy-data', function (e) {
+                var currentRow = $(this).closest("tr");
+                var buffer = currentRow.find("td:eq(1)").html();
+
+                $('body').append('<textarea id="copied-data"></textarea>');
+                $('#copied-data').val(buffer);
+                document.getElementById('copied-data').select();
+                document.execCommand('copy');
+                document.getElementById('copied-data').remove();
+
+                $(this).attr('data-original-title', 'Copied !')
+                    .tooltip('show');
+
+                $(this).attr('data-original-title', 'Copy to clipboard');
             });
         });
     </script>
