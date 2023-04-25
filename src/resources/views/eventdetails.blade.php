@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        <h3>Event: Dackeltag 23.03.2022</h3>
+        <h3>Event: {{ $event_data->event_name }}</h3>
     </div>
     <div class="card-body">
         <div class="row">
@@ -19,7 +19,7 @@
             <div class="col-4">
                 <dl>
                     <dt>Event Duration</dt>
-                    <dd>1 days</dd>
+                    <dd>{{ $event_data->event_duration }} days</dd>
                 </dl>
             </div>
         </div>
@@ -31,7 +31,7 @@
         <h3>Minings</h3>
     </div>
     <div class="card-body">
-        <table class="table" id="thieves">
+        <table class="table" id="minings">
             <thead>
             <tr>
                 <th>Character</th>

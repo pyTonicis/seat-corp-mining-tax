@@ -154,7 +154,7 @@
                 dataTable.column(7).search(status).draw();
             });
 
-            $('.details').on('click', function(e) {
+            $('#events').on('click', '.details', function(e) {
                 var cid = $(this).attr('id');
                 cid = cid.replace('d_', '');
                 var url = "{{ route('corpminingtax.eventdetails', [':eid']) }}";
@@ -190,7 +190,7 @@
                 }
             });
 
-            $(document).on('click', '.remove', function() {
+            $('#modal_detail').on('click', '.remove', function() {
                 var cid = $(this).attr('id');
                 cid = cid.replace('r_', '');
                 if (cid > 0) {
@@ -210,7 +210,7 @@
                 }
             });
 
-            $('.delete').on('click', function() {
+            $('#events').on('click', '.delete', function() {
                 var cid = $(this).attr('id');
                 cid = cid.replace('r_', '');
                 if (cid > 0) {
