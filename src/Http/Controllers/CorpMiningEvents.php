@@ -23,9 +23,9 @@ class CorpMiningEvents extends Controller
         DB::select(DB::raw("update corp_mining_tax_events set event_status=3 where event_stop < date(now())"));
         DB::statement("SET SQL_MODE=''");
         $events = DB::table('corp_mining_tax_events as e')
-            ->selectRAW('e.*, sum(m.refined_price) as total')
-            ->join('corp_mining_tax_event_minings as m', 'e.id', '=', 'm.event_id')
-            ->groupBy('m.event_id')
+            ->selectRAW('e.*, IFFNULL(sum(m.refined_price), 0) as total')
+            ->leftJoin('corp_mining_tax_event_minings as m', 'e.id', '=', 'm.event_id')
+            ->groupBy('e.id')
             ->get();
         return view('corpminingtax::corpminingevents', ['events' => $events]);
     }
@@ -39,7 +39,7 @@ class CorpMiningEvents extends Controller
     {
         $dt = new DateTime($request->get('start'));
         $event_stop = $dt->modify("+ ".$request->get('duration'). " day");
-        $update = DB::table('corp_mining_tax_events')
+        DB::table('corp_mining_tax_events')
             ->insert(['event_name' => $request->get('event'), 'event_start' => $request->get('start'),
                 'event_duration' => $request->get('duration'), 'event_status' => 1, 'event_tax' => $request->get('taxrate'), 'event_stop' => $event_stop]);
         /*DB::statement("SET SQL_MODE=''");
