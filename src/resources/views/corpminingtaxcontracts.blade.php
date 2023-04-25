@@ -116,10 +116,9 @@
                 $('.modal-body').html("");
             });
 
-
-            function showDetails(cid) {
-                //var cid = $(this).attr('id');
-                //cid = cid.replace('d_', '');
+            $('#contracts').on('click', '.details', function(e) {
+                var cid = $(this).attr('id');
+                cid = cid.replace('d_', '');
                 var url = "{{ route('corpminingtax.contractdata', [':cid']) }}";
                 url = url.replace(':cid', cid);
                 $.ajax({
@@ -132,7 +131,8 @@
                         $('#modal_detail').modal('show');
                     }
                 });
-            }
+            });
+
 
             $('.offer').on('click', function() {
                 var cid = $(this).attr('id');
