@@ -87,8 +87,8 @@
                     <tbody>
                     @foreach($events as $event)
                         <tr id="tr_{{ $event->id }}">
-                            <td>{{ $event->event_start }}</td>
-                            <td>{{ $event->event_name }}</td>
+                            <td>{{ date("Y-m-d", strtotime($event->event_start) }}</td>
+                            <td><b>{{ $event->event_name }}</b></td>
                             <td>{{ $event->event_duration }} day(s)</td>
                             <td>{{ $event->event_tax }} %</td>
                             <td>{{ number_format($event->total) }}</td>

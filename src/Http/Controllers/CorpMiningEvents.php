@@ -20,7 +20,7 @@ class CorpMiningEvents extends Controller
     public function getHome()
     {
         DB::statement("SET SQL_MODE=''");
-        $status = DB::update(DB::raw("update corp_mining_tax_events set event_status=2 where event_start >= date(now()) and event_stop <= date(now())"));
+        $status = DB::update(DB::raw("update corp_mining_tax_events set event_status=2 where event_start <= date(now()) and event_stop >= date(now())"));
         $status = DB::update(DB::raw("update corp_mining_tax_events set event_status=3 where event_stop < date(now())"));
         DB::statement("SET SQL_MODE=''");
         $events = DB::table('corp_mining_tax_events as e')
