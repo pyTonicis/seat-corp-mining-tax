@@ -28,6 +28,30 @@
 
 <div class="card">
     <div class="card-header">
+        <h4>Add Character Mining</h4>
+    </div>
+    <div class="card-body">
+        <form action="{{ route('corpminingtax.addmining') }}" method="post" id="mining" name="mining">
+            {{ csrf_field() }}
+            <div class="form-group">
+                <label for="character">Character</label>
+                <select class="groupSearch form-control" id="character" name="character">
+                    <option></option>
+                    @foreach($characters as $character)
+                        <option value="{{ $character->id }}">{{ $character->name }}</option>
+                    @endforeach
+                </select>
+                <label for="ore">Mined Ore</label>
+                <textarea class="form-control" id="ore" name="ore" rows="3"></textarea>
+                <input type="hidden" id="event_id" name="event_id" value="{{ $event_id }}">
+                <button type="submit" class="btn btn-primary" id="e_{{ $event_id }}">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
         <h3>Minings</h3>
     </div>
     <div class="card-body">
@@ -58,26 +82,3 @@
     </div>
 </div>
 
-<div class="card">
-    <div class="card-header">
-        <h4>Add Character Mining</h4>
-    </div>
-    <div class="card-body">
-        <form action="{{ route('corpminingtax.addmining') }}" method="post" id="mining" name="mining">
-            {{ csrf_field() }}
-            <div class="form-group">
-                <label for="character">Character</label>
-                <select class="groupSearch form-control" id="character" name="character">
-                    <option></option>
-                    @foreach($characters as $character)
-                        <option value="{{ $character->id }}">{{ $character->name }}</option>
-                    @endforeach
-                </select>
-                <label for="ore">Mined Ore</label>
-                <textarea class="form-control" id="ore" name="ore" rows="3"></textarea>
-                <input type="hidden" id="event_id" name="event_id" value="{{ $event_id }}">
-                <button type="submit" class="btn btn-primary" id="e_{{ $event_id }}">Save</button>
-            </div>
-        </form>
-    </div>
-</div>
