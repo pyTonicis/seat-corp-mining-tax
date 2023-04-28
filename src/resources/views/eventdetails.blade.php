@@ -13,7 +13,7 @@
             <div class="col-4">
                 <dl>
                     <dt>Active Members</dt>
-                    <dd>7</dd>
+                    <dd>{{ $total_members }}</dd>
                 </dl>
             </div>
             <div class="col-4">
