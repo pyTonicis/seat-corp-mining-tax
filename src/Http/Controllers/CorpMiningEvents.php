@@ -108,11 +108,16 @@ class CorpMiningEvents extends Controller
             ->selectRAW('sum(refined_price) as tax')
             ->where('event_id', $eid)
             ->first();
+        $total_characters = DB::table('corp_mining_tax_event_minings')
+            ->selectRaw('count(DISTINCT character_name) as members')
+            ->where('event_id', '=', $eid)
+            ->first();
         $event_data = DB::table('corp_mining_tax_events')
             ->where('id', '=', $eid)
             ->first();
         return view::make('corpminingtax::eventdetails', ['event_minings' => $event_minings, 'characters' => $characters,
-            'event_id' => $eid, 'total_mined_isk' => $total_mined_isk->tax, 'event_data' => $event_data])->render();
+            'event_id' => $eid, 'total_mined_isk' => $total_mined_isk->tax, 'total_members' => $total_characters->members,
+            'event_data' => $event_data])->render();
     }
 
     private function getEventMinings(int $event_id)
