@@ -23,7 +23,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 namespace pyTonicis\Seat\SeatCorpMiningTax\Http\Controllers;
 
 use pyTonicis\Seat\SeatCorpMiningTax\Helpers\CharacterHelper;
-use pyTonicis\Seat\SeatCorpMiningTax\Helpers\EvePraisalHelper;
 use pyTonicis\Seat\SeatCorpMiningTax\Services\MiningTaxService;
 use Seat\Web\Http\Controllers\Controller;
 use Illuminate\Http\Request;

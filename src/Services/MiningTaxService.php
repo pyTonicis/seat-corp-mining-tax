@@ -4,8 +4,8 @@ namespace pyTonicis\Seat\SeatCorpMiningTax\Services;
 
 use DateTime;
 use pyTonicis\Seat\SeatCorpMiningTax\Helpers\CharacterHelper;
+use pyTonicis\Seat\SeatCorpMiningTax\Helpers\EveJaniceHelper;
 use pyTonicis\Seat\SeatCorpMiningTax\Helpers\EveMarketHelper;
-use pyTonicis\Seat\SeatCorpMiningTax\Helpers\EvePraisalHelper;
 use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\CharacterData;
 use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\CharacterMiningRecord;
 use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\MiningTaxResult;
@@ -118,12 +118,12 @@ class MiningTaxService
                         if ($settings['price_provider'] == 'Eve Market')
                             $price = EveMarketHelper::getItemPriceById($data->type_id) * $data->quantity;
                         else
-                            $price = EvePraisalHelper::getItemPriceByTypeId($data->type_id) * $data->quantity;
+                            $price = EveJaniceHelper::getItemPriceByTypeId($data->type_id) * $data->quantity;
                     } else {
                         if ($settings['price_provider'] == 'Eve Market')
                             $price = EveMarketHelper::getItemPriceById($key) * $value;
                         else
-                            $price = EvePraisalHelper::getItemPriceByTypeId($key) * $value;
+                            $price = EveJaniceHelper::getItemPriceByTypeId($key) * $value;
                     }
                     $charData->addToPriceSummary($price);
 

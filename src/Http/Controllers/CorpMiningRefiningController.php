@@ -2,7 +2,7 @@
 
 namespace pyTonicis\Seat\SeatCorpMiningTax\Http\Controllers;
 
-use pyTonicis\Seat\SeatCorpMiningTax\Helpers\EvePraisalHelper;
+use pyTonicis\Seat\SeatCorpMiningTax\Helpers\EveJaniceHelper;
 use pyTonicis\Seat\SeatCorpMiningTax\Services\ItemParser;
 use pyTonicis\Seat\SeatCorpMiningTax\Services\Reprocessing;
 use Seat\Web\Http\Controllers\Controller;
@@ -42,7 +42,7 @@ class CorpMiningRefiningController extends Controller
                 if ($request->get('provider') == 'Eve Market')
                     $price = Price::where('type_id', '=', $n)->first()->average_price;
                 else
-                    $price = EvePraisalHelper::getItemPriceByTypeId($n);
+                    $price = EveJaniceHelper::getItemPriceByTypeId($n);
                 if (!array_key_exists($inv_type->typeName, $refinedMaterials)) {
                     $refinedMaterials[$inv_type->typeName]['name'] = $inv_type->typeName;
                     $refinedMaterials[$inv_type->typeName]['typeID'] = $n;

@@ -40,6 +40,8 @@ class CorpMiningTaxSettings extends Migration
         DB::table('corp_mining_tax_settings')
             ->insert(['name' => 'price_provider', 'value' => 'Eve Market']);
         DB::table('corp_mining_tax_settings')
+            ->insert(['name' => 'price_provider_key', 'value' => '0']);
+        DB::table('corp_mining_tax_settings')
             ->insert(['name' => 'price_modifier', 'value' => '100']);
         DB::table('corp_mining_tax_settings')
             ->insert(['name' => 'contract_issuer', 'value' => 'Dollar Boy']);

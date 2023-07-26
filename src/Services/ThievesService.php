@@ -3,12 +3,7 @@
 namespace pyTonicis\Seat\SeatCorpMiningTax\Services;
 
 use pyTonicis\Seat\SeatCorpMiningTax\Helpers\CharacterHelper;
-use pyTonicis\Seat\SeatCorpMiningTax\Helpers\EvePraisalHelper;
 use pyTonicis\Seat\SeatCorpMiningTax\Models\Mining\ThievesResult;
-use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\CharacterData;
-use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\CharacterMiningRecord;
-use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\MiningTaxResult;
-use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\OreType;
 use Illuminate\Support\Facades\DB;
 
 class ThievesService

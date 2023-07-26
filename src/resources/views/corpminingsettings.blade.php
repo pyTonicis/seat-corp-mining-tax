@@ -45,8 +45,14 @@
                             <div class="col-md-12">
                                 <select class="custom-select mr-sm-2" name="price_provider" id="price_provider">
                                     <option value="Eve Market">Eve Market</option>
-                                    <option value="Eve Praisal">Eve Praisal</option>
+                                    <option value="Eve Janice">Eve Janice</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="form-group-row">
+                            <label class="col-md4 col-form-label" for="price_provider_key">Price Provider API Key</label>
+                            <div class="col-md-12">
+                                <input id="price_provider_key" name="price_provider_key" class="form-control input-md" value="{{ $settings['price_provider_key'] }}">
                             </div>
                         </div>
                         <div class="form-group-row">

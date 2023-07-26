@@ -1,16 +1,12 @@
 <?php
 
-/*
- *  INFO: EvePraisal deactivated
- */
 namespace pyTonicis\Seat\SeatCorpMiningTax\Helpers;
 
 use Illuminate\Support\Facades\Cache;
+use pyTonicis\Seat\SeatCorpMiningTax\Services\SettingService;
 
-class EvePraisalHelper
+class EveJaniceHelper
 {
-    private $priceData;
-
     /**
      * @param int $typeId
      * @return mixed|null
@@ -36,18 +32,29 @@ class EvePraisalHelper
      */
     public static function getItemPriceByTypeId(int $typeId): int
     {
-        return self::getAllItemPrices($typeId)["summaries"][0]["prices"]["buy"]["percentile"];
+        return self::getAllItemPrices($typeId)["immediatePrices"]["buyPrice"];
     }
 
     /**
-     * @param string $itemTypeId
+     * @param int $itemId
      * @return mixed|null
      */
-    public static function doCall(string $itemTypeId)
+    public static function doCall(int $itemId)
     {
 
-        $url = sprintf("https://evepraisal.com/item/%d.json", $itemTypeId);
-        $data = @file_get_contents($url);
+        $settingService = new SettingService();
+        $settings = $settingService->getAll();
+        $url = sprintf("https://janice.e-351.com/api/rest/v2/pricer/%d?market=2", $itemId);
+        $opts = array(
+            'http' => array(
+                'method' => "GET",
+                'header' =>
+                    "X-ApiKey: " . $settings['price_provider_key'] . "\r\n" .
+                    "accept:application/json\r\n"
+            )
+        );
+        $context = stream_context_create($opts);
+        $data = file_get_contents($url, false, $context);
 
         if ($data === false) {
             return null;

@@ -3,7 +3,6 @@
 namespace pyTonicis\Seat\SeatCorpMiningTax\Services;
 
 use pyTonicis\Seat\SeatCorpMiningTax\Helpers\CharacterHelper;
-use pyTonicis\Seat\SeatCorpMiningTax\Helpers\EvePraisalHelper;
 use pyTonicis\Seat\SeatCorpMiningTax\Models\Mining\CorporationMoonMining;
 use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\OreType;
 use Illuminate\Support\Facades\DB;
