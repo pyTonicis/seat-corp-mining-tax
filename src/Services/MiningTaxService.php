@@ -199,7 +199,7 @@ class MiningTaxService
          */
         $miningEventResult = $eventService->createEventMiningTax($month, $year);
         foreach ($miningEventResult->characterData as $eventData) {
-            if ($miningResult->hasCharacterData($eventData->characterName)) {
+            if ($miningResult->hasCharacterData($eventData->characterId)) {
                 $charData = $miningResult->getCharacterDataById($eventData->characterId);
                 if ($charData->hasCharacterMining($eventData->type_id)) {
                     foreach (Reprocessing::ReprocessOreByTypeId($eventData->type_id, $eventData->quantity, (float)($eventData->event_tax / 100)) as $key => $value) {
