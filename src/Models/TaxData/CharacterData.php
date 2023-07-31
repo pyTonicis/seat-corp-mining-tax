@@ -101,7 +101,6 @@ class CharacterData
      */
     public function addToPriceSummary(int $value)
     {
-        // TODO Summary field should be used for isk summary
         $this->priceSummary += $value;
     }
 
@@ -113,8 +112,8 @@ class CharacterData
         $this->tax += $taxValue;
     }
 
-    public function addTax2(int $taxValue) {
-        $this->tax2 += $taxValue;
+    public function delTax(int $taxValue) {
+        $this->tax -= $taxValue;
     }
 
     public function addTax3(int $taxValue) {

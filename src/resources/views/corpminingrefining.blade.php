@@ -32,7 +32,7 @@
                     <label for="provider">Price Provider</label>
                     <select id="provider" name="provider" type="text" class="form-control input-md">
                         <option value="Eve Market" selected>Eve Market</option>
-                        <option value="Eve Praisal">Eve Praisal</option>
+                        <option value="Eve Janice">Eve Janice</option>
                     </select>
                 </div>
                 <button type="submit" onclick="on()" class="btn btn-primary" form="refine">Reprocess</button>

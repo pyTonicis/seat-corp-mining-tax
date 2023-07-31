@@ -6,11 +6,13 @@ use DateTime;
 use pyTonicis\Seat\SeatCorpMiningTax\Helpers\CharacterHelper;
 use pyTonicis\Seat\SeatCorpMiningTax\Helpers\EveJaniceHelper;
 use pyTonicis\Seat\SeatCorpMiningTax\Helpers\EveMarketHelper;
+use pyTonicis\Seat\SeatCorpMiningTax\Models\Mining\EventMining;
 use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\CharacterData;
 use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\CharacterMiningRecord;
 use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\MiningTaxResult;
 use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\OreType;
 use pyTonicis\Seat\SeatCorpMiningTax\Services\Reprocessing;
+use pyTonicis\Seat\SeatCorpMiningTax\Services\MiningEvents;
 use Illuminate\Support\Facades\DB;
 
 
@@ -69,6 +71,8 @@ class MiningTaxService
     public function createMiningTaxResult(int $corpId, int $month, int $year): MiningTaxResult
     {
         $miningResult = new MiningTaxResult($month, $year);
+        $miningEventResult = new EventMining($month, $year);
+        $eventService = new MiningEvents();
         $settingService = new SettingService();
         $settings = $settingService->getAll();
 
@@ -111,6 +115,9 @@ class MiningTaxService
 
             $charData->addVolume($volume);
 
+            /*
+             *  Calculate Reprocessed Ore Price
+             */
 
                 foreach (Reprocessing::ReprocessOreByTypeId($data->type_id, $data->quantity, (float)($settings['ore_refining_rate'] / 100)) as $key => $value) {
 
@@ -187,7 +194,32 @@ class MiningTaxService
                     }
                 }
             }
+        /*
+         *  Remove Tax for Events from Tax Wallet
+         */
+        $miningEventResult = $eventService->createEventMiningTax($month, $year);
+        foreach ($miningEventResult->characterData as $eventData) {
+            if ($miningResult->hasCharacterData($eventData->characterName)) {
+                $charData = $miningResult->getCharacterDataById($eventData->characterId);
+                if ($charData->hasCharacterMining($eventData->type_id)) {
+                    foreach (Reprocessing::ReprocessOreByTypeId($eventData->type_id, $eventData->quantity, (float)($eventData->event_tax / 100)) as $key => $value) {
 
+                        if ($settings['ore_valuation_price'] == 'Ore Price') {
+                            if ($settings['price_provider'] == 'Eve Market')
+                                $price = EveMarketHelper::getItemPriceById($eventData->type_id) * $eventData->quantity;
+                            else
+                                $price = EveJaniceHelper::getItemPriceByTypeId($eventData->type_id) * $eventData->quantity;
+                        } else {
+                            if ($settings['price_provider'] == 'Eve Market')
+                                $price = EveMarketHelper::getItemPriceById($key) * $value;
+                            else
+                                $price = EveJaniceHelper::getItemPriceByTypeId($key) * $value;
+                        }
+                        $miningResult->characterData[$eventData->characterId]->delTax($price);
+                    }
+                }
+            }
+        }
         return $miningResult;
     }
 }
