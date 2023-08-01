@@ -200,9 +200,10 @@ class MiningTaxService
         $miningEventResult = $eventService->createEventMiningTax($month, $year);
 
         foreach ($miningEventResult as $eventData) {
-            if ($miningResult->hasCharacterData(CharacterHelper::getCharacterIdByName($eventData->characterId))) {
+            $characterId = CharacterHelper::getCharacterIdByName($eventData->character_name);
+            if ($miningResult->hasCharacterData($characterId)) {
 
-                if ($miningResult->characterData[$eventData->characterId]->hasCharacterMining($eventData->type_id)) {
+                if ($miningResult->characterData[$characterId]->hasCharacterMining($eventData->type_id)) {
                     foreach (Reprocessing::ReprocessOreByTypeId($eventData->type_id, $eventData->quantity, (float)($eventData->event_tax / 100)) as $key => $value) {
 
                         if ($settings['ore_valuation_price'] == 'Ore Price') {
@@ -216,7 +217,7 @@ class MiningTaxService
                             else
                                 $price = EveJaniceHelper::getItemPriceByTypeId($key) * $value;
                         }
-                        $miningResult->characterData[$eventData->characterId]->delTax($price);
+                        $miningResult->characterData[$characterId]->delTax($price);
                     }
                 }
             }
