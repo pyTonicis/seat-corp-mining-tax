@@ -26,47 +26,31 @@ class MiningEvents
             ->get();
     }
 
-    private function getEventMinings(int $event_id)
+    private function getEventMining(int $event_id)
     {
         return DB::table('corp_mining_tax_event_minings')
             ->where('event_id', '=', $event_id)
             ->get();
     }
 
-    public function createEventMiningTax(int $month, int $year): EventMining
+    private function getEventMinings(array $event_ids)
     {
-        $minings = new EventMining($month, $year);
+        return DB::table('corp_mining_tax_event_minings')
+            ->whereIn('event_id', $event_ids)
+            ->get();
+    }
+
+    public function createEventMiningTax(int $month, int $year)
+    {
         $events = $this->getEvents($month, $year);
+        $event_ids = array();
         if (!is_null($events))
         {
-            foreach($events as $event)
-            {
-                foreach($this->getEventMinings($event->id) as $mining)
-                {
-                    $mainCharacterData = CharacterHelper::getMainCharacterCharacter(CharacterHelper::getCharacterIdByName($mining->character_name));
-
-                    if (!$minings->hasCharacterData($mainCharacterData->main_character_id)) {
-
-                        $charData = new CharacterData(
-                            $mainCharacterData->main_character_id,
-                            $mainCharacterData->name
-                        );
-
-                        $minings->addCharacterData($charData);
-                    } else {
-                        $charData = $minings->getCharacterDataById($mainCharacterData->main_character_id);
-                    }
-
-                    $charData->addCharacterMining(new CharacterMiningRecord(
-                        $mining->type_id,
-                        $mining->quantity
-                    ));
-                }
+            foreach($events as $event) {
+                array_push($event_ids, $event->id);
             }
-            //TODO: compare character Mining with event Mining
-
-            //TODO: remove EventTax from Mining Result Tax (inside MiningTaxService)
+            $miningResult = $this->getEventMinings($event_ids);
         }
-        return $minings;
+        return $miningResult;
     }
 }
