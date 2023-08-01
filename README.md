@@ -1,3 +1,39 @@
-# seat-corp-mining-tax
+# Seat Corporation Mining Tax
 
-In development....
+This plugin provides an extension to calculate mining taxes within the corporation. It simplifies the handling of taxes and gives an overview of mined ores of each member. Some additional features will very helpful to control the mining part.
+
+
+## Quick Installation
+
+### For non-Docker
+```php
+sudo -H -u www-data bash -c 'php artisan down'
+sudo -H -u www-data bash -c 'composer require pyTonicis/seat-corp-mining-tax'
+sudo -H -u www-data bash -c 'php artisan vendor:publish --force --all'
+sudo -H -u www-data bash -c 'php artisan migrate'
+sudo -H -u www-data bash -c 'php artisan seat:cache:clear'
+sudo -H -u www-data bash -c 'php artisan config:cache'
+sudo -H -u www-data bash -c 'php artisan route:cache'
+sudo -H -u www-data bash -c 'php artisan up'
+```
+### For Docker
+
+```
+Edit your `.env` file,locate the line `SEAT_PLUGINS` and append `pyTonicis/seat-corp-mining-tax`
+at the end.
+```
+
+Then , run `docker-compose up -d` to take effect.
+
+### For Update
+
+```
+sudo -H -u www-data bash -c 'composer require pyTonicis/seat-corp-mining-tax'
+```
+
+## First Steps
+In the first step, please open the settings page and select your corporation under the global settings. All other settings such as tax rate can be set as desired.
+
+If you want to use EvE Janice as a price provider, you need to apply for a valid API Key and enter it in the field "Price Provider API Key".
+
+## Screenshots
