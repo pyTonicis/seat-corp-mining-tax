@@ -37,3 +37,19 @@ In the first step, please open the settings page and select your corporation und
 If you want to use EvE Janice as a price provider, you need to apply for a valid API Key and enter it in the field "Price Provider API Key".
 
 ## Screenshots
+
+**Overview (Dashboard)**
+
+![Overview](https://i.imgur.com/X09UX7R.png)
+
+**Reprocessing**
+
+![Refine](https://i.imgur.com/55wWf94.png)
+
+**Corporation Mining Tax**
+
+![Tax](https://i.imgur.com/FnGhI5E.png)
+
+**Corporation Moon Minings** (Moons owned by Corporation)
+
+![enter image description here](https://i.imgur.com/CBGBZ7a.png)

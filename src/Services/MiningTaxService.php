@@ -71,7 +71,6 @@ class MiningTaxService
     public function createMiningTaxResult(int $corpId, int $month, int $year): MiningTaxResult
     {
         $miningResult = new MiningTaxResult($month, $year);
-        $miningEventResult = new EventMining($month, $year);
         $eventService = new MiningEvents();
         $settingService = new SettingService();
         $settings = $settingService->getAll();
@@ -203,7 +202,7 @@ class MiningTaxService
             $characterId = CharacterHelper::getCharacterIdByName($eventData->character_name);
             if ($miningResult->hasCharacterData($characterId)) {
 
-                if ($miningResult->characterData[$characterId]->hasCharacterMining($eventData->type_id)) {
+                //if ($miningResult->characterData[$characterId]->hasCharacterMining($eventData->type_id)) {
                     $material_info = Reprocessing::getMaterialInfo($eventData->type_id);
                     $invGroup = $material_info->groupID;
                     foreach (Reprocessing::ReprocessOreByTypeId($eventData->type_id, $eventData->quantity, (float)($settings['ore_refining_rate'] / 100)) as $key => $value) {
@@ -279,7 +278,7 @@ class MiningTaxService
                                 break;
                         }
                     }
-                }
+                //}
             }
         }
         return $miningResult;

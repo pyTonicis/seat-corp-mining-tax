@@ -8,6 +8,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\DB;
+use pyTonicis\Seat\SeatCorpMiningTax\Models\Mining\EventMining;
 use pyTonicis\Seat\SeatCorpMiningTax\Services\MiningTaxService;
 use pyTonicis\Seat\SeatCorpMiningTax\Services\SettingService;
 
@@ -43,9 +44,15 @@ class UpdateMiningTax implements ShouldQueue
         $data = $this->miningTaxService->createMiningTaxResult((int)$settings['corporation_id'], (int)$this->month, (int)$this->year);
         foreach($data->characterData as $character)
         {
+            if ($character->tax < 0) {
+                $tax = 0;
+            }
+            else {
+                $tax = $character->tax;
+            }
             DB::table('corp_mining_tax')
                 ->updateOrInsert(['main_character_id' => $character->characterId, 'year' => $this->year, 'month' => $this->month],
-                ['quantity' => $character->quantity, 'volume' => $character->volume, 'price' => $character->priceSummary, 'tax' => $character->tax, 'status' => 0, 'contractId' => 0]
+                ['quantity' => $character->quantity, 'volume' => $character->volume, 'price' => $character->priceSummary, 'tax' => $tax, 'status' => 0, 'contractId' => 0]
                 );
         }
     }
