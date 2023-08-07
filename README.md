@@ -1,3 +1,7 @@
+[![Latest Stable Version](http://img.shields.io/packagist/v/pytonicis/seat-corp-mining-tax.svg?style=flat-square)]()
+![](https://img.shields.io/badge/SeAT-4.0.x-blueviolet?style=flat-square)
+![](https://img.shields.io/github/license/H4zz4rdDev/seat-buyback?style=flat-square)
+
 # Seat Corporation Mining Tax
 
 This plugin provides an extension to calculate mining taxes within the corporation. It simplifies the handling of taxes and gives an overview of mined ores of each member. Some additional features will very helpful to control the mining part.

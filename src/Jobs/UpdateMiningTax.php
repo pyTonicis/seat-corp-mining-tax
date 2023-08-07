@@ -44,6 +44,7 @@ class UpdateMiningTax implements ShouldQueue
         $data = $this->miningTaxService->createMiningTaxResult((int)$settings['corporation_id'], (int)$this->month, (int)$this->year);
         foreach($data->characterData as $character)
         {
+            // Don't allow neg. ISK
             if ($character->tax < 0) {
                 $tax = 0;
             }
