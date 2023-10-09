@@ -54,6 +54,13 @@ return [
                 'permission' => 'corpminingtax.settings'
             ],
             [
+                'name' => 'corpminingtax-sub-statistics',
+                'label' => 'corpminingtax::menu.sub-statistics',
+                'icon' => 'fas fa-chart-area',
+                'route' => 'corpminingtax.statistics',
+                'permission' => 'corpminingtax.settings'
+            ],
+            [
                 'name' => 'corpminingtax-sub-settings-menu',
                 'label' => 'corpminingtax::menu.sub-settings',
                 'icon' => 'fas fa-cogs',

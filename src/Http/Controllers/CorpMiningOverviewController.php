@@ -51,7 +51,7 @@ class CorpMiningOverviewController extends Controller
             $month = (int)date('m', $datum);
             $year = (int)date('Y', $datum);
             $result = DB::table('corp_mining_tax')
-                ->select('quantity', 'volume', 'price', 'tax')
+                ->select('quantity', 'volume', 'price', 'tax', 'event_tax')
                 ->where('main_character_id', '=', $character)
                 ->where('month', '=', $month)
                 ->where('year', '=', $year)

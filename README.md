@@ -32,7 +32,7 @@ Then , run `docker-compose up -d` to take effect.
 ### For Update
 
 ```
-sudo -H -u www-data bash -c 'composer require pyTonicis/seat-corp-mining-tax'
+sudo -H -u www-data bash -c 'composer update pyTonicis/seat-corp-mining-tax'
 ```
 
 ## First Steps
