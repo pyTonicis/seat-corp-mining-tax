@@ -3,7 +3,7 @@
 namespace pyTonicis\Seat\SeatCorpMiningTax\Commands;
 
 use Illuminate\Console\Command;
-use pyTonicis\Seat\SeatCorpMiningTax\Jobs\UpdateMiningTax;
+use pyTonicis\Seat\SeatCorpMiningTax\Jobs\UpdateMiningEvents;
 
 class MiningTaxEvents extends Command
 {

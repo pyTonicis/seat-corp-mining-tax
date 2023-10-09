@@ -21,9 +21,10 @@ class Contracts
                 ->get();
             foreach ($taxes as $t) {
 
+                    $tax = $t->tax - $t->event_tax;
                     $c_title = $settings['contract_tag'] . " ". $t->year . "-". $t->month. "  (". $this->generate_string($this->permitted_chars) .")";
                     DB::table('corp_mining_tax_contracts')
-                        ->updateOrInsert(['character_id' => $t->main_character_id, 'month' => $t->month, 'year' => $t->year, 'tax' => $t->tax],
+                        ->updateOrInsert(['character_id' => $t->main_character_id, 'month' => $t->month, 'year' => $t->year, 'tax' => $tax],
                         ['contractId' => 0, 'contractIssuer' => CharacterHelper::getCharacterIdByName($settings['contract_issuer']), 'contractTitle' => $c_title,
                             'contractData' => "None", 'contractStatus' => 1, 'character_name' => CharacterHelper::getCharacterName($t->main_character_id)]);
 
@@ -36,6 +37,46 @@ class Contracts
         DB::table('corp_mining_tax_contracts')
             ->update(['contractStatus' => $status])
             ->where('contractId', '=', $contract_id);
+    }
+
+    public function searchContractDetails(string $title) :int
+    {
+        $contract = DB::table('contract_details')
+            ->select('contract_id', 'title')
+            ->whereLike('title', $title)
+            ->first();
+        if (!is_null($contract)) {
+            return $contract->contract_id;
+        } else {
+            return 0;
+        }
+    }
+
+    public function getContractStatus(int $contract_id)
+    {
+        $contract_status = DB::table('contract_details')
+            ->select('status')
+            ->where('contract_id', '=', $contract_id)
+            ->first();
+        return $contract_status->status;
+    }
+
+    public function updateContractStatus(int $corp_id, int $month, int $year)
+    {
+        $contracts = DB::table('corp_mining_tax_contracts')
+            ->select('*')
+            ->where('month', '=', $month)
+            ->where('year', '=', $year)
+            ->get();
+        $con_db = DB::table('contract_details')
+            ->whereMonth('date_issued', '=', $month)
+            ->whereYear('date_issued', '=', $year)
+            ->get();
+        foreach ($contracts as $contract) {
+            $contract_id = $this->searchContractDetails($contract->contractTitle);
+            $contract_status = $this->getContractStatus($contract_id);
+            if ($contract_status == 'finished') $this->setTaxContractStatus($contract_id, 'finished');
+        }
     }
 
     private function generate_string($input, $strength = 10) {

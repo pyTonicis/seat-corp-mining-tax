@@ -63,7 +63,7 @@ class CorpMiningOverviewController extends Controller
                 $minings->add_price($result->price);
                 $minings->add_quantity($result->quantity);
                 $tax_count += (int)$result->tax;
-                $tax_act = (int)$result->tax;
+                $tax_act = (int)$result->tax - (int)$result->event_tax;
             } else {
                 array_push($data, 0);
                 array_push($prices, 0);

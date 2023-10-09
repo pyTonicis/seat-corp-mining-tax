@@ -79,6 +79,7 @@
                 <th>Mined volume</th>
                 <th>Mineral price</th>
                 <th>Tax</th>
+                <th>Event Tax</th>
             </tr>
             </thead>
             <tbody>
@@ -88,7 +89,8 @@
                     <td>{{ number_format($character->quantity) }}</td>
                     <td>{{ number_format($character->volume) }}</td>
                     <td>{{ number_format($character->priceSummary) }}</td>
-                    <td>{{ number_format($character->tax) }}</td>
+                    <td>{{ number_format($character->tax - $character->event_tax) }}</td>
+                    <td>{{ number_format($character->event_tax) }}</td>
                 </tr>
             @endforeach
             </tbody>
@@ -118,6 +120,7 @@
                     <th>Mined volume</th>
                     <th>Mineral Price</th>
                     <th>Tax</th>
+                    <th>Event Tax</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -128,7 +131,8 @@
                         <td>{{ number_format($character->quantity) }}</td>
                         <td>{{ number_format($character->volume) }}</td>
                         <td>{{ number_format($character->price) }}</td>
-                        <td>{{ number_format($character->tax) }}</td>
+                        <td>{{ number_format($character->tax - $character->event_tax) }}</td>
+                        <td>{{ number_format($character->event_tax) }}</td>
                     </tr>
                 @endforeach
                 </tbody>

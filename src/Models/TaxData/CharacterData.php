@@ -28,7 +28,7 @@ class CharacterData
     /**
      * @var int
      */
-    public $tax3;
+    public $event_tax;
     /**
      * @var int
      */
@@ -62,6 +62,7 @@ class CharacterData
         $this->characterName = $characterName;
         $this->priceSummary = 0;
         $this->tax = 0;
+        $this->event_tax = 0;
     }
 
     /**
@@ -112,12 +113,8 @@ class CharacterData
         $this->tax += $taxValue;
     }
 
-    public function delTax(int $taxValue) {
-        $this->tax -= $taxValue;
-    }
-
-    public function addTax3(int $taxValue) {
-        $this->tax3 += $taxValue;
+    public function addEventTax(int $taxValue) {
+        $this->event_tax += $taxValue;
     }
 
     public function addVolume(int $vol) {

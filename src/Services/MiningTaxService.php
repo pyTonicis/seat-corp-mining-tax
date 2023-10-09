@@ -218,63 +218,63 @@ class MiningTaxService
                             else
                                 $price = EveJaniceHelper::getItemPriceByTypeId($key) * $value;
                         }
-                        //$miningResult->characterData[$characterId]->delTax(($price*9/100));
+                        //$miningResult->characterData[$characterId]->addEventTax(($price*9/100));
                         switch ($invGroup) {
                             case 465:
                                 if ($settings['taxes_ice'] == "true")
-                                    $miningResult->characterData[$characterId]->delTax($price * ($settings['ice_rate'] / 100));
+                                    $miningResult->characterData[$characterId]->addEventTax($price * ($settings['ice_rate'] / 100));
                                 break;
                             case 711:
                                 if ($settings['taxes_gas'] == "true")
-                                    $miningResult->characterData[$characterId]->delTax($price * ($settings['gas_rate'] / 100));
+                                    $miningResult->characterData[$characterId]->addEventTax($price * ($settings['gas_rate'] / 100));
                                 break;
                             case 1884:
                                 if ($settings['taxes_moon'] == "true") {
-                                    $miningResult->characterData[$characterId]->delTax($price * ($settings['r4_rate'] / 100));
+                                    $miningResult->characterData[$characterId]->addEventTax($price * ($settings['r4_rate'] / 100));
                                 } elseif ($settings['taxes_corp_moon'] == "true") {
                                     if ($this->checkIfCorpMoon($data->character_id, $data->type_id, $data->solar_system_id, $data->date))
-                                        $miningResult->characterData[$characterId]->delTax($price * ($settings['r4_rate'] / 100));
+                                        $miningResult->characterData[$characterId]->addEventTax($price * ($settings['r4_rate'] / 100));
                                 }
                                 break;
                             case 1920:
                                 if ($settings['taxes_moon'] == "true") {
-                                    $miningResult->characterData[$characterId]->delTax($price * ($settings['r8_rate'] / 100));
+                                    $miningResult->characterData[$characterId]->addEventTax($price * ($settings['r8_rate'] / 100));
                                 } elseif ($settings['taxes_corp_moon'] == "true") {
                                     if ($this->checkIfCorpMoon($data->character_id, $data->type_id, $data->solar_system_id, $data->date))
-                                        $miningResult->characterData[$characterId]->delTax($price * ($settings['r8_rate'] / 100));
+                                        $miningResult->characterData[$characterId]->addEventTax($price * ($settings['r8_rate'] / 100));
                                 }
                                 break;
                             case 1921:
                                 if ($settings['taxes_moon'] == "true") {
-                                    $miningResult->characterData[$characterId]->delTax($price * ($settings['r16_rate'] / 100));
+                                    $miningResult->characterData[$characterId]->addEventTax($price * ($settings['r16_rate'] / 100));
                                 } elseif ($settings['taxes_corp_moon'] == "true") {
                                     if ($this->checkIfCorpMoon($data->character_id, $data->type_id, $data->solar_system_id, $data->date))
-                                        $miningResult->characterData[$characterId]->delTax($price * ($settings['r16_rate'] / 100));
+                                        $miningResult->characterData[$characterId]->addEventTax($price * ($settings['r16_rate'] / 100));
                                 }
                                 break;
                             case 1922:
                                 if ($settings['taxes_moon'] == "true") {
-                                    $miningResult->characterData[$characterId]->delTax($price * ($settings['r32_rate'] / 100));
+                                    $miningResult->characterData[$characterId]->addEventTax($price * ($settings['r32_rate'] / 100));
                                 } elseif ($settings['taxes_corp_moon'] == "true") {
                                     if ($this->checkIfCorpMoon($data->character_id, $data->type_id, $data->solar_system_id, $data->date))
-                                        $miningResult->characterData[$characterId]->delTax($price * ($settings['r32_rate'] / 100));
+                                        $miningResult->characterData[$characterId]->addEventTax($price * ($settings['r32_rate'] / 100));
                                 }
                                 break;
                             case 1923:
                                 if ($settings['taxes_moon'] == "true") {
-                                    $miningResult->characterData[$characterId]->delTax($price * ($settings['r64_rate'] / 100));
+                                    $miningResult->characterData[$characterId]->addEventTax($price * ($settings['r64_rate'] / 100));
                                 } elseif ($settings['taxes_corp_moon'] == "true") {
                                     if ($this->checkIfCorpMoon($data->character_id, $data->type_id, $data->solar_system_id, $data->date))
-                                        $miningResult->characterData[$characterId]->delTax($price * ($settings['r64_rate'] / 100));
+                                        $miningResult->characterData[$characterId]->addEventTax($price * ($settings['r64_rate'] / 100));
                                 }
                                 break;
                             case 1996:
                                 if ($settings['taxes_abyssal'] == "true")
-                                    $miningResult->characterData[$characterId]->delTax($price * ($settings['abyssal_rate'] / 100));
+                                    $miningResult->characterData[$characterId]->addEventTax($price * ($settings['abyssal_rate'] / 100));
                                 break;
                             default:
                                 if ($settings['taxes_ore'] == "true")
-                                    $miningResult->characterData[$characterId]->delTax($price * ($settings['ore_rate'] / 100));
+                                    $miningResult->characterData[$characterId]->addEventTax($price * ($settings['ore_rate'] / 100));
                                 break;
                         }
                     }

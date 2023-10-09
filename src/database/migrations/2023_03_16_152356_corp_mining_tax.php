@@ -23,6 +23,7 @@ class CorpMiningTax extends Migration
             $table->biginteger('volume');
             $table->biginteger('price');
             $table->biginteger('tax');
+            $table->biginteger('event_tax');
             $table->integer('status');
             $table->biginteger('contractId');
             $table->timestamps();

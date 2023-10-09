@@ -10,26 +10,38 @@ class Reprocessing
 {
     private static function getReprocessData(int $id)
     {
-        $data = DB::table('invTypeMaterials as m')
-            ->select('m.materialTypeID', 't.groupID', 'm.quantity', 't.typeName')
-            ->LeftJoin('invTypes as t', 'm.materialTypeID', '=', 't.typeID')
-            ->where('m.typeID', '=', $id)
-            ->get();
-        return $data;
+        $rname = "tax_r_" .$id;
+        if (Cache::get($rname)) {
+            return Cache::get($rname);
+        } else {
+            $data = DB::table('invTypeMaterials as m')
+                ->select('m.materialTypeID', 't.groupID', 'm.quantity', 't.typeName')
+                ->LeftJoin('invTypes as t', 'm.materialTypeID', '=', 't.typeID')
+                ->where('m.typeID', '=', $id)
+                ->get();
+            Cache::put($rname, $data, 86400);
+            return $data;
+        }
     }
 
     public static function getMaterialInfo(int $id)
     {
-        $data = DB::table('invTypes')
-            ->select('groupID', 'mass', 'volume', 'portionSize', 'typeName')
-            ->where('typeID', '=', $id)
-            ->first();
-        return $data;
+        $mname = "tax_m_" .$id;
+        if (Cache::has($mname)) {
+            return Cache::get($mname);
+        } else {
+            $data = DB::table('invTypes')
+                ->select('groupID', 'mass', 'volume', 'portionSize', 'typeName')
+                ->where('typeID', '=', $id)
+                ->first();
+            Cache::put($mname, $data, 86400);
+            return $data;
+        }
     }
 
     public static function getItemIdByName(string $name): int
     {
-        $cname = "r_" .$name;
+        $cname = "tax_item_" .$name;
         if (Cache::has($cname)) {
             return Cache::get($cname);
         } else {
