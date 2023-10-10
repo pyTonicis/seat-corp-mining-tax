@@ -131,7 +131,7 @@
                         <td>{{ number_format($character->quantity) }}</td>
                         <td>{{ number_format($character->volume) }}</td>
                         <td>{{ number_format($character->price) }}</td>
-                        <td>{{ number_format($character->tax - $character->event_tax) }}</td>
+                        <td>{{ number_format($character->tax) }}</td>
                         <td>{{ number_format($character->event_tax) }}</td>
                     </tr>
                 @endforeach

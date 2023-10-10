@@ -14,6 +14,10 @@ class CorpMiningStatistics extends Controller
     {
         $act_m = (date('m', time()));
         $act_y = (date('Y', time()) -1);
+        $total_units = 0;
+        $total_volume = 0;
+        $total_price = 0;
+        $total_tax = 0;
         $minings = DB::table('corp_mining_tax')
             ->select('*')
             ->where('month', '>=', 'month')
@@ -25,6 +29,13 @@ class CorpMiningStatistics extends Controller
             $total_price += $mining->price;
             $total_tax += $mining->tax;
         }
+        $top_ten_miners = DB::table('corp_mining_tax')
+            ->select('main_character_id', 'quantity', 'volume', 'price')
+            ->join('character_infos as c', 'main_character_id', '=', 'c.character_id')
+            ->groupBy('main_character_id')
+            ->orderBy('volume', 'desc')
+            ->limit(5)
+            ->get();
         $total_members = DB::table('corp_mining_tax')
             ->select('main_character_id')
             ->where('month', '>=', $act_m)
@@ -37,6 +48,7 @@ class CorpMiningStatistics extends Controller
             'total_price' => $total_price,
             'total_tax' => $total_tax,
             'total_members' => $total_members,
+            'top_ten_miners' => $top_ten_miners,
         ]);
     }
 }

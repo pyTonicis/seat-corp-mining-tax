@@ -25,6 +25,7 @@ return [
     'sub-home-level' => 'Mining Overview',
     'sub-settings' => 'Settings',
     'sub-mining-tax' => 'Mining Tax',
+    'sub-statistics' => 'Mining Statistics',
     'sub-corp-moon-mining' => 'Corp Moon Minings',
     'sub-tax-contracts' => 'Tax Contracts',
     'sub-thieves' => 'Moon Mining Thieves',

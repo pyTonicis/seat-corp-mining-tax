@@ -58,10 +58,41 @@
             <div class="info-box">
                 <span class="info-box-icon bg-blue elevation-1"><i class="fa fa-trophy"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Top Miners Ranking <small>(this month)</small></span>
+                    <span class="info-box-text">Total Mining Members <small>(last 12 month's)</small></span>
                     <span class="info-box-number">
                         {{ $total_members }}
                     </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Top 5 Miner's <small>(over all)</small></h3>
+                </div>
+                <div class="card-body">
+                    <table class="table" id="top_miners">
+                        <thead>
+                        <tr>
+                            <td>Character</td>
+                            <td>Mined Quantity (units)</td>
+                            <td>Mined Volume (m3)</td>
+                            <td>Mineral Price (isk)</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($top_ten_miners as $miner)
+                            <tr>
+                                <td>{{ $miner->name }}</td>
+                                <td>{{ number_format($mining->quantity) }}</td>
+                                <td>{{ number_format($mining->volume) }}</td>
+                                <td>{{ number_format($mining->price) }}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
