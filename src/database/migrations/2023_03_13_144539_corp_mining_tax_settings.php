@@ -48,6 +48,8 @@ class CorpMiningTaxSettings extends Migration
         DB::table('corp_mining_tax_settings')
             ->insert(['name' => 'contract_tag', 'value' => 'Mining Tax']);
         DB::table('corp_mining_tax_settings')
+            ->insert(['name' => 'contract_min', 'value' => '500000']);
+        DB::table('corp_mining_tax_settings')
             ->insert(['name' => 'contract_expire', 'value' => '7']);
         DB::table('corp_mining_tax_settings')
             ->insert(['name' => 'r64_rate', 'value' => '15']);

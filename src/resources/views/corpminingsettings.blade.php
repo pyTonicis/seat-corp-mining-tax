@@ -77,6 +77,12 @@
                                 <input id="contract_tag" name="contract_tag" type="text" class="form-control input-md" value="{{ $settings['contract_tag'] }}">
                             </div>
                         </div>
+                        <div class="form-group-row">
+                            <label class="col-md4 col-form-label" for="contract_min">Contract minimal tax value<small>(isk)</small></label>
+                            <div class="col-md-12">
+                                <input id="contract_min" name="contract_min" type="text" class="form-control input-md" value="{{ $settings['contract_min'] }}">
+                            </div>
+                        </div>
                         <div class="col-md-12">
                             <label class="col-md4 col-form-label" for="contract_expire">Expire in</label>
                             <input id="contract_expire" name="contract_expire" type="text" class="form-control input-md" value="{{ $settings['contract_expire'] }}">
@@ -209,7 +215,7 @@
                     </p>
                     <legend>Contract Settings</legend>
                     <p>
-                        Set Character Name of Contract issuer, contract expire time and a "tag" for Contract Description: e.g.: "Mining Tax"
+                        Set Character Name of Contract issuer, contract expire time and a "tag" for Contract Description: e.g.: "Mining Tax". In field "Contract minimal tax value" you can set a minimum amount of isk.
                     </p>
                     <legend>Mining Tax</legend>
                     <p>

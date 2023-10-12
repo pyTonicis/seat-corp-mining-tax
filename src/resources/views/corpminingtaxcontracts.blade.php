@@ -200,6 +200,7 @@
 
                 $('body').append('<textarea id="copied-data"></textarea>');
                 $('#copied-data').val(buffer);
+                $('#debx').innerText(buffer);
                 document.getElementById('copied-data').select();
                 document.execCommand('copy');
                 document.getElementById('copied-data').remove();

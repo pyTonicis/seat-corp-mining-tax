@@ -36,9 +36,9 @@ sudo -H -u www-data bash -c 'composer update pyTonicis/seat-corp-mining-tax'
 ```
 
 ## First Steps
-In the first step, please open the settings page and select your corporation under the global settings. All other settings such as tax rate can be set as desired.
+In the first step, please open the settings page and select your corporation at global settings. All other settings such as tax rate can be set as desired.
 
-If you want to use EvE Janice as a price provider, you need to apply for a valid API Key and enter it in the field "Price Provider API Key".
+If you want to use EvE Janice as a price provider, you need to apply for a valid API Key and enter it in the field "Price Provider API Key". 
 
 ## Screenshots
 

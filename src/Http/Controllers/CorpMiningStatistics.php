@@ -20,8 +20,6 @@ class CorpMiningStatistics extends Controller
         $total_tax = 0;
         $minings = DB::table('corp_mining_tax')
             ->select('*')
-            ->where('month', '>=', 'month')
-            ->where('year', '>=', 'year')
             ->get();
         foreach ($minings as $mining) {
             $total_units += $mining->quantity;
@@ -38,10 +36,13 @@ class CorpMiningStatistics extends Controller
             ->get();
         $total_members = DB::table('corp_mining_tax')
             ->select('main_character_id')
-            ->where('month', '>=', $act_m)
-            ->where('year', '>=', $act_y)
             ->orderBy('main_character_id')
             ->count();
+        DB::statement("SET SQL_MODE=''");
+        $events = DB::table('corp_mining_tax_event_minings')
+            ->selectRaw('sum(refined_price) as price')
+            ->first();
+        $total_event_price = $events->price;
         return view('corpminingtax::corpminingstatistics', [
             'total_quantity' => $total_units,
             'total_volume' => $total_volume,
@@ -49,6 +50,7 @@ class CorpMiningStatistics extends Controller
             'total_tax' => $total_tax,
             'total_members' => $total_members,
             'top_ten_miners' => $top_ten_miners,
+            'total_event_price' => $total_event_price,
         ]);
     }
 }
