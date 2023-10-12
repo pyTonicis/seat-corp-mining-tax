@@ -60,14 +60,14 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Total Mining Members</span>
                     <span class="info-box-number">
-                        {{ $total_members }}
+                        {{ count($total_members) }}
                     </span>
                 </div>
             </div>
         </div>
         <div class="col-md-4 col-sm-6">
             <div class="info-box">
-                <span class="info-box-icon bg-blue elevation-1"><i class="fa fa-money-bill-trend-up"></i></span>
+                <span class="info-box-icon bg-green elevation-1"><i class="fa fa-money-bill-wave"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Total Incoming from Event's</span>
                     <span class="info-box-number">
@@ -95,6 +95,37 @@
                         </thead>
                         <tbody>
                         @foreach($top_ten_miners as $miner)
+                            <tr>
+                                <td>{{ $miner->name }}</td>
+                                <td>{{ number_format($miner->quantity) }}</td>
+                                <td>{{ number_format($miner->volume) }}</td>
+                                <td>{{ number_format($miner->price) }}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Top 5 Miner's <small>(last month)</small></h3>
+                </div>
+                <div class="card-body">
+                    <table class="table" id="mining_report">
+                        <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Mined Quantity (units)</td>
+                            <td>Mined Volume (m3)</td>
+                            <td>Mineral Price (isk)</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($top_ten_miners_last as $miner)
                             <tr>
                                 <td>{{ $miner->name }}</td>
                                 <td>{{ number_format($miner->quantity) }}</td>

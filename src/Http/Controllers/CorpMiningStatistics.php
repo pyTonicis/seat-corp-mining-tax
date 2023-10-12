@@ -13,7 +13,7 @@ class CorpMiningStatistics extends Controller
     public function getHome()
     {
         $act_m = (date('m', time()));
-        $act_y = (date('Y', time()) -1);
+        $act_y = (date('Y', time()));
         $total_units = 0;
         $total_volume = 0;
         $total_price = 0;
@@ -28,17 +28,27 @@ class CorpMiningStatistics extends Controller
             $total_tax += $mining->tax;
         }
         DB::statement("SET SQL_MODE=''");
-        $top_ten_miners = DB::table('corp_mining_tax')
-            ->select('main_character_id', 'quantity', 'volume', 'price')
-            ->join('character_infos as c', 'main_character_id', '=', 'c.character_id')
-            ->groupBy('main_character_id')
-            ->orderBy('volume', 'desc')
+        $top_ten_miners = DB::table('corp_mining_tax as t')
+            ->select('t.main_character_id', 't.quantity', 't.volume', 't.price', 'c.name')
+            ->join('character_infos as c', 't.main_character_id', '=', 'c.character_id')
+            ->groupBy('t.main_character_id')
+            ->orderBy('t.volume', 'desc')
+            ->limit(5)
+            ->get();
+        DB::statement("SET SQL_MODE=''");
+        $top_ten_miners_last = DB::table('corp_mining_tax as t')
+            ->select('t.main_character_id', 't.quantity', 't.volume', 't.price', 'c.name')
+            ->join('character_infos as c', 't.main_character_id', '=', 'c.character_id')
+            ->groupBy('t.main_character_id')
+            ->orderBy('t.volume', 'desc')
+            ->where('month', '=', $act_m - 1)
+            ->where('year', '=', $act_y)
             ->limit(5)
             ->get();
         $total_members = DB::table('corp_mining_tax')
             ->select('main_character_id')
-            ->orderBy('main_character_id')
-            ->count();
+            ->groupBy('main_character_id')
+            ->get();
         DB::statement("SET SQL_MODE=''");
         $events = DB::table('corp_mining_tax_event_minings')
             ->selectRaw('sum(refined_price) as price')
@@ -51,6 +61,7 @@ class CorpMiningStatistics extends Controller
             'total_tax' => $total_tax,
             'total_members' => $total_members,
             'top_ten_miners' => $top_ten_miners,
+            'top_ten_miners_last' => $top_ten_miners_last,
             'total_event_price' => $total_event_price,
         ]);
     }
