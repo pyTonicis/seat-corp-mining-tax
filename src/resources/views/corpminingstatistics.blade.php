@@ -71,7 +71,7 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Total Incoming from Event's</span>
                     <span class="info-box-number">
-                        {{ $total_event_price }}
+                        {{ number_format($total_event_price) }}
                     </span>
                 </div>
             </div>
@@ -84,6 +84,26 @@
                     <h3 class="card-title">Top 5 Miner's <small>(over all)</small></h3>
                 </div>
                 <div class="card-body">
+                    <table class="table" id="mining_report">
+                        <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Mined Quantity (units)</td>
+                            <td>Mined Volume (m3)</td>
+                            <td>Mineral Price (isk)</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($top_ten_miners as $miner)
+                            <tr>
+                                <td>{{ $miner->name }}</td>
+                                <td>{{ number_format($miner->quantity) }}</td>
+                                <td>{{ number_format($miner->volume) }}</td>
+                                <td>{{ number_format($miner->price) }}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

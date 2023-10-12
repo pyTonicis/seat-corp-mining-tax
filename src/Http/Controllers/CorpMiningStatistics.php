@@ -27,6 +27,7 @@ class CorpMiningStatistics extends Controller
             $total_price += $mining->price;
             $total_tax += $mining->tax;
         }
+        DB::statement("SET SQL_MODE=''");
         $top_ten_miners = DB::table('corp_mining_tax')
             ->select('main_character_id', 'quantity', 'volume', 'price')
             ->join('character_infos as c', 'main_character_id', '=', 'c.character_id')

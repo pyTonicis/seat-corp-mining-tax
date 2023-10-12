@@ -20,9 +20,6 @@
             <td id="c_tax">{{ number_format($details->tax) }}</td>
             <td><button class="btn btn-sm copy-data" data-toggle="tooltip" data-export="c_tax"><i class="fas fa-copy"></i></button></td>
         </tr>
-    <tr>
-        <td><div id="debx">NO FUNCTION</div></td>
-    </tr>
     </tbody>
 </table>
 @endisset

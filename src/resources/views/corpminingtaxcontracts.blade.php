@@ -198,18 +198,25 @@
                 var currentRow = $(this).closest("tr");
                 var buffer = currentRow.find("td:eq(1)").html();
 
-                $('body').append('<textarea id="copied-data"></textarea>');
-                $('#copied-data').val(buffer);
-                $('#debx').innerText(buffer);
-                document.getElementById('copied-data').select();
-                document.execCommand('copy');
-                document.getElementById('copied-data').remove();
-
+                copytext(buffer, this);
                 $(this).attr('data-original-title', 'Copied !')
                     .tooltip('show');
 
                 $(this).attr('data-original-title', 'Copy to clipboard');
             });
         });
+
+        function copytext(text, context) {
+            var textField = document.createElement('textarea');
+            textField.innerText = text;
+            if (context) {
+                context.parentNode.insertBefore(textField, context);
+            } else {
+                document.body.appendChild(textField);
+            }
+            textField.select();
+            document.execCommand('copy');
+            textField.remove();
+        }
     </script>
 @endpush
