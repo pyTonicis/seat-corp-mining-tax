@@ -71,7 +71,7 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Total Incoming from Event's</span>
                     <span class="info-box-number">
-                        {{ number_format($total_event_price) }}
+                        {{ number_format($total_event_price) }} <small>ISK</small>
                     </span>
                 </div>
             </div>

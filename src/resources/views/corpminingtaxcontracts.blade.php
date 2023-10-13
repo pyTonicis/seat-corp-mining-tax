@@ -12,6 +12,41 @@
             {{ $status }}
         </div>
     @endisset
+    @isset($outstanding_contracts)
+    <div class="card">
+        <div class="card-header">
+            <h3>Outstanding Tax</h3>
+        </div>
+        <div class="card-body">
+            <table class="table" id="outstanding">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Contract</th>
+                    <th>Character</th>
+                    <th>Tax ISK</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                    <th>Hidden</th>
+                </tr>
+                </thead>
+                <tbody>
+                    @foreach($outstanding_contracts as $contract)
+                        <tr>
+                            <td>{{ $contract->year }}-{{ $contract->month }}</td>
+                            <td>{{ $contract->contractTitle }}</td>
+                            <td>{{ $contract->character_name}}</td>
+                            <td><b>{{ number_format($contract->tax) }}</b></td>
+                            <td id="s_{{ $contract->id }}"><h5><span class="badge badge-danger">outstanding</span></h5></td>
+                            <td></td>
+                            <td>{{ $contract->contractStatus }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+    @endisset
     <div class="card">
         <div class="card-header">
             <h3>Corporation Tax Contracts</h3>
@@ -103,6 +138,9 @@
                         "visible": false
                     }
                 ]
+            });
+
+            table = $('#outstanding').DataTable({
             });
 
             $('.status-dropdown').on('change', function (e) {

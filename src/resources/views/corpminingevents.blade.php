@@ -44,6 +44,10 @@
                         <label for="taxrate">Tax Rate %</label>
                         <input type="number" class="form-control" id="taxrate" name="taxrate">
                     </div>
+                    <div class="col">
+                        <label for="reversed">Reversed Tax <small>(deduct event tax from tax)</small></label>
+                        <input id="reversed" name="reversed" type="checkbox" class="form-check-input" value="true">
+                    </div>
                 </div>
                 <div class="form-row">
                     <p></p>

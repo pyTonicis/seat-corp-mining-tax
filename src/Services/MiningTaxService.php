@@ -194,7 +194,7 @@ class MiningTaxService
                 }
             }
         /*
-         *  Remove Event Minings from Tax Wallet
+         *  Calculate Event Minings Tax
          */
         $miningEventResult = $eventService->createEventMiningTax($month, $year);
 
@@ -218,7 +218,8 @@ class MiningTaxService
                             else
                                 $price = EveJaniceHelper::getItemPriceByTypeId($key) * $value;
                         }
-                        $miningResult->characterData[$characterId]->addEventTax(($price*9/100));
+                        $tax_rate = $eventService->getEventMiningTaxRate($eventData->event_id);
+                        $miningResult->characterData[$characterId]->addEventTax($price*($tax_rate/100));
                     }
                 //}
             }

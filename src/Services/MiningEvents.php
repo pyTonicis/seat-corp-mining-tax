@@ -53,4 +53,13 @@ class MiningEvents
         }
         return $miningResult;
     }
+
+    public function getEventMiningTaxRate(int $event) : int
+    {
+        $data = DB::table('corp_mining_tax_events')
+            ->select('event_tax')
+            ->where('id', '=', $event)
+            ->first();
+        return $data->event_tax;
+    }
 }

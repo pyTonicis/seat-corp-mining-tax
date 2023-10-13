@@ -61,6 +61,23 @@ class Contracts
         return $contract_status->status;
     }
 
+    public function setContractIds()
+    {
+        $contracts = DB::table('corp_mining_tax_contracts')
+            ->orderBy('character_name')
+            ->get();
+        foreach ($contracts as $contract) {
+            if ($contract->contractId == 0) {
+                $contract_id = $this->searchContractDetails($contract->contractTitle);
+                if ($contract_id != 0) {
+                    DB::table('corp_mining_tax_contracts')
+                        ->update(['contractId' => $contract_id])
+                        ->where('contractTitle', '=', $contract->contractTitle);
+                }
+            }
+        }
+    }
+
     public function updateContractStatus(int $corp_id, int $month, int $year)
     {
         $contracts = DB::table('corp_mining_tax_contracts')

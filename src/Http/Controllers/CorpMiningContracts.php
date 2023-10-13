@@ -2,6 +2,7 @@
 
 namespace pyTonicis\Seat\SeatCorpMiningTax\Http\Controllers;
 
+use pyTonicis\Seat\SeatCorpMiningTax\Services\Contracts;
 use Seat\Web\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -13,10 +14,24 @@ class CorpMiningContracts extends Controller
 {
     public function getHome()
     {
+        //$act_m = (date('m', time()));
+        //$act_y = (date('Y', time()));
+        // lookup for contract IDs
+        $ContractService = new Contracts();
+        $ContractService->setContractIds();
         $contracts = DB::table('corp_mining_tax_contracts')
             ->orderBy('character_name')
             ->get();
-        return view('corpminingtax::corpminingtaxcontracts', ['contracts' => $contracts]);
+        // Check for outstanding Contracts
+        $outstanding_contracts = DB::table('corp_mining_tax_contracts')
+            ->where('contract_status', '=', 4)
+            ->orderBy('character_name')
+            ->get();
+        if (is_null($outstanding_contracts)) {
+            return view('corpminingtax::corpminingtaxcontracts', ['contracts' => $contracts]);
+        } else {
+            return view('corpminingtax::corpminingtaxcontracts', ['contracts' => $contracts, 'outstanding_contracts' => $outstanding_contracts,]);
+        }
     }
 
     public function getDetails($cid = 0)
