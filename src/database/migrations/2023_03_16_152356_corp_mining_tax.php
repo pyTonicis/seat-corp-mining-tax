@@ -17,6 +17,7 @@ class CorpMiningTax extends Migration
         Schema::create('corp_mining_tax', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('main_character_id');
+            $table->integer('corporation_id');
             $table->integer('month');
             $table->integer('year');
             $table->biginteger('quantity');
@@ -25,20 +26,29 @@ class CorpMiningTax extends Migration
             $table->biginteger('tax');
             $table->biginteger('event_tax');
             $table->integer('status');
-            $table->biginteger('contractId');
             $table->timestamps();
         });
 
 
         /*
-         * Install Cron Job for tax update
+         * Install Cron Job for tax update every hour
          */
-        $schedule = new Schedule();
-        $schedule->command = "tax:update";
-        $schedule->expression = "0 * * * *";
-        $schedule->allow_overlap = false;
-        $schedule->allow_maintenance = false;
-        $schedule->save();
+        $tax_update = new Schedule();
+        $tax_update->command = "tax:update";
+        $tax_update->expression = "2 * * * *";
+        $tax_update->allow_overlap = false;
+        $tax_update->allow_maintenance = false;
+        $tax_update->save();
+
+        /*
+         * Install Cron Job to create tax contracts every month
+         */
+        $tax_contracts = new Schedule();
+        $tax_contracts->command = "tax:generator";
+        $tax_contracts->expression = "1 1 2 * *";
+        $tax_contracts->allow_overlap = false;
+        $tax_contracts->allow_maintenance = false;
+        $tax_contracts->save();
     }
 
     /**

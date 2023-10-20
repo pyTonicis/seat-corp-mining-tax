@@ -45,14 +45,19 @@
                         <input type="number" class="form-control" id="taxrate" name="taxrate">
                     </div>
                     <div class="col">
-                        <label for="reversed">Reversed Tax <small>(deduct event tax from tax)</small></label>
-                        <input id="reversed" name="reversed" type="checkbox" class="form-check-input" value="true">
+                        <label for="valuation">Valuation</label>
+                        <select class="custom-select mr-sm-2" name="valuation" id="valuation">
+                            <option value="less">less tax</option>
+                            <option value="plus">plus tax</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-row">
-                    <p></p>
+                    <bolt><small>*Valuation</small> less tax = deduct from tax plus tax = plus event tax to tax</bolt>
                 </div>
-                <button type="submit" class="btn btn-primary" id="send">Add Event</button>
+                <div class="form-row">
+                    <button type="submit" class="btn btn-primary" id="send">Add Event</button>
+                </div>
             </form>
         </div>
     </div>

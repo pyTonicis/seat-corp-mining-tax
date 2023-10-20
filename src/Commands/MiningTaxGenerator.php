@@ -9,7 +9,7 @@ class MiningTaxGenerator extends Command
 {
     protected $signature = 'tax:generator {--F|force} {--N|now}  {year?} {month?}';
 
-    protected $description = 'This create monthly mining tax contracts';
+    protected $description = 'This creates the monthly mining tax contracts';
 
     public function handle()
     {

@@ -151,11 +151,11 @@
                             <div class="form-group-row">
                                 <div class="form-check form-check-inline">
                                     <input id="taxes_moon" name="taxes_moon" type="checkbox" class="form-check-input" value="true">
-                                    <label class="form-check-label" for="taxes_moon">Moon Ore</label>
+                                    <label class="form-check-label" for="taxes_moon">All Moon Ore</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input id="taxes_corp_moon" name="taxes_corp_moon" type="checkbox" class="form-check-input" value="true">
-                                    <label class="form-check-label" for="taxes-corp-moon">Corp Moon Ore</label>
+                                    <label class="form-check-label" for="taxes-corp-moon">Only Corp Moon Ore</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input id="taxes_ore" name="taxes_ore" type="checkbox" class="form-check-input" value="true">
@@ -199,7 +199,7 @@
                     </p>
                     <h5>Ore Refining Rate</h5>
                     <p>
-                        Set the maximum refining amount for your members. With implantat, full skill and a rigged Tatara it is 90.6%
+                        Set the maximum refining amount for your members. With implantats, full skilled and a T2 rigged Tatara it is 90.6%
                     </p>
                     <h5>Ore Valuation Price</h5>
                     <p>
@@ -207,26 +207,26 @@
                     </p>
                     <h5>Price Provider</h5>
                     <p>
-                        Chose a price provider to get ore/mineral prices.
+                        Chose a price provider to get ore/mineral prices. If you want to use Janice, you need a valid api-key (in Field Price Provider API Key).
                     </p>
                     <h5>Price Modifier</h5>
                     <p>
-                        Modify base cost of the ore/minerals to adjust inflation/transport costs. Normal it is 100%.
+                        Modify base cost of the ore/minerals to adjust inflation/logistic costs. Normal it is 100%.
                     </p>
                     <legend>Contract Settings</legend>
                     <p>
-                        Set Character Name of Contract issuer, contract expire time and a "tag" for Contract Description: e.g.: "Mining Tax". In field "Contract minimal tax value" you can set a minimum amount of isk.
+                        Set Character Name of Contract issuer, contract expire time and a "tag" for Contract Description: e.g.: "Mining Tax". In field "Contract minimal tax value" you can set a minimum amount of isk to create a Contract.
                     </p>
                     <legend>Mining Tax</legend>
                     <p>
-                        Set Tax Rate for different Ore Groups
+                        Set Tax Rate for different Ore Groups.
                     </p>
                     <legend>Tax Pre-Selector</legend>
                     <p>
                         Select Tax Filters:
                         <ul>
-                        <li>Moon Ore = Taxes all Moon Minings</li>
-                        <li>Corp Moon Ore = Taxes only Corporation Moon's</li>
+                        <li>All Moon Ore = Taxes all Moon Minings</li>
+                        <li>Only Corp Moon Ore = Taxes only Corporation Moon Minings</li>
                         <li>Ore = Taxes all normal Ore</li>
                         <li>Ice = Taxes all Ice Ore</li>
                         <li>Gas = Taxes all Gas Minings</li>

@@ -24,7 +24,7 @@ class CorpMiningContracts extends Controller
             ->get();
         // Check for outstanding Contracts
         $outstanding_contracts = DB::table('corp_mining_tax_contracts')
-            ->where('contract_status', '=', 4)
+            ->where('contractStatus', '=', 4)
             ->orderBy('character_name')
             ->get();
         if (is_null($outstanding_contracts)) {

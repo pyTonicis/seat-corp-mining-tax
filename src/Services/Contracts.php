@@ -26,7 +26,7 @@ class Contracts
                         DB::table('corp_mining_tax_contracts')
                             ->updateOrInsert(['character_id' => $t->main_character_id, 'month' => $t->month, 'year' => $t->year, 'tax' => $t->tax],
                                 ['contractId' => 0, 'contractIssuer' => CharacterHelper::getCharacterIdByName($settings['contract_issuer']), 'contractTitle' => $c_title,
-                                    'contractData' => "None", 'contractStatus' => 1, 'character_name' => CharacterHelper::getCharacterName($t->main_character_id)]);
+                                    'contractData' => "None", 'contractStatus' => 1, 'character_name' => CharacterHelper::getCharacterName($t->main_character_id), 'corporation_id' => $t->corporation_id]);
                     }
             }
         }
@@ -43,7 +43,7 @@ class Contracts
     {
         $contract = DB::table('contract_details')
             ->select('contract_id', 'title')
-            ->whereLike('title', $title)
+            ->where('title', '=', $title)
             ->first();
         if (!is_null($contract)) {
             return $contract->contract_id;
@@ -64,7 +64,7 @@ class Contracts
     public function setContractIds()
     {
         $contracts = DB::table('corp_mining_tax_contracts')
-            ->orderBy('character_name')
+            ->select('*')
             ->get();
         foreach ($contracts as $contract) {
             if ($contract->contractId == 0) {
@@ -72,7 +72,7 @@ class Contracts
                 if ($contract_id != 0) {
                     DB::table('corp_mining_tax_contracts')
                         ->update(['contractId' => $contract_id])
-                        ->where('contractTitle', '=', $contract->contractTitle);
+                        ->where('id', '=', $contract->id);
                 }
             }
         }

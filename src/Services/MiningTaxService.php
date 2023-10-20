@@ -202,26 +202,22 @@ class MiningTaxService
             $characterId = CharacterHelper::getCharacterIdByName($eventData->character_name);
             if ($miningResult->hasCharacterData($characterId)) {
 
-                //if ($miningResult->characterData[$characterId]->hasCharacterMining($eventData->type_id)) {
-                    //$material_info = Reprocessing::getMaterialInfo($eventData->type_id);
-                    //$invGroup = $material_info->groupID;
-                    foreach (Reprocessing::ReprocessOreByTypeId($eventData->type_id, $eventData->quantity, (float)($settings['ore_refining_rate'] / 100)) as $key => $value) {
+                foreach (Reprocessing::ReprocessOreByTypeId($eventData->type_id, $eventData->quantity, (float)($settings['ore_refining_rate'] / 100)) as $key => $value) {
 
-                        if ($settings['ore_valuation_price'] == 'Ore Price') {
-                            if ($settings['price_provider'] == 'Eve Market')
-                                $price = EveMarketHelper::getItemPriceById($eventData->type_id) * $eventData->quantity;
-                            else
-                                $price = EveJaniceHelper::getItemPriceByTypeId($eventData->type_id) * $eventData->quantity;
-                        } else {
-                            if ($settings['price_provider'] == 'Eve Market')
-                                $price = EveMarketHelper::getItemPriceById($key) * $value;
-                            else
-                                $price = EveJaniceHelper::getItemPriceByTypeId($key) * $value;
-                        }
-                        $tax_rate = $eventService->getEventMiningTaxRate($eventData->event_id);
-                        $miningResult->characterData[$characterId]->addEventTax($price*($tax_rate/100));
+                    if ($settings['ore_valuation_price'] == 'Ore Price') {
+                        if ($settings['price_provider'] == 'Eve Market')
+                            $price = EveMarketHelper::getItemPriceById($eventData->type_id) * $eventData->quantity;
+                        else
+                            $price = EveJaniceHelper::getItemPriceByTypeId($eventData->type_id) * $eventData->quantity;
+                    } else {
+                        if ($settings['price_provider'] == 'Eve Market')
+                            $price = EveMarketHelper::getItemPriceById($key) * $value;
+                        else
+                            $price = EveJaniceHelper::getItemPriceByTypeId($key) * $value;
                     }
-                //}
+                    $tax_rate = $eventService->getEventMiningTaxRate($eventData->event_id);
+                    $miningResult->characterData[$characterId]->addEventTax($price*($tax_rate/100));
+                }
             }
         }
         return $miningResult;

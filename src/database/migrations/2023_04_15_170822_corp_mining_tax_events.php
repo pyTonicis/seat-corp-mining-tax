@@ -16,6 +16,7 @@ class CorpMiningTaxEvents extends Migration
             $table->datetime('event_stop');
             $table->integer('event_duration');
             $table->integer('event_tax');
+            $table->string('event_valuation');
             $table->integer('event_status');
             $table->timestamps();
         });

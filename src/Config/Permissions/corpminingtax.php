@@ -3,17 +3,17 @@
 
 return [
     'view' => [
-        'label' => 'Grants access to overview and reprocessing tool',
-        'description' => 'This permission is needed if you wanna see the dashboard and use reprocessing',
+        'label' => 'Member',
+        'description' => 'Members have access to Overview and Reprocessing Tool',
     ],
 
     'manager' => [
-        'label' => 'Grants access to manage Contracts and Tax Page',
-        'description' => 'This permission is needed to manage tax contracts',
+        'label' => 'Manager',
+        'description' => 'This permission is for Tax Managers with access to Contracts and TAX Calculator',
     ],
 
     'settings' => [
-        'label' => 'Garants full access to Mininx Tax Plugin',
-        'description' => 'Allows Admins to edit settings'
+        'label' => 'Admin',
+        'description' => 'Allow Admins to all settings and pages'
     ],
 ];
