@@ -89,7 +89,11 @@
                     <td>{{ number_format($character->quantity) }}</td>
                     <td>{{ number_format($character->volume) }}</td>
                     <td>{{ number_format($character->priceSummary) }}</td>
-                    <td>{{ number_format($character->tax - $character->event_tax) }}</td>
+                    @if($character->tax - $character->event_tax > 0)
+                        <td>{{ number_format($character->tax - $character->event_tax) }}</td>
+                    @else
+                        <td>0</td>
+                    @endif
                     <td>{{ number_format($character->event_tax) }}</td>
                 </tr>
             @endforeach

@@ -5,25 +5,19 @@ namespace pyTonicis\Seat\SeatCorpMiningTax\Helpers;
 use Illuminate\Support\Facades\Cache;
 use pyTonicis\Seat\SeatCorpMiningTax\Services\SettingService;
 
+/**
+ * Class EveJaniceHelper
+ */
 class EveJaniceHelper
 {
     /**
+     * get the price by given type_id
      * @param int $typeId
      * @return mixed|null
      */
     public static function getAllItemPrices(int $typeId)
     {
-
-        $cacheId = "tax_" . $typeId;
-
-        if (Cache::has($cacheId)) {
-            $prices = Cache::get($cacheId);
-        } else {
-            $prices = self::doCall($typeId);
-            Cache::put($cacheId, $prices, 3600);
-        }
-
-        return $prices;
+        return self::doCall($typeId);
     }
 
     /**
@@ -32,7 +26,15 @@ class EveJaniceHelper
      */
     public static function getItemPriceByTypeId(int $typeId): int
     {
-        return self::getAllItemPrices($typeId)["immediatePrices"]["buyPrice"];
+        $cacheId = "market_" . $typeId;
+
+        if (Cache::has($cacheId)) {
+            $price = Cache::get($cacheId);
+        } else {
+            $price = self::getAllItemPrices($typeId)["immediatePrices"]["buyPrice"];
+            Cache::put($cacheId, $price, 3600);
+        }
+        return $price;
     }
 
     /**

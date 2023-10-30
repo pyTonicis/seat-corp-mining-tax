@@ -18,11 +18,9 @@ class CorpMiningOverviewController extends Controller
     {
         $character = auth()->user()->main_character['character_id'];
         $characters = CharacterHelper::getLinkedCharacters($character);
-        $linked_characters_count = 5;
         $labels = array();
         $act_m = (date('m', time()) +1);
         $act_y = (date('Y', time()) -1);
-        $start = ($act_y-1) . "-". $act_m;
         for ($i = 0; $i < 12; $i++) {
             $datum = $act_y . "-". $act_m;
             array_push($labels, date('Y-m', strtotime($act_y . "-" . $act_m)));

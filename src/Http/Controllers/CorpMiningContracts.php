@@ -14,8 +14,6 @@ class CorpMiningContracts extends Controller
 {
     public function getHome()
     {
-        //$act_m = (date('m', time()));
-        //$act_y = (date('Y', time()));
         // lookup for contract IDs
         $ContractService = new Contracts();
         $ContractService->setContractIds();

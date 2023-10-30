@@ -22,7 +22,7 @@ class Contracts
             foreach ($taxes as $t) {
 
                     if ($t->tax >= $settings['contract_min']) {
-                        $c_title = $settings['contract_tag'] . " " . $t->year . "-" . $t->month . "  (" . $this->generate_string($this->permitted_chars) . ")";
+                        $c_title = $settings['contract_tag'] . " " . $t->year . "-" . $t->month . " (" . $this->generate_string($this->permitted_chars) . ")";
                         DB::table('corp_mining_tax_contracts')
                             ->updateOrInsert(['character_id' => $t->main_character_id, 'month' => $t->month, 'year' => $t->year, 'tax' => $t->tax],
                                 ['contractId' => 0, 'contractIssuer' => CharacterHelper::getCharacterIdByName($settings['contract_issuer']), 'contractTitle' => $c_title,
@@ -43,7 +43,7 @@ class Contracts
     {
         $contract = DB::table('contract_details')
             ->select('contract_id', 'title')
-            ->where('title', '=', $title)
+            ->where('title', 'LIKE', "%". $title ."%")
             ->first();
         if (!is_null($contract)) {
             return $contract->contract_id;
@@ -71,8 +71,8 @@ class Contracts
                 $contract_id = $this->searchContractDetails($contract->contractTitle);
                 if ($contract_id != 0) {
                     DB::table('corp_mining_tax_contracts')
-                        ->update(['contractId' => $contract_id])
-                        ->where('id', '=', $contract->id);
+                        ->where('id', '=', (int)$contract->id)
+                        ->update(['contractId' => $contract_id]);
                 }
             }
         }

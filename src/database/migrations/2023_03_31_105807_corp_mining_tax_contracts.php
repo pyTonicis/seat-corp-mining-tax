@@ -16,11 +16,11 @@ class CorpMiningTaxContracts extends Migration
     {
         Schema::create('corp_mining_tax_contracts', function (Blueprint $table) {
             $table->increments('id');
-            $table->biginteger('character_id');
+            $table->integer('character_id');
             $table->integer('corporation_id');
             $table->string('character_name');
-            $table->biginteger('contractId');
-            $table->biginteger('contractIssuer');
+            $table->integer('contractId');
+            $table->integer('contractIssuer');
             $table->string('contractTitle');
             $table->text('contractData');
             $table->integer('contractStatus');

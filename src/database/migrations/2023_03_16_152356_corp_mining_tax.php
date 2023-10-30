@@ -41,7 +41,7 @@ class CorpMiningTax extends Migration
         $tax_update->save();
 
         /*
-         * Install Cron Job to create tax contracts every month
+         * Install Cron Job to create tax contracts every month at 2.nd day
          */
         $tax_contracts = new Schedule();
         $tax_contracts->command = "tax:generator";

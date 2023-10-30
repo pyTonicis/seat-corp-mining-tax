@@ -4,13 +4,16 @@ namespace pyTonicis\Seat\SeatCorpMiningTax\Helpers;
 
 use Illuminate\Support\Facades\DB;
 
-/*
+/**
  * Class CharacterHelper
- *
- * @package H4zz4rdDev\Seat\SeatCorpMiningTax\Helpers
  */
 class CharacterHelper {
 
+    /**
+     * return the MainCharacter for any linked characters
+     * @param int $character_id
+     * @return mixed
+     */
     public static function getMainCharacterCharacter (int $character_id) : object {
 
         return DB::table('refresh_tokens as rt')
@@ -19,6 +22,10 @@ class CharacterHelper {
             ->first();
     }
 
+    /**
+     * return a list of MainCharacters
+     * @return mixed
+     */
     public static function getMainCharacters() {
 
         DB::statement("SET SQL_MODE=''");
@@ -30,6 +37,11 @@ class CharacterHelper {
             ->get();
     }
 
+    /**
+     * returns the character name by a given character id
+     * @param int $character_id
+     * @return string
+     */
     public static function getCharacterName(int $character_id) {
 
         $data = DB::table('character_infos')
@@ -42,6 +54,11 @@ class CharacterHelper {
             return "unknown";
     }
 
+    /**
+     * returns the character id by a given character name
+     * @param string $name
+     * @return mixed
+     */
     public static function getCharacterIdByName(string $name) {
         $data = DB::table('character_infos')
             ->select('character_id', 'name')
@@ -50,6 +67,11 @@ class CharacterHelper {
         return $data->character_id;
     }
 
+    /**
+     * return a list of linked characters (in seat) by a given character id
+     * @param int $character_id
+     * @return mixed
+     */
     public static function getLinkedCharacters(int $character_id)
     {
        $result = DB::table('refresh_tokens')

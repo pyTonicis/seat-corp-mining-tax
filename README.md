@@ -1,6 +1,6 @@
 [![Latest Stable Version](http://img.shields.io/packagist/v/pytonicis/seat-corp-mining-tax.svg?style=flat-square)]()
 ![](https://img.shields.io/badge/SeAT-4.0.x-blueviolet?style=flat-square)
-![](https://img.shields.io/github/license/H4zz4rdDev/seat-buyback?style=flat-square)
+![](https://img.shields.io/badge/License-GPLv3-blue.svg)
 
 # Seat Corporation Mining Tax
 
@@ -31,7 +31,7 @@ Then , run `docker-compose up -d` to take effect.
 
 ### For non-Docker Update
 
-```
+```php
 sudo -H -u www-data bash -c 'php artisan down'
 sudo -H -u www-data bash -c 'composer update pyTonicis/seat-corp-mining-tax'
 sudo -H -u www-data bash -c 'php artisan seat:cache:clear'
@@ -45,6 +45,14 @@ In the first step, please open the settings page and select your corporation at 
 For best tax result, u should set "Ore Valuation Price" to "Mineral Price". The Prices for minerals  are inaccurate.
 
 If you want to use EvE Janice as a price provider, you need to apply for a valid API Key and enter it in the field "Price Provider API Key" and select "Eve Janice as price provider. 
+
+## Fill Database with mining data
+
+If you want to get some data from past months, you can generate tax data at console by hand eg.:
+
+```php
+sudo -H -u www-data bash -c 'php artisan tax:update year=2023 month=1
+```
 
 ## Permissions
 
@@ -67,7 +75,7 @@ Allows full access
 If you need help, feel free to contact me via Discord: ```smasherjobs```
 ## Donations
 
-If you would like to support my project, feel free to donate to Smasher Jobs (in-game).
+If you would like to support my project, feel free to donate isk or plex to ```Smasher Jobs``` (in-game).
 
 ## Screenshots
 

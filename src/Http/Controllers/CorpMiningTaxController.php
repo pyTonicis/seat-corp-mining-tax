@@ -4,6 +4,7 @@ namespace pyTonicis\Seat\SeatCorpMiningTax\Http\Controllers;
 
 use pyTonicis\Seat\SeatCorpMiningTax\Helpers\CharacterHelper;
 use pyTonicis\Seat\SeatCorpMiningTax\Services\MiningTaxService;
+use pyTonicis\Seat\SeatCorpMiningTax\Services\SettingService;
 use Seat\Web\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -19,12 +20,15 @@ class CorpMiningTaxController extends Controller
 
     private $miningData;
 
+    private $settingService;
+
     /**
      * @param MiningTaxService $miningTaxService
      */
     public function __construct(MiningTaxService $miningTaxService)
     {
         $this->miningTaxService = $miningTaxService;
+        $this->settingService = new SettingService();
     }
 
     /**
@@ -37,6 +41,7 @@ class CorpMiningTaxController extends Controller
             ->join('character_infos as c', 'main_character_id', '=', 'c.character_id')
             ->where('year', date('Y', time()))
             ->where('month', date('m', time()))
+            ->where('corporation_id', '=', $this->settingService->getValue('corporation_id'))
             ->orderBy('c.name')
             ->get();
         $total_tax = 0;
