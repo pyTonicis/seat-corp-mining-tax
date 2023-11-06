@@ -49,6 +49,16 @@ class CorpMiningTax extends Migration
         $tax_contracts->allow_overlap = false;
         $tax_contracts->allow_maintenance = false;
         $tax_contracts->save();
+
+        /*
+         * Install Cron Job for contract status update every hour
+         */
+        $tax_contracts = new Schedule();
+        $tax_contracts->command = "tax:contracts";
+        $tax_contracts->expression = "2 * * * *";
+        $tax_contracts->allow_overlap = false;
+        $tax_contracts->allow_maintenance = false;
+        $tax_contracts->save();
     }
 
     /**

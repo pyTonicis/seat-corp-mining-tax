@@ -14,9 +14,6 @@ class CorpMiningContracts extends Controller
 {
     public function getHome()
     {
-        // lookup for contract IDs
-        $ContractService = new Contracts();
-        $ContractService->setContractIds();
         $contracts = DB::table('corp_mining_tax_contracts')
             ->orderBy('character_name')
             ->get();
