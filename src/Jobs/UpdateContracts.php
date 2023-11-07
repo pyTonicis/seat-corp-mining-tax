@@ -19,8 +19,11 @@ class UpdateContracts implements ShouldQueue
 
     private $settingService;
 
-    public function __construct($force, $year, $month)
+    private $force;
+
+    public function __construct($force)
     {
+        $this->force = $force;
         $this->settingService = new SettingService();
         $this->contractService = new Contracts();
     }
@@ -32,7 +35,6 @@ class UpdateContracts implements ShouldQueue
 
     public function handle()
     {
-        $settings = $this->settingService->getAll();
         $this->contractService->setContractIds($this->settingService->getValue('corporation_id'));
         $this->contractService->updateContractStatus($this->settingService->getValue('corporation_id'));
     }
