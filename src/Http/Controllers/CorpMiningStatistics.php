@@ -27,7 +27,7 @@ class CorpMiningStatistics extends Controller
         DB::statement("SET SQL_MODE=''");
         $total_minings = DB::table('corp_mining_tax')
             ->selectRaw('sum(quantity) as total_quantity, sum(volume) as total_volume, sum(price) as total_price, sum(tax) as total_tax')
-            ->get();
+            ->first();
         $total_members = DB::table('corp_mining_tax')
             ->select('main_character_id')
             ->groupBy('main_character_id')
