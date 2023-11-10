@@ -54,7 +54,10 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @php($i = 0)
                     @foreach ($d->minings as $mining)
+                        @if($i++ > 9) @continue
+                        @endif
                         <tr>
                         <td>{{ $mining->date }}</td>
                         <td>{{ number_format($mining->get_mined_isk()) }}</td>
