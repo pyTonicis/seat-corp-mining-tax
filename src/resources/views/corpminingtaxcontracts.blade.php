@@ -26,8 +26,6 @@
                     <th>Character</th>
                     <th>Tax ISK</th>
                     <th>Status</th>
-                    <th>Actions</th>
-                    <th>Hidden</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -38,8 +36,6 @@
                             <td>{{ $contract->character_name}}</td>
                             <td><b>{{ number_format($contract->tax) }}</b></td>
                             <td id="s_{{ $contract->id }}"><h5><span class="badge badge-danger">outstanding</span></h5></td>
-                            <td></td>
-                            <td>{{ $contract->contractStatus }}</td>
                         </tr>
                     @endforeach
                 </tbody>

@@ -38,7 +38,7 @@ class CorpMiningStatistics extends Controller
             ->selectRaw('sum(t.quantity) as q, sum(t.volume) as volume, sum(t.price) as price, c.name as name')
             ->join('character_infos as c', 't.main_character_id', '=', 'c.character_id')
             ->groupBy('t.main_character_id')
-            ->orderBy('t.q', 'desc')
+            ->orderBy('q', 'desc')
             ->limit(5)
             ->get();
 
@@ -49,7 +49,7 @@ class CorpMiningStatistics extends Controller
             ->where('month', '=', $act_m -1)
             ->where('year', '=', $act_y)
             ->groupBy('t.main_character_id')
-            ->orderBy('t.q', 'desc')
+            ->orderBy('q', 'desc')
             ->limit(5)
             ->get();
 

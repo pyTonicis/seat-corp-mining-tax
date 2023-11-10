@@ -150,16 +150,14 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Corporation Moon Mining's performance last 12 month`s <small>(only Corp Moons)</small></h3>
-                    </div>
-                    <div class="card-body">
-                        <div style="height: 350px">
-                            <canvas id="mining_chart_corp_moons"></canvas>
-                        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Corporation Moon Mining's performance last 12 month`s <small>(only Corp Moons)</small></h3>
+                </div>
+                <div class="card-body">
+                    <div style="height: 350px">
+                        <canvas id="mining_chart_corp_moons"></canvas>
                     </div>
                 </div>
             </div>
@@ -175,7 +173,7 @@
             datasets: [
                 {
                     label: 'Volume m³',
-                    data: @json($chart_data1),
+                    data: @json($chart_data_over_all),
                     backgroundColor: '#acc239',
                     borderColor: '#acc239',
                     borderWidth: 1
@@ -208,9 +206,9 @@
                 datasets: [
                     {
                         label: 'Volume m³',
-                        data: @json($chart_data2),
-                        backgroundColor: '#acc239',
-                        borderColor: '#acc239',
+                        data: @json($chart_data_moon_minings),
+                        backgroundColor: '#ffff00',
+                        borderColor: '#ffff00',
                         borderWidth: 1
                     },
                 ]
