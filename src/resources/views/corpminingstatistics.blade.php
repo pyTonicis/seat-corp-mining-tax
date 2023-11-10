@@ -25,7 +25,7 @@
                 <div class="info-box-content">
                     <span class="info-box-text">Total Mined Volume</span>
                     <span class="info-box-number">
-                        {{ number_format(total_minings->total_volume) }} <small>m³</small>
+                        {{ number_format($total_minings->total_volume) }} <small>m³</small>
                     </span>
                 </div>
             </div>
@@ -171,11 +171,11 @@
         $(document).ready(function () {
 
         const data = {
-            labels: @json($chart_data_over_all->date),
+            labels: @json($chart_labels),
             datasets: [
                 {
                     label: 'Volume m³',
-                    data: @json($chart_data_over_all->volume),
+                    data: @json($chart_data1),
                     backgroundColor: '#acc239',
                     borderColor: '#acc239',
                     borderWidth: 1
@@ -204,11 +204,11 @@
         new Chart(document.getElementById('mining_chart_over_all').getContext('2d'), config);
 
             const data2 = {
-                labels: @json($chart_data_moon_minings->date),
+                labels: @json($chart_labels),
                 datasets: [
                     {
                         label: 'Volume m³',
-                        data: @json($chart_data_moon_minings->volume),
+                        data: @json($chart_data2),
                         backgroundColor: '#acc239',
                         borderColor: '#acc239',
                         borderWidth: 1

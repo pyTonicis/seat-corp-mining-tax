@@ -75,14 +75,27 @@ class CorpMiningStatistics extends Controller
             ->limit(12)
             ->get();
 
+        $chart_labels = [];
+        $chart_data1 = [];
+        $chart_data2 = [];
+
+        foreach($chart_data_over_all as $data) {
+            array_push($chart_labels, $data->date);
+            array_push($chart_data1, $data->volume);
+        }
+        foreach($chart_data_moon_minings as $data) {
+            array_push($chart_data2, $data->volume);
+        }
+
         return view('corpminingtax::corpminingstatistics', [
             'total_minings' => $total_minings,
             'total_members' => $total_members,
             'total_event_price' => $events->price,
             'top_ten_miners' => $top_ten_miners,
             'top_ten_miners_last_month' => $top_ten_miners_last_month,
-            'chart_data_over_all' => $chart_data_over_all,
-            'chart_data_moon_minings' => $chart_data_moon_minings,
+            'chart_labels' => $chart_labels,
+            'chart_data_over_all' => $chart_data1,
+            'chart_data_moon_minings' => $chart_data2,
         ]);
     }
 }
