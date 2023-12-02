@@ -78,6 +78,8 @@ class CorpMiningStatistics extends Controller
         $chart_labels = [];
         $chart_data1 = [];
         $chart_data2 = [];
+        $chart_data3 = [];
+        $chart_data4 = [];
 
         foreach($chart_data_over_all as $data) {
             array_push($chart_labels, $data->date);
@@ -85,6 +87,18 @@ class CorpMiningStatistics extends Controller
         }
         foreach($chart_data_moon_minings as $data) {
             array_push($chart_data2, $data->volume);
+        }
+
+        DB::statement("SET SQL_MODE=''");
+        $chart_data_tax = DB::table('corp_mining_tax')
+            ->selectRaw('str_to_date(concat(month, "-", year), "%m-%Y") as datum, month, year, sum(tax) as tax')
+            ->groupBy('datum')
+            ->orderBy('datum', 'desc')
+            ->limit(12)
+            ->get();
+
+        foreach($chart_data_tax as $data) {
+            array_push($chart_data3, $data->tax);
         }
 
         return view('corpminingtax::corpminingstatistics', [
@@ -96,6 +110,7 @@ class CorpMiningStatistics extends Controller
             'chart_labels' => $chart_labels,
             'chart_data_over_all' => $chart_data1,
             'chart_data_moon_minings' => $chart_data2,
+            'chart_data_tax' => $chart_data3,
         ]);
     }
 }

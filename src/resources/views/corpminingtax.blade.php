@@ -42,9 +42,11 @@
                 <div class="col-md-4 mb-3">
                     <label for="mining_year">Year</label>
                     <select class="custom-select mr-sm-2" name="mining_year" id="mining_year">
+                        <option value="2020">2020</option>
                         <option value="2021">2021</option>
                         <option value="2022">2022</option>
                         <option value="2023" selected>2023</option>
+                        <option value="2024">2024</option>
                     </select>
                 </div>
             </div>
