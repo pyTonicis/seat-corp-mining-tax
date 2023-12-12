@@ -111,6 +111,7 @@
                             <td>
                                 <button class="btn btn-warning details" id="d_{{ $event->id }}" data-toggle="modal" data-target="#modal_detail">Edit</button>
                                 <button class="btn btn-danger delete" id="r_{{ $event->id }}">Delete</button>
+                                <button class="btn btn-info view" id="v_{{ $event->id }}" data-toggle="modal" data-target="#modal_detail">Raw View</button>
                             </td>
                             <td>{{ $event->event_status }}</td>
                         </tr>
@@ -121,7 +122,7 @@
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header bg-yellow">
-                                <h4 class="modal-title" id="contract-detail">Contract Details</h4>
+                                <h4 class="modal-title" id="contract-detail">Event Details</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -167,6 +168,23 @@
                 var cid = $(this).attr('id');
                 cid = cid.replace('d_', '');
                 var url = "{{ route('corpminingtax.eventdetails', [':eid']) }}";
+                url = url.replace(':eid', cid);
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    datatype: 'json',
+                    timeout: 10000,
+                    success: function (data) {
+                        $('.modal-body').html(data);
+                        $('#modal_detail').modal('show');
+                    }
+                });
+            });
+
+            $('#events').on('click', '.view', function(e) {
+                var cid = $(this).attr('id');
+                cid = cid.replace('d_', '');
+                var url = "{{ route('corpminingtax.eventdetailsraw', [':eid']) }}";
                 url = url.replace(':eid', cid);
                 $.ajax({
                     url: url,

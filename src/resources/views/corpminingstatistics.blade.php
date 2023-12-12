@@ -167,11 +167,23 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Mining tax last 12 month`s <small>(all ore types)</small></h3>
+                    <h3 class="card-title">Mining tax last 12 month`s <small>(isk)</small></h3>
                 </div>
                 <div class="card-body">
                     <div style="height: 350px">
                         <canvas id="mining_chart_tax"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Event tax last 12 month`s <small>(isk)</small></h3>
+                </div>
+                <div class="card-body">
+                    <div style="height: 350px">
+                        <canvas id="mining_chart_events"></canvas>
                     </div>
                 </div>
             </div>
@@ -252,7 +264,7 @@
                 labels: @json($chart_labels),
                 datasets: [
                     {
-                        label: 'Volume m³',
+                        label: 'ISK',
                         data: @json($chart_data_tax),
                         backgroundColor: '#ffaa00',
                         borderColor: '#ffaa00',
@@ -268,7 +280,7 @@
                     maintainAspectRatio: false,
                     tooltips: {
                         callbacks: {
-                            label: function(tooltipItem, data2) {
+                            label: function(tooltipItem, data3) {
                                 return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }, },
                     },
                     scales: {
@@ -280,6 +292,39 @@
             };
 
             new Chart(document.getElementById('mining_chart_tax').getContext('2d'), config3);
+
+            const data4 = {
+                labels: @json($chart_labels),
+                datasets: [
+                    {
+                        label: 'ISK',
+                        data: @json($chart_data_events),
+                        backgroundColor: '#ffaa00',
+                        borderColor: '#ffaa00',
+                        borderWidth: 1
+                    },
+                ]
+            };
+            const config4 = {
+                type: 'bar',
+                data: data4,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        callbacks: {
+                            label: function(tooltipItem, data4) {
+                                return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }, },
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                },
+            };
+
+            new Chart(document.getElementById('mining_chart_events').getContext('2d'), config4);
 
         });
     </script>

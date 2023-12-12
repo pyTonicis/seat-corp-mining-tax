@@ -38,7 +38,7 @@ class CorpMiningStatistics extends Controller
             ->selectRaw('sum(t.quantity) as q, sum(t.volume) as volume, sum(t.price) as price, c.name as name')
             ->join('character_infos as c', 't.main_character_id', '=', 'c.character_id')
             ->groupBy('t.main_character_id')
-            ->orderBy('q', 'desc')
+            ->orderBy('volume', 'desc')
             ->limit(5)
             ->get();
 
@@ -91,7 +91,7 @@ class CorpMiningStatistics extends Controller
 
         DB::statement("SET SQL_MODE=''");
         $chart_data_tax = DB::table('corp_mining_tax')
-            ->selectRaw('str_to_date(concat(month, "-", year), "%m-%Y") as datum, month, year, sum(tax) as tax')
+            ->selectRaw('str_to_date(concat(month, "-", year), "%m-%Y") as datum, month, year, sum(tax) as tax, sum(event_tax) as event_tax')
             ->groupBy('datum')
             ->orderBy('datum', 'desc')
             ->limit(12)
@@ -99,6 +99,12 @@ class CorpMiningStatistics extends Controller
 
         foreach($chart_data_tax as $data) {
             array_push($chart_data3, $data->tax);
+        }
+
+        foreach($chart_labels as $data) {
+            $m = substr($data, 5, 2);
+            $y = substr($data, 0, 4);
+            array_push($chart_data4, $this->getEventTotalTax($m, $y));
         }
 
         return view('corpminingtax::corpminingstatistics', [
@@ -111,6 +117,19 @@ class CorpMiningStatistics extends Controller
             'chart_data_over_all' => $chart_data1,
             'chart_data_moon_minings' => $chart_data2,
             'chart_data_tax' => $chart_data3,
+            'chart_data_events' => $chart_data4,
         ]);
+    }
+
+    private function getEventTotalTax(int $month, int $year)
+    {
+        DB::statement("SET SQL_MODE=''");
+        $events = DB::table('corp_mining_tax_events as e')
+            ->selectRAW('e.*, IFNULL(sum(m.refined_price), 0) as total')
+            ->leftJoin('corp_mining_tax_event_minings as m', 'e.id', '=', 'm.event_id')
+            ->whereMonth('e.event_start', $month)
+            ->whereYear('e.event_start', $year)
+            ->first();
+        return $events->total;
     }
 }
