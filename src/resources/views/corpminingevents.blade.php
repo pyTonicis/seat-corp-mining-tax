@@ -111,7 +111,6 @@
                             <td>
                                 <button class="btn btn-warning details" id="d_{{ $event->id }}" data-toggle="modal" data-target="#modal_detail">Edit</button>
                                 <button class="btn btn-danger delete" id="r_{{ $event->id }}">Delete</button>
-                                <button class="btn btn-info view" id="v_{{ $event->id }}" data-toggle="modal" data-target="#modal_detail">Raw View</button>
                             </td>
                             <td>{{ $event->event_status }}</td>
                         </tr>
@@ -168,23 +167,6 @@
                 var cid = $(this).attr('id');
                 cid = cid.replace('d_', '');
                 var url = "{{ route('corpminingtax.eventdetails', [':eid']) }}";
-                url = url.replace(':eid', cid);
-                $.ajax({
-                    url: url,
-                    type: "GET",
-                    datatype: 'json',
-                    timeout: 10000,
-                    success: function (data) {
-                        $('.modal-body').html(data);
-                        $('#modal_detail').modal('show');
-                    }
-                });
-            });
-
-            $('#events').on('click', '.view', function(e) {
-                var cid = $(this).attr('id');
-                cid = cid.replace('d_', '');
-                var url = "{{ route('corpminingtax.eventdetailsraw', [':eid']) }}";
                 url = url.replace(':eid', cid);
                 $.ajax({
                     url: url,

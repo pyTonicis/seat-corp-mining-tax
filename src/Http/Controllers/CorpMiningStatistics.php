@@ -49,7 +49,7 @@ class CorpMiningStatistics extends Controller
             ->where('month', '=', $act_m -1)
             ->where('year', '=', $act_y)
             ->groupBy('t.main_character_id')
-            ->orderBy('q', 'desc')
+            ->orderBy('volume', 'desc')
             ->limit(5)
             ->get();
 

@@ -218,9 +218,14 @@
                             return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }, },
                 },
                 scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+                    yAxes: [{
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value, index, ticks) {
+                                return Intl.NumberFormat().format(value);
+                            }
+                        }
+                    }]
                 }
             },
         };
@@ -251,9 +256,14 @@
                                 return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }, },
                     },
                     scales: {
-                        y: {
-                            beginAtZero: true
-                        }
+                        yAxes: [{
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value, index, ticks) {
+                                    return Intl.NumberFormat().format(value);
+                                }
+                            }
+                        }]
                     }
                 },
             };
@@ -284,9 +294,14 @@
                                 return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }, },
                     },
                     scales: {
-                        y: {
-                            beginAtZero: true
-                        }
+                        yAxes: [{
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value, index, ticks) {
+                                    return Intl.NumberFormat().format(value);
+                                }
+                            }
+                        }]
                     }
                 },
             };
@@ -299,8 +314,8 @@
                     {
                         label: 'ISK',
                         data: @json($chart_data_events),
-                        backgroundColor: '#ffaa00',
-                        borderColor: '#ffaa00',
+                        backgroundColor: '#aaff00',
+                        borderColor: '#aaff00',
                         borderWidth: 1
                     },
                 ]
@@ -317,9 +332,14 @@
                                 return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }, },
                     },
                     scales: {
-                        y: {
-                            beginAtZero: true
-                        }
+                        yAxes: [{
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value, index, ticks) {
+                                    return Intl.NumberFormat().format(value);
+                                }
+                            }
+                        }]
                     }
                 },
             };

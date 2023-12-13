@@ -167,9 +167,14 @@
                             return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }, },
                 },
                 scales: {
-                    y: {
-                        beginAtZero: true
-                    }
+                    yAxes: [{
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value, index, ticks) {
+                                return Intl.NumberFormat().format(value);
+                            }
+                        }
+                    }]
                 }
             },
         };
@@ -193,14 +198,14 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 scales: {
-                    xAxes: [{
-                        stacked: true,
-                    }],
                     yAxes: [{
                         stacked: true,
+                        beginAtZero: true,
                         ticks: {
-                            beginAtZero: true,
-                        },
+                            callback: function(value, index, ticks) {
+                                return Intl.NumberFormat().format(value);
+                            }
+                        }
                     }]
                 }
             },
