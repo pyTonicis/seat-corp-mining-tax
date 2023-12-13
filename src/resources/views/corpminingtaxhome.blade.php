@@ -198,6 +198,9 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 scales: {
+                    xAxes: [{
+                        stacked: true,
+                    }],
                     yAxes: [{
                         stacked: true,
                         beginAtZero: true,
