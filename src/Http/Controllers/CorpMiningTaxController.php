@@ -65,7 +65,7 @@ class CorpMiningTaxController extends Controller
         }
 
         $this->miningData = $this->miningTaxService->createMiningTaxResult($request->get('corpId'),
-            (int)$request->get('mining_month'), (int)$request->get('mining_year'));
+            (int)$request->get('mining_month'), (int)$request->get('mining_year'), $request->get('tax_calculation'));
 
         return view('corpminingtax::corpminingtax', [
             'miningData' => $this->miningData

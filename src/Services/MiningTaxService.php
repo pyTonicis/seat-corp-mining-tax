@@ -68,7 +68,7 @@ class MiningTaxService
         }
     }
 
-    public function createMiningTaxResult(int $corpId, int $month, int $year): MiningTaxResult
+    public function createMiningTaxResult(int $corpId, int $month, int $year, string $option): MiningTaxResult
     {
         $miningResult = new MiningTaxResult($month, $year);
         $eventService = new MiningEvents();
@@ -77,7 +77,34 @@ class MiningTaxService
 
         foreach ($this->getMiningResultsFromDb($corpId, $month, $year) as $data) {
 
-            $mainCharacterData = CharacterHelper::getMainCharacterCharacter($data->character_id);
+            if($option == 'combined') {
+                $mainCharacterData = CharacterHelper::getMainCharacterCharacter($data->character_id);
+
+                if (!$miningResult->hasCharacterData($mainCharacterData->main_character_id)) {
+
+                    $charData = new CharacterData(
+                        $mainCharacterData->main_character_id,
+                        $mainCharacterData->name
+                    );
+
+                    $miningResult->addCharacterData($charData);
+                } else {
+                    $charData = $miningResult->getCharacterDataById($mainCharacterData->main_character_id);
+                }
+            } else {
+                if (!$miningResult->hasCharacterData($data->character_id)) {
+
+                    $charData = new CharacterData(
+                        $data->character_id,
+                        $data->name
+                    );
+
+                    $miningResult->addCharacterData($charData);
+                } else {
+                    $charData = $miningResult->getCharacterDataById($data->character_id);
+                }
+
+            }
 
             if (!$miningResult->hasOreType($data->type_id)) {
 
@@ -87,18 +114,6 @@ class MiningTaxService
                 $ore->price = 0;
 
                 $miningResult->addOre($ore);
-            }
-
-            if (!$miningResult->hasCharacterData($mainCharacterData->main_character_id)) {
-
-                $charData = new CharacterData(
-                    $mainCharacterData->main_character_id,
-                    $mainCharacterData->name
-                );
-
-                $miningResult->addCharacterData($charData);
-            } else {
-                $charData = $miningResult->getCharacterDataById($mainCharacterData->main_character_id);
             }
 
             $charData->addCharacterMining(new CharacterMiningRecord(

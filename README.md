@@ -34,6 +34,7 @@ Then , run `docker-compose up -d` to take effect.
 ```php
 sudo -H -u www-data bash -c 'php artisan down'
 sudo -H -u www-data bash -c 'composer update pyTonicis/seat-corp-mining-tax'
+sudo -H -u www-data bash -c 'php artisan migrate'
 sudo -H -u www-data bash -c 'php artisan seat:cache:clear'
 sudo -H -u www-data bash -c 'php artisan config:cache'
 sudo -H -u www-data bash -c 'php artisan route:cache'

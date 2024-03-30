@@ -42,12 +42,19 @@ class CorpMiningStatistics extends Controller
             ->limit(5)
             ->get();
 
+        if ($act_m == 1) {
+            $last_month = 12;
+            $last_year = $act_y - 1;
+        } else {
+            $last_month = $act_m - 1;
+            $last_year = $act_y;
+        }
         DB::statement("SET SQL_MODE=''");
         $top_ten_miners_last_month = DB::table('corp_mining_tax as t')
             ->selectRaw('sum(t.quantity) as q, sum(t.volume) as volume, sum(t.price) as price, c.name as name')
             ->join('character_infos as c', 't.main_character_id', '=', 'c.character_id')
-            ->where('month', '=', $act_m -1)
-            ->where('year', '=', $act_y)
+            ->where('month', '=', $last_month)
+            ->where('year', '=', $last_year)
             ->groupBy('t.main_character_id')
             ->orderBy('volume', 'desc')
             ->limit(5)

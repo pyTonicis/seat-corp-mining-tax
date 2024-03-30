@@ -61,6 +61,15 @@
                                 <input id="price_modifier" name="price_modifier" type="number" class="form-control input-md" value="{{ $settings['price_modifier'] }}" min="0" max="100">
                             </div>
                         </div>
+                        <div class="form-group-row">
+                            <label class="col-md4 col-form-label" for="mining_tax_calculation">Tax Calculation</label>
+                            <div class="col-md-12">
+                                <select class="custom-select mr-sm-2" name="mining_tax_calculation" id="mining_tax_calculation">
+                                    <option value="combined" selected>combined</option>
+                                    <option value="separated">separated</option>
+                                </select>
+                            </div>
+                        </div>
                         <p></p>
                         <div class="box-body">
                             <legend>Contract Settings</legend>
@@ -212,6 +221,10 @@
                     <h5>Price Modifier</h5>
                     <p>
                         Modify base cost of the ore/minerals to adjust inflation/logistic costs. Normal it is 100%.
+                    </p>
+                    <h5>Tax Calculation</h5>
+                    <p>
+                        Calculate Tax combined to main character or separated for every registered character
                     </p>
                     <legend>Contract Settings</legend>
                     <p>

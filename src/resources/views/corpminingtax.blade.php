@@ -45,8 +45,10 @@
                         <option value="2020">2020</option>
                         <option value="2021">2021</option>
                         <option value="2022">2022</option>
-                        <option value="2023" selected>2023</option>
-                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2024" selected>2024</option>
+                        <option value="2025">2025</option>
+                        <option value="2026">2026</option>
                     </select>
                 </div>
             </div>
@@ -54,6 +56,13 @@
                 <div class="col-md-4 mb-3">
                     <label for="corpId">Corporation</label>
                     <select class="groupSearch form-control input-xs" name="corpId" id="corpId"></select>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="tax_calculation">Tax Calculation</label>
+                    <select class="custom-select mr-sm-2" name="tax_calculation" id="tax_calculation">
+                        <option value="combined" selected>combined</option>
+                        <option value="separated">separated</option>
+                    </select>
                 </div>
             </div>
             <button class="btn btn-primary" onclick="on()" type="submit">Send</button>

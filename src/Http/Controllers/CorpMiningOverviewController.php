@@ -68,7 +68,7 @@ class CorpMiningOverviewController extends Controller
             }
             DB::statement("SET SQL_MODE=''");
             $groups = DB::table('character_minings as cm')
-                ->selectRaw('cm.type_id, sum(cm.quantity) as quantity, it.typeName, it.groupId')
+                ->selectRaw('cm.type_id, sum(cm.quantity) as quantity, it.typeName, it.groupId, it.volume')
                 ->join('invTypes as it', 'cm.type_id', '=', 'it.typeId')
                 ->whereIn('cm.character_id', $characters)
                 ->where('cm.month', '=', $month)
@@ -83,15 +83,15 @@ class CorpMiningOverviewController extends Controller
             foreach ($groups as $group) {
                 if (!is_null($group)) {
                     if ($group->groupId == 465) {
-                        $ice += (int)$group->quantity * 1000;
+                        $ice += (int)$group->quantity * $group->volume;
                     } elseif ($group->groupId == 1884 or ($group->groupId >= 1920 and $group->groupId <= 1923)) {
-                        $moon += (int)$group->quantity *10;
+                        $moon += (int)$group->quantity * $group->volume;
                     } elseif ($group->groupId == 711) {
-                        $gas += (int)$group->quantity *2;
+                        $gas += (int)$group->quantity * $group->volume;
                     } elseif ($group->groupId == 1996) {
-                        $abyssal += (int)$group->quantity /5;
+                        $abyssal += (int)$group->quantity * $group->volume;
                     } else {
-                        $ore += (int)$group->quantity * 16;
+                        $ore += (int)$group->quantity * $group->volume;
                     }
                 }
             }
