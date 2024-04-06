@@ -153,15 +153,4 @@ class SeatCorpMiningTaxServiceProvider extends AbstractSeatPlugin
     {
         return 'pyTonicis';
     }
-
-    /**
-     * Return the plugin installed version.
-     *
-     * @return string
-     */
-    /*public function getVersion(): string
-    {
-        return config('corpminingtax.config.version');
-    }*/
-
 }
