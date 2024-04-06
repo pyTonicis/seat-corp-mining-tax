@@ -9,7 +9,7 @@ class MiningTaxUpdate extends Command
 {
     protected $signature = 'tax:update {--F|force} {--N|now}  {year?} {month?}';
 
-    protected $description = 'This updates the tax of the current month. Update tax every hour';
+    protected $description = 'This job updates the tax of the current month. Update tax every hour';
 
     public function handle()
     {

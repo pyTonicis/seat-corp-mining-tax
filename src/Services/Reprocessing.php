@@ -30,8 +30,9 @@ class Reprocessing
         if (Cache::has($mname)) {
             return Cache::get($mname);
         } else {
-            $data = DB::table('invTypes')
-                ->select('groupID', 'mass', 'volume', 'portionSize', 'typeName')
+            $data = DB::table('invTypes as it')
+                ->select('it.groupID', 'it.mass', 'it.volume', 'it.portionSize', 'it.typeName', 'ig.CategoryId')
+                ->join('invGroups as ig', 'it.groupID', '=', 'ig.groupID')
                 ->where('typeID', '=', $id)
                 ->first();
             Cache::put($mname, $data, 86400);
@@ -60,17 +61,33 @@ class Reprocessing
         $p_size = $ore->portionSize;
         $r_count = intval($quantity / $p_size);
         $r_rest = $quantity % $p_size;
-        $rep = self::getReprocessData($typeId);
         $result = [];
-        foreach($rep as $r)
-        {
-            $result[$r->materialTypeID] = ($r->quantity*$refining_rate) * $r_count;
-        }
-        if ($r_rest)
-        {
-            $result[$typeId] = $r_rest;
+        if ($ore->CategoryId == 25) {
+            $rep = self::getReprocessData($typeId);
+            foreach ($rep as $r) {
+                $result[$r->materialTypeID] = ($r->quantity * $refining_rate) * $r_count;
+            }
+            if ($r_rest) {
+                $result[$typeId] = $r_rest;
+            }
+        } else {
+            $result[$typeId] = $r_count+$r_rest;
         }
         return $result;
+    }
+
+    public static function isReprocessable(int $typeId): bool
+    {
+        $data = DB::table('invTypes as it')
+            ->select('it.typeName', 'ig.categoryId')
+            ->join('invGroups as ig', 'it.groupID', 'ig.groupID')
+            ->where('it.typeID', $typeId)
+            ->first();
+        if($data->CategoryId == 25) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

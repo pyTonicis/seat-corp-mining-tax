@@ -77,7 +77,7 @@ class MiningTaxService
 
         foreach ($this->getMiningResultsFromDb($corpId, $month, $year) as $data) {
 
-            if($option == 'combined') {
+            /*if($option == 'combined') {
                 $mainCharacterData = CharacterHelper::getMainCharacterCharacter($data->character_id);
 
                 if (!$miningResult->hasCharacterData($mainCharacterData->main_character_id)) {
@@ -104,6 +104,21 @@ class MiningTaxService
                     $charData = $miningResult->getCharacterDataById($data->character_id);
                 }
 
+            }*/
+
+            $mainCharacterData = CharacterHelper::getMainCharacterCharacter($data->character_id);
+
+            if (!$miningResult->hasCharacterData($data->character_id)) {
+
+                $charData = new CharacterData(
+                    $data->character_id,
+                    $mainCharacterData->main_character_id,
+                    $data->name
+                );
+
+                $miningResult->addCharacterData($charData);
+            } else {
+                $charData = $miningResult->getCharacterDataById($data->character_id);
             }
 
             if (!$miningResult->hasOreType($data->type_id)) {
@@ -209,7 +224,7 @@ class MiningTaxService
                 }
             }
         /*
-         *  Calculate Event Minings Tax
+         *  Calculate Event Mining Tax
          */
         $miningEventResult = $eventService->createEventMiningTax($month, $year);
 

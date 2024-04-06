@@ -13,6 +13,11 @@ class CharacterData
     public $characterId;
 
     /**
+     * @var int
+     */
+    public $mainCharacterId;
+
+    /**
      * @var string
      */
     public $characterName;
@@ -56,13 +61,15 @@ class CharacterData
      * @param int $characterId
      * @param string $characterName
      */
-    public function __construct(int $characterId, string $characterName)
+    public function __construct(int $characterId, int $mainCharacterId, string $characterName)
     {
         $this->characterId = $characterId;
         $this->characterName = $characterName;
+        $this->mainCharacterId = $mainCharacterId;
         $this->priceSummary = 0;
         $this->tax = 0;
         $this->event_tax = 0;
+        $this->volume = 0;
     }
 
     /**

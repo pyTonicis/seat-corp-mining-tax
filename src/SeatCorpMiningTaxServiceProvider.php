@@ -54,9 +54,6 @@ class SeatCorpMiningTaxServiceProvider extends AbstractSeatPlugin
             return new MiningTaxService();
         });
 
-        $this->app->singleton(ThievesService::class, function () {
-            return new ThievesService();
-        });
     }
 
     /**

@@ -36,14 +36,27 @@ class CorpMiningTaxController extends Controller
      */
     public function getHome()
     {
-        $taxdata = DB::table('corp_mining_tax as t')
-            ->select('t.*', 'c.name')
-            ->join('character_infos as c', 'main_character_id', '=', 'c.character_id')
-            ->where('year', date('Y', time()))
-            ->where('month', date('m', time()))
-            ->where('corporation_id', '=', $this->settingService->getValue('corporation_id'))
-            ->orderBy('c.name')
-            ->get();
+        if($this->settingService->getValue('mining_tax_calculation') == 'combined') {
+            DB::statement("SET SQL_MODE=''");
+            $taxdata = DB::table('corp_mining_tax as t')
+                ->selectRaw('sum(t.quantity) as quantity, sum(t.volume) as volume, sum(t.price) as price, sum(t.tax) as tax, sum(event_tax) as event_tax, c.name')
+                ->join('character_infos as c', 'main_character_id', '=', 'c.character_id')
+                ->where('year', date('Y', time()))
+                ->where('month', date('m', time()))
+                ->where('corporation_id', '=', $this->settingService->getValue('corporation_id'))
+                ->orderBy('c.name')
+                ->groupBy('t.main_character_id')
+                ->get();
+        } else {
+            $taxdata = DB::table('corp_mining_tax as t')
+                ->select('t.*', 'c.name')
+                ->join('character_infos as c', 't.character_id', '=', 'c.character_id')
+                ->where('year', date('Y', time()))
+                ->where('month', date('m', time()))
+                ->where('corporation_id', '=', $this->settingService->getValue('corporation_id'))
+                ->orderBy('c.name')
+                ->get();
+        }
         $total_tax = 0;
         foreach($taxdata as $tax) {
             $total_tax += $tax->tax;
