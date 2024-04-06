@@ -159,8 +159,9 @@ class SeatCorpMiningTaxServiceProvider extends AbstractSeatPlugin
      *
      * @return string
      */
-    public function getVersion(): string
+    /*public function getVersion(): string
     {
         return config('corpminingtax.config.version');
-    }
+    }*/
+
 }
