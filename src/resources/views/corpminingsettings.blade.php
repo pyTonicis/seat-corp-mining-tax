@@ -62,11 +62,11 @@
                             </div>
                         </div>
                         <div class="form-group-row">
-                            <label class="col-md4 col-form-label" for="mining_tax_calculation">Tax Calculation</label>
+                            <label class="col-md4 col-form-label" for="mining_tax_calculation">Tax Calculation Methode</label>
                             <div class="col-md-12">
                                 <select class="custom-select mr-sm-2" name="mining_tax_calculation" id="mining_tax_calculation">
-                                    <option value="combined" selected>combined</option>
-                                    <option value="separated">separated</option>
+                                    <option value="combined" selected>accumulated</option>
+                                    <option value="separated">individually</option>
                                 </select>
                             </div>
                         </div>
@@ -224,7 +224,7 @@
                     </p>
                     <h5>Tax Calculation</h5>
                     <p>
-                        Calculate Tax combined to main character or separated for every registered character
+                        Calculate Tax accumulated to main character or individually for every registered character. The creation of Contracts is also influenced.
                     </p>
                     <legend>Contract Settings</legend>
                     <p>
@@ -239,7 +239,7 @@
                         Select Tax Filters:
                         <ul>
                         <li>All Moon Ore = Taxes all Moon Minings</li>
-                        <li>Only Corp Moon Ore = Taxes only Corporation Moon Minings</li>
+                        <li>Only Corp Moon Ore = Taxes only Corporation owned Moon Minings</li>
                         <li>Ore = Taxes all normal Ore</li>
                         <li>Ice = Taxes all Ice Ore</li>
                         <li>Gas = Taxes all Gas Minings</li>

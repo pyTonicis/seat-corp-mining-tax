@@ -15,7 +15,7 @@ class AddMiningTaxSettings extends Migration
     public function up()
     {
         DB::table('corp_mining_tax_settings')
-            ->insert(['name' => 'mining_tax_calculation', 'value' => 'combined']); // combined, seperated
+            ->insert(['name' => 'mining_tax_calculation', 'value' => 'combined']); // accumulated, individual
     }
 
     public function down(): void {}

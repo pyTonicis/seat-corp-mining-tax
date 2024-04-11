@@ -131,6 +131,11 @@ class CorpMiningOverviewController extends Controller
                         ->orderBy('month', 'asc')
                         ->get();
         $rank = $this->getCharacterMiningRank($character, date('m'), date('Y'));
+        $linked_characters = [];
+        $linked_characters[0] = "All";
+        foreach($characters as $character) {
+            $linked_characters[$character] = CharacterHelper::getCharacterName($character);
+        }
         return view('corpminingtax::corpminingtaxhome', [
             'rank' => $rank,
             'tax_count' => $tax_count,
@@ -141,6 +146,7 @@ class CorpMiningOverviewController extends Controller
             'type_labels' => $type_labels,
             'type_quantity' => $type_quantity,
             'miningdata' => $miningdata,
+            'characters' => $linked_characters,
         ]);
     }
 
@@ -174,5 +180,41 @@ class CorpMiningOverviewController extends Controller
             $count += 1;
         }
         return $count;
+    }
+
+    private function getMinedChartData($ids = 0)
+    {
+        if($ids = 0) {
+            $character = auth()->user()->main_character['character_id'];
+            $characters = CharacterHelper::getLinkedCharacters($character);
+        } else {
+            $characters = $ids;
+        }
+        $labels = array();
+        $data = array();
+        $act_m = (date('m', time()) +0);
+        $act_y = (date('Y', time()) -1);
+        for ($i = 0; $i < 12; $i++) {
+            if ($act_m == 12) {
+                $act_y += 1;
+                $act_m = 1;
+            } else {
+                $act_m += 1;
+            }
+            array_push($labels, date('Y-m', strtotime($act_y . "-" . $act_m)));
+        }
+        foreach ($labels as $label) {
+            $datum = strtotime($label);
+            $month = (int)date('m', $datum);
+            $year = (int)date('Y', $datum);
+            $result = DB::table('corp_mining_tax')
+                ->selectRAW('sum(volume) as volume')
+                ->whereIn('character_id', '=', $characters)
+                ->where('month', '=', $month)
+                ->where('year', '=', $year)
+                ->first();
+            array_push($data, $result->volume);
+        }
+        return response()->json(compact('labels','data'));
     }
 }

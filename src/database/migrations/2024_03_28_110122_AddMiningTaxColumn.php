@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CorpMiningTax extends Migration
+class AddCorpMiningTaxCharacterId extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CorpMiningTax extends Migration
      */
     public function up()
     {
-        Schema::create('corp_mining_tax', function (Blueprint $table) {
-            $table->integer('character_id');
+        Schema::table('corp_mining_tax', function (Blueprint $table) {
+            $table->integer('character_id')->after('main_character_id');
         });
     }
 

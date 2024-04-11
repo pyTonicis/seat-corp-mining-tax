@@ -13,7 +13,7 @@ class Contracts
     {
         $settingService = new SettingService();
         $settings = $settingService->getAll();
-        if($corp_id) {
+        if(!$settings['mining_tax_calculation'] == 'combined') {
             $taxes = DB::table('corp_mining_tax')
                 ->select('*')
                 ->where('month', '=', $month)
@@ -28,6 +28,25 @@ class Contracts
                                 ['contractId' => 0, 'contractIssuer' => CharacterHelper::getCharacterIdByName($settings['contract_issuer']), 'contractTitle' => $c_title,
                                     'contractData' => "None", 'contractStatus' => 1, 'character_name' => CharacterHelper::getCharacterName($t->main_character_id), 'corporation_id' => $t->corporation_id]);
                     }
+            }
+        } else {
+            DB::statement("SET SQL_MODE=''");
+            $taxes = DB::table('corp_mining_tax')
+                ->selectRaw('sum(tax) as tax, sum(event_tax) as event_tax, character_id, main_character_id, year, month, corporation_id')
+                ->where('month', '=', $month)
+                ->where('year', '=', $year)
+                ->orderBy('main_character_id')
+                ->groupBy('main_character_id')
+                ->get();
+            foreach ($taxes as $t) {
+
+                if ($t->tax >= $settings['contract_min']) {
+                    $c_title = $settings['contract_tag'] . " " . $t->year . "-" . $t->month . " (" . $this->generate_string($this->permitted_chars) . ")";
+                    DB::table('corp_mining_tax_contracts')
+                        ->updateOrInsert(['character_id' => $t->character_id, 'month' => $t->month, 'year' => $t->year, 'tax' => $t->tax],
+                            ['contractId' => 0, 'contractIssuer' => CharacterHelper::getCharacterIdByName($settings['contract_issuer']), 'contractTitle' => $c_title,
+                                'contractData' => "None", 'contractStatus' => 1, 'character_name' => CharacterHelper::getCharacterName($t->character_id), 'corporation_id' => $t->corporation_id]);
+                }
             }
         }
     }

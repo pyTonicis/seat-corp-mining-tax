@@ -38,10 +38,12 @@ class MiningTaxService
                 'cm.date',
                 'cm.time',
                 'cm.solar_system_id',
+                'ci.name',
                 'it.typeName',
                 'it.groupId'
             )
             ->join('corporation_members as cmem', 'cm.character_id', '=', 'cmem.character_id')
+            ->join('character_infos as ci', 'ci.character_id', '=', 'cm.character_id')
             ->join('market_prices as mp', 'cm.type_id', 'mp.type_id')
             ->join('invTypes as it', 'cm.type_id', '=', 'it.typeID')
             ->where('cmem.corporation_id', '=', $corpId)
@@ -77,12 +79,14 @@ class MiningTaxService
 
         foreach ($this->getMiningResultsFromDb($corpId, $month, $year) as $data) {
 
-            /*if($option == 'combined') {
-                $mainCharacterData = CharacterHelper::getMainCharacterCharacter($data->character_id);
+            $mainCharacterData = CharacterHelper::getMainCharacterCharacter($data->character_id);
+
+            if($option == 'combined') {
 
                 if (!$miningResult->hasCharacterData($mainCharacterData->main_character_id)) {
 
                     $charData = new CharacterData(
+                        $data->character_id,
                         $mainCharacterData->main_character_id,
                         $mainCharacterData->name
                     );
@@ -96,6 +100,7 @@ class MiningTaxService
 
                     $charData = new CharacterData(
                         $data->character_id,
+                        $mainCharacterData->main_character_id,
                         $data->name
                     );
 
@@ -104,9 +109,9 @@ class MiningTaxService
                     $charData = $miningResult->getCharacterDataById($data->character_id);
                 }
 
-            }*/
+            }
 
-            $mainCharacterData = CharacterHelper::getMainCharacterCharacter($data->character_id);
+            /*$mainCharacterData = CharacterHelper::getMainCharacterCharacter($data->character_id);
 
             if (!$miningResult->hasCharacterData($data->character_id)) {
 
@@ -119,7 +124,7 @@ class MiningTaxService
                 $miningResult->addCharacterData($charData);
             } else {
                 $charData = $miningResult->getCharacterDataById($data->character_id);
-            }
+            }*/
 
             if (!$miningResult->hasOreType($data->type_id)) {
 

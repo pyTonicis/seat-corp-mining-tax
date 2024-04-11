@@ -13,8 +13,8 @@ class MiningTaxUpdate extends Command
 
     public function handle()
     {
-        $year = date('Y', time());
-        $month = date('n', time());
+        $year = (int)date('Y');
+        $month = (int)date('n');
 
         if (($this->argument('month')) && ($this->argument('year'))) {
             $year = $this->argument('year');
@@ -22,7 +22,7 @@ class MiningTaxUpdate extends Command
         }
 
         if($this->option('now')){
-            UpdateMiningTax::dispatchNow($this->option('force'), $year, $month);
+            UpdateMiningTax::dispatchSync($this->option('force'), $year, $month);
         } else {
             UpdateMiningTax::dispatch($this->option('force'), $year, $month);
         }

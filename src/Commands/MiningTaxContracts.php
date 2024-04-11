@@ -14,7 +14,7 @@ class MiningTaxContracts extends Command
     public function handle()
     {
         if($this->option('now')){
-            UpdateContracts::dispatchNow($this->option('force'));
+            UpdateContracts::dispatchSync($this->option('force'));
         } else {
             UpdateContracts::dispatch($this->option('force'));
         }

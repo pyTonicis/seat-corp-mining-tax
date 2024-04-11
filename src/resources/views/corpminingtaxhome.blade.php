@@ -78,6 +78,21 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="col-md-2 float-right">
+                            <select class="custom-select mr-sm-2 align-self-end" name="selected_character" id="selected_character">
+                                @foreach($characters as $id => $name)
+                                    <option value="{{ $id }}">{{ $name }}</option>
+                                @endforeach
+                            </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
@@ -143,6 +158,24 @@
             $('#mining_report').DataTable({});
         });
 
+        $('#selected_character').on('change', function() {
+            $.ajax({
+                url: "{{ route('corpminingtax.minedchartdata') }}",
+                type: 'GET',
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(data) {
+                    mined_chart.data.datasets[0].data = data.data;
+                    mined_chart.update();
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+
         const data = {
             labels: @json($minings->labels),
             datasets: [
@@ -179,7 +212,7 @@
             },
         };
 
-        new Chart(document.getElementById('mining_chart').getContext('2d'), config);
+        mined_chart = new Chart(document.getElementById('mining_chart').getContext('2d'), config);
 
         const data2 = {
             labels: @json($minings->labels),
@@ -213,7 +246,7 @@
                 }
             },
         };
-        new Chart(document.getElementById('mining_chart2').getContext('2d'), config2);
+        gorups_chart = new Chart(document.getElementById('mining_chart2').getContext('2d'), config2);
 
     </script>
 @endpush

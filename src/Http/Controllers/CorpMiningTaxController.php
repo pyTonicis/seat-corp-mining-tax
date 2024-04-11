@@ -39,7 +39,7 @@ class CorpMiningTaxController extends Controller
         if($this->settingService->getValue('mining_tax_calculation') == 'combined') {
             DB::statement("SET SQL_MODE=''");
             $taxdata = DB::table('corp_mining_tax as t')
-                ->selectRaw('sum(t.quantity) as quantity, sum(t.volume) as volume, sum(t.price) as price, sum(t.tax) as tax, sum(event_tax) as event_tax, c.name')
+                ->selectRaw('sum(t.quantity) as quantity, sum(t.volume) as volume, sum(t.price) as price, sum(t.tax) as tax, sum(event_tax) as event_tax, c.name, t.year, t.month')
                 ->join('character_infos as c', 'main_character_id', '=', 'c.character_id')
                 ->where('year', date('Y', time()))
                 ->where('month', date('m', time()))
