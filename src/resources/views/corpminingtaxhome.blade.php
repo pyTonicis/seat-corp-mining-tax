@@ -78,7 +78,29 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-4 col-sm-6">
+            <div class="info-box">
+                <span class="info-box-icon bg-orange elevation-1"><i class="fa fa-coins"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Avg. Mined ISK <small>(last 12 month's)</small></span>
+                    <span class="info-box-number">
+                        {{ number_format($avg_price) }} <small>ISK</small>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <div class="info-box">
+                <span class="info-box-icon bg-orange elevation-1"><i class="fa fa-money-bill-wave"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Avg. Tax ISK <small>(last 12 month's)</small></span>
+                    <span class="info-box-number">
+                        {{ number_format($avg_tax) }} <small>ISK</small>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
                     <div class="col-md-2 float-right">
@@ -156,23 +178,28 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#mining_report').DataTable({});
-        });
 
-        $('#selected_character').on('change', function() {
-            $.ajax({
-                url: "{{ route('corpminingtax.minedchartdata') }}",
-                type: 'GET',
-                dataType: 'json',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function(data) {
-                    mined_chart.data.datasets[0].data = data.data;
-                    mined_chart.update();
-                },
-                error: function(data) {
-                    console.log(data);
-                }
+            $('#selected_character').on('change', function () {
+                var sid = this.value;
+                var url = "{{ route('corpminingtax.minedchartdata', [':ids']) }}";
+                url = url.replace(':ids', sid);
+                var data = 0;
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    dataType: 'json',
+                    timeout: 10000,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function (data) {
+                        mined_volume_chart.data.datasets[0].data = data.data;
+                        mined_volume_chart.update();
+                    },
+                    error: function (data) {
+                        console.log(data);
+                    }
+                });
             });
         });
 
@@ -212,7 +239,7 @@
             },
         };
 
-        mined_chart = new Chart(document.getElementById('mining_chart').getContext('2d'), config);
+        mined_volume_chart = new Chart(document.getElementById('mining_chart').getContext('2d'), config);
 
         const data2 = {
             labels: @json($minings->labels),
@@ -246,7 +273,7 @@
                 }
             },
         };
-        gorups_chart = new Chart(document.getElementById('mining_chart2').getContext('2d'), config2);
+        mined_groups_chart = new Chart(document.getElementById('mining_chart2').getContext('2d'), config2);
 
     </script>
 @endpush

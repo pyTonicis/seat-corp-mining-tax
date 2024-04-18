@@ -111,21 +111,6 @@ class MiningTaxService
 
             }
 
-            /*$mainCharacterData = CharacterHelper::getMainCharacterCharacter($data->character_id);
-
-            if (!$miningResult->hasCharacterData($data->character_id)) {
-
-                $charData = new CharacterData(
-                    $data->character_id,
-                    $mainCharacterData->main_character_id,
-                    $data->name
-                );
-
-                $miningResult->addCharacterData($charData);
-            } else {
-                $charData = $miningResult->getCharacterDataById($data->character_id);
-            }*/
-
             if (!$miningResult->hasOreType($data->type_id)) {
 
                 $ore = new OreType();

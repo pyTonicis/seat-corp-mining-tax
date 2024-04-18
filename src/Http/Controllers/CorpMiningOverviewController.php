@@ -32,7 +32,6 @@ class CorpMiningOverviewController extends Controller
         }
         $data = array();
         $prices = array();
-        $groups = array();
         $minings = new CharacterMinings();
         $minings->character_id = $character;
         $minings->labels = $labels;
@@ -41,6 +40,9 @@ class CorpMiningOverviewController extends Controller
         $grp_gas = array();
         $grp_moon = array();
         $grp_abyssal = array();
+        $taxes = array();
+        $avg_tax = 0;
+        $avg_price = 0;
         $tax_count = 0;
         $tax_act = 0;
         foreach ($labels as $label) {
@@ -48,7 +50,7 @@ class CorpMiningOverviewController extends Controller
             $month = (int)date('m', $datum);
             $year = (int)date('Y', $datum);
             $result = DB::table('corp_mining_tax')
-                ->select('quantity', 'volume', 'price', 'tax', 'event_tax')
+                ->selectRAW('sum(quantity) as quantity, sum(volume) as volume, sum(price) as price, sum(tax) as tax, sum(event_tax) as event_tax')
                 ->where('main_character_id', '=', $character)
                 ->where('month', '=', $month)
                 ->where('year', '=', $year)
@@ -56,6 +58,7 @@ class CorpMiningOverviewController extends Controller
             if(!is_null($result)) {
                 array_push($data, (int)$result->volume);
                 array_push($prices, (int)$result->price);
+                array_push($taxes, (int)$result->tax);
                 $minings->add_volume($result->volume);
                 $minings->add_price($result->price);
                 $minings->add_quantity($result->quantity);
@@ -132,10 +135,12 @@ class CorpMiningOverviewController extends Controller
                         ->get();
         $rank = $this->getCharacterMiningRank($character, date('m'), date('Y'));
         $linked_characters = [];
-        $linked_characters[0] = "All";
+        $linked_characters[0] = "All Characters";
         foreach($characters as $character) {
             $linked_characters[$character] = CharacterHelper::getCharacterName($character);
         }
+        $avg_price = (!empty($prices) ? array_sum($prices) / count($prices) : 0);
+        $avg_tax = (!empty($taxes) ? array_sum($taxes) / count($taxes) : 0);
         return view('corpminingtax::corpminingtaxhome', [
             'rank' => $rank,
             'tax_count' => $tax_count,
@@ -143,25 +148,13 @@ class CorpMiningOverviewController extends Controller
             'labels' => $labels,
             'minings' => $minings,
             'dataset' => $dataset,
+            'avg_tax' => $avg_tax,
+            'avg_price' => $avg_price,
             'type_labels' => $type_labels,
             'type_quantity' => $type_quantity,
             'miningdata' => $miningdata,
             'characters' => $linked_characters,
         ]);
-    }
-
-    public function getCharacterMiningGroupsData(int $character_id, int $month, int $year)
-    {
-        DB::statement("SET SQL_MODE=''");
-        $result = DB::table('character_minings as cm')
-                    ->selectRaw('cm.type_id, sum(cm.quantity) as quantity, it.typeName, it.groupId')
-                    ->join('invTypes as it', 'cm.type_id', '=', 'it.typeId')
-                    ->where('cm.character_id', '=', $character_id)
-                    ->where('cm.month', '=', $month)
-                    ->where('cm.year', '=', $year)
-                    ->groupBy('it.groupId')
-                    ->get();
-        return $result;
     }
 
     private function getCharacterMiningRank(int $character_id, int $month, int $year)
@@ -182,14 +175,8 @@ class CorpMiningOverviewController extends Controller
         return $count;
     }
 
-    private function getMinedChartData($ids = 0)
+    public function getMinedChartData($ids = 0)
     {
-        if($ids = 0) {
-            $character = auth()->user()->main_character['character_id'];
-            $characters = CharacterHelper::getLinkedCharacters($character);
-        } else {
-            $characters = $ids;
-        }
         $labels = array();
         $data = array();
         $act_m = (date('m', time()) +0);
@@ -207,13 +194,27 @@ class CorpMiningOverviewController extends Controller
             $datum = strtotime($label);
             $month = (int)date('m', $datum);
             $year = (int)date('Y', $datum);
-            $result = DB::table('corp_mining_tax')
-                ->selectRAW('sum(volume) as volume')
-                ->whereIn('character_id', '=', $characters)
-                ->where('month', '=', $month)
-                ->where('year', '=', $year)
-                ->first();
-            array_push($data, $result->volume);
+            if($ids != 0) {
+                $result = DB::table('corp_mining_tax')
+                    ->select('*')
+                    ->whereIn('character_id', '=', $ids)
+                    ->where('month', '=', $month)
+                    ->where('year', '=', $year)
+                    ->first();
+            } else {
+                $character = auth()->user()->main_character['character_id'];
+                $result = DB::table('corp_mining_tax')
+                    ->selectRAW('sum(volume) as volume')
+                    ->where('main_character_id', '=', $character)
+                    ->where('month', '=', $month)
+                    ->where('year', '=', $year)
+                    ->first();
+            }
+            if(!is_null($result)) {
+                array_push($data, (int)$result->volume);
+            } else {
+                array_push($data, 0);
+            }
         }
         return response()->json(compact('labels','data'));
     }

@@ -41,18 +41,21 @@ sudo -H -u www-data bash -c 'php artisan route:cache'
 sudo -H -u www-data bash -c 'php artisan up'
 ```
 
-## First Steps
-In the first step, please open the settings page and select your corporation at global settings. All other settings such as tax rate can be set as desired.
-For best tax result, u should set "Ore Valuation Price" to "Mineral Price". The Prices for minerals  are inaccurate.
+## Plugin Setup
+- Open Settings Page and select your Corporation Name (at global Settings)
+- Set a valid Charactername in field "Contract Issuer" (at Contract Settings)
 
-If you want to use EvE Janice as a price provider, you need to apply for a valid API Key and enter it in the field "Price Provider API Key" and select "Eve Janice as price provider. 
+All other settings such as tax rate can be set as desired. For best tax result, 
+u should set "Ore Valuation Price" to "Mineral Price". The Prices for minerals  are inaccurate.
+
+If you want to use EvE Janice as a Price provider, you need to apply for a valid API Key and enter it in the field "Price Provider API Key" and select "Eve Janice as price provider. 
 
 ## Fill Database with mining data
 
 If you want to get some data from past months, you can generate tax data at console by hand eg.:
 
 ```php
-sudo -H -u www-data bash -c 'php artisan tax:update year=2023 month=1
+sudo -H -u www-data bash -c 'php artisan tax:update 2023 10
 ```
 
 ## Permissions

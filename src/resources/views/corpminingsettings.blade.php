@@ -275,6 +275,7 @@
         $('#corporation_id').val('{{ $settings['corporation_id'] }}').trigger('change');
         $('#ore_valuation_price').val('{{ $settings['ore_valuation_price'] }}').trigger('change');
         $('#price_provider').val('{{ $settings['price_provider'] }}').trigger('change');
+        $('#mining_tax_calculation').val('{{ $settings['mining_tax_calculation'] }}').trigger('change');
         document.getElementById('taxes_ore').checked = {{ $settings['taxes_ore'] }};
         document.getElementById('taxes_moon').checked = {{ $settings['taxes_moon'] }};
         document.getElementById('taxes_corp_moon').checked = {{ $settings['taxes_corp_moon'] }};

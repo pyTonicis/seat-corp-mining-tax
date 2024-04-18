@@ -11,7 +11,7 @@ Route::group([
                 ->name('corpminingtax.home')
                 ->uses('CorpMiningOverviewController@getHome');
 
-            Route::get('/{ids}')
+            Route::get('/overview/{ids}')
                 ->name('corpminingtax.minedchartdata')
                 ->uses('CorpMiningOverviewController@getMinedChartData');
 
