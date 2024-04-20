@@ -104,11 +104,14 @@
             <div class="card">
                 <div class="card-body">
                     <div class="col-md-2 float-right">
-                            <select class="custom-select mr-sm-2 align-self-end" name="selected_character" id="selected_character">
+                        <form action="{{ route('corpminingtax.getOverviewData') }}" method="post" id="overviewData" name="overviewData">
+                            {{ csrf_field() }}
+                            <select class="custom-select mr-sm-2 align-self-end" name="selected_character" id="selected_character" onchange="this.form.submit()">
                                 @foreach($characters as $id => $name)
                                     <option value="{{ $id }}">{{ $name }}</option>
                                 @endforeach
                             </select>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -179,28 +182,6 @@
         $(document).ready(function () {
             $('#mining_report').DataTable({});
 
-            $('#selected_character').on('change', function () {
-                var sid = this.value;
-                var url = "{{ route('corpminingtax.minedchartdata', [':ids']) }}";
-                url = url.replace(':ids', sid);
-                var data = 0;
-                $.ajax({
-                    url: url,
-                    type: 'GET',
-                    dataType: 'json',
-                    timeout: 10000,
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success: function (data) {
-                        mined_volume_chart.data.datasets[0].data = data.data;
-                        mined_volume_chart.update();
-                    },
-                    error: function (data) {
-                        console.log(data);
-                    }
-                });
-            });
         });
 
         const data = {
