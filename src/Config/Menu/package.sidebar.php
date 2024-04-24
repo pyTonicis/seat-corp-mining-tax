@@ -19,6 +19,13 @@ return [
                 'permission' => 'corpminingtax.view'
             ],
             [
+                'name' => 'corpminingtax-home-mining-log',
+                'label' => 'corpminingtax::menu.sub-mining-log',
+                'icon' => 'fas fa-table',
+                'route' => 'corpminingtax.logbook',
+                'permission' => 'corpminingtax.view'
+            ],
+            [
                 'name' => 'corpminingtax-sub-mining-tax',
                 'label' => 'corpminingtax::menu.sub-mining-tax',
                 'icon' => 'fas fa-money-bill-wave',

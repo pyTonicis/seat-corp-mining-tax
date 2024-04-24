@@ -23,6 +23,7 @@
 return [
     'main_level' => 'Corp Mining Tax',
     'sub-home-level' => 'Mining Overview',
+    'sub-mining-log' => 'Mining Log',
     'sub-settings' => 'Settings',
     'sub-mining-tax' => 'Mining Tax',
     'sub-statistics' => 'Mining Statistics',

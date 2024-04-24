@@ -11,7 +11,11 @@ Route::group([
                 ->name('corpminingtax.home')
                 ->uses('CorpMiningOverviewController@getHome');
 
-            Route::get('/overview')
+            Route::get('/logbook')
+                ->name('corpminingtax.logbook')
+                ->uses('CorpMiningLog@index');
+
+            Route::get('/overview/{sid}')
                 ->name('corpminingtax.overviewdata')
                 ->uses('CorpMiningOverviewController@getOverviewData');
 

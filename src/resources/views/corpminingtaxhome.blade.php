@@ -103,15 +103,12 @@
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
-                    <div class="col-md-2 float-right">
-                        <form action="{{ route('corpminingtax.getOverviewData') }}" method="post" id="overviewData" name="overviewData">
-                            {{ csrf_field() }}
-                            <select class="custom-select mr-sm-2 align-self-end" name="selected_character" id="selected_character" onchange="this.form.submit()">
-                                @foreach($characters as $id => $name)
-                                    <option value="{{ $id }}">{{ $name }}</option>
-                                @endforeach
-                            </select>
-                        </form>
+                    <div class="col-md-6 float-right">
+                        <select class="custom-select mr-sm-2 align-self-end" name="selected_character" id="selected_character">
+                            @foreach($characters as $id => $name)
+                                <option value="{{ $id }}">{{ $name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
             </div>
@@ -144,34 +141,27 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-9">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Mining Tax Report last 12 month's</h3>
+                    <h3 class="card-title">Mining income last 12 month's</h3>
                 </div>
                 <div class="card-body">
-                    <table class="table" id="mining_report">
-                        <thead>
-                        <tr>
-                            <td>Date</td>
-                            <td>Mined Quantity (units)</td>
-                            <td>Mined Volume (m3)</td>
-                            <td>Mineral Price (isk)</td>
-                            <td>Tax (isk)</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($miningdata as $mining)
-                                <tr>
-                                    <td>{{ $mining->year }}-{{ $mining->month }}</td>
-                                    <td>{{ number_format($mining->quantity) }}</td>
-                                    <td>{{ number_format($mining->volume) }}</td>
-                                    <td>{{ number_format($mining->price) }}</td>
-                                    <td>{{ number_format($mining->tax) }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                    <div style="height: 400px">
+                        <canvas id="mining_chart3"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Mined Ore Types last 12 month's</h3>
+                </div>
+                <div class="card-body">
+                    <div style="height: 400px">
+                        <canvas id="mining_chart4"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
@@ -180,8 +170,36 @@
 @push('javascript')
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#mining_report').DataTable({});
 
+            $('#selected_character').on('change', function() {
+                var sid = this.value;
+                sname = $('#selected_character option:selected').text();
+                var url = "{{ route('corpminingtax.test', [':id']) }}";
+                url = url.replace(':id', sid);
+                var data = 0;
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    dataType: 'json',
+                    timeout: 10000,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function (data) {
+                        mined_chart.data.datasets[0].data = data.data;
+                        mined_chart.update();
+                        groups_chart.data.datasets = data.dataset;
+                        groups_chart.update();
+                        isk_chart.data.datasets = data.dataset2;
+                        isk_chart.update();
+                        type_chart.data.labels = data.type_labels;
+                        type_chart.data.datasets[0].data = data.type_quantity;
+                    },
+                    error: function(data){
+                        console.log(data);
+                    }
+                });
+            });
         });
 
         const data = {
@@ -220,7 +238,7 @@
             },
         };
 
-        mined_volume_chart = new Chart(document.getElementById('mining_chart').getContext('2d'), config);
+        mined_chart = new Chart(document.getElementById('mining_chart').getContext('2d'), config);
 
         const data2 = {
             labels: @json($minings->labels),
@@ -254,7 +272,79 @@
                 }
             },
         };
-        mined_groups_chart = new Chart(document.getElementById('mining_chart2').getContext('2d'), config2);
+        groups_chart = new Chart(document.getElementById('mining_chart2').getContext('2d'), config2);
+
+        const data3 = {
+            labels: @json($minings->labels),
+            datasets: @json($dataset2),
+        };
+        const config3 = {
+            type: 'bar',
+            data: data3,
+            options: {
+                tooltips: {
+                    displayColors: true,
+                    callbacks: {
+                        label: function(tooltipItem, data3) {
+                            return tooltipItem.yLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }, },
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    xAxes: [{
+                        stacked: false,
+                    }],
+                    yAxes: [{
+                        stacked: false,
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value, index, ticks) {
+                                return Intl.NumberFormat().format(value);
+                            }
+                        }
+                    }]
+                }
+            },
+        };
+        isk_chart = new Chart(document.getElementById('mining_chart3').getContext('2d'), config3);
+
+        const data4 = {
+            labels: @json($type_labels),
+            datasets: [
+                {
+                    label: 'quantity',
+                    data: @json($type_quantity),
+                    backgroundColor: [
+                        '#129CFF','#FFFF00','#40FF00','#DF01A5','#848484','#FE642E','#2EFEF7','#088A68','#3B0B39',
+                        '#393B0B','#BCA9F5','#81F79F','#DF000A','#359711'
+                    ],
+                    borderColor: '#acc239',
+                    borderWidth: 1
+                },
+            ]
+        };
+        const config4 = {
+            type: 'doughnut',
+            data: data4,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            return data['labels'][tooltipItem[0]['index']];
+                            },
+                    },
+                },
+                legend: {
+                    position: "right",
+                    align: "top"
+                },
+            },
+        };
+
+        type_chart = new Chart(document.getElementById('mining_chart4').getContext('2d'), config4);
+
 
     </script>
 @endpush
