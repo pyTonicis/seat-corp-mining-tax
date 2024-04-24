@@ -61,9 +61,9 @@ class CorpMiningOverviewController extends Controller
                 array_push($prices, (int)$result->price);
                 array_push($taxes, (int)$result->tax);
                 array_push($event_tax, (int)$result->event_tax);
-                $minings->add_volume($result->volume);
-                $minings->add_price($result->price);
-                $minings->add_quantity($result->quantity);
+                $minings->add_volume((int)$result->volume);
+                $minings->add_price((int)$result->price);
+                $minings->add_quantity((int)$result->quantity);
                 $tax_count += (int)$result->tax;
                 $tax_act = (int)$result->tax;
             } else {

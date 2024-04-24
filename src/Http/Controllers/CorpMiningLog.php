@@ -17,8 +17,9 @@ class CorpMiningLog extends Controller
     {
         $character = auth()->user()->main_character['character_id'];
         //$characters = CharacterHelper::getLinkedCharacters($character);
-        $miningdata = DB::table('corp_mining_tax')
+        $miningdata = DB::table('corp_mining_tax as cm')
             ->select('*')
+            ->join('character_infos as ci', 'ci.character_id', 'cm.character_id')
             ->where('main_character_id', '=', $character)
             ->orderBy('year', 'asc')
             ->orderBy('month', 'asc')

@@ -241,26 +241,6 @@
 
         });
 
-        $(document).ready(function () {
-            $('#mining_report').DataTable({});
-
-            $('#selected_character').on('change', function() {
-                var sid = this.value;
-                sname = $('#selected_character option:selected').text();
-                var url = {{ route('corpminingtax.test') }};
-                $('#name1').text(sname);
-                /*$.ajax({
-                        type:"GET",
-                        url:url,
-                        datatype:'json',
-                        success: function (data) {
-                        }
-                });*/
-
-            });
-
-        });
-
     </script>
 @endpush
 

@@ -174,7 +174,7 @@
             $('#selected_character').on('change', function() {
                 var sid = this.value;
                 sname = $('#selected_character option:selected').text();
-                var url = "{{ route('corpminingtax.test', [':id']) }}";
+                var url = "{{ route('corpminingtax.overviewdata', [':id']) }}";
                 url = url.replace(':id', sid);
                 var data = 0;
                 $.ajax({
@@ -194,6 +194,7 @@
                         isk_chart.update();
                         type_chart.data.labels = data.type_labels;
                         type_chart.data.datasets[0].data = data.type_quantity;
+                        type_chart.update();
                     },
                     error: function(data){
                         console.log(data);
