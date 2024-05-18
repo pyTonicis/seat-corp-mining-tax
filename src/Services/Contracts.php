@@ -24,7 +24,7 @@ class Contracts
                     if ($t->tax >= $settings['contract_min']) {
                         $c_title = $settings['contract_tag'] . " " . $t->year . "-" . $t->month . " (" . $this->generate_string($this->permitted_chars) . ")";
                         DB::table('corp_mining_tax_contracts')
-                            ->updateOrInsert(['character_id' => $t->main_character_id, 'month' => $t->month, 'year' => $t->year, 'tax' => $t->tax],
+                            ->updateOrInsert(['character_id' => $t->character_id, 'month' => $t->month, 'year' => $t->year, 'tax' => $t->tax],
                                 ['contractId' => 0, 'contractIssuer' => CharacterHelper::getCharacterIdByName($settings['contract_issuer']), 'contractTitle' => $c_title,
                                     'contractData' => "None", 'contractStatus' => 1, 'character_name' => CharacterHelper::getCharacterName($t->main_character_id), 'corporation_id' => $t->corporation_id]);
                     }
@@ -43,7 +43,7 @@ class Contracts
                 if ($t->tax >= $settings['contract_min']) {
                     $c_title = $settings['contract_tag'] . " " . $t->year . "-" . $t->month . " (" . $this->generate_string($this->permitted_chars) . ")";
                     DB::table('corp_mining_tax_contracts')
-                        ->updateOrInsert(['character_id' => $t->character_id, 'month' => $t->month, 'year' => $t->year, 'tax' => $t->tax],
+                        ->updateOrInsert(['character_id' => $t->main_character_id, 'month' => $t->month, 'year' => $t->year, 'tax' => $t->tax],
                             ['contractId' => 0, 'contractIssuer' => CharacterHelper::getCharacterIdByName($settings['contract_issuer']), 'contractTitle' => $c_title,
                                 'contractData' => "None", 'contractStatus' => 1, 'character_name' => CharacterHelper::getCharacterName($t->character_id), 'corporation_id' => $t->corporation_id]);
                 }

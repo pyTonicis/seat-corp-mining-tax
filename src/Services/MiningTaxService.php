@@ -12,7 +12,7 @@ use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\CharacterMiningRecord;
 use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\MiningTaxResult;
 use pyTonicis\Seat\SeatCorpMiningTax\Models\TaxData\OreType;
 use pyTonicis\Seat\SeatCorpMiningTax\Services\Reprocessing;
-use pyTonicis\Seat\SeatCorpMiningTax\Services\MiningEvents;
+use pyTonicis\Seat\SeatCorpMiningTax\Services\MiningEventService;
 use Illuminate\Support\Facades\DB;
 
 
@@ -73,7 +73,7 @@ class MiningTaxService
     public function createMiningTaxResult(int $corpId, int $month, int $year, string $option): MiningTaxResult
     {
         $miningResult = new MiningTaxResult($month, $year);
-        $eventService = new MiningEvents();
+        $eventService = new MiningEventService();
         $settingService = new SettingService();
         $settings = $settingService->getAll();
 
