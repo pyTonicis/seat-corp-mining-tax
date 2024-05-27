@@ -3,6 +3,7 @@
 namespace pyTonicis\Seat\SeatCorpMiningTax;
 
 use pyTonicis\Seat\SeatCorpMiningTax\Commands\MiningTaxContracts;
+use pyTonicis\Seat\SeatCorpMiningTax\Commands\MiningTaxEvents;
 use pyTonicis\Seat\SeatCorpMiningTax\Commands\MiningTaxGenerator;
 use pyTonicis\Seat\SeatCorpMiningTax\Commands\MiningTaxUpdate;
 use pyTonicis\Seat\SeatCorpMiningTax\Services\MiningTaxService;
@@ -103,6 +104,7 @@ class SeatCorpMiningTaxServiceProvider extends AbstractSeatPlugin
     private function add_commands()
     {
         $this->commands([MiningTaxUpdate::class]);
+        $this->commands([MiningTaxEvents::class]);
         $this->commands([MiningTaxGenerator::class]);
         $this->commands([MiningTaxContracts::class]);
     }
