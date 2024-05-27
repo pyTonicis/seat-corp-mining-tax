@@ -95,6 +95,7 @@
                         <th>Duration</th>
                         <th>Tax Rate</th>
                         <th>Total Income ISK</th>
+                        <th>Tracking</th>
                         <th>Status</th>
                         <th>Actions</th>
                         <th>Hidden</th>
@@ -108,6 +109,11 @@
                             <td>{{ $event->event_duration }} day(s)</td>
                             <td>{{ $event->event_tax }} %</td>
                             <td>{{ number_format($event->total) }}</td>
+                            @if ($event->event_tracker == "automatic")
+                                <td><h5><span class="badge badge-warning">auto</span></h5></td>
+                            @else
+                                <td><h5><span class="badge badge-info">auto</span></h5></td>
+                            @endif
                             @if ($event->event_status == 1)
                                 <td id="s_{{ $event->id }}"><h5><span class="badge badge-info">new</span></h5></td>
                             @elseif ($event->event_status == 2)
