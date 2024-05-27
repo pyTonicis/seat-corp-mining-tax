@@ -9,6 +9,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\DB;
 use pyTonicis\Seat\SeatCorpMiningTax\Services\Contracts;
+use pyTonicis\Seat\SeatCorpMiningTax\Services\MiningEventService;
 use pyTonicis\Seat\SeatCorpMiningTax\Services\SettingService;
 
 class UpdateEvents implements ShouldQueue
@@ -21,11 +22,14 @@ class UpdateEvents implements ShouldQueue
 
     private $settingService;
 
+    private $eventService;
+
     public function __construct($force)
     {
         $this->force = $force;
         $this->settingService = new SettingService();
         $this->contractService = new Contracts();
+        $this->eventService = new MiningEventService();
     }
 
     public function tags()
@@ -36,5 +40,6 @@ class UpdateEvents implements ShouldQueue
     public function handle()
     {
         $settings = $this->settingService->getAll();
+        $this->eventService->updateEventStatus();
     }
 }

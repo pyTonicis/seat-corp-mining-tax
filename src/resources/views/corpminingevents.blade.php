@@ -32,7 +32,7 @@
                         <input type="text" class="form-control" id="event" name="event">
                 </div>
                 <div class="form-row">
-                    <div class="col-7">
+                    <div class="col-6">
                         <label for="start">Start Date</label>
                         <input type='text' class="form-control datepicker" id="start" name="start" placeholder="Select Date..">
                     </div>
@@ -49,6 +49,13 @@
                         <select class="custom-select mr-sm-2" name="valuation" id="valuation">
                             <option value="less">less tax</option>
                             <option value="plus">plus tax</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="event_tracker">Event Tracking</label>
+                        <select class="custom-select mr-sm-2" name="event_tracker" id="event_tracker">
+                            <option value="enable">automatic</option>
+                            <option value="disable" selected>manual</option>
                         </select>
                     </div>
                 </div>
