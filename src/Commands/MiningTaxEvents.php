@@ -3,6 +3,7 @@
 namespace pyTonicis\Seat\SeatCorpMiningTax\Commands;
 
 use Illuminate\Console\Command;
+use pyTonicis\Seat\SeatCorpMiningTax\Jobs\UpdateEvents;
 
 class MiningTaxEvents extends Command
 {
@@ -12,7 +13,11 @@ class MiningTaxEvents extends Command
 
     public function handle()
     {
-
+        if($this->option('now')){
+            UpdateEvents::dispatchSync($this->option('force'));
+        } else {
+            UpdateEvents::dispatch($this->option('force'));
+        }
     }
 
 }
