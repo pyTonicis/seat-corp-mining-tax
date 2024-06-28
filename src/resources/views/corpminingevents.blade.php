@@ -112,7 +112,7 @@
                             @if ($event->event_tracker == "automatic")
                                 <td><h5><span class="badge badge-warning">auto</span></h5></td>
                             @else
-                                <td><h5><span class="badge badge-info">auto</span></h5></td>
+                                <td><h5><span class="badge badge-info">manually</span></h5></td>
                             @endif
                             @if ($event->event_status == 1)
                                 <td id="s_{{ $event->id }}"><h5><span class="badge badge-info">new</span></h5></td>
@@ -158,7 +158,7 @@
             dataTable = $('#events').DataTable({
                 "columnDefs": [
                     {
-                        "targets": [7],
+                        "targets": [8],
                         "visible": false
                     }
                 ]
