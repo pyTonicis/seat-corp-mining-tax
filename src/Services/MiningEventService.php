@@ -104,7 +104,7 @@ class MiningEventService
                 $tax_rate = $this->getEventMiningTaxRate($mining->event_id);
                 $refined_price += $price * ($tax_rate/100);
             }
-            DB::table('corp_mining_tax_minings')
+            DB::table('corp_mining_tax_event_minings')
                 ->updateOrInsert(['character_name' => CharacterHelper::getCharacterName($mining->character_id), 'event_id' => $data->event_id, 'type_id' => $mining->type_id],
         ['quantity' => $mining->quantity, 'refined_price' => $refined_price]);
         }
