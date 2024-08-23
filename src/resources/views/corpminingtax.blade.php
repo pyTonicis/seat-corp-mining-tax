@@ -64,6 +64,13 @@
                         <option value="separated">separated</option>
                     </select>
                 </div>
+                <div class="col-md-4 md-3">
+                    <label for="cmethode">Calculation Methode</label>
+                    <select class="custom-select mr-sm-2" name="cmethode" id="cmethode">
+                        <option value="archived" selected>archived data</option>
+                        <option value="recalculate">recalculate</option>
+                    </select>
+                </div>
             </div>
             <button class="btn btn-primary" onclick="on()" type="submit">Send</button>
         </form>
@@ -148,6 +155,50 @@
                         <td>{{ number_format($character->price) }}</td>
                         <td>{{ number_format($character->tax) }}</td>
                         <td>{{ number_format($character->event_tax) }}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+@endisset
+@isset($archivedData)
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-8 align-left">
+                    <h3>Mining Tax Summary <small>(this month)</small></h3>
+                </div>
+                <div class="ml-auto mr-2 align-right text-right align-centered">
+                    <h4>Total Tax <small>(this month)</small> {{ number_format($total_tax) }} ISK</h4>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table" id="mining">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>CharacterName</th>
+                    <th>Mined units</th>
+                    <th>Mined volume</th>
+                    <th>Mineral Price</th>
+                    <th>Tax</th>
+                    <th>Event Tax</th>
+                    <th>Tax to pay</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($archivedData as $character)
+                    <tr>
+                        <td>{{ $character->year }}-{{ $character->month }}</td>
+                        <td>{{ $character->name }}</td>
+                        <td>{{ number_format($character->quantity) }}</td>
+                        <td>{{ number_format($character->volume) }}</td>
+                        <td>{{ number_format($character->price) }}</td>
+                        <td>{{ number_format($character->tax) }}</td>
+                        <td>{{ number_format($character->event_tax) }}</td>
+                        <td>{{ number_format($character->tax - $character_event_tax) }}</td>
                     </tr>
                 @endforeach
                 </tbody>

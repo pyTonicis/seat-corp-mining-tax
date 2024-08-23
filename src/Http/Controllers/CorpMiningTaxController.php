@@ -77,12 +77,38 @@ class CorpMiningTaxController extends Controller
             return redirect()->route('corpminingtax.home');
         }
 
-        $this->miningData = $this->miningTaxService->createMiningTaxResult($request->get('corpId'),
-            (int)$request->get('mining_month'), (int)$request->get('mining_year'), $request->get('tax_calculation'));
-
-        return view('corpminingtax::corpminingtax', [
-            'miningData' => $this->miningData
-        ]);
+        if($request->get('cmethode') == "recalculate") {
+            $this->miningData = $this->miningTaxService->createMiningTaxResult($request->get('corpId'),
+                (int)$request->get('mining_month'), (int)$request->get('mining_year'), $request->get('tax_calculation'));
+            return view('corpminingtax::corpminingtax', [
+                'miningData' => $this->miningData
+            ]);
+        } else {
+            if ($request->get('tax_calculation') == "separated") {
+                $archivedData = DB::table('corp_mining_tax as t')
+                    ->select('t.*', 'c.name')
+                    ->join('character_infos as c', 't.character_id', '=', 'c.character_id')
+                    ->where('year', (int)$request->get('mining_year'))
+                    ->where('month', (int)$request->get('mining_month'))
+                    ->where('corporation_id', '=', $request->get('corpId'))
+                    ->orderBy('c.name')
+                    ->get();
+            } else {
+                DB::statement("SET SQL_MODE=''");
+                $archivedData = DB::table('corp_mining_tax as t')
+                    ->selectRaw('sum(t.quantity) as quantity, sum(t.volume) as volume, sum(t.price) as price, sum(t.tax) as tax, sum(event_tax) as event_tax, c.name, t.year, t.month')
+                    ->join('character_infos as c', 'main_character_id', '=', 'c.character_id')
+                    ->where('year', (int)$request->get('mining_year'))
+                    ->where('month', (int)$request->get('mining_month'))
+                    ->where('corporation_id', '=', $request->get('corpId'))
+                    ->orderBy('c.name')
+                    ->groupBy('t.main_character_id')
+                    ->get();
+            }
+            return view('corpminingtax::corpminingtax', [
+                'archiveData' => $archivedData
+            ]);
+        }
     }
 
     public function getCorporations(Request $request)
