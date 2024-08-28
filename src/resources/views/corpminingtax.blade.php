@@ -162,15 +162,12 @@
         </div>
     </div>
 @endisset
-@isset($archivedData)
+@isset($archiveData)
     <div class="card">
         <div class="card-header">
             <div class="row">
                 <div class="col-md-8 align-left">
-                    <h3>Mining Tax Summary <small>(this month)</small></h3>
-                </div>
-                <div class="ml-auto mr-2 align-right text-right align-centered">
-                    <h4>Total Tax <small>(this month)</small> {{ number_format($total_tax) }} ISK</h4>
+                    <h3>Mining Tax Summary <small>(archived Data)</small></h3>
                 </div>
             </div>
         </div>
@@ -189,7 +186,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($archivedData as $character)
+                @foreach($archiveData as $character)
                     <tr>
                         <td>{{ $character->year }}-{{ $character->month }}</td>
                         <td>{{ $character->name }}</td>
@@ -198,7 +195,7 @@
                         <td>{{ number_format($character->price) }}</td>
                         <td>{{ number_format($character->tax) }}</td>
                         <td>{{ number_format($character->event_tax) }}</td>
-                        <td>{{ number_format($character->tax - $character_event_tax) }}</td>
+                        <td>{{ number_format($character->tax - $character->event_tax) }}</td>
                     </tr>
                 @endforeach
                 </tbody>
