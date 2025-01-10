@@ -7,7 +7,7 @@
 This plugin provides an extension to calculate mining taxes within the corporation. It simplifies the handling of taxes and gives an overview of mined ores of each member. Some additional features will very helpful to control the mining part, like Corporation Mining Events, Mining Statistics, Corporation Moon's Statistics,..
 
 
-## Quick Installation
+## Installation Guide
 
 ### For non-Docker
 ```php
@@ -29,7 +29,7 @@ at the end.
 
 Then , run `docker-compose up -d` to take effect.
 
-### For non-Docker Update
+### For non-Docker Update plugin
 
 ```php
 sudo -H -u www-data bash -c 'php artisan down'
@@ -41,43 +41,48 @@ sudo -H -u www-data bash -c 'php artisan route:cache'
 sudo -H -u www-data bash -c 'php artisan up'
 ```
 
-## Plugin Setup
+### Plugin Setup
 - Open Settings Page and select your Corporation Name (at global Settings)
-- Set a valid Charactername in field "Contract Issuer" (at Contract Settings)
+- Set a valid Character Name in field "Contract Issuer" (at Contract Settings)
+
 
 All other settings such as tax rate can be set as desired. For best tax result, 
 u should set "Ore Valuation Price" to "Mineral Price". The Prices for minerals  are inaccurate.
 
-If you want to use EvE Janice as a Price provider, you need to apply for a valid API Key and enter it in the field "Price Provider API Key" and select "Eve Janice as price provider. 
+If you want to use EvE Janice as a Price provider, you need to apply for a valid API Key and enter it in the field "Price Provider API Key" and select "Eve Janice as price provider.
 
-## Fill Database with mining data
 
-If you want to get some data from past months, you can generate tax data at console by hand eg.:
+### Fill Database with mining data
+
+If you want to fetch some data from past months, you can generate tax data at console by hand eg.:
 
 ```php
 sudo -H -u www-data bash -c 'php artisan tax:update 2023 10
 ```
 
-## Permissions
+### Permissions
 
-There are three different types of permissions you can set for your Members.
+There are three different types of permissions you can set for your Members. Access rights are to set in Access Manager of Seat. (Seat->Settings->Access Manager) 
 
-### Member
+#### Member
 
 Allow access to overview and reprocessing tool
 
-### Manager
+#### Manager
 
 Allow access to manage tax contracts and tax calculator
 
-### Admin
+#### Admin
 
 Allows full access
 
-## Help
+### How to use the plugin?
+
+Please read the **MANUAL.md** for more information about configuration and using the plugin.
 
 If you need help, feel free to contact me via Discord: ```smasherjobs```
-## Donations
+
+### Donations
 
 If you would like to support my project, feel free to donate isk or plex to ```Smasher Jobs``` (in-game).
 
@@ -85,7 +90,7 @@ If you would like to support my project, feel free to donate isk or plex to ```S
 
 **Overview (Dashboard)**
 
-![Overview](https://i.imgur.com/X09UX7R.png)
+![Overview](https://i.imgur.com/sCy80pL.jpeg)
 
 **Reprocessing**
 
