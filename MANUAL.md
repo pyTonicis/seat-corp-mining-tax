@@ -88,4 +88,25 @@ Here u can check all minings per month and character.
 
 ![MiningTax](https://i.imgur.com/dBO8mNl.jpeg)
 
-In the Mining Tax Area, you can check actual taxes for every Character. Also it is possible to view old taxes past months.
+The current taxes for the current month are displayed in this area for every Character. Data from the past can also be displayed as archived data or recalculated. It is also possible to display the tax data for each main character or each individual character.
+
+
+### Reprocessing
+
+![Refine](https://i.imgur.com/55wWf94.png)
+
+This small tool can be used to process any ores, ice and gases to check which minerals are contained and what their value is. All you have to do is select and copy the ore from the EvE Hanger and paste it into this tool. The processing efficiency can also be set.
+
+
+### Corp Moon Minings
+
+![enter image description here](https://i.imgur.com/CBGBZ7a.png)
+
+The individual Corporations Monde can be viewed in this overview. The data includes which and how much ore was mined and when, as well as the theoretical mineral price. It gives a very good overview of the profitability of the rented moons and also of the mining efficiency.
+
+
+### Tax Contracts
+
+![Contracts](https://i.imgur.com/H3CpIWE.jpeg)
+
+The automatically generated contracts are displayed and saved in this area. The plugin automatically creates tax contracts for all participants who have mined on the 2nd day of every month. However, as contracts cannot be created via the EvE interface, they must be created manually in EvE. To do this, click on Edit for each name in the list, copy the data into the input fields in Eve Online and create the contract in the game. You can then close the small window again and click on “Offer” so that the contract is visible as created. Once the contract has been accepted, it is automatically displayed as completed in the tool. If this does not work, you can also click on “Complete” in the tool. If you have created a contract incorrectly, you can simply delete it by clicking on “Delete”.
