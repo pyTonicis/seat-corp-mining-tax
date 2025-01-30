@@ -66,6 +66,7 @@ class CharacterData
         $this->characterId = $characterId;
         $this->characterName = $characterName;
         $this->mainCharacterId = $mainCharacterId;
+        $this->quantity = 0;
         $this->priceSummary = 0;
         $this->tax = 0;
         $this->event_tax = 0;
