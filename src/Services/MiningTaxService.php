@@ -229,6 +229,7 @@ class MiningTaxService
                     $characterData->main_character_id,
                     $characterData->name
                 );
+                $charData->addQuantity(1);
                 $miningResult->addCharacterData($charData);
                 $event_character_id = $characterData->main_character_id;
             }

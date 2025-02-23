@@ -163,9 +163,10 @@ class CorpMiningOverviewController extends Controller
     {
         DB::statement("SET SQL_MODE=''");
         $result = DB::table('corp_mining_tax')
-            ->select('tax', 'main_character_id')
+            ->selectRaw('sum(tax) as tax, main_character_id')
             ->where('month', '=', $month)
             ->where('year', '=', $year)
+            ->groupBy('main_character_id')
             ->orderBy('tax', 'desc')
             ->get();
         $count = 1;
